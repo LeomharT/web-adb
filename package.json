@@ -17,6 +17,7 @@
         "@types/react": "^18.0.18",
         "@types/react-dom": "^18.0.6",
         "@types/uuid": "^8.3.4",
+        "@types/w3c-web-usb": "^1.0.6",
         "@typescript-eslint/eslint-plugin": "^5.37.0",
         "esbuild": "^0.15.12",
         "esbuild-plugin-eslint": "^0.1.1",
@@ -25,6 +26,7 @@
         "node-sass": "^7.0.3"
     },
     "dependencies": {
+        "@blueprintjs/core": "^4.9.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     }
