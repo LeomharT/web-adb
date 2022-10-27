@@ -1,48 +1,24 @@
-import { useCallback, useEffect } from "react";
+import AdbWebCredentialStore from "@yume-chan/adb-credential-web";
+import { observer } from "mobx-react";
+import Aside from "../components/Aside";
+import FileList from "../components/FileList";
+import { register as registerIcons } from "../utils/icons";
 
+const CredentialStore = new AdbWebCredentialStore();
 
-export const ADB_DEVICE_FILTER: USBDeviceFilter = {
-    classCode: 0xFF,
-    subclassCode: 0x42,
-    protocolCode: 1,
-};
+registerIcons();
 
-
-export default function App()
+function App()
 {
 
-    const requestUSBDevice = useCallback(async () =>
-    {
-        try
-        {
-            const device = await navigator.usb.requestDevice({ filters: [{ vendorId: 0x2341 }] });;
-
-            console.log(device);
-
-        } catch (e)
-        {
-            if (e instanceof DOMException && e.name === 'NotFoundError')
-            {
-                console.error(e);
-                return undefined;
-            }
-            throw e;
-        }
-
-
-    }, []);
-
-    useEffect(() =>
-    {
-        if (!navigator.usb) return;
-
-        // requestUSBDevice();
-
-    }, []);
-
     return (
-        <div>
+        <div className="adb-demo">
+            <Aside />
 
+            <FileList />
         </div>
     );
 }
+
+
+export default observer(App);

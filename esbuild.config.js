@@ -8,7 +8,7 @@ await esbuild.build({
     entryPoints: ['./src/index.tsx'],
     outdir: 'dist',
     bundle: true,
-    minify: true,
+    minify: false,
     watch: true,
     assetNames: 'assets/[name]-[hash]',
     loader: {
