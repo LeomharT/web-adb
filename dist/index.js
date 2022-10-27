@@ -62660,6 +62660,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           await dispose();
         });
         GlobalState.setDevice(selectedBackend, device);
+        runInAction(() => fileManager.path = "/");
         fileManager.loadFiles();
       } catch (e2) {
         if (e2 instanceof DOMException) {

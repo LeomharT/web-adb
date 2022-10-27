@@ -2,6 +2,7 @@ import { DefaultButton, INavLinkGroup, Label, Nav, PrimaryButton, Stack } from "
 import { Adb, AdbBackend, AdbPacketData, AdbPacketInit, InspectStream, pipeFrom } from "@yume-chan/adb";
 import AdbWebUsbBackend from "@yume-chan/adb-backend-webusb";
 import AdbWebCredentialStore from "@yume-chan/adb-credential-web";
+import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useCallback, useState } from "react";
 import { fileManager } from "../stores/fileManager";
@@ -85,6 +86,8 @@ function Aside()
             });
 
             GlobalState.setDevice(selectedBackend, device);
+
+            runInAction(() => fileManager.path = '/');
 
             fileManager.loadFiles();
 
