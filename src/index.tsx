@@ -1,13 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import App from './app/App';
 import './assets/scss/index.scss';
 
-const root = ReactDOM.createRoot(document.querySelector('#root') as HTMLDivElement);
+const root = document.querySelector('#root') as HTMLDivElement;
 
-
-root.render(
+ReactDOM.render(
     <React.StrictMode>
         <App />
-    </React.StrictMode>
+    </React.StrictMode>,
+    root
 );

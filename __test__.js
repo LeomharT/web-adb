@@ -1,3 +1,5 @@
-const a = '/ok/';
+const path = '/ok/no/haha/ho';
 
-console.log(a.at(-21));
+
+
+console.log(path.split('/'));

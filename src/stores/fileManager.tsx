@@ -1,10 +1,11 @@
-import { getIcon, IColumn, Icon, mergeStyleSets } from "@fluentui/react";
+import { getIcon, IBreadcrumbItem, IColumn, Icon, IContextualMenuItem, mergeStyleSets } from "@fluentui/react";
 import { FileIconType, getFileTypeIconProps } from '@fluentui/react-file-type-icons';
 import { AdbFeatures, AdbSyncEntry, LinuxFileType } from "@yume-chan/adb";
-import { makeAutoObservable, runInAction } from "mobx";
+import { action, makeAutoObservable, observable, runInAction } from "mobx";
 import { asyncEffect } from "../utils/asyncEffect";
 import { formatSize } from "../utils/formatSize";
 import Icons from "../utils/icons";
+import resolvePath from "../utils/resolvePath";
 import { GlobalState } from "./state";
 
 export interface ListItem extends AdbSyncEntry
@@ -28,11 +29,27 @@ function toListItem(item: AdbSyncEntry): ListItem
 }
 
 
+function compareCaseInsensitively(a: string, b: string)
+{
+    const result = a.toLocaleLowerCase().localeCompare(b.toLocaleLowerCase());
+    if (result !== 0)
+    {
+        return result;
+    } else
+    {
+        return a.localeCompare(b);
+    }
+}
+
+
 class FileManager
 {
     constructor()
     {
-        makeAutoObservable(this);
+        makeAutoObservable(this, {
+            items: observable.shallow,
+            loadFiles: false
+        });
     }
 
 
@@ -49,6 +66,12 @@ class FileManager
 
 
     public selectedItems: ListItem[] = [];
+
+
+    public loading: boolean = false;
+
+
+    public contextMenuTarget: MouseEvent | undefined = undefined;
 
 
     get columns(): IColumn[]
@@ -192,9 +215,116 @@ class FileManager
         return list;
     }
 
+
+    get breadcrumbItems(): IBreadcrumbItem[]
+    {
+        const list: IBreadcrumbItem[] = this.path.split('/').filter(segment => segment !== '').map((segment, _, paths) =>
+        {
+            return {
+                key: '/' + segment,
+                text: segment,
+                onClick: (_, item) =>
+                {
+                    if (!item) return;
+
+                    const target_index = paths.indexOf(segment);
+
+                    if (target_index === -1) return;
+
+                    runInAction(() =>
+                    {
+                        this.path = '/' + paths.slice(0, target_index + 1).join('/');
+                    });
+
+                    this.loadFiles();
+                }
+            };
+        });
+
+
+        list.unshift({
+            key: "/",
+            text: "Device",
+            onClick: action((_, item) =>
+            {
+                this.path = item!.key;
+
+                this.loadFiles();
+            })
+        });
+
+        list.at(-1)!.isCurrentItem = true;
+
+        delete list.at(-1)?.onClick;
+
+        return list;
+    }
+
+
+    get sortedList(): ListItem[]
+    {
+        const list = this.items.slice();
+        list.sort((a, b) =>
+        {
+            const aIsFile = a.type === LinuxFileType.File ? 1 : 0;
+            const bIsFile = b.type === LinuxFileType.File ? 1 : 0;
+
+            let result: number;
+            if (aIsFile !== bIsFile)
+            {
+                result = aIsFile - bIsFile;
+            } else
+            {
+                const aSortKey = a[this.sortKey]!;
+                const bSortKey = b[this.sortKey]!;
+
+                if (aSortKey === bSortKey)
+                {
+                    result = compareCaseInsensitively(a.name!, b.name!);
+                } else if (typeof aSortKey === 'string')
+                {
+                    result = compareCaseInsensitively(aSortKey, bSortKey as string);
+                } else
+                {
+                    result = aSortKey < bSortKey ? -1 : 1;
+                }
+            }
+
+            if (this.sortDescending)
+            {
+                result *= -1;
+            }
+            return result;
+        });
+        return list;
+    }
+
+    get menuItems(): IContextualMenuItem[]
+    {
+        const result: IContextualMenuItem[] = [
+            {
+                key: "Delete",
+                text: "Delete",
+                iconProps: {
+                    iconName: Icons.Delete
+                },
+                onClick: (e, item) =>
+                {
+                    e?.stopPropagation();
+                    console.log(item);
+                    return false;
+                }
+            }
+        ];
+
+        return result;
+    }
+
     public loadFiles = asyncEffect(async (signal) =>
     {
         if (!GlobalState.device) return;
+
+        runInAction(() => this.loading = true);
 
         const sync = await GlobalState.device.sync();
 
@@ -208,6 +338,8 @@ class FileManager
             {
                 return;
             }
+
+            runInAction(() => this.items = items.slice());
         }, 1000);
 
         try
@@ -234,17 +366,7 @@ class FileManager
             {
                 if (signal.aborted) return;
 
-                let target_path: string;
-
-                if (this.path.at(-1) === '/')
-                {
-                    target_path = this.path + entry.name;
-                } else
-                {
-                    target_path = this.path + '/' + entry.name;
-                }
-
-                if (!await sync.isDirectory(target_path))
+                if (!await sync.isDirectory(resolvePath(this.path, entry.name)))
                 {
                     entry.mode = LinuxFileType.File << 12 | entry.permission;
                     entry.size = 0n;
@@ -262,6 +384,11 @@ class FileManager
 
         } finally
         {
+            if (!signal.aborted)
+            {
+                runInAction(() => this.loading = false);
+            }
+
             clearInterval(intervalId);
 
             sync.dispose();

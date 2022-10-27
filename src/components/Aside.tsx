@@ -1,4 +1,4 @@
-import { DefaultButton, Label, PrimaryButton, Stack } from "@fluentui/react";
+import { DefaultButton, INavLinkGroup, Label, Nav, PrimaryButton, Stack } from "@fluentui/react";
 import { Adb, AdbBackend, AdbPacketData, AdbPacketInit, InspectStream, pipeFrom } from "@yume-chan/adb";
 import AdbWebUsbBackend from "@yume-chan/adb-backend-webusb";
 import AdbWebCredentialStore from "@yume-chan/adb-credential-web";
@@ -6,9 +6,23 @@ import { observer } from "mobx-react-lite";
 import { useCallback, useState } from "react";
 import { fileManager } from "../stores/fileManager";
 import { GlobalState } from "../stores/state";
+import Icons from "../utils/icons";
 
 
 const CredentialStore = new AdbWebCredentialStore();
+
+const ROUTES: INavLinkGroup[] = [
+    {
+        links: [
+            {
+                url: '/',
+                name: "Files",
+                icon: Icons.Folder,
+                key: 'Files',
+            }
+        ]
+    }
+];
 
 function Aside()
 {
@@ -112,8 +126,14 @@ function Aside()
                     />
                 )
             }
-            <Stack grow >
-
+            <Stack grow styles={{
+                root: {
+                    marginTop: '10px',
+                    paddingTop: '10px',
+                    borderTop: '1px solid rgb(243, 242, 241)'
+                }
+            }}>
+                <Nav groups={ROUTES} onLinkClick={e => e?.preventDefault()} />
             </Stack>
         </Stack>
     );

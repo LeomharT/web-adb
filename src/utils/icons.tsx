@@ -1,5 +1,6 @@
 import { registerIcons } from "@fluentui/react";
 import { AddCircleRegular, ArrowClockwiseRegular, ArrowRotateClockwiseRegular, ArrowRotateCounterclockwiseRegular, ArrowSortDownRegular, ArrowSortUpRegular, BookmarkRegular, BookSearchRegular, BoxRegular, BugRegular, CameraRegular, CheckmarkRegular, ChevronDownRegular, ChevronRightRegular, ChevronUpRegular, CircleRegular, CloudArrowDownRegular, CloudArrowUpRegular, CopyRegular, DeleteRegular, DocumentRegular, FilterRegular, FolderRegular, FullScreenMaximizeRegular, InfoRegular, LightbulbFilamentRegular, LightbulbRegular, MoreHorizontalRegular, NavigationRegular, OrientationRegular, PanelBottomRegular, PersonFeedbackRegular, PhoneLaptopRegular, PhoneRegular, PlayRegular, PlugConnectedRegular, PlugDisconnectedRegular, PowerRegular, SaveRegular, SearchRegular, SettingsRegular, StopRegular, TextGrammarErrorRegular, WandRegular, WarningRegular, WifiSettingsRegular, WindowConsoleRegular } from '@fluentui/react-icons';
+import { BackIcon } from '@fluentui/react-icons-mdl2';
 
 const STYLE = {};
 
@@ -63,7 +64,10 @@ export function register()
             Filter: <FilterRegular style={STYLE} />,
 
             // Required by file manager page
-            Document20: <DocumentRegular style={{ fontSize: 20, verticalAlign: 'middle' }} />
+            Document20: <DocumentRegular style={{ fontSize: 20, verticalAlign: 'middle' }} />,
+
+            //Icons-mdl2
+            BackIcon: <BackIcon />
         }
     });
 }
@@ -110,7 +114,8 @@ const Icons = {
     Warning: 'Warning',
     WifiSettings: 'WifiSettings',
     WindowConsole: 'WindowConsole',
-    Document20: 'Document20'
+    Document20: 'Document20',
+    BackIcon: 'BackIcon'
 };
 
 export default Icons;
