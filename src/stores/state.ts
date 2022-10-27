@@ -1,14 +1,13 @@
 import { Adb, AdbBackend } from "@yume-chan/adb";
-import { action, makeAutoObservable, runInAction } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
+import { fileManager } from "./fileManager";
 
 
 class GlobalStateType
 {
     constructor()
     {
-        makeAutoObservable(this, {
-            disconnectDevice: action
-        });
+        makeAutoObservable(this);
     }
 
     backend: AdbBackend | undefined = undefined;
@@ -33,6 +32,9 @@ class GlobalStateType
             {
                 this.device = undefined;
                 this.backend = undefined;
+
+                if (!fileManager) return;
+                fileManager.items.length = 0;
             });
         } catch (e: any)
         {

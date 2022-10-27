@@ -1,14 +1,15 @@
-import AdbWebCredentialStore from "@yume-chan/adb-credential-web";
-import { observer } from "mobx-react";
+import { initializeFileTypeIcons } from '@fluentui/react-file-type-icons';
 import Aside from "../components/Aside";
 import FileList from "../components/FileList";
 import { register as registerIcons } from "../utils/icons";
 
-const CredentialStore = new AdbWebCredentialStore();
 
 registerIcons();
 
-function App()
+initializeFileTypeIcons();
+
+
+export default function App()
 {
 
     return (
@@ -19,6 +20,3 @@ function App()
         </div>
     );
 }
-
-
-export default observer(App);

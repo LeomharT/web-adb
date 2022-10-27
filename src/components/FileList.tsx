@@ -1,112 +1,49 @@
-import { DefaultButton } from "@fluentui/react";
-import { AdbSyncEntry, LinuxFileType } from "@yume-chan/adb";
-import React, { useState } from 'react';
-import { GlobalState } from '../state/state';
-import { asyncEffect } from '../utils/asyncEffect';
+import { DefaultButton, DetailsListLayoutMode, MarqueeSelection, Selection, ShimmeredDetailsList, StackItem } from "@fluentui/react";
+import { useConst } from '@fluentui/react-hooks';
+import { runInAction } from "mobx";
+import { observer } from "mobx-react";
+import { fileManager, ListItem } from "../stores/fileManager";
+import { GlobalState } from '../stores/state';
 
-interface ListItem extends AdbSyncEntry
+
+function FileList()
 {
-    key: string;
-}
-
-
-function toListItem(item: AdbSyncEntry): ListItem
-{
-    (item as ListItem).key = item.name;
-    return item as ListItem;
-}
-
-export class FileManager
-{
-    public items: ListItem[] = [];
-
-    public path: string = '/';
-
-    public loadFiles = asyncEffect(async (signal, setFileList: React.Dispatch<React.SetStateAction<ListItem[]>>) =>
-    {
-        if (!GlobalState.device) return;
-
-        const sync = await GlobalState.device.sync();
-
-        const items: ListItem[] = [];
-
-        const linkItems: AdbSyncEntry[] = [];
-
-        const intervalId = setInterval(() =>
+    const selection = useConst(() => new Selection({
+        onSelectionChanged()
         {
-            if (signal.aborted)
+            runInAction(() =>
             {
-                return;
-            }
-        }, 1000);
-
-        try
-        {
-            for await (const entry of sync.opendir(this.path))
-            {
-                if (signal.aborted) return;
-
-                if (entry.name === '.' || entry.name === '..')
-                {
-                    continue;
-                }
-
-                if (entry.type === LinuxFileType.Link)
-                {
-                    linkItems.push(entry);
-                } else
-                {
-                    items.push(toListItem(entry));
-                }
-            }
-
-            for (const entry of linkItems)
-            {
-                if (signal.aborted) return;
-
-                let target_path: string;
-
-                if (this.path.at(-1) === '/')
-                {
-                    target_path = this.path + entry.name;
-                } else
-                {
-                    target_path = this.path + '/' + entry.name;
-                }
-
-                if (!await sync.isDirectory(target_path))
-                {
-                    entry.mode = LinuxFileType.File << 12 | entry.permission;
-                    entry.size = 0n;
-                }
-
-                items.push(toListItem(entry));
-            }
-
-            if (signal.aborted) return;
-
-            setFileList(items);
-
-        } finally
-        {
-            clearInterval(intervalId);
-
-            sync.dispose();
+                fileManager.selectedItems = selection.getItems() as ListItem[];
+            });
         }
-    });
-}
-
-const fileManager = new FileManager();
-
-export default function FileList()
-{
-    const [fileList, setFileList] = useState<ListItem[]>([]);
+    }));
 
     return (
-        <div>
-            <DefaultButton disabled={!GlobalState.device} onClick={() => fileManager.loadFiles(setFileList)}>
+        <div className="file-list">
+            <DefaultButton disabled={!GlobalState.device} onClick={fileManager.loadFiles}>
                 加载文件
             </DefaultButton>
+            <StackItem grow styles={{
+                root: {
+                    margin: '-8px -16px -16px -16px',
+                    padding: '8px 16px 16px 16px',
+                    overflowY: 'auto',
+                }
+            }}>
+                <MarqueeSelection selection={selection}>
+                    <ShimmeredDetailsList
+                        items={fileManager.items}
+                        columns={fileManager.columns}
+                        selection={selection}
+                        layoutMode={DetailsListLayoutMode.justified}
+                        usePageCache
+                        useReducedRowRenderer
+                    />
+                </MarqueeSelection>
+
+            </StackItem>
         </div>
     );
 }
+
+export default observer(FileList);

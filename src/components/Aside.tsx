@@ -2,13 +2,15 @@ import { DefaultButton, Label, PrimaryButton, Stack } from "@fluentui/react";
 import { Adb, AdbBackend, AdbPacketData, AdbPacketInit, InspectStream, pipeFrom } from "@yume-chan/adb";
 import AdbWebUsbBackend from "@yume-chan/adb-backend-webusb";
 import AdbWebCredentialStore from "@yume-chan/adb-credential-web";
+import { observer } from "mobx-react-lite";
 import { useCallback, useState } from "react";
-import { GlobalState } from "../state/state";
+import { fileManager } from "../stores/fileManager";
+import { GlobalState } from "../stores/state";
 
 
 const CredentialStore = new AdbWebCredentialStore();
 
-export default function Aside()
+function Aside()
 {
     const [selectedBackend, setSelectedBackend] = useState<AdbBackend | undefined>();
 
@@ -70,6 +72,8 @@ export default function Aside()
 
             GlobalState.setDevice(selectedBackend, device);
 
+            fileManager.loadFiles();
+
         } catch (e)
         {
             if (e instanceof DOMException)
@@ -114,3 +118,6 @@ export default function Aside()
         </Stack>
     );
 }
+
+
+export default observer(Aside);

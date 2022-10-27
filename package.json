@@ -28,6 +28,8 @@
     },
     "dependencies": {
         "@fluentui/react": "^8.98.8",
+        "@fluentui/react-file-type-icons": "^8.7.11",
+        "@fluentui/react-hooks": "^8.6.12",
         "@fluentui/react-icons": "^2.0.185",
         "@yume-chan/adb": "^0.0.16",
         "@yume-chan/adb-backend-webusb": "^0.0.16",
