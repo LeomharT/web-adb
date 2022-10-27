@@ -1,6 +1,6 @@
 import { registerIcons } from "@fluentui/react";
 import { AddCircleRegular, ArrowClockwiseRegular, ArrowRotateClockwiseRegular, ArrowRotateCounterclockwiseRegular, ArrowSortDownRegular, ArrowSortUpRegular, BookmarkRegular, BookSearchRegular, BoxRegular, BugRegular, CameraRegular, CheckmarkRegular, ChevronDownRegular, ChevronRightRegular, ChevronUpRegular, CircleRegular, CloudArrowDownRegular, CloudArrowUpRegular, CopyRegular, DeleteRegular, DocumentRegular, FilterRegular, FolderRegular, FullScreenMaximizeRegular, InfoRegular, LightbulbFilamentRegular, LightbulbRegular, MoreHorizontalRegular, NavigationRegular, OrientationRegular, PanelBottomRegular, PersonFeedbackRegular, PhoneLaptopRegular, PhoneRegular, PlayRegular, PlugConnectedRegular, PlugDisconnectedRegular, PowerRegular, SaveRegular, SearchRegular, SettingsRegular, StopRegular, TextGrammarErrorRegular, WandRegular, WarningRegular, WifiSettingsRegular, WindowConsoleRegular } from '@fluentui/react-icons';
-import { BackIcon } from '@fluentui/react-icons-mdl2';
+import { BackIcon, DownloadDocumentIcon } from '@fluentui/react-icons-mdl2';
 
 const STYLE = {};
 
@@ -67,7 +67,8 @@ export function register()
             Document20: <DocumentRegular style={{ fontSize: 20, verticalAlign: 'middle' }} />,
 
             //Icons-mdl2
-            BackIcon: <BackIcon />
+            BackIcon: <BackIcon />,
+            DownloadDocumentIcon: <DownloadDocumentIcon />
         }
     });
 }
@@ -115,7 +116,8 @@ const Icons = {
     WifiSettings: 'WifiSettings',
     WindowConsole: 'WindowConsole',
     Document20: 'Document20',
-    BackIcon: 'BackIcon'
+    BackIcon: 'BackIcon',
+    DownloadDocumentIcon: 'DownloadDocumentIcon'
 };
 
 export default Icons;

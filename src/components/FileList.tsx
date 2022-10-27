@@ -1,4 +1,4 @@
-import { Breadcrumb, concatStyleSets, ContextualMenu, ContextualMenuItem, DefaultButton, DetailsListLayoutMode, DirectionalHint, IDetailsHeaderProps, IRenderFunction, MarqueeSelection, ShimmeredDetailsList, StackItem } from "@fluentui/react";
+import { Breadcrumb, CommandBarButton, concatStyleSets, ContextualMenu, ContextualMenuItem, DetailsListLayoutMode, Dialog, DirectionalHint, IDetailsHeaderProps, IRenderFunction, MarqueeSelection, ProgressIndicator, ShimmeredDetailsList, Stack, StackItem } from "@fluentui/react";
 import { useConst } from '@fluentui/react-hooks';
 import { Selection, SelectionMode } from '@fluentui/react/lib/DetailsList';
 import { AdbSyncEntry, LinuxFileType } from "@yume-chan/adb";
@@ -6,7 +6,9 @@ import { action, runInAction } from "mobx";
 import { observer } from "mobx-react";
 import { useCallback } from "react";
 import { fileManager, ListItem } from "../stores/fileManager";
-import { GlobalState } from '../stores/state';
+import { GlobalState } from "../stores/state";
+import { formatSpeed, pickFile } from "../utils/file";
+import Icons from "../utils/icons";
 import resolvePath from "../utils/resolvePath";
 
 const renderDetailsHeader: IRenderFunction<IDetailsHeaderProps> = (props?, defaultRender?) =>
@@ -21,6 +23,24 @@ const renderDetailsHeader: IRenderFunction<IDetailsHeaderProps> = (props?, defau
         styles: concatStyleSets(props.styles, { root: { paddingTop: 0 } })
     });
 };
+
+const UploadDialog = observer(() =>
+{
+    return (
+        <Dialog
+            hidden={!fileManager.uploading}
+            dialogContentProps={{
+                title: 'Uploading...',
+                subText: fileManager.uploadPath
+            }}
+        >
+            <ProgressIndicator
+                description={formatSpeed(fileManager.debouncedUploadedSize, fileManager.uploadTotalSize, fileManager.uploadSpeed)}
+                percentComplete={fileManager.uploadedSize / fileManager.uploadTotalSize}
+            />
+        </Dialog>
+    );
+});
 
 function FileList()
 {
@@ -81,17 +101,39 @@ function FileList()
     }), []);
 
 
+    const handleOnuploadFiles = useCallback(async (e: React.MouseEvent<any>) =>
+    {
+        e.stopPropagation();
+
+        const files = await pickFile({ multiple: true });
+        for (let i = 0; i < files.length; i++)
+        {
+            const file = files.item(i)!;
+            await fileManager.uploadFiles(file);
+        }
+    }, []);
+
+
     return (
         <div className="file-list">
-            <DefaultButton disabled={!GlobalState.device} onClick={fileManager.loadFiles}>
-                加载文件
-            </DefaultButton>
+            <Stack horizontal styles={{
+                root: {
+                    height: '45px', flexShrink: 0,
+                    borderBottom: '1px solid rgb(243, 242, 241)'
+                }
+            }}>
+                <CommandBarButton
+                    text="Upload"
+                    disabled={!GlobalState.device}
+                    iconProps={{ iconName: Icons.CloudArrowUp, styles: { root: { color: "#0078d4" } } }}
+                    onClick={handleOnuploadFiles}
+                />
+            </Stack>
 
             <Breadcrumb items={fileManager.breadcrumbItems} />
 
             <StackItem grow styles={{
                 root: {
-                    margin: '-8px -16px -16px -16px',
                     padding: '8px 16px 16px 16px',
                     overflowY: 'auto',
                 }
@@ -113,6 +155,7 @@ function FileList()
                     />
                 </MarqueeSelection>
             </StackItem>
+
             <ContextualMenu
                 items={fileManager.menuItems}
                 hidden={!fileManager.contextMenuTarget}
@@ -121,6 +164,8 @@ function FileList()
                 onDismiss={dismissContextMenu}
                 contextualMenuItemAs={props => <ContextualMenuItem {...props} hasIcons={true} />}
             />
+
+            <UploadDialog />
         </div>
     );
 }

@@ -56,7 +56,7 @@ function Aside()
         {
             if (e instanceof DOMException)
             {
-                console.error(e.message);
+                GlobalState.showErrorDialog(e.message);
             }
             return;
         }
@@ -92,7 +92,7 @@ function Aside()
         {
             if (e instanceof DOMException)
             {
-                console.error(e.message);
+                GlobalState.showErrorDialog(e.message);
             }
             await dispose();
         }

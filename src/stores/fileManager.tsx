@@ -1,8 +1,9 @@
 import { getIcon, IBreadcrumbItem, IColumn, Icon, IContextualMenuItem, mergeStyleSets } from "@fluentui/react";
 import { FileIconType, getFileTypeIconProps } from '@fluentui/react-file-type-icons';
-import { AdbFeatures, AdbSyncEntry, LinuxFileType } from "@yume-chan/adb";
+import { AdbFeatures, AdbSyncEntry, ADB_SYNC_MAX_PACKET_SIZE, ChunkStream, LinuxFileType } from "@yume-chan/adb";
 import { action, makeAutoObservable, observable, runInAction } from "mobx";
 import { asyncEffect } from "../utils/asyncEffect";
+import { createFileStream, ProgressStream, saveFile } from "../utils/file";
 import { formatSize } from "../utils/formatSize";
 import Icons from "../utils/icons";
 import resolvePath from "../utils/resolvePath";
@@ -40,6 +41,7 @@ function compareCaseInsensitively(a: string, b: string)
         return a.localeCompare(b);
     }
 }
+
 
 
 class FileManager
@@ -301,21 +303,79 @@ class FileManager
 
     get menuItems(): IContextualMenuItem[]
     {
-        const result: IContextualMenuItem[] = [
-            {
-                key: "Delete",
-                text: "Delete",
+        if (this.selectedItems.length === 0) return [];
+
+        const result: IContextualMenuItem[] = [];
+
+        if (this.selectedItems[0].type === LinuxFileType.File)
+        {
+            result.push({
+                key: "Download",
+                text: "Download",
                 iconProps: {
-                    iconName: Icons.Delete
+                    iconName: Icons.DownloadDocumentIcon
                 },
-                onClick: (e, item) =>
+                onClick: () =>
                 {
-                    e?.stopPropagation();
-                    console.log(item);
-                    return false;
+                    (async () =>
+                    {
+                        const sync = await GlobalState.device!.sync();
+
+                        try
+                        {
+                            const item = this.selectedItems[0];
+
+                            const item_path = resolvePath(this.path, item.name);
+
+                            //Download file
+                            //@ts-ignore
+                            await sync.read(item_path).pipeTo(saveFile(item.name, Number(item.size)));
+                            console.log(saveFile(item.name, Number(item.size)));
+                        } catch (e: any)
+                        {
+                            GlobalState.showErrorDialog(e.message);
+                        } finally
+                        {
+                            sync.dispose();
+                        }
+
+                    })();
                 }
+            });
+        }
+
+        result.push({
+            key: "Delete",
+            text: "Delete",
+            iconProps: {
+                iconName: Icons.Delete
+            },
+            onClick: (e) =>
+            {
+                e?.stopPropagation();
+
+                (async () =>
+                {
+                    for (const item of this.selectedItems)
+                    {
+                        try
+                        {
+                            const output = await GlobalState.device!.rm(resolvePath(this.path, item.name));
+
+                            GlobalState.showErrorDialog(output);
+                        } catch (e: any)
+                        {
+                            GlobalState.showErrorDialog(e.message);
+                        } finally
+                        {
+                            this.loadFiles();
+                        }
+                    }
+                })();
+
+                return false;
             }
-        ];
+        });
 
         return result;
     }
@@ -394,6 +454,71 @@ class FileManager
             sync.dispose();
         }
     });
+
+    uploading = false;
+    uploadPath: string | undefined = undefined;
+    uploadedSize = 0;
+    uploadTotalSize = 0;
+    debouncedUploadedSize = 0;
+    uploadSpeed = 0;
+    public uploadFiles = async (file: File) =>
+    {
+        const sync = await GlobalState.device!.sync();
+
+        try
+        {
+            const item_path = resolvePath(this.path, file.name);
+
+            runInAction(() =>
+            {
+                this.uploading = true;
+                this.uploadPath = file.name;
+                this.uploadedSize = 0;
+                this.uploadTotalSize = file.size;
+                this.debouncedUploadedSize = 0;
+                this.uploadSpeed = 0;
+            });
+
+            const intervalId = setInterval(action(() =>
+            {
+                this.uploadSpeed = this.uploadedSize - this.debouncedUploadedSize;
+                this.debouncedUploadedSize = this.uploadedSize;
+            }), 1000);
+
+            try
+            {
+                await createFileStream(file)
+                    .pipeThrough(new ChunkStream(ADB_SYNC_MAX_PACKET_SIZE))
+                    .pipeThrough(new ProgressStream(action((uploaded) =>
+                    {
+                        this.uploadedSize = uploaded;
+                    })))
+                    .pipeTo(sync.write(
+                        item_path,
+                        (LinuxFileType.File << 12) | 0o666,
+                        file.lastModified / 1000,
+                    ));
+
+                runInAction(() =>
+                {
+                    this.uploadSpeed = this.uploadedSize - this.debouncedUploadedSize;
+                    this.debouncedUploadedSize = this.uploadedSize;
+                });
+            } finally
+            {
+                clearInterval(intervalId);
+            }
+
+        } catch (e: any)
+        {
+            GlobalState.showErrorDialog(e.message);
+        } finally
+        {
+            sync.dispose();
+            this.loadFiles();
+            runInAction(() => this.uploading = false);
+        }
+    };
 }
 
 

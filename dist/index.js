@@ -275,14 +275,14 @@
           {
             Object.freeze(emptyObject);
           }
-          function Component33(props, context, updater) {
+          function Component40(props, context, updater) {
             this.props = props;
             this.context = context;
             this.refs = emptyObject;
             this.updater = updater || ReactNoopUpdateQueue;
           }
-          Component33.prototype.isReactComponent = {};
-          Component33.prototype.setState = function(partialState, callback) {
+          Component40.prototype.isReactComponent = {};
+          Component40.prototype.setState = function(partialState, callback) {
             if (!(typeof partialState === "object" || typeof partialState === "function" || partialState == null)) {
               {
                 throw Error("setState(...): takes an object of state variables to update or a function which returns an object of state variables.");
@@ -290,7 +290,7 @@
             }
             this.updater.enqueueSetState(this, partialState, callback, "setState");
           };
-          Component33.prototype.forceUpdate = function(callback) {
+          Component40.prototype.forceUpdate = function(callback) {
             this.updater.enqueueForceUpdate(this, callback, "forceUpdate");
           };
           {
@@ -299,7 +299,7 @@
               replaceState: ["replaceState", "Refactor your code to use setState instead (see https://github.com/facebook/react/issues/3236)."]
             };
             var defineDeprecationWarning = function(methodName, info) {
-              Object.defineProperty(Component33.prototype, methodName, {
+              Object.defineProperty(Component40.prototype, methodName, {
                 get: function() {
                   warn2("%s(...) is deprecated in plain JavaScript React classes. %s", info[0], info[1]);
                   return void 0;
@@ -314,7 +314,7 @@
           }
           function ComponentDummy() {
           }
-          ComponentDummy.prototype = Component33.prototype;
+          ComponentDummy.prototype = Component40.prototype;
           function PureComponent2(props, context, updater) {
             this.props = props;
             this.context = context;
@@ -323,7 +323,7 @@
           }
           var pureComponentPrototype = PureComponent2.prototype = new ComponentDummy();
           pureComponentPrototype.constructor = PureComponent2;
-          _assign(pureComponentPrototype, Component33.prototype);
+          _assign(pureComponentPrototype, Component40.prototype);
           pureComponentPrototype.isPureReactComponent = true;
           function createRef18() {
             var refObject = {
@@ -508,7 +508,7 @@
             }
             return element;
           };
-          function createElement78(type, config, children) {
+          function createElement87(type, config, children) {
             var propName;
             var props = {};
             var key = null;
@@ -573,7 +573,7 @@
             var newElement = ReactElement(oldElement.type, newKey, oldElement.ref, oldElement._self, oldElement._source, oldElement._owner, oldElement.props);
             return newElement;
           }
-          function cloneElement4(element, config, children) {
+          function cloneElement5(element, config, children) {
             if (!!(element === null || element === void 0)) {
               {
                 throw Error("React.cloneElement(...): The argument must be a React element, but you passed " + element + ".");
@@ -625,7 +625,7 @@
           }
           var SEPARATOR = ".";
           var SUBSEPARATOR = ":";
-          function escape(key) {
+          function escape2(key) {
             var escapeRegex = /[=:]/g;
             var escaperLookup = {
               "=": "=0",
@@ -643,7 +643,7 @@
           }
           function getElementKey(element, index) {
             if (typeof element === "object" && element !== null && element.key != null) {
-              return escape("" + element.key);
+              return escape2("" + element.key);
             }
             return index.toString(36);
           }
@@ -948,7 +948,7 @@
             }
             return lazyType;
           }
-          function forwardRef15(render) {
+          function forwardRef17(render) {
             {
               if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
                 error("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
@@ -1057,7 +1057,7 @@
             }
             return dispatcher.useContext(Context, unstable_observedBits);
           }
-          function useState15(initialState) {
+          function useState17(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1065,11 +1065,11 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useReducer(reducer, initialArg, init);
           }
-          function useRef19(initialValue) {
+          function useRef23(initialValue) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect18(create, deps) {
+          function useEffect21(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1077,7 +1077,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useLayoutEffect(create, deps);
           }
-          function useCallback13(callback, deps) {
+          function useCallback15(callback, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useCallback(callback, deps);
           }
@@ -1085,7 +1085,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useMemo(create, deps);
           }
-          function useImperativeHandle3(ref, create, deps) {
+          function useImperativeHandle5(ref, create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useImperativeHandle(ref, create, deps);
           }
@@ -1299,8 +1299,8 @@
               return describeNativeComponentFrame(fn, false);
             }
           }
-          function shouldConstruct(Component34) {
-            var prototype = Component34.prototype;
+          function shouldConstruct(Component41) {
+            var prototype = Component41.prototype;
             return !!(prototype && prototype.isReactComponent);
           }
           function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
@@ -1559,7 +1559,7 @@
                 error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
               }
             }
-            var element = createElement78.apply(this, arguments);
+            var element = createElement87.apply(this, arguments);
             if (element == null) {
               return element;
             }
@@ -1598,7 +1598,7 @@
             return validatedFactory;
           }
           function cloneElementWithValidation(element, props, children) {
-            var newElement = cloneElement4.apply(this, arguments);
+            var newElement = cloneElement5.apply(this, arguments);
             for (var i2 = 2; i2 < arguments.length; i2++) {
               validateChildKeys(arguments[i2], newElement.type);
             }
@@ -1616,15 +1616,15 @@
           var createElement$1 = createElementWithValidation;
           var cloneElement$1 = cloneElementWithValidation;
           var createFactory2 = createFactoryWithValidation;
-          var Children4 = {
+          var Children7 = {
             map: mapChildren,
             forEach: forEachChildren,
             count: countChildren,
             toArray,
             only: onlyChild
           };
-          exports.Children = Children4;
-          exports.Component = Component33;
+          exports.Children = Children7;
+          exports.Component = Component40;
           exports.PureComponent = PureComponent2;
           exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
           exports.cloneElement = cloneElement$1;
@@ -1632,20 +1632,20 @@
           exports.createElement = createElement$1;
           exports.createFactory = createFactory2;
           exports.createRef = createRef18;
-          exports.forwardRef = forwardRef15;
+          exports.forwardRef = forwardRef17;
           exports.isValidElement = isValidElement3;
           exports.lazy = lazy;
           exports.memo = memo7;
-          exports.useCallback = useCallback13;
+          exports.useCallback = useCallback15;
           exports.useContext = useContext11;
           exports.useDebugValue = useDebugValue;
-          exports.useEffect = useEffect18;
-          exports.useImperativeHandle = useImperativeHandle3;
+          exports.useEffect = useEffect21;
+          exports.useImperativeHandle = useImperativeHandle5;
           exports.useLayoutEffect = useLayoutEffect2;
           exports.useMemo = useMemo4;
           exports.useReducer = useReducer2;
-          exports.useRef = useRef19;
-          exports.useState = useState15;
+          exports.useRef = useRef23;
+          exports.useState = useState17;
           exports.version = ReactVersion;
         })();
       }
@@ -1729,9 +1729,9 @@
             var _setTimeout = window.setTimeout;
             var _clearTimeout = window.clearTimeout;
             if (typeof console !== "undefined") {
-              var requestAnimationFrame = window.requestAnimationFrame;
+              var requestAnimationFrame2 = window.requestAnimationFrame;
               var cancelAnimationFrame = window.cancelAnimationFrame;
-              if (typeof requestAnimationFrame !== "function") {
+              if (typeof requestAnimationFrame2 !== "function") {
                 console["error"]("This browser doesn't support requestAnimationFrame. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills");
               }
               if (typeof cancelAnimationFrame !== "function") {
@@ -2453,11 +2453,11 @@
       if (true) {
         (function() {
           "use strict";
-          var React103 = require_react();
+          var React116 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React103.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React116.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn2(format2) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2489,7 +2489,7 @@
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
-          if (!React103) {
+          if (!React116) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -3346,8 +3346,8 @@
               return describeNativeComponentFrame(fn, false);
             }
           }
-          function shouldConstruct(Component33) {
-            var prototype = Component33.prototype;
+          function shouldConstruct(Component40) {
+            var prototype = Component40.prototype;
             return !!(prototype && prototype.isReactComponent);
           }
           function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
@@ -3825,7 +3825,7 @@
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React103.Children.forEach(children, function(child) {
+            React116.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -3836,7 +3836,7 @@
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React103.Children.forEach(props.children, function(child) {
+                React116.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -8600,7 +8600,7 @@
               }
             }
           }
-          function createElement78(type, props, rootContainerElement, parentNamespace) {
+          function createElement87(type, props, rootContainerElement, parentNamespace) {
             var isCustomComponentTag;
             var ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
             var domElement;
@@ -9477,7 +9477,7 @@
               }
               parentNamespace = hostContextDev.namespace;
             }
-            var domElement = createElement78(type, props, rootContainerInstance, parentNamespace);
+            var domElement = createElement87(type, props, rootContainerInstance, parentNamespace);
             precacheFiberNode(internalInstanceHandle, domElement);
             updateFiberProps(domElement, props);
             return domElement;
@@ -9947,9 +9947,9 @@
           var contextStackCursor = createCursor(emptyContextObject);
           var didPerformWorkStackCursor = createCursor(false);
           var previousContext = emptyContextObject;
-          function getUnmaskedContext(workInProgress2, Component33, didPushOwnContextIfProvider) {
+          function getUnmaskedContext(workInProgress2, Component40, didPushOwnContextIfProvider) {
             {
-              if (didPushOwnContextIfProvider && isContextProvider(Component33)) {
+              if (didPushOwnContextIfProvider && isContextProvider(Component40)) {
                 return previousContext;
               }
               return contextStackCursor.current;
@@ -10094,8 +10094,8 @@
                   case HostRoot:
                     return node.stateNode.context;
                   case ClassComponent: {
-                    var Component33 = node.type;
-                    if (isContextProvider(Component33)) {
+                    var Component40 = node.type;
+                    if (isContextProvider(Component40)) {
                       return node.stateNode.__reactInternalMemoizedMergedChildContext;
                     }
                     break;
@@ -10507,10 +10507,10 @@
               pendingLegacyContextWarning = /* @__PURE__ */ new Map();
             };
           }
-          function resolveDefaultProps(Component33, baseProps) {
-            if (Component33 && Component33.defaultProps) {
+          function resolveDefaultProps(Component40, baseProps) {
+            if (Component40 && Component40.defaultProps) {
               var props = _assign({}, baseProps);
-              var defaultProps = Component33.defaultProps;
+              var defaultProps = Component40.defaultProps;
               for (var propName in defaultProps) {
                 if (props[propName] === void 0) {
                   props[propName] = defaultProps[propName];
@@ -11039,7 +11039,7 @@
           }
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React103.Component().refs;
+          var emptyRefsObject = new React116.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -12826,7 +12826,7 @@
             }
             return true;
           }
-          function renderWithHooks(current2, workInProgress2, Component33, props, secondArg, nextRenderLanes) {
+          function renderWithHooks(current2, workInProgress2, Component40, props, secondArg, nextRenderLanes) {
             renderLanes = nextRenderLanes;
             currentlyRenderingFiber$1 = workInProgress2;
             {
@@ -12846,7 +12846,7 @@
                 ReactCurrentDispatcher$1.current = HooksDispatcherOnMountInDEV;
               }
             }
-            var children = Component33(props, secondArg);
+            var children = Component40(props, secondArg);
             if (didScheduleRenderPhaseUpdateDuringThisPass) {
               var numberOfReRenders = 0;
               do {
@@ -12867,7 +12867,7 @@
                   hookTypesUpdateIndexDev = -1;
                 }
                 ReactCurrentDispatcher$1.current = HooksDispatcherOnRerenderInDEV;
-                children = Component33(props, secondArg);
+                children = Component40(props, secondArg);
               } while (didScheduleRenderPhaseUpdateDuringThisPass);
             }
             ReactCurrentDispatcher$1.current = ContextOnlyDispatcher;
@@ -14454,21 +14454,21 @@
             workInProgress2.child = reconcileChildFibers(workInProgress2, current2.child, null, renderLanes2);
             workInProgress2.child = reconcileChildFibers(workInProgress2, null, nextChildren, renderLanes2);
           }
-          function updateForwardRef(current2, workInProgress2, Component33, nextProps, renderLanes2) {
+          function updateForwardRef(current2, workInProgress2, Component40, nextProps, renderLanes2) {
             {
               if (workInProgress2.type !== workInProgress2.elementType) {
-                var innerPropTypes = Component33.propTypes;
+                var innerPropTypes = Component40.propTypes;
                 if (innerPropTypes) {
                   checkPropTypes(
                     innerPropTypes,
                     nextProps,
                     "prop",
-                    getComponentName(Component33)
+                    getComponentName(Component40)
                   );
                 }
               }
             }
-            var render2 = Component33.render;
+            var render2 = Component40.render;
             var ref = workInProgress2.ref;
             var nextChildren;
             prepareToReadContext(workInProgress2, renderLanes2);
@@ -14494,10 +14494,10 @@
             reconcileChildren(current2, workInProgress2, nextChildren, renderLanes2);
             return workInProgress2.child;
           }
-          function updateMemoComponent(current2, workInProgress2, Component33, nextProps, updateLanes, renderLanes2) {
+          function updateMemoComponent(current2, workInProgress2, Component40, nextProps, updateLanes, renderLanes2) {
             if (current2 === null) {
-              var type = Component33.type;
-              if (isSimpleFunctionComponent(type) && Component33.compare === null && Component33.defaultProps === void 0) {
+              var type = Component40.type;
+              if (isSimpleFunctionComponent(type) && Component40.compare === null && Component40.defaultProps === void 0) {
                 var resolvedType = type;
                 {
                   resolvedType = resolveFunctionForHotReloading(type);
@@ -14520,14 +14520,14 @@
                   );
                 }
               }
-              var child = createFiberFromTypeAndProps(Component33.type, null, nextProps, workInProgress2, workInProgress2.mode, renderLanes2);
+              var child = createFiberFromTypeAndProps(Component40.type, null, nextProps, workInProgress2, workInProgress2.mode, renderLanes2);
               child.ref = workInProgress2.ref;
               child.return = workInProgress2;
               workInProgress2.child = child;
               return child;
             }
             {
-              var _type = Component33.type;
+              var _type = Component40.type;
               var _innerPropTypes = _type.propTypes;
               if (_innerPropTypes) {
                 checkPropTypes(
@@ -14541,7 +14541,7 @@
             var currentChild = current2.child;
             if (!includesSomeLane(updateLanes, renderLanes2)) {
               var prevProps = currentChild.memoizedProps;
-              var compare = Component33.compare;
+              var compare = Component40.compare;
               compare = compare !== null ? compare : shallowEqual2;
               if (compare(prevProps, nextProps) && current2.ref === workInProgress2.ref) {
                 return bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
@@ -14554,7 +14554,7 @@
             workInProgress2.child = newChild;
             return newChild;
           }
-          function updateSimpleMemoComponent(current2, workInProgress2, Component33, nextProps, updateLanes, renderLanes2) {
+          function updateSimpleMemoComponent(current2, workInProgress2, Component40, nextProps, updateLanes, renderLanes2) {
             {
               if (workInProgress2.type !== workInProgress2.elementType) {
                 var outerMemoType = workInProgress2.elementType;
@@ -14591,7 +14591,7 @@
                 }
               }
             }
-            return updateFunctionComponent(current2, workInProgress2, Component33, nextProps, renderLanes2);
+            return updateFunctionComponent(current2, workInProgress2, Component40, nextProps, renderLanes2);
           }
           function updateOffscreenComponent(current2, workInProgress2, renderLanes2) {
             var nextProps = workInProgress2.pendingProps;
@@ -14672,23 +14672,23 @@
               workInProgress2.flags |= Ref;
             }
           }
-          function updateFunctionComponent(current2, workInProgress2, Component33, nextProps, renderLanes2) {
+          function updateFunctionComponent(current2, workInProgress2, Component40, nextProps, renderLanes2) {
             {
               if (workInProgress2.type !== workInProgress2.elementType) {
-                var innerPropTypes = Component33.propTypes;
+                var innerPropTypes = Component40.propTypes;
                 if (innerPropTypes) {
                   checkPropTypes(
                     innerPropTypes,
                     nextProps,
                     "prop",
-                    getComponentName(Component33)
+                    getComponentName(Component40)
                   );
                 }
               }
             }
             var context;
             {
-              var unmaskedContext = getUnmaskedContext(workInProgress2, Component33, true);
+              var unmaskedContext = getUnmaskedContext(workInProgress2, Component40, true);
               context = getMaskedContext(workInProgress2, unmaskedContext);
             }
             var nextChildren;
@@ -14696,11 +14696,11 @@
             {
               ReactCurrentOwner$1.current = workInProgress2;
               setIsRendering(true);
-              nextChildren = renderWithHooks(current2, workInProgress2, Component33, nextProps, context, renderLanes2);
+              nextChildren = renderWithHooks(current2, workInProgress2, Component40, nextProps, context, renderLanes2);
               if (workInProgress2.mode & StrictMode) {
                 disableLogs();
                 try {
-                  nextChildren = renderWithHooks(current2, workInProgress2, Component33, nextProps, context, renderLanes2);
+                  nextChildren = renderWithHooks(current2, workInProgress2, Component40, nextProps, context, renderLanes2);
                 } finally {
                   reenableLogs();
                 }
@@ -14715,22 +14715,22 @@
             reconcileChildren(current2, workInProgress2, nextChildren, renderLanes2);
             return workInProgress2.child;
           }
-          function updateClassComponent(current2, workInProgress2, Component33, nextProps, renderLanes2) {
+          function updateClassComponent(current2, workInProgress2, Component40, nextProps, renderLanes2) {
             {
               if (workInProgress2.type !== workInProgress2.elementType) {
-                var innerPropTypes = Component33.propTypes;
+                var innerPropTypes = Component40.propTypes;
                 if (innerPropTypes) {
                   checkPropTypes(
                     innerPropTypes,
                     nextProps,
                     "prop",
-                    getComponentName(Component33)
+                    getComponentName(Component40)
                   );
                 }
               }
             }
             var hasContext;
-            if (isContextProvider(Component33)) {
+            if (isContextProvider(Component40)) {
               hasContext = true;
               pushContextProvider(workInProgress2);
             } else {
@@ -14745,15 +14745,15 @@
                 workInProgress2.alternate = null;
                 workInProgress2.flags |= Placement;
               }
-              constructClassInstance(workInProgress2, Component33, nextProps);
-              mountClassInstance(workInProgress2, Component33, nextProps, renderLanes2);
+              constructClassInstance(workInProgress2, Component40, nextProps);
+              mountClassInstance(workInProgress2, Component40, nextProps, renderLanes2);
               shouldUpdate = true;
             } else if (current2 === null) {
-              shouldUpdate = resumeMountClassInstance(workInProgress2, Component33, nextProps, renderLanes2);
+              shouldUpdate = resumeMountClassInstance(workInProgress2, Component40, nextProps, renderLanes2);
             } else {
-              shouldUpdate = updateClassInstance(current2, workInProgress2, Component33, nextProps, renderLanes2);
+              shouldUpdate = updateClassInstance(current2, workInProgress2, Component40, nextProps, renderLanes2);
             }
-            var nextUnitOfWork = finishClassComponent(current2, workInProgress2, Component33, shouldUpdate, hasContext, renderLanes2);
+            var nextUnitOfWork = finishClassComponent(current2, workInProgress2, Component40, shouldUpdate, hasContext, renderLanes2);
             {
               var inst = workInProgress2.stateNode;
               if (shouldUpdate && inst.props !== nextProps) {
@@ -14765,19 +14765,19 @@
             }
             return nextUnitOfWork;
           }
-          function finishClassComponent(current2, workInProgress2, Component33, shouldUpdate, hasContext, renderLanes2) {
+          function finishClassComponent(current2, workInProgress2, Component40, shouldUpdate, hasContext, renderLanes2) {
             markRef(current2, workInProgress2);
             var didCaptureError = (workInProgress2.flags & DidCapture) !== NoFlags;
             if (!shouldUpdate && !didCaptureError) {
               if (hasContext) {
-                invalidateContextProvider(workInProgress2, Component33, false);
+                invalidateContextProvider(workInProgress2, Component40, false);
               }
               return bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
             }
             var instance = workInProgress2.stateNode;
             ReactCurrentOwner$1.current = workInProgress2;
             var nextChildren;
-            if (didCaptureError && typeof Component33.getDerivedStateFromError !== "function") {
+            if (didCaptureError && typeof Component40.getDerivedStateFromError !== "function") {
               nextChildren = null;
               {
                 stopProfilerTimerIfRunning();
@@ -14805,7 +14805,7 @@
             }
             workInProgress2.memoizedState = instance.state;
             if (hasContext) {
-              invalidateContextProvider(workInProgress2, Component33, true);
+              invalidateContextProvider(workInProgress2, Component40, true);
             }
             return workInProgress2.child;
           }
@@ -14897,44 +14897,44 @@
             var lazyComponent = elementType;
             var payload = lazyComponent._payload;
             var init = lazyComponent._init;
-            var Component33 = init(payload);
-            workInProgress2.type = Component33;
-            var resolvedTag = workInProgress2.tag = resolveLazyComponentTag(Component33);
-            var resolvedProps = resolveDefaultProps(Component33, props);
+            var Component40 = init(payload);
+            workInProgress2.type = Component40;
+            var resolvedTag = workInProgress2.tag = resolveLazyComponentTag(Component40);
+            var resolvedProps = resolveDefaultProps(Component40, props);
             var child;
             switch (resolvedTag) {
               case FunctionComponent: {
                 {
-                  validateFunctionComponentInDev(workInProgress2, Component33);
-                  workInProgress2.type = Component33 = resolveFunctionForHotReloading(Component33);
+                  validateFunctionComponentInDev(workInProgress2, Component40);
+                  workInProgress2.type = Component40 = resolveFunctionForHotReloading(Component40);
                 }
-                child = updateFunctionComponent(null, workInProgress2, Component33, resolvedProps, renderLanes2);
+                child = updateFunctionComponent(null, workInProgress2, Component40, resolvedProps, renderLanes2);
                 return child;
               }
               case ClassComponent: {
                 {
-                  workInProgress2.type = Component33 = resolveClassForHotReloading(Component33);
+                  workInProgress2.type = Component40 = resolveClassForHotReloading(Component40);
                 }
-                child = updateClassComponent(null, workInProgress2, Component33, resolvedProps, renderLanes2);
+                child = updateClassComponent(null, workInProgress2, Component40, resolvedProps, renderLanes2);
                 return child;
               }
               case ForwardRef: {
                 {
-                  workInProgress2.type = Component33 = resolveForwardRefForHotReloading(Component33);
+                  workInProgress2.type = Component40 = resolveForwardRefForHotReloading(Component40);
                 }
-                child = updateForwardRef(null, workInProgress2, Component33, resolvedProps, renderLanes2);
+                child = updateForwardRef(null, workInProgress2, Component40, resolvedProps, renderLanes2);
                 return child;
               }
               case MemoComponent: {
                 {
                   if (workInProgress2.type !== workInProgress2.elementType) {
-                    var outerPropTypes = Component33.propTypes;
+                    var outerPropTypes = Component40.propTypes;
                     if (outerPropTypes) {
                       checkPropTypes(
                         outerPropTypes,
                         resolvedProps,
                         "prop",
-                        getComponentName(Component33)
+                        getComponentName(Component40)
                       );
                     }
                   }
@@ -14942,8 +14942,8 @@
                 child = updateMemoComponent(
                   null,
                   workInProgress2,
-                  Component33,
-                  resolveDefaultProps(Component33.type, resolvedProps),
+                  Component40,
+                  resolveDefaultProps(Component40.type, resolvedProps),
                   updateLanes,
                   renderLanes2
                 );
@@ -14952,17 +14952,17 @@
             }
             var hint = "";
             {
-              if (Component33 !== null && typeof Component33 === "object" && Component33.$$typeof === REACT_LAZY_TYPE) {
+              if (Component40 !== null && typeof Component40 === "object" && Component40.$$typeof === REACT_LAZY_TYPE) {
                 hint = " Did you wrap a component in React.lazy() more than once?";
               }
             }
             {
               {
-                throw Error("Element type is invalid. Received a promise that resolves to: " + Component33 + ". Lazy element type must resolve to a class or function." + hint);
+                throw Error("Element type is invalid. Received a promise that resolves to: " + Component40 + ". Lazy element type must resolve to a class or function." + hint);
               }
             }
           }
-          function mountIncompleteClassComponent(_current, workInProgress2, Component33, nextProps, renderLanes2) {
+          function mountIncompleteClassComponent(_current, workInProgress2, Component40, nextProps, renderLanes2) {
             if (_current !== null) {
               _current.alternate = null;
               workInProgress2.alternate = null;
@@ -14970,18 +14970,18 @@
             }
             workInProgress2.tag = ClassComponent;
             var hasContext;
-            if (isContextProvider(Component33)) {
+            if (isContextProvider(Component40)) {
               hasContext = true;
               pushContextProvider(workInProgress2);
             } else {
               hasContext = false;
             }
             prepareToReadContext(workInProgress2, renderLanes2);
-            constructClassInstance(workInProgress2, Component33, nextProps);
-            mountClassInstance(workInProgress2, Component33, nextProps, renderLanes2);
-            return finishClassComponent(null, workInProgress2, Component33, true, hasContext, renderLanes2);
+            constructClassInstance(workInProgress2, Component40, nextProps);
+            mountClassInstance(workInProgress2, Component40, nextProps, renderLanes2);
+            return finishClassComponent(null, workInProgress2, Component40, true, hasContext, renderLanes2);
           }
-          function mountIndeterminateComponent(_current, workInProgress2, Component33, renderLanes2) {
+          function mountIndeterminateComponent(_current, workInProgress2, Component40, renderLanes2) {
             if (_current !== null) {
               _current.alternate = null;
               workInProgress2.alternate = null;
@@ -14990,14 +14990,14 @@
             var props = workInProgress2.pendingProps;
             var context;
             {
-              var unmaskedContext = getUnmaskedContext(workInProgress2, Component33, false);
+              var unmaskedContext = getUnmaskedContext(workInProgress2, Component40, false);
               context = getMaskedContext(workInProgress2, unmaskedContext);
             }
             prepareToReadContext(workInProgress2, renderLanes2);
             var value;
             {
-              if (Component33.prototype && typeof Component33.prototype.render === "function") {
-                var componentName = getComponentName(Component33) || "Unknown";
+              if (Component40.prototype && typeof Component40.prototype.render === "function") {
+                var componentName = getComponentName(Component40) || "Unknown";
                 if (!didWarnAboutBadClass[componentName]) {
                   error("The <%s /> component appears to have a render method, but doesn't extend React.Component. This is likely to cause errors. Change %s to extend React.Component instead.", componentName, componentName);
                   didWarnAboutBadClass[componentName] = true;
@@ -15008,13 +15008,13 @@
               }
               setIsRendering(true);
               ReactCurrentOwner$1.current = workInProgress2;
-              value = renderWithHooks(null, workInProgress2, Component33, props, context, renderLanes2);
+              value = renderWithHooks(null, workInProgress2, Component40, props, context, renderLanes2);
               setIsRendering(false);
             }
             workInProgress2.flags |= PerformedWork;
             {
               if (typeof value === "object" && value !== null && typeof value.render === "function" && value.$$typeof === void 0) {
-                var _componentName = getComponentName(Component33) || "Unknown";
+                var _componentName = getComponentName(Component40) || "Unknown";
                 if (!didWarnAboutModulePatternComponent[_componentName]) {
                   error("The <%s /> component appears to be a function component that returns a class instance. Change %s to a class that extends React.Component instead. If you can't use a class try assigning the prototype on the function as a workaround. `%s.prototype = React.Component.prototype`. Don't use an arrow function since it cannot be called with `new` by React.", _componentName, _componentName, _componentName);
                   didWarnAboutModulePatternComponent[_componentName] = true;
@@ -15023,7 +15023,7 @@
             }
             if (typeof value === "object" && value !== null && typeof value.render === "function" && value.$$typeof === void 0) {
               {
-                var _componentName2 = getComponentName(Component33) || "Unknown";
+                var _componentName2 = getComponentName(Component40) || "Unknown";
                 if (!didWarnAboutModulePatternComponent[_componentName2]) {
                   error("The <%s /> component appears to be a function component that returns a class instance. Change %s to a class that extends React.Component instead. If you can't use a class try assigning the prototype on the function as a workaround. `%s.prototype = React.Component.prototype`. Don't use an arrow function since it cannot be called with `new` by React.", _componentName2, _componentName2, _componentName2);
                   didWarnAboutModulePatternComponent[_componentName2] = true;
@@ -15033,7 +15033,7 @@
               workInProgress2.memoizedState = null;
               workInProgress2.updateQueue = null;
               var hasContext = false;
-              if (isContextProvider(Component33)) {
+              if (isContextProvider(Component40)) {
                 hasContext = true;
                 pushContextProvider(workInProgress2);
               } else {
@@ -15041,20 +15041,20 @@
               }
               workInProgress2.memoizedState = value.state !== null && value.state !== void 0 ? value.state : null;
               initializeUpdateQueue(workInProgress2);
-              var getDerivedStateFromProps = Component33.getDerivedStateFromProps;
+              var getDerivedStateFromProps = Component40.getDerivedStateFromProps;
               if (typeof getDerivedStateFromProps === "function") {
-                applyDerivedStateFromProps(workInProgress2, Component33, getDerivedStateFromProps, props);
+                applyDerivedStateFromProps(workInProgress2, Component40, getDerivedStateFromProps, props);
               }
               adoptClassInstance(workInProgress2, value);
-              mountClassInstance(workInProgress2, Component33, props, renderLanes2);
-              return finishClassComponent(null, workInProgress2, Component33, true, hasContext, renderLanes2);
+              mountClassInstance(workInProgress2, Component40, props, renderLanes2);
+              return finishClassComponent(null, workInProgress2, Component40, true, hasContext, renderLanes2);
             } else {
               workInProgress2.tag = FunctionComponent;
               {
                 if (workInProgress2.mode & StrictMode) {
                   disableLogs();
                   try {
-                    value = renderWithHooks(null, workInProgress2, Component33, props, context, renderLanes2);
+                    value = renderWithHooks(null, workInProgress2, Component40, props, context, renderLanes2);
                   } finally {
                     reenableLogs();
                   }
@@ -15062,16 +15062,16 @@
               }
               reconcileChildren(null, workInProgress2, value, renderLanes2);
               {
-                validateFunctionComponentInDev(workInProgress2, Component33);
+                validateFunctionComponentInDev(workInProgress2, Component40);
               }
               return workInProgress2.child;
             }
           }
-          function validateFunctionComponentInDev(workInProgress2, Component33) {
+          function validateFunctionComponentInDev(workInProgress2, Component40) {
             {
-              if (Component33) {
-                if (Component33.childContextTypes) {
-                  error("%s(...): childContextTypes cannot be defined on a function component.", Component33.displayName || Component33.name || "Component");
+              if (Component40) {
+                if (Component40.childContextTypes) {
+                  error("%s(...): childContextTypes cannot be defined on a function component.", Component40.displayName || Component40.name || "Component");
                 }
               }
               if (workInProgress2.ref !== null) {
@@ -15090,15 +15090,15 @@
                   error("Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?%s", info);
                 }
               }
-              if (typeof Component33.getDerivedStateFromProps === "function") {
-                var _componentName3 = getComponentName(Component33) || "Unknown";
+              if (typeof Component40.getDerivedStateFromProps === "function") {
+                var _componentName3 = getComponentName(Component40) || "Unknown";
                 if (!didWarnAboutGetDerivedStateOnFunctionComponent[_componentName3]) {
                   error("%s: Function components do not support getDerivedStateFromProps.", _componentName3);
                   didWarnAboutGetDerivedStateOnFunctionComponent[_componentName3] = true;
                 }
               }
-              if (typeof Component33.contextType === "object" && Component33.contextType !== null) {
-                var _componentName4 = getComponentName(Component33) || "Unknown";
+              if (typeof Component40.contextType === "object" && Component40.contextType !== null) {
+                var _componentName4 = getComponentName(Component40) || "Unknown";
                 if (!didWarnAboutContextTypeOnFunctionComponent[_componentName4]) {
                   error("%s: Function components do not support contextType.", _componentName4);
                   didWarnAboutContextTypeOnFunctionComponent[_componentName4] = true;
@@ -15728,8 +15728,8 @@
                     pushHostContext(workInProgress2);
                     break;
                   case ClassComponent: {
-                    var Component33 = workInProgress2.type;
-                    if (isContextProvider(Component33)) {
+                    var Component40 = workInProgress2.type;
+                    if (isContextProvider(Component40)) {
                       pushContextProvider(workInProgress2);
                     }
                     break;
@@ -16029,8 +16029,8 @@
               case MemoComponent:
                 return null;
               case ClassComponent: {
-                var Component33 = workInProgress2.type;
-                if (isContextProvider(Component33)) {
+                var Component40 = workInProgress2.type;
+                if (isContextProvider(Component40)) {
                   popContext(workInProgress2);
                 }
                 return null;
@@ -16312,8 +16312,8 @@
           function unwindWork(workInProgress2, renderLanes2) {
             switch (workInProgress2.tag) {
               case ClassComponent: {
-                var Component33 = workInProgress2.type;
-                if (isContextProvider(Component33)) {
+                var Component40 = workInProgress2.type;
+                if (isContextProvider(Component40)) {
                   popContext(workInProgress2);
                 }
                 var flags = workInProgress2.flags;
@@ -19479,18 +19479,18 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           var createFiber = function(tag, pendingProps, key, mode) {
             return new FiberNode(tag, pendingProps, key, mode);
           };
-          function shouldConstruct$1(Component33) {
-            var prototype = Component33.prototype;
+          function shouldConstruct$1(Component40) {
+            var prototype = Component40.prototype;
             return !!(prototype && prototype.isReactComponent);
           }
           function isSimpleFunctionComponent(type) {
             return typeof type === "function" && !shouldConstruct$1(type) && type.defaultProps === void 0;
           }
-          function resolveLazyComponentTag(Component33) {
-            if (typeof Component33 === "function") {
-              return shouldConstruct$1(Component33) ? ClassComponent : FunctionComponent;
-            } else if (Component33 !== void 0 && Component33 !== null) {
-              var $$typeof = Component33.$$typeof;
+          function resolveLazyComponentTag(Component40) {
+            if (typeof Component40 === "function") {
+              return shouldConstruct$1(Component40) ? ClassComponent : FunctionComponent;
+            } else if (Component40 !== void 0 && Component40 !== null) {
+              var $$typeof = Component40.$$typeof;
               if ($$typeof === REACT_FORWARD_REF_TYPE) {
                 return ForwardRef;
               }
@@ -19929,9 +19929,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             var fiber = get3(parentComponent);
             var parentContext = findCurrentUnmaskedContext(fiber);
             if (fiber.tag === ClassComponent) {
-              var Component33 = fiber.type;
-              if (isContextProvider(Component33)) {
-                return processChildContext(fiber, Component33, parentContext);
+              var Component40 = fiber.type;
+              if (isContextProvider(Component40)) {
+                return processChildContext(fiber, Component40, parentContext);
               }
             }
             return parentContext;
@@ -24155,6 +24155,257 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }
   });
 
+  // node_modules/@yume-chan/stream-saver/StreamSaver.js
+  var require_StreamSaver = __commonJS({
+    "node_modules/@yume-chan/stream-saver/StreamSaver.js"(exports, module) {
+      ((name, definition) => {
+        typeof module !== "undefined" ? module.exports = definition() : typeof define === "function" && typeof define.amd === "object" ? define(definition) : exports[name] = definition();
+      })("streamSaver", () => {
+        "use strict";
+        const global2 = typeof window === "object" ? window : exports;
+        if (!global2.HTMLElement)
+          console.warn("streamsaver is meant to run on browsers main thread");
+        let mitmTransporter = null;
+        let supportsTransferable = false;
+        const test = (fn) => {
+          try {
+            fn();
+          } catch (e2) {
+          }
+        };
+        const ponyfill = global2.WebStreamsPolyfill || {};
+        const isSecureContext = global2.isSecureContext;
+        let useBlobFallback = /constructor/i.test(global2.HTMLElement) || !!global2.safari || !!global2.WebKitPoint;
+        const downloadStrategy = isSecureContext || "MozAppearance" in document.documentElement.style ? "iframe" : "navigate";
+        const streamSaver = {
+          createWriteStream,
+          WritableStream: global2.WritableStream || ponyfill.WritableStream,
+          supported: true,
+          version: { full: "2.0.5", major: 2, minor: 0, dot: 5 },
+          mitm: "https://jimmywarting.github.io/StreamSaver.js/mitm.html?version=2.0.0"
+        };
+        function makeIframe(src) {
+          if (!src)
+            throw new Error("meh");
+          const iframe = document.createElement("iframe");
+          iframe.hidden = true;
+          iframe.src = src;
+          iframe.loaded = false;
+          iframe.name = "iframe";
+          iframe.isIframe = true;
+          iframe.postMessage = (...args) => iframe.contentWindow.postMessage(...args);
+          iframe.addEventListener("load", () => {
+            iframe.loaded = true;
+          }, { once: true });
+          document.body.appendChild(iframe);
+          return iframe;
+        }
+        function makePopup(src) {
+          const options = "width=200,height=100";
+          const delegate = document.createDocumentFragment();
+          const popup = {
+            frame: global2.open(src, "popup", options),
+            loaded: false,
+            isIframe: false,
+            isPopup: true,
+            remove() {
+              popup.frame.close();
+            },
+            addEventListener(...args) {
+              delegate.addEventListener(...args);
+            },
+            dispatchEvent(...args) {
+              delegate.dispatchEvent(...args);
+            },
+            removeEventListener(...args) {
+              delegate.removeEventListener(...args);
+            },
+            postMessage(...args) {
+              popup.frame.postMessage(...args);
+            }
+          };
+          const onReady = (evt) => {
+            if (evt.source === popup.frame) {
+              popup.loaded = true;
+              global2.removeEventListener("message", onReady);
+              popup.dispatchEvent(new Event("load"));
+            }
+          };
+          global2.addEventListener("message", onReady);
+          return popup;
+        }
+        try {
+          new Response(new ReadableStream());
+          if (isSecureContext && !("serviceWorker" in navigator)) {
+            useBlobFallback = true;
+          }
+        } catch (err) {
+          useBlobFallback = true;
+        }
+        test(() => {
+          const { readable } = new TransformStream();
+          const mc = new MessageChannel();
+          mc.port1.postMessage(readable, [readable]);
+          mc.port1.close();
+          mc.port2.close();
+          supportsTransferable = true;
+          Object.defineProperty(streamSaver, "TransformStream", {
+            configurable: false,
+            writable: false,
+            value: TransformStream
+          });
+        });
+        function loadTransporter() {
+          if (!mitmTransporter) {
+            mitmTransporter = isSecureContext ? makeIframe(streamSaver.mitm) : makePopup(streamSaver.mitm);
+          }
+        }
+        function createWriteStream(filename, options, size) {
+          let opts = {
+            size: null,
+            pathname: null,
+            writableStrategy: void 0,
+            readableStrategy: void 0
+          };
+          let bytesWritten = 0;
+          let downloadUrl = null;
+          let channel = null;
+          let ts = null;
+          if (Number.isFinite(options)) {
+            [size, options] = [options, size];
+            console.warn("[StreamSaver] Deprecated pass an object as 2nd argument when creating a write stream");
+            opts.size = size;
+            opts.writableStrategy = options;
+          } else if (options && options.highWaterMark) {
+            console.warn("[StreamSaver] Deprecated pass an object as 2nd argument when creating a write stream");
+            opts.size = size;
+            opts.writableStrategy = options;
+          } else {
+            opts = options || {};
+          }
+          if (!useBlobFallback) {
+            loadTransporter();
+            channel = new MessageChannel();
+            filename = encodeURIComponent(filename.replace(/\//g, ":")).replace(/['()]/g, escape).replace(/\*/g, "%2A");
+            const response = {
+              transferringReadable: supportsTransferable,
+              pathname: opts.pathname || Math.random().toString().slice(-6) + "/" + filename,
+              headers: {
+                "Content-Type": "application/octet-stream; charset=utf-8",
+                "Content-Disposition": "attachment; filename*=UTF-8''" + filename
+              }
+            };
+            if (opts.size) {
+              response.headers["Content-Length"] = opts.size;
+            }
+            const args = [response, "*", [channel.port2]];
+            if (supportsTransferable) {
+              const transformer = downloadStrategy === "iframe" ? void 0 : {
+                transform(chunk, controller) {
+                  if (!(chunk instanceof Uint8Array)) {
+                    throw new TypeError("Can only write Uint8Arrays");
+                  }
+                  bytesWritten += chunk.length;
+                  controller.enqueue(chunk);
+                  if (downloadUrl) {
+                    location.href = downloadUrl;
+                    downloadUrl = null;
+                  }
+                },
+                flush() {
+                  if (downloadUrl) {
+                    location.href = downloadUrl;
+                  }
+                }
+              };
+              ts = new streamSaver.TransformStream(
+                transformer,
+                opts.writableStrategy,
+                opts.readableStrategy
+              );
+              const readableStream = ts.readable;
+              channel.port1.postMessage({ readableStream }, [readableStream]);
+            }
+            channel.port1.onmessage = (evt) => {
+              if (evt.data.download) {
+                if (downloadStrategy === "navigate") {
+                  mitmTransporter.remove();
+                  mitmTransporter = null;
+                  if (bytesWritten) {
+                    location.href = evt.data.download;
+                  } else {
+                    downloadUrl = evt.data.download;
+                  }
+                } else {
+                  if (mitmTransporter.isPopup) {
+                    mitmTransporter.remove();
+                    mitmTransporter = null;
+                    if (downloadStrategy === "iframe") {
+                      makeIframe(streamSaver.mitm);
+                    }
+                  }
+                  makeIframe(evt.data.download);
+                }
+              } else if (evt.data.abort) {
+                chunks = [];
+                channel.port1.postMessage("abort");
+                channel.port1.onmessage = null;
+                channel.port1.close();
+                channel.port2.close();
+                channel = null;
+              }
+            };
+            if (mitmTransporter.loaded) {
+              mitmTransporter.postMessage(...args);
+            } else {
+              mitmTransporter.addEventListener("load", () => {
+                mitmTransporter.postMessage(...args);
+              }, { once: true });
+            }
+          }
+          let chunks = [];
+          return !useBlobFallback && ts && ts.writable || new streamSaver.WritableStream({
+            write(chunk) {
+              if (!(chunk instanceof Uint8Array)) {
+                throw new TypeError("Can only write Uint8Arrays");
+              }
+              if (useBlobFallback) {
+                chunks.push(chunk);
+                return;
+              }
+              channel.port1.postMessage(chunk);
+              bytesWritten += chunk.length;
+              if (downloadUrl) {
+                location.href = downloadUrl;
+                downloadUrl = null;
+              }
+            },
+            close() {
+              if (useBlobFallback) {
+                const blob = new Blob(chunks, { type: "application/octet-stream; charset=utf-8" });
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = filename;
+                link.click();
+              } else {
+                channel.port1.postMessage("end");
+              }
+            },
+            abort() {
+              chunks = [];
+              channel.port1.postMessage("abort");
+              channel.port1.onmessage = null;
+              channel.port1.close();
+              channel.port2.close();
+              channel = null;
+            }
+          }, opts.writableStrategy);
+        }
+        return streamSaver;
+      });
+    }
+  });
+
   // node_modules/@fluentui/react-icons/node_modules/tslib/tslib.js
   var require_tslib9 = __commonJS({
     "node_modules/@fluentui/react-icons/node_modules/tslib/tslib.js"(exports, module) {
@@ -24602,7 +24853,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       if (true) {
         (function() {
           "use strict";
-          var React103 = require_react();
+          var React116 = require_react();
           var _assign = require_object_assign();
           var REACT_ELEMENT_TYPE = 60103;
           var REACT_PORTAL_TYPE = 60106;
@@ -24659,7 +24910,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             }
             return null;
           }
-          var ReactSharedInternals = React103.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React116.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format2) {
             {
               for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
@@ -24966,8 +25217,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
               return describeNativeComponentFrame(fn, false);
             }
           }
-          function shouldConstruct(Component33) {
-            var prototype = Component33.prototype;
+          function shouldConstruct(Component40) {
+            var prototype = Component40.prototype;
             return !!(prototype && prototype.isReactComponent);
           }
           function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
@@ -25429,9 +25680,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
               return jsxWithValidation(type, props, key, false);
             }
           }
-          var jsx7 = jsxWithValidationDynamic;
+          var jsx8 = jsxWithValidationDynamic;
           var jsxs4 = jsxWithValidationStatic;
-          exports.jsx = jsx7;
+          exports.jsx = jsx8;
           exports.jsxs = jsxs4;
         })();
       }
@@ -25451,7 +25702,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // src/index.tsx
-  var import_react17 = __toESM(require_react(), 1);
+  var import_react18 = __toESM(require_react(), 1);
   var import_react_dom2 = __toESM(require_react_dom(), 1);
 
   // node_modules/@fluentui/react-file-type-icons/lib/initializeFileTypeIcons.js
@@ -26984,10 +27235,76 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
 
   // node_modules/@fluentui/utilities/lib/scroll.js
   var _scrollbarWidth;
+  var _bodyScrollDisabledCount = 0;
   var DisabledScrollClassName = mergeStyles({
     overflow: "hidden !important"
   });
   var DATA_IS_SCROLLABLE_ATTRIBUTE = "data-is-scrollable";
+  var allowScrollOnElement = function(element, events) {
+    if (!element) {
+      return;
+    }
+    var _previousClientY = 0;
+    var _element = null;
+    var _saveClientY = function(event) {
+      if (event.targetTouches.length === 1) {
+        _previousClientY = event.targetTouches[0].clientY;
+      }
+    };
+    var _preventOverscrolling = function(event) {
+      if (event.targetTouches.length !== 1) {
+        return;
+      }
+      event.stopPropagation();
+      if (!_element) {
+        return;
+      }
+      var clientY = event.targetTouches[0].clientY - _previousClientY;
+      var scrollableParent = findScrollableParent(event.target);
+      if (scrollableParent) {
+        _element = scrollableParent;
+      }
+      if (_element.scrollTop === 0 && clientY > 0) {
+        event.preventDefault();
+      }
+      if (_element.scrollHeight - Math.ceil(_element.scrollTop) <= _element.clientHeight && clientY < 0) {
+        event.preventDefault();
+      }
+    };
+    events.on(element, "touchstart", _saveClientY, { passive: false });
+    events.on(element, "touchmove", _preventOverscrolling, { passive: false });
+    _element = element;
+  };
+  var allowOverscrollOnElement = function(element, events) {
+    if (!element) {
+      return;
+    }
+    var _allowElementScroll = function(event) {
+      event.stopPropagation();
+    };
+    events.on(element, "touchmove", _allowElementScroll, { passive: false });
+  };
+  var _disableIosBodyScroll = function(event) {
+    event.preventDefault();
+  };
+  function disableBodyScroll() {
+    var doc = getDocument();
+    if (doc && doc.body && !_bodyScrollDisabledCount) {
+      doc.body.classList.add(DisabledScrollClassName);
+      doc.body.addEventListener("touchmove", _disableIosBodyScroll, { passive: false, capture: false });
+    }
+    _bodyScrollDisabledCount++;
+  }
+  function enableBodyScroll() {
+    if (_bodyScrollDisabledCount > 0) {
+      var doc = getDocument();
+      if (doc && doc.body && _bodyScrollDisabledCount === 1) {
+        doc.body.classList.remove(DisabledScrollClassName);
+        doc.body.removeEventListener("touchmove", _disableIosBodyScroll);
+      }
+      _bodyScrollDisabledCount--;
+    }
+  }
   function getScrollbarWidth() {
     if (_scrollbarWidth === void 0) {
       var scrollDiv = document.createElement("div");
@@ -27869,6 +28186,18 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   function getLastFocusable(rootElement, currentElement, includeElementsInFocusZones) {
     return getPreviousElement(rootElement, currentElement, true, false, true, includeElementsInFocusZones);
   }
+  function getFirstTabbable(rootElement, currentElement, includeElementsInFocusZones, checkNode) {
+    if (checkNode === void 0) {
+      checkNode = true;
+    }
+    return getNextElement(rootElement, currentElement, checkNode, false, false, includeElementsInFocusZones, false, true);
+  }
+  function getLastTabbable(rootElement, currentElement, includeElementsInFocusZones, checkNode) {
+    if (checkNode === void 0) {
+      checkNode = true;
+    }
+    return getPreviousElement(rootElement, currentElement, checkNode, false, true, includeElementsInFocusZones, false, true);
+  }
   function focusFirstChild(rootElement, bypassHiddenElements) {
     var element = getNextElement(rootElement, rootElement, true, false, false, true, void 0, void 0, bypassHiddenElements);
     if (element) {
@@ -28058,7 +28387,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     var styleCalcCount = 0;
     var getClassNamesCount = 0;
     var currentMemoizedClassNames = _memoizedClassNames;
-    var getClassNames32 = function(styleFunctionOrObject, styleProps) {
+    var getClassNames39 = function(styleFunctionOrObject, styleProps) {
       var _a6;
       if (styleProps === void 0) {
         styleProps = {};
@@ -28104,7 +28433,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
       return current[retVal];
     };
-    return getClassNames32;
+    return getClassNames39;
   }
   function _traverseEdge(current, value) {
     value = _normalizeValue(value);
@@ -29711,7 +30040,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   // node_modules/@fluentui/utilities/lib/styled.js
   var React10 = __toESM(require_react());
   var DefaultFields = ["theme", "styles"];
-  function styled(Component33, baseStyles, getProps, customizable2, pure) {
+  function styled(Component40, baseStyles, getProps, customizable2, pure) {
     customizable2 = customizable2 || { scope: "", fields: void 0 };
     var scope = customizable2.scope, _a6 = customizable2.fields, fields = _a6 === void 0 ? DefaultFields : _a6;
     var Wrapped = React10.forwardRef(function(props, forwardedRef) {
@@ -29733,9 +30062,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         concatenatedStyles.__noStyleOverride__ = !customizedStyles && !propStyles;
         styles2.current = concatenatedStyles;
       }
-      return React10.createElement(Component33, __assign3({ ref: forwardedRef }, rest, additionalProps, props, { styles: styles2.current }));
+      return React10.createElement(Component40, __assign3({ ref: forwardedRef }, rest, additionalProps, props, { styles: styles2.current }));
     });
-    Wrapped.displayName = "Styled" + (Component33.displayName || Component33.name);
+    Wrapped.displayName = "Styled" + (Component40.displayName || Component40.name);
     var pureComponent = pure ? React10.memo(Wrapped) : Wrapped;
     if (Wrapped.displayName) {
       pureComponent.displayName = Wrapped.displayName;
@@ -30345,10 +30674,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     rotate90deg: _createAnimation(ROTATE90, "0.1s", EASING_FUNCTION_2),
     rotateN90deg: _createAnimation(ROTATE_N90, "0.1s", EASING_FUNCTION_2)
   };
-  function _createAnimation(animationName, animationDuration, animationTimingFunction) {
+  function _createAnimation(animationName, animationDuration2, animationTimingFunction) {
     return {
       animationName,
-      animationDuration,
+      animationDuration: animationDuration2,
       animationTimingFunction,
       animationFillMode: "both"
     };
@@ -30602,6 +30931,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
 
   // node_modules/@fluentui/style-utilities/lib/styles/CommonStyles.js
   var HighContrastSelector = "@media screen and (-ms-high-contrast: active), screen and (forced-colors: active)";
+  var ScreenWidthMinSmall = 320;
   var ScreenWidthMinMedium = 480;
   var ScreenWidthMinLarge = 640;
   var ScreenWidthMinXLarge = 1024;
@@ -30982,6 +31312,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }
     return lines;
   }
+
+  // node_modules/@fluentui/style-utilities/lib/styles/GeneralStyles.js
+  var noWrap = {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap"
+  };
 
   // node_modules/@fluentui/style-utilities/lib/classNames/AnimationClassNames.js
   var AnimationClassNames = buildClassMap(AnimationStyles);
@@ -31761,13 +32098,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   } = import_tslib20.default;
 
   // node_modules/@fluentui/react/lib/components/Tooltip/Tooltip.base.js
-  var React28 = __toESM(require_react());
+  var React32 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Callout/Callout.js
-  var React27 = __toESM(require_react());
+  var React30 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Callout/CalloutContent.base.js
-  var React23 = __toESM(require_react());
+  var React26 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/common/DirectionalHint.js
   var DirectionalHint = {
@@ -32284,7 +32621,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // node_modules/@fluentui/react/lib/components/Popup/Popup.js
-  var React22 = __toESM(require_react());
+  var React25 = __toESM(require_react());
 
   // node_modules/@fluentui/react-hooks/lib/version.js
   setVersion("@fluentui/react-hooks", "8.6.12");
@@ -32306,6 +32643,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     return asyncRef.current;
   }
 
+  // node_modules/@fluentui/react-hooks/lib/useBoolean.js
+  var React15 = __toESM(require_react());
+
   // node_modules/@fluentui/react-hooks/lib/useConst.js
   var React14 = __toESM(require_react());
   function useConst(initialValue) {
@@ -32318,10 +32658,54 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     return ref.current.value;
   }
 
+  // node_modules/@fluentui/react-hooks/lib/useBoolean.js
+  function useBoolean(initialState) {
+    var _a6 = React15.useState(initialState), value = _a6[0], setValue = _a6[1];
+    var setTrue = useConst(function() {
+      return function() {
+        setValue(true);
+      };
+    });
+    var setFalse = useConst(function() {
+      return function() {
+        setValue(false);
+      };
+    });
+    var toggle = useConst(function() {
+      return function() {
+        setValue(function(currentValue) {
+          return !currentValue;
+        });
+      };
+    });
+    return [value, { setTrue, setFalse, toggle }];
+  }
+
+  // node_modules/@fluentui/react-hooks/lib/useEventCallback.js
+  var React16 = __toESM(require_react());
+  function useEventCallback(fn) {
+    var callbackRef = React16.useRef(function() {
+      throw new Error("Cannot call an event handler while rendering");
+    });
+    useIsomorphicLayoutEffect(function() {
+      callbackRef.current = fn;
+    }, [fn]);
+    return useConst(function() {
+      return function() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+          args[_i] = arguments[_i];
+        }
+        var callback = callbackRef.current;
+        return callback.apply(void 0, args);
+      };
+    });
+  }
+
   // node_modules/@fluentui/react-hooks/lib/useId.js
-  var React15 = __toESM(require_react());
+  var React17 = __toESM(require_react());
   function useId(prefix, providedId) {
-    var ref = React15.useRef(providedId);
+    var ref = React17.useRef(providedId);
     if (!ref.current) {
       ref.current = getId(prefix);
     }
@@ -32359,13 +32743,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   } = import_tslib22.default;
 
   // node_modules/@fluentui/react-hooks/lib/useMergedRefs.js
-  var React16 = __toESM(require_react());
+  var React18 = __toESM(require_react());
   function useMergedRefs() {
     var refs = [];
     for (var _i = 0; _i < arguments.length; _i++) {
       refs[_i] = arguments[_i];
     }
-    var mergedCallback = React16.useCallback(function(value) {
+    var mergedCallback = React18.useCallback(function(value) {
       mergedCallback.current = value;
       for (var _i2 = 0, refs_1 = refs; _i2 < refs_1.length; _i2++) {
         var ref = refs_1[_i2];
@@ -32380,11 +32764,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // node_modules/@fluentui/react-hooks/lib/useOnEvent.js
-  var React17 = __toESM(require_react());
+  var React19 = __toESM(require_react());
   function useOnEvent(element, eventName, callback, useCapture) {
-    var callbackRef = React17.useRef(callback);
+    var callbackRef = React19.useRef(callback);
     callbackRef.current = callback;
-    React17.useEffect(function() {
+    React19.useEffect(function() {
       var actualElement = element && "current" in element ? element.current : element;
       if (!actualElement) {
         return;
@@ -32407,10 +32791,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // node_modules/@fluentui/react-hooks/lib/useSetTimeout.js
-  var React18 = __toESM(require_react());
+  var React20 = __toESM(require_react());
   var useSetTimeout = function() {
     var timeoutIds = useConst({});
-    React18.useEffect(
+    React20.useEffect(
       function() {
         return function() {
           for (var _i = 0, _a6 = Object.keys(timeoutIds); _i < _a6.length; _i++) {
@@ -32435,21 +32819,25 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // node_modules/@fluentui/react-hooks/lib/useTarget.js
-  var React20 = __toESM(require_react());
+  var React22 = __toESM(require_react());
 
   // node_modules/@fluentui/react-window-provider/lib/WindowProvider.js
-  var React19 = __toESM(require_react());
-  var WindowContext = React19.createContext({
+  var React21 = __toESM(require_react());
+  var WindowContext = React21.createContext({
     window: typeof window === "object" ? window : void 0
   });
   var useWindow = function() {
-    return React19.useContext(WindowContext).window;
+    return React21.useContext(WindowContext).window;
+  };
+  var useDocument = function() {
+    var _a6;
+    return (_a6 = React21.useContext(WindowContext).window) === null || _a6 === void 0 ? void 0 : _a6.document;
   };
 
   // node_modules/@fluentui/react-hooks/lib/useTarget.js
   function useTarget(target, hostElement) {
-    var previousTargetProp = React20.useRef();
-    var targetRef = React20.useRef(null);
+    var previousTargetProp = React22.useRef();
+    var targetRef = React22.useRef(null);
     var targetWindow = useWindow();
     if (!target || target !== previousTargetProp.current || typeof target === "string") {
       var currentElement = hostElement === null || hostElement === void 0 ? void 0 : hostElement.current;
@@ -32472,13 +32860,26 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     return [targetRef, targetWindow];
   }
 
+  // node_modules/@fluentui/react-hooks/lib/useUnmount.js
+  var React23 = __toESM(require_react());
+  var useUnmount = function(callback) {
+    var unmountRef = React23.useRef(callback);
+    unmountRef.current = callback;
+    React23.useEffect(function() {
+      return function() {
+        var _a6;
+        (_a6 = unmountRef.current) === null || _a6 === void 0 ? void 0 : _a6.call(unmountRef);
+      };
+    }, []);
+  };
+
   // node_modules/@fluentui/react-hooks/lib/useWarnings.js
-  var React21 = __toESM(require_react());
+  var React24 = __toESM(require_react());
   var warningId = 0;
   function useWarnings(options) {
     if (true) {
       var name_1 = options.name, props = options.props, _a6 = options.other, other = _a6 === void 0 ? [] : _a6, conditionallyRequired = options.conditionallyRequired, deprecations = options.deprecations, mutuallyExclusive = options.mutuallyExclusive, controlledUsage = options.controlledUsage;
-      var hasWarnedRef = React21.useRef(false);
+      var hasWarnedRef = React24.useRef(false);
       var componentId = useConst(function() {
         return "useWarnings_" + warningId++;
       });
@@ -32505,8 +32906,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   // node_modules/@fluentui/react/lib/components/Popup/Popup.js
   function useScrollbarAsync(props, root3) {
     var async = useAsync();
-    var _a6 = React22.useState(false), needsVerticalScrollBarState = _a6[0], setNeedsVerticalScrollBar = _a6[1];
-    React22.useEffect(function() {
+    var _a6 = React25.useState(false), needsVerticalScrollBarState = _a6[0], setNeedsVerticalScrollBar = _a6[1];
+    React25.useEffect(function() {
       async.requestAnimationFrame(function() {
         var _a7;
         if (props.style && props.style.overflowY) {
@@ -32541,9 +32942,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
   function useRestoreFocus(props, root3) {
     var _a6 = props.onRestoreFocus, onRestoreFocus = _a6 === void 0 ? defaultFocusRestorer : _a6;
-    var originalFocusedElement = React22.useRef();
-    var containsFocus = React22.useRef(false);
-    React22.useEffect(function() {
+    var originalFocusedElement = React25.useRef();
+    var containsFocus = React25.useRef(false);
+    React25.useEffect(function() {
       originalFocusedElement.current = getDocument().activeElement;
       if (doesElementContainFocus(root3.current)) {
         containsFocus.current = true;
@@ -32558,10 +32959,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         originalFocusedElement.current = void 0;
       };
     }, []);
-    useOnEvent(root3, "focus", React22.useCallback(function() {
+    useOnEvent(root3, "focus", React25.useCallback(function() {
       containsFocus.current = true;
     }, []), true);
-    useOnEvent(root3, "blur", React22.useCallback(function(ev) {
+    useOnEvent(root3, "blur", React25.useCallback(function(ev) {
       if (root3.current && ev.relatedTarget && !root3.current.contains(ev.relatedTarget)) {
         containsFocus.current = false;
       }
@@ -32569,7 +32970,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
   function useHideSiblingNodes(props, root3) {
     var shouldHideSiblings = String(props["aria-modal"]).toLowerCase() === "true" && props.enableAriaHiddenSiblings;
-    React22.useEffect(function() {
+    React25.useEffect(function() {
       if (!(shouldHideSiblings && root3.current)) {
         return;
       }
@@ -32577,15 +32978,15 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       return unmodalize2;
     }, [root3, shouldHideSiblings]);
   }
-  var Popup = React22.forwardRef(function(propsWithoutDefaults, forwardedRef) {
+  var Popup = React25.forwardRef(function(propsWithoutDefaults, forwardedRef) {
     var props = getPropsWithDefaults({ shouldRestoreFocus: true, enableAriaHiddenSiblings: true }, propsWithoutDefaults);
-    var root3 = React22.useRef();
+    var root3 = React25.useRef();
     var mergedRootRef = useMergedRefs(root3, forwardedRef);
     useHideSiblingNodes(props, root3);
     useRestoreFocus(props, root3);
     var role = props.role, className = props.className, ariaLabel = props.ariaLabel, ariaLabelledBy = props.ariaLabelledBy, ariaDescribedBy = props.ariaDescribedBy, style = props.style, children = props.children, onDismiss = props.onDismiss;
     var needsVerticalScrollBar = useScrollbarAsync(props, root3);
-    var onKeyDown = React22.useCallback(function(ev) {
+    var onKeyDown = React25.useCallback(function(ev) {
       switch (ev.which) {
         case KeyCodes.escape:
           if (onDismiss) {
@@ -32598,7 +32999,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }, [onDismiss]);
     var win = useWindow();
     useOnEvent(win, "keydown", onKeyDown);
-    return React22.createElement("div", __assign6({ ref: mergedRootRef }, getNativeProps(props, divProperties), { className, role, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, "aria-describedby": ariaDescribedBy, onKeyDown, style: __assign6({ overflowY: needsVerticalScrollBar ? "scroll" : void 0, outline: "none" }, style) }), children);
+    return React25.createElement("div", __assign6({ ref: mergedRootRef }, getNativeProps(props, divProperties), { className, role, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, "aria-describedby": ariaDescribedBy, onKeyDown, style: __assign6({ overflowY: needsVerticalScrollBar ? "scroll" : void 0, outline: "none" }, style) }), children);
   });
   Popup.displayName = "Popup";
 
@@ -32628,9 +33029,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
   function useBounds(_a6, targetRef, targetWindow) {
     var bounds = _a6.bounds, _b = _a6.minPagePadding, minPagePadding = _b === void 0 ? DEFAULT_PROPS.minPagePadding : _b, target = _a6.target;
-    var _c = React23.useState(false), targetWindowResized = _c[0], setTargetWindowResized = _c[1];
-    var cachedBounds = React23.useRef();
-    var getBounds = React23.useCallback(function() {
+    var _c = React26.useState(false), targetWindowResized = _c[0], setTargetWindowResized = _c[1];
+    var cachedBounds = React26.useRef();
+    var getBounds = React26.useCallback(function() {
       if (!cachedBounds.current || targetWindowResized) {
         var currentBounds = typeof bounds === "function" ? targetWindow ? bounds(target, targetWindow) : void 0 : bounds;
         if (!currentBounds && targetWindow) {
@@ -32658,9 +33059,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   function useMaxHeight(_a6, getBounds, positions) {
     var _b;
     var calloutMaxHeight = _a6.calloutMaxHeight, finalHeight = _a6.finalHeight, directionalHint = _a6.directionalHint, directionalHintFixed = _a6.directionalHintFixed, hidden = _a6.hidden;
-    var _c = React23.useState(), maxHeight = _c[0], setMaxHeight = _c[1];
+    var _c = React26.useState(), maxHeight = _c[0], setMaxHeight = _c[1];
     var _d = (_b = positions === null || positions === void 0 ? void 0 : positions.elementPosition) !== null && _b !== void 0 ? _b : {}, top = _d.top, bottom = _d.bottom;
-    React23.useEffect(function() {
+    React26.useEffect(function() {
       var _a7;
       var _b2 = (_a7 = getBounds()) !== null && _a7 !== void 0 ? _a7 : {}, topBounds = _b2.top, bottomBounds = _b2.bottom;
       if (!calloutMaxHeight && !hidden) {
@@ -32678,12 +33079,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     return maxHeight;
   }
   function usePositions(props, hostElement, calloutElement, targetRef, getBounds) {
-    var _a6 = React23.useState(), positions = _a6[0], setPositions = _a6[1];
-    var positionAttempts = React23.useRef(0);
-    var previousTarget = React23.useRef();
+    var _a6 = React26.useState(), positions = _a6[0], setPositions = _a6[1];
+    var positionAttempts = React26.useRef(0);
+    var previousTarget = React26.useRef();
     var async = useAsync();
     var hidden = props.hidden, target = props.target, finalHeight = props.finalHeight, calloutMaxHeight = props.calloutMaxHeight, onPositioned = props.onPositioned, directionalHint = props.directionalHint;
-    React23.useEffect(function() {
+    React26.useEffect(function() {
       if (!hidden) {
         var timerId_1 = async.requestAnimationFrame(function() {
           var _a7, _b;
@@ -32735,7 +33136,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     var hidden = _a6.hidden, setInitialFocus = _a6.setInitialFocus;
     var async = useAsync();
     var hasPositions = !!positions;
-    React23.useEffect(function() {
+    React26.useEffect(function() {
       if (!hidden && setInitialFocus && hasPositions && calloutElement) {
         var timerId_2 = async.requestAnimationFrame(function() {
           return focusFirstChild(calloutElement);
@@ -32748,7 +33149,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
   function useDismissHandlers(_a6, positions, hostElement, targetRef, targetWindow) {
     var hidden = _a6.hidden, onDismiss = _a6.onDismiss, preventDismissOnScroll = _a6.preventDismissOnScroll, preventDismissOnResize = _a6.preventDismissOnResize, preventDismissOnLostFocus = _a6.preventDismissOnLostFocus, dismissOnTargetClick = _a6.dismissOnTargetClick, shouldDismissOnWindowFocus = _a6.shouldDismissOnWindowFocus, preventDismissOnEvent = _a6.preventDismissOnEvent;
-    var isMouseDownOnPopup = React23.useRef(false);
+    var isMouseDownOnPopup = React26.useRef(false);
     var async = useAsync();
     var mouseDownHandlers = useConst([
       function() {
@@ -32759,7 +33160,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     ]);
     var positionsExists = !!positions;
-    React23.useEffect(function() {
+    React26.useEffect(function() {
       var dismissOnScroll = function(ev) {
         if (positionsExists && !preventDismissOnScroll) {
           dismissOnClickOrScroll(ev);
@@ -32838,12 +33239,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     ]);
     return mouseDownHandlers;
   }
-  var CalloutContentBase = React23.memo(React23.forwardRef(function(propsWithoutDefaults, forwardedRef) {
+  var CalloutContentBase = React26.memo(React26.forwardRef(function(propsWithoutDefaults, forwardedRef) {
     var props = getPropsWithDefaults(DEFAULT_PROPS, propsWithoutDefaults);
     var styles2 = props.styles, style = props.style, ariaLabel = props.ariaLabel, ariaDescribedBy = props.ariaDescribedBy, ariaLabelledBy = props.ariaLabelledBy, className = props.className, isBeakVisible = props.isBeakVisible, children = props.children, beakWidth = props.beakWidth, calloutWidth = props.calloutWidth, calloutMaxWidth = props.calloutMaxWidth, calloutMinWidth = props.calloutMinWidth, doNotLayer = props.doNotLayer, finalHeight = props.finalHeight, _a6 = props.hideOverflow, hideOverflow = _a6 === void 0 ? !!finalHeight : _a6, backgroundColor = props.backgroundColor, calloutMaxHeight = props.calloutMaxHeight, onScroll = props.onScroll, _b = props.shouldRestoreFocus, shouldRestoreFocus = _b === void 0 ? true : _b, target = props.target, hidden = props.hidden, onLayerMounted = props.onLayerMounted, popupProps = props.popupProps;
-    var hostElement = React23.useRef(null);
-    var _c = React23.useState(null), calloutElement = _c[0], setCalloutElement = _c[1];
-    var calloutCallback = React23.useCallback(function(calloutEl) {
+    var hostElement = React26.useRef(null);
+    var _c = React26.useState(null), calloutElement = _c[0], setCalloutElement = _c[1];
+    var calloutCallback = React26.useCallback(function(calloutEl) {
       setCalloutElement(calloutEl);
     }, []);
     var rootRef = useMergedRefs(hostElement, forwardedRef);
@@ -32860,7 +33261,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       cssPositions.bottom = void 0;
     }
     useAutoFocus(props, positions, calloutElement);
-    React23.useEffect(function() {
+    React26.useEffect(function() {
       if (!hidden) {
         onLayerMounted === null || onLayerMounted === void 0 ? void 0 : onLayerMounted();
       }
@@ -32884,10 +33285,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     });
     var overflowStyle = __assign6(__assign6({ maxHeight: calloutMaxHeight ? calloutMaxHeight : "100%" }, style), overflowYHidden && { overflowY: "hidden" });
     var visibilityStyle = props.hidden ? { visibility: "hidden" } : void 0;
-    return React23.createElement(
+    return React26.createElement(
       "div",
       { ref: rootRef, className: classNames3.container, style: visibilityStyle },
-      React23.createElement(
+      React26.createElement(
         "div",
         __assign6({}, getNativeProps(props, divProperties, ARIA_ROLE_ATTRIBUTES), {
           className: css(classNames3.root, positions && positions.targetEdge && ANIMATIONS[positions.targetEdge]),
@@ -32895,9 +33296,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           tabIndex: -1,
           ref: calloutCallback
         }),
-        beakVisible && React23.createElement("div", { className: classNames3.beak, style: getBeakPosition(positions) }),
-        beakVisible && React23.createElement("div", { className: classNames3.beakCurtain }),
-        React23.createElement(
+        beakVisible && React26.createElement("div", { className: classNames3.beak, style: getBeakPosition(positions) }),
+        beakVisible && React26.createElement("div", { className: classNames3.beakCurtain }),
+        React26.createElement(
           Popup,
           __assign6({
             role: props.role,
@@ -33055,8 +33456,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // node_modules/@fluentui/react-portal-compat-context/lib/PortalCompatContext.js
-  var React24 = __toESM(require_react());
-  var PortalCompatContext = /* @__PURE__ */ React24.createContext(void 0);
+  var React27 = __toESM(require_react());
+  var PortalCompatContext = /* @__PURE__ */ React27.createContext(void 0);
   var portalCompatContextDefaultValue = function() {
     return function() {
       return void 0;
@@ -33065,15 +33466,15 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var PortalCompatContextProvider = PortalCompatContext.Provider;
   function usePortalCompat() {
     var _a6;
-    return (_a6 = React24.useContext(PortalCompatContext)) !== null && _a6 !== void 0 ? _a6 : portalCompatContextDefaultValue;
+    return (_a6 = React27.useContext(PortalCompatContext)) !== null && _a6 !== void 0 ? _a6 : portalCompatContextDefaultValue;
   }
 
   // node_modules/@fluentui/react/lib/components/Layer/Layer.base.js
-  var React26 = __toESM(require_react());
+  var React29 = __toESM(require_react());
   var ReactDOM = __toESM(require_react_dom());
 
   // node_modules/@fluentui/react/lib/components/Fabric/Fabric.base.js
-  var React25 = __toESM(require_react());
+  var React28 = __toESM(require_react());
   var getClassNames2 = classNamesFunction();
   var getFabricTheme = memoizeFunction(function(theme, isRTL) {
     return createTheme(__assign6(__assign6({}, theme), { rtl: isRTL }));
@@ -33088,16 +33489,16 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       needsTheme: componentDir !== contextDir
     };
   };
-  var FabricBase = React25.forwardRef(function(props, ref) {
+  var FabricBase = React28.forwardRef(function(props, ref) {
     var className = props.className, theme = props.theme, applyTheme = props.applyTheme, applyThemeToBody = props.applyThemeToBody, styles2 = props.styles;
     var classNames3 = getClassNames2(styles2, {
       theme,
       applyTheme,
       className
     });
-    var rootElement = React25.useRef(null);
+    var rootElement = React28.useRef(null);
     useApplyThemeToBody(applyThemeToBody, classNames3, rootElement);
-    return React25.createElement(React25.Fragment, null, useRenderedContent(props, classNames3, rootElement, ref));
+    return React28.createElement(React28.Fragment, null, useRenderedContent(props, classNames3, rootElement, ref));
   });
   FabricBase.displayName = "FabricBase";
   function useRenderedContent(props, _a6, rootElement, ref) {
@@ -33105,19 +33506,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     var _b = props.as, Root = _b === void 0 ? "div" : _b, dir = props.dir, theme = props.theme;
     var divProps = getNativeProps(props, divProperties, ["dir"]);
     var _c = getDir(props), rootDir = _c.rootDir, needsTheme = _c.needsTheme;
-    var renderedContent = React25.createElement(
+    var renderedContent = React28.createElement(
       FocusRectsProvider,
       { providerRef: rootElement },
-      React25.createElement(Root, __assign6({ dir: rootDir }, divProps, { className: root3, ref: useMergedRefs(rootElement, ref) }))
+      React28.createElement(Root, __assign6({ dir: rootDir }, divProps, { className: root3, ref: useMergedRefs(rootElement, ref) }))
     );
     if (needsTheme) {
-      renderedContent = React25.createElement(Customizer, { settings: { theme: getFabricTheme(theme, dir === "rtl") } }, renderedContent);
+      renderedContent = React28.createElement(Customizer, { settings: { theme: getFabricTheme(theme, dir === "rtl") } }, renderedContent);
     }
     return renderedContent;
   }
   function useApplyThemeToBody(applyThemeToBody, _a6, rootElement) {
     var bodyThemed = _a6.bodyThemed;
-    React25.useEffect(function() {
+    React28.useEffect(function() {
       if (applyThemeToBody) {
         var currentDoc_1 = getDocument(rootElement.current);
         if (currentDoc_1) {
@@ -33225,13 +33626,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
 
   // node_modules/@fluentui/react/lib/components/Layer/Layer.base.js
   var getClassNames3 = classNamesFunction();
-  var LayerBase = React26.forwardRef(function(props, ref) {
+  var LayerBase = React29.forwardRef(function(props, ref) {
     var registerPortalEl = usePortalCompat();
-    var rootRef = React26.useRef(null);
+    var rootRef = React29.useRef(null);
     var mergedRef = useMergedRefs(rootRef, ref);
-    var layerRef = React26.useRef();
-    var fabricRef = React26.useRef(null);
-    var _a6 = React26.useState(false), needRaiseLayerMount = _a6[0], setNeedRaiseLayerMount = _a6[1];
+    var layerRef = React29.useRef();
+    var fabricRef = React29.useRef(null);
+    var _a6 = React29.useState(false), needRaiseLayerMount = _a6[0], setNeedRaiseLayerMount = _a6[1];
     var eventBubblingEnabled = props.eventBubblingEnabled, styles2 = props.styles, theme = props.theme, className = props.className, children = props.children, hostId = props.hostId, _b = props.onLayerDidMount, onLayerDidMount = _b === void 0 ? function() {
       return void 0;
     } : _b, _c = props.onLayerMounted, onLayerMounted = _c === void 0 ? function() {
@@ -33302,7 +33703,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       };
     }, [hostId]);
-    React26.useEffect(function() {
+    React29.useEffect(function() {
       if (layerRef.current && needRaiseLayerMount) {
         onLayerMounted === null || onLayerMounted === void 0 ? void 0 : onLayerMounted();
         onLayerDidMount === null || onLayerDidMount === void 0 ? void 0 : onLayerDidMount();
@@ -33310,10 +33711,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     }, [needRaiseLayerMount, onLayerMounted, onLayerDidMount]);
     useDebugWarnings(props);
-    return React26.createElement("span", { className: "ms-layer", ref: mergedRef }, layerRef.current && ReactDOM.createPortal(React26.createElement(
+    return React29.createElement("span", { className: "ms-layer", ref: mergedRef }, layerRef.current && ReactDOM.createPortal(React29.createElement(
       FocusRectsProvider,
       { layerRoot: true, providerRef: fabricRef },
-      React26.createElement(Fabric, __assign6({}, !eventBubblingEnabled && getFilteredEvents(), { className: classNames3.content, ref: fabricRef }), children)
+      React29.createElement(Fabric, __assign6({}, !eventBubblingEnabled && getFilteredEvents(), { className: classNames3.content, ref: fabricRef }), children)
     ), layerRef.current));
   });
   LayerBase.displayName = "LayerBase";
@@ -33417,12 +33818,205 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // node_modules/@fluentui/react/lib/components/Callout/Callout.js
-  var Callout = React27.forwardRef(function(_a6, forwardedRef) {
+  var Callout = React30.forwardRef(function(_a6, forwardedRef) {
     var layerProps = _a6.layerProps, doNotLayer = _a6.doNotLayer, rest = __rest5(_a6, ["layerProps", "doNotLayer"]);
-    var content = React27.createElement(CalloutContent, __assign6({}, rest, { doNotLayer, ref: forwardedRef }));
-    return doNotLayer ? content : React27.createElement(Layer, __assign6({}, layerProps), content);
+    var content = React30.createElement(CalloutContent, __assign6({}, rest, { doNotLayer, ref: forwardedRef }));
+    return doNotLayer ? content : React30.createElement(Layer, __assign6({}, layerProps), content);
   });
   Callout.displayName = "Callout";
+
+  // node_modules/@fluentui/react/lib/components/FocusTrapZone/FocusTrapZone.js
+  var React31 = __toESM(require_react());
+  var COMPONENT_NAME2 = "FocusTrapZone";
+  var DEFAULT_PROPS2 = {
+    disabled: false,
+    disableFirstFocus: false,
+    forceFocusInsideTrap: true,
+    isClickableOutsideFocusTrap: false
+  };
+  var useComponentRef = function(componentRef, previouslyFocusedElement, focusFTZ) {
+    React31.useImperativeHandle(componentRef, function() {
+      return {
+        get previouslyFocusedElement() {
+          return previouslyFocusedElement;
+        },
+        focus: focusFTZ
+      };
+    }, [focusFTZ, previouslyFocusedElement]);
+  };
+  var FocusTrapZone = React31.forwardRef(function(propsWithoutDefaults, ref) {
+    var _a6;
+    var root3 = React31.useRef(null);
+    var firstBumper = React31.useRef(null);
+    var lastBumper = React31.useRef(null);
+    var mergedRootRef = useMergedRefs(root3, ref);
+    var doc = useDocument();
+    var isFirstRender = (_a6 = usePrevious(false)) !== null && _a6 !== void 0 ? _a6 : true;
+    var props = getPropsWithDefaults(DEFAULT_PROPS2, propsWithoutDefaults);
+    var internalState = useConst({
+      hasFocus: false,
+      focusStackId: useId("ftz-", props.id)
+    });
+    var children = props.children, componentRef = props.componentRef, disabled = props.disabled, disableFirstFocus = props.disableFirstFocus, forceFocusInsideTrap = props.forceFocusInsideTrap, focusPreviouslyFocusedInnerElement = props.focusPreviouslyFocusedInnerElement, firstFocusableSelector = props.firstFocusableSelector, firstFocusableTarget = props.firstFocusableTarget, _b = props.disableRestoreFocus, disableRestoreFocus = _b === void 0 ? props.ignoreExternalFocusing : _b, isClickableOutsideFocusTrap = props.isClickableOutsideFocusTrap, enableAriaHiddenSiblings = props.enableAriaHiddenSiblings;
+    var bumperProps = {
+      "aria-hidden": true,
+      style: {
+        pointerEvents: "none",
+        position: "fixed"
+      },
+      tabIndex: disabled ? -1 : 0,
+      "data-is-visible": true,
+      "data-is-focus-trap-zone-bumper": true
+    };
+    var focusElementAsync = React31.useCallback(function(element) {
+      if (element !== firstBumper.current && element !== lastBumper.current) {
+        focusAsync(element);
+      }
+    }, []);
+    var focusFTZ = useEventCallback(function() {
+      if (!root3.current) {
+        return;
+      }
+      var previouslyFocusedElementInTrapZone = internalState.previouslyFocusedElementInTrapZone;
+      if (focusPreviouslyFocusedInnerElement && previouslyFocusedElementInTrapZone && elementContains(root3.current, previouslyFocusedElementInTrapZone)) {
+        focusElementAsync(previouslyFocusedElementInTrapZone);
+        return;
+      }
+      var firstFocusableChild = null;
+      if (typeof firstFocusableTarget === "string") {
+        firstFocusableChild = root3.current.querySelector(firstFocusableTarget);
+      } else if (firstFocusableTarget) {
+        firstFocusableChild = firstFocusableTarget(root3.current);
+      } else if (firstFocusableSelector) {
+        var focusSelector = typeof firstFocusableSelector === "string" ? firstFocusableSelector : firstFocusableSelector();
+        firstFocusableChild = root3.current.querySelector("." + focusSelector);
+      }
+      if (!firstFocusableChild) {
+        firstFocusableChild = getNextElement(root3.current, root3.current.firstChild, false, false, false, true);
+      }
+      if (firstFocusableChild) {
+        focusElementAsync(firstFocusableChild);
+      }
+    });
+    var focusBumper = function(isFirstBumper) {
+      if (disabled || !root3.current) {
+        return;
+      }
+      var nextFocusable = isFirstBumper === internalState.hasFocus ? getLastTabbable(root3.current, lastBumper.current, true, false) : getFirstTabbable(root3.current, firstBumper.current, true, false);
+      if (nextFocusable) {
+        if (nextFocusable === firstBumper.current || nextFocusable === lastBumper.current) {
+          focusFTZ();
+        } else {
+          nextFocusable.focus();
+        }
+      }
+    };
+    var onRootBlurCapture = function(ev) {
+      var _a7;
+      (_a7 = props.onBlurCapture) === null || _a7 === void 0 ? void 0 : _a7.call(props, ev);
+      var relatedTarget = ev.relatedTarget;
+      if (ev.relatedTarget === null) {
+        relatedTarget = doc.activeElement;
+      }
+      if (!elementContains(root3.current, relatedTarget)) {
+        internalState.hasFocus = false;
+      }
+    };
+    var onRootFocusCapture = function(ev) {
+      var _a7;
+      (_a7 = props.onFocusCapture) === null || _a7 === void 0 ? void 0 : _a7.call(props, ev);
+      if (ev.target === firstBumper.current) {
+        focusBumper(true);
+      } else if (ev.target === lastBumper.current) {
+        focusBumper(false);
+      }
+      internalState.hasFocus = true;
+      if (ev.target !== ev.currentTarget && !(ev.target === firstBumper.current || ev.target === lastBumper.current)) {
+        internalState.previouslyFocusedElementInTrapZone = ev.target;
+      }
+    };
+    var returnFocusToInitiator = useEventCallback(function(elementToFocusOnDismiss) {
+      FocusTrapZone.focusStack = FocusTrapZone.focusStack.filter(function(value) {
+        return internalState.focusStackId !== value;
+      });
+      if (!doc) {
+        return;
+      }
+      var activeElement = doc.activeElement;
+      if (!disableRestoreFocus && typeof (elementToFocusOnDismiss === null || elementToFocusOnDismiss === void 0 ? void 0 : elementToFocusOnDismiss.focus) === "function" && (elementContains(root3.current, activeElement) || activeElement === doc.body)) {
+        focusElementAsync(elementToFocusOnDismiss);
+      }
+    });
+    var forceFocusOrClickInTrap = useEventCallback(function(ev) {
+      if (disabled) {
+        return;
+      }
+      if (internalState.focusStackId === FocusTrapZone.focusStack.slice(-1)[0]) {
+        var targetElement = ev.target;
+        if (targetElement && !elementContains(root3.current, targetElement)) {
+          if (doc && doc.activeElement === doc.body) {
+            setTimeout(function() {
+              if (doc && doc.activeElement === doc.body) {
+                focusFTZ();
+                internalState.hasFocus = true;
+              }
+            }, 0);
+          } else {
+            focusFTZ();
+            internalState.hasFocus = true;
+          }
+          ev.preventDefault();
+          ev.stopPropagation();
+        }
+      }
+    });
+    React31.useEffect(function() {
+      var disposables = [];
+      if (forceFocusInsideTrap) {
+        disposables.push(on(window, "focus", forceFocusOrClickInTrap, true));
+      }
+      if (!isClickableOutsideFocusTrap) {
+        disposables.push(on(window, "click", forceFocusOrClickInTrap, true));
+      }
+      return function() {
+        disposables.forEach(function(dispose) {
+          return dispose();
+        });
+      };
+    }, [forceFocusInsideTrap, isClickableOutsideFocusTrap]);
+    React31.useEffect(function() {
+      if (disabled || !isFirstRender && !forceFocusInsideTrap || !root3.current) {
+        return;
+      }
+      FocusTrapZone.focusStack.push(internalState.focusStackId);
+      var elementToFocusOnDismiss = props.elementToFocusOnDismiss || doc.activeElement;
+      if (!disableFirstFocus && !elementContains(root3.current, elementToFocusOnDismiss)) {
+        focusFTZ();
+      }
+      return function() {
+        return returnFocusToInitiator(elementToFocusOnDismiss);
+      };
+    }, [forceFocusInsideTrap, disabled]);
+    React31.useEffect(function() {
+      if (!disabled && enableAriaHiddenSiblings) {
+        var unmodalize2 = modalize(root3.current);
+        return unmodalize2;
+      }
+    }, [disabled, enableAriaHiddenSiblings, root3]);
+    useUnmount(function() {
+      delete internalState.previouslyFocusedElementInTrapZone;
+    });
+    useComponentRef(componentRef, internalState.previouslyFocusedElementInTrapZone, focusFTZ);
+    return React31.createElement(
+      "div",
+      __assign6({ "aria-labelledby": props.ariaLabelledBy }, getNativeProps(props, divProperties), { ref: mergedRootRef, onFocusCapture: onRootFocusCapture, onBlurCapture: onRootBlurCapture }),
+      React31.createElement("div", __assign6({}, bumperProps, { ref: firstBumper })),
+      children,
+      React31.createElement("div", __assign6({}, bumperProps, { ref: lastBumper }))
+    );
+  });
+  FocusTrapZone.displayName = COMPONENT_NAME2;
+  FocusTrapZone.focusStack = [];
 
   // node_modules/@fluentui/react/lib/components/Tooltip/Tooltip.base.js
   var getClassNames4 = classNamesFunction();
@@ -33432,9 +34026,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       var _this = _super !== null && _super.apply(this, arguments) || this;
       _this._onRenderContent = function(props) {
         if (typeof props.content === "string") {
-          return React28.createElement("p", { className: _this._classNames.subText }, props.content);
+          return React32.createElement("p", { className: _this._classNames.subText }, props.content);
         } else {
-          return React28.createElement("div", { className: _this._classNames.subText }, props.content);
+          return React32.createElement("div", { className: _this._classNames.subText }, props.content);
         }
       };
       return _this;
@@ -33448,10 +34042,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         gapSpace: calloutProps && calloutProps.gapSpace,
         maxWidth
       });
-      return React28.createElement(
+      return React32.createElement(
         Callout,
         __assign6({ target: targetElement, directionalHint, directionalHintForRTL }, calloutProps, getNativeProps(this.props, divProperties, ["id"]), { className: this._classNames.root }),
-        React28.createElement("div", { className: this._classNames.content, id, onFocus: this.props.onFocus, onMouseEnter: this.props.onMouseEnter, onMouseLeave: this.props.onMouseLeave }, onRenderContent(this.props, this._onRenderContent))
+        React32.createElement("div", { className: this._classNames.content, id, onFocus: this.props.onFocus, onMouseEnter: this.props.onMouseEnter, onMouseLeave: this.props.onMouseLeave }, onRenderContent(this.props, this._onRenderContent))
       );
     };
     TooltipBase2.defaultProps = {
@@ -33466,7 +34060,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     };
     return TooltipBase2;
-  }(React28.Component);
+  }(React32.Component);
 
   // node_modules/@fluentui/react/lib/components/Tooltip/Tooltip.styles.js
   var getStyles4 = function(props) {
@@ -33535,7 +34129,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   })(TooltipDelay || (TooltipDelay = {}));
 
   // node_modules/@fluentui/react/lib/components/Tooltip/TooltipHost.base.js
-  var React29 = __toESM(require_react());
+  var React33 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Tooltip/TooltipHost.types.js
   var TooltipOverflowMode;
@@ -33550,7 +34144,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     __extends5(TooltipHostBase2, _super);
     function TooltipHostBase2(props) {
       var _this = _super.call(this, props) || this;
-      _this._tooltipHost = React29.createRef();
+      _this._tooltipHost = React33.createRef();
       _this._defaultTooltipId = getId("tooltip");
       _this.show = function() {
         _this._toggleTooltip(true);
@@ -33688,17 +34282,17 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       var tooltipContent = (tooltipProps === null || tooltipProps === void 0 ? void 0 : tooltipProps.onRenderContent) ? tooltipProps.onRenderContent() : content;
       var showTooltip = isTooltipVisible && !!tooltipContent;
       var ariaDescribedBy = setAriaDescribedBy && isTooltipVisible && !!tooltipContent ? tooltipId : void 0;
-      return React29.createElement(
+      return React33.createElement(
         "div",
         __assign6({ className: this._classNames.root, ref: this._tooltipHost }, { onFocusCapture: this._onTooltipFocus }, { onBlurCapture: this._onTooltipBlur }, { onMouseEnter: this._onTooltipMouseEnter, onMouseLeave: this._onTooltipMouseLeave, onKeyDown: this._onTooltipKeyDown, role: "none", "aria-describedby": ariaDescribedBy }),
         children,
-        showTooltip && React29.createElement(Tooltip, __assign6({ id: tooltipId + "--tooltip", content, targetElement: this._getTargetElement(), directionalHint, directionalHintForRTL, calloutProps: assign({}, calloutProps, {
+        showTooltip && React33.createElement(Tooltip, __assign6({ id: tooltipId + "--tooltip", content, targetElement: this._getTargetElement(), directionalHint, directionalHintForRTL, calloutProps: assign({}, calloutProps, {
           onDismiss: this._hideTooltip,
           onFocus: this._onTooltipContentFocus,
           onMouseEnter: this._onTooltipMouseEnter,
           onMouseLeave: this._onTooltipMouseLeave
         }), onMouseEnter: this._onTooltipMouseEnter, onMouseLeave: this._onTooltipMouseLeave }, getNativeProps(this.props, divProperties, ["id"]), tooltipProps)),
-        React29.createElement("div", { hidden: true, id: tooltipId, style: hiddenContentStyle }, tooltipContent)
+        React33.createElement("div", { hidden: true, id: tooltipId, style: hiddenContentStyle }, tooltipContent)
       );
     };
     TooltipHostBase2.prototype.componentWillUnmount = function() {
@@ -33711,7 +34305,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       delay: TooltipDelay.medium
     };
     return TooltipHostBase2;
-  }(React29.Component);
+  }(React33.Component);
 
   // node_modules/@fluentui/react/lib/components/Tooltip/TooltipHost.styles.js
   var GlobalClassNames4 = {
@@ -33738,7 +34332,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // node_modules/@fluentui/react/lib/components/Icon/Icon.base.js
-  var React32 = __toESM(require_react());
+  var React36 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Icon/Icon.types.js
   var IconType;
@@ -33750,7 +34344,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   })(IconType || (IconType = {}));
 
   // node_modules/@fluentui/react/lib/components/Image/Image.base.js
-  var React30 = __toESM(require_react());
+  var React34 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Image/Image.types.js
   var ImageFit;
@@ -33781,11 +34375,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var KEY_PREFIX = "fabricImage";
   function useLoadState(props, imageElement) {
     var onLoadingStateChange = props.onLoadingStateChange, onLoad = props.onLoad, onError = props.onError, src = props.src;
-    var _a6 = React30.useState(ImageLoadState.notLoaded), loadState = _a6[0], setLoadState = _a6[1];
+    var _a6 = React34.useState(ImageLoadState.notLoaded), loadState = _a6[0], setLoadState = _a6[1];
     useIsomorphicLayoutEffect(function() {
       setLoadState(ImageLoadState.notLoaded);
     }, [src]);
-    React30.useEffect(function() {
+    React34.useEffect(function() {
       if (loadState === ImageLoadState.notLoaded) {
         var isLoaded = imageElement.current ? src && imageElement.current.naturalWidth > 0 && imageElement.current.naturalHeight > 0 || imageElement.current.complete && SVG_REGEX.test(src) : false;
         if (isLoaded) {
@@ -33793,24 +34387,24 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       }
     });
-    React30.useEffect(function() {
+    React34.useEffect(function() {
       onLoadingStateChange === null || onLoadingStateChange === void 0 ? void 0 : onLoadingStateChange(loadState);
     }, [loadState]);
-    var onImageLoaded = React30.useCallback(function(ev) {
+    var onImageLoaded = React34.useCallback(function(ev) {
       onLoad === null || onLoad === void 0 ? void 0 : onLoad(ev);
       if (src) {
         setLoadState(ImageLoadState.loaded);
       }
     }, [src, onLoad]);
-    var onImageError = React30.useCallback(function(ev) {
+    var onImageError = React34.useCallback(function(ev) {
       onError === null || onError === void 0 ? void 0 : onError(ev);
       setLoadState(ImageLoadState.error);
     }, [onError]);
     return [loadState, onImageLoaded, onImageError];
   }
-  var ImageBase = React30.forwardRef(function(props, forwardedRef) {
-    var frameElement = React30.useRef();
-    var imageElement = React30.useRef();
+  var ImageBase = React34.forwardRef(function(props, forwardedRef) {
+    var frameElement = React34.useRef();
+    var imageElement = React34.useRef();
     var _a6 = useLoadState(props, imageElement), loadState = _a6[0], onImageLoaded = _a6[1], onImageError = _a6[2];
     var imageProps = getNativeProps(props, imgProperties, [
       "width",
@@ -33837,16 +34431,16 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       isError: loadState === ImageLoadState.error,
       isNotImageFit: imageFit === void 0
     });
-    return React30.createElement(
+    return React34.createElement(
       "div",
       { className: classNames3.root, style: { width, height }, ref: frameElement },
-      React30.createElement("img", __assign6({}, imageProps, { onLoad: onImageLoaded, onError: onImageError, key: KEY_PREFIX + props.src || "", className: classNames3.image, ref: useMergedRefs(imageElement, forwardedRef), src, alt, role, loading }))
+      React34.createElement("img", __assign6({}, imageProps, { onLoad: onImageLoaded, onError: onImageError, key: KEY_PREFIX + props.src || "", className: classNames3.image, ref: useMergedRefs(imageElement, forwardedRef), src, alt, role, loading }))
     );
   });
   ImageBase.displayName = "ImageBase";
   function useCoverStyle(props, loadState, imageElement, frameElement) {
-    var previousLoadState = React30.useRef(loadState);
-    var coverStyle = React30.useRef();
+    var previousLoadState = React34.useRef(loadState);
+    var coverStyle = React34.useRef();
     if (coverStyle === void 0 || previousLoadState.current === ImageLoadState.notLoaded && loadState === ImageLoadState.loaded) {
       coverStyle.current = computeCoverStyle(props, loadState, imageElement, frameElement);
     }
@@ -34008,7 +34602,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   Image.displayName = "Image";
 
   // node_modules/@fluentui/react/lib/components/Icon/FontIcon.js
-  var React31 = __toESM(require_react());
+  var React35 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Icon/Icon.styles.js
   var classNames = mergeStyleSets({
@@ -34074,10 +34668,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     var finalChildren = children;
     if (mergeImageProps) {
       if (typeof children === "object" && typeof children.props === "object" && accessibleName) {
-        finalChildren = React31.cloneElement(children, { alt: accessibleName });
+        finalChildren = React35.cloneElement(children, { alt: accessibleName });
       }
     }
-    return React31.createElement("i", __assign6({ "data-icon-name": iconName }, containerProps, nativeProps, mergeImageProps ? {
+    return React35.createElement("i", __assign6({ "data-icon-name": iconName }, containerProps, nativeProps, mergeImageProps ? {
       title: void 0,
       "aria-label": void 0
     } : {}, {
@@ -34141,17 +34735,17 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       };
       var finalIconContentChildren = iconContentChildren;
       if (mergeImageProps && iconContentChildren && typeof iconContentChildren === "object" && accessibleName) {
-        finalIconContentChildren = React32.cloneElement(iconContentChildren, {
+        finalIconContentChildren = React36.cloneElement(iconContentChildren, {
           alt: accessibleName
         });
       }
-      return React32.createElement(RootType, __assign6({ "data-icon-name": iconName }, containerProps, nativeProps, mergeImageProps ? {
+      return React36.createElement(RootType, __assign6({ "data-icon-name": iconName }, containerProps, nativeProps, mergeImageProps ? {
         title: void 0,
         "aria-label": void 0
-      } : {}, { className: classNames3.root }), isImage ? React32.createElement(ImageType, __assign6({}, imageProps)) : children || finalIconContentChildren);
+      } : {}, { className: classNames3.root }), isImage ? React36.createElement(ImageType, __assign6({}, imageProps)) : children || finalIconContentChildren);
     };
     return IconBase2;
-  }(React32.Component);
+  }(React36.Component);
 
   // node_modules/@fluentui/react/lib/components/Icon/Icon.js
   var Icon = styled(IconBase, getStyles7, void 0, {
@@ -34160,7 +34754,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   Icon.displayName = "Icon";
 
   // node_modules/@fluentui/react/lib/components/Icon/ImageIcon.js
-  var React33 = __toESM(require_react());
+  var React37 = __toESM(require_react());
   var ImageIcon = function(props) {
     var className = props.className, imageProps = props.imageProps;
     var nativeProps = getNativeProps(props, htmlElementProperties, [
@@ -34179,18 +34773,18 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     var containerProps = hasName ? {} : {
       "aria-hidden": true
     };
-    return React33.createElement(
+    return React37.createElement(
       "div",
       __assign6({}, containerProps, nativeProps, { className: css(MS_ICON, classNames.root, classNames.image, className) }),
-      React33.createElement(Image, __assign6({}, imageNameProps, imageProps, { alt: hasName ? altText : "" }))
+      React37.createElement(Image, __assign6({}, imageNameProps, imageProps, { alt: hasName ? altText : "" }))
     );
   };
 
   // node_modules/@fluentui/react/lib/components/Breadcrumb/Breadcrumb.base.js
-  var React56 = __toESM(require_react());
+  var React61 = __toESM(require_react());
 
   // node_modules/@fluentui/react-focus/node_modules/tslib/modules/index.js
-  var import_tslib36 = __toESM(require_tslib7(), 1);
+  var import_tslib37 = __toESM(require_tslib7(), 1);
   var {
     __extends: __extends7,
     __assign: __assign8,
@@ -34217,10 +34811,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     __classPrivateFieldGet: __classPrivateFieldGet7,
     __classPrivateFieldSet: __classPrivateFieldSet7,
     __classPrivateFieldIn: __classPrivateFieldIn7
-  } = import_tslib36.default;
+  } = import_tslib37.default;
 
   // node_modules/@fluentui/react-focus/lib/components/FocusZone/FocusZone.js
-  var React34 = __toESM(require_react());
+  var React38 = __toESM(require_react());
 
   // node_modules/@fluentui/react-focus/lib/components/FocusZone/FocusZone.types.js
   var FocusZoneTabbableElements = {
@@ -34301,7 +34895,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     function FocusZone2(props) {
       var _a6, _b, _c, _d;
       var _this = _super.call(this, props) || this;
-      _this._root = React34.createRef();
+      _this._root = React38.createRef();
       _this._mergedRef = createMergedRef();
       _this._onFocus = function(ev) {
         if (_this._portalContainsElement(ev.target)) {
@@ -34628,7 +35222,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       var Tag = tag || elementType || "div";
       this._evaluateFocusBeforeRender();
       var theme = getTheme();
-      return React34.createElement(Tag, __assign8({ "aria-labelledby": ariaLabelledBy, "aria-describedby": ariaDescribedBy }, divProps, rootProps, {
+      return React38.createElement(Tag, __assign8({ "aria-labelledby": ariaLabelledBy, "aria-describedby": ariaDescribedBy }, divProps, rootProps, {
         className: css(getRootClass(), className),
         ref: this._mergedRef(this.props.elementRef, this._root),
         "data-focuszone-id": this._id,
@@ -35128,19 +35722,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       shouldRaiseClicks: true
     };
     return FocusZone2;
-  }(React34.Component);
+  }(React38.Component);
 
   // node_modules/@fluentui/react/lib/components/Link/Link.base.js
-  var React36 = __toESM(require_react());
+  var React40 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Link/useLink.js
-  var React35 = __toESM(require_react());
+  var React39 = __toESM(require_react());
   var getClassNames8 = classNamesFunction();
   var useLink = function(props, forwardedRef) {
     var as = props.as, className = props.className, disabled = props.disabled, href = props.href, onClick = props.onClick, styles2 = props.styles, theme = props.theme, underline = props.underline;
-    var rootRef = React35.useRef(null);
+    var rootRef = React39.useRef(null);
     var mergedRootRefs = useMergedRefs(rootRef, forwardedRef);
-    useComponentRef(props, rootRef);
+    useComponentRef2(props, rootRef);
     useFocusRects(rootRef);
     var classNames3 = getClassNames8(styles2, {
       className,
@@ -35164,8 +35758,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     };
     return { state, slots, slotProps };
   };
-  var useComponentRef = function(props, link) {
-    React35.useImperativeHandle(props.componentRef, function() {
+  var useComponentRef2 = function(props, link) {
+    React39.useImperativeHandle(props.componentRef, function() {
       return {
         focus: function() {
           if (link.current) {
@@ -35176,7 +35770,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }, [link]);
   };
   var adjustPropsForRootType = function(RootType, props) {
-    var as = props.as, disabled = props.disabled, target = props.target, href = props.href, theme = props.theme, getStyles31 = props.getStyles, styles2 = props.styles, componentRef = props.componentRef, underline = props.underline, restProps = __rest5(props, ["as", "disabled", "target", "href", "theme", "getStyles", "styles", "componentRef", "underline"]);
+    var as = props.as, disabled = props.disabled, target = props.target, href = props.href, theme = props.theme, getStyles38 = props.getStyles, styles2 = props.styles, componentRef = props.componentRef, underline = props.underline, restProps = __rest5(props, ["as", "disabled", "target", "href", "theme", "getStyles", "styles", "componentRef", "underline"]);
     if (typeof RootType === "string") {
       if (RootType === "a") {
         return __assign6({ target, href: disabled ? void 0 : href }, restProps);
@@ -35190,9 +35784,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // node_modules/@fluentui/react/lib/components/Link/Link.base.js
-  var LinkBase = React36.forwardRef(function(props, ref) {
+  var LinkBase = React40.forwardRef(function(props, ref) {
     var _a6 = useLink(props, ref), slots = _a6.slots, slotProps = _a6.slotProps;
-    return React36.createElement(slots.root, __assign6({}, slotProps.root));
+    return React40.createElement(slots.root, __assign6({}, slotProps.root));
   });
   LinkBase.displayName = "LinkBase";
 
@@ -35300,13 +35894,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // node_modules/@fluentui/react/lib/components/Button/BaseButton.js
-  var React50 = __toESM(require_react());
+  var React54 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/ContextualMenu/ContextualMenu.js
-  var React49 = __toESM(require_react());
+  var React53 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/ContextualMenu/ContextualMenu.base.js
-  var React48 = __toESM(require_react());
+  var React52 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/ContextualMenu/ContextualMenu.types.js
   var ContextualMenuItemType;
@@ -35343,11 +35937,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // node_modules/@fluentui/react/lib/components/ContextualMenu/ContextualMenuItem.base.js
-  var React37 = __toESM(require_react());
+  var React41 = __toESM(require_react());
   var defaultIconRenderer = function(props) {
     var item = props.item, classNames3 = props.classNames;
     var iconProps = item.iconProps;
-    return React37.createElement(Icon, __assign6({}, iconProps, { className: classNames3.icon }));
+    return React41.createElement(Icon, __assign6({}, iconProps, { className: classNames3.icon }));
   };
   var renderItemIcon = function(props) {
     var item = props.item, hasIcons = props.hasIcons;
@@ -35366,7 +35960,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       var onClick = function(e2) {
         return onCheckmarkClick(item, e2);
       };
-      return React37.createElement(Icon, {
+      return React41.createElement(Icon, {
         iconName: item.canCheck !== false && isItemChecked ? "CheckMark" : "",
         className: classNames3.checkmarkIcon,
         onClick
@@ -35377,21 +35971,21 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var renderItemName = function(_a6) {
     var item = _a6.item, classNames3 = _a6.classNames;
     if (item.text || item.name) {
-      return React37.createElement("span", { className: classNames3.label }, item.text || item.name);
+      return React41.createElement("span", { className: classNames3.label }, item.text || item.name);
     }
     return null;
   };
   var renderSecondaryText = function(_a6) {
     var item = _a6.item, classNames3 = _a6.classNames;
     if (item.secondaryText) {
-      return React37.createElement("span", { className: classNames3.secondaryText }, item.secondaryText);
+      return React41.createElement("span", { className: classNames3.secondaryText }, item.secondaryText);
     }
     return null;
   };
   var renderSubMenuIcon = function(_a6) {
     var item = _a6.item, classNames3 = _a6.classNames, theme = _a6.theme;
     if (hasSubmenu(item)) {
-      return React37.createElement(Icon, __assign6({ iconName: getRTL2(theme) ? "ChevronLeft" : "ChevronRight" }, item.submenuIconProps, { className: classNames3.subMenuIcon }));
+      return React41.createElement(Icon, __assign6({ iconName: getRTL2(theme) ? "ChevronLeft" : "ChevronRight" }, item.submenuIconProps, { className: classNames3.subMenuIcon }));
     }
     return null;
   };
@@ -35426,7 +36020,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     ContextualMenuItemBase2.prototype.render = function() {
       var _a6 = this.props, item = _a6.item, classNames3 = _a6.classNames;
       var renderContent = item.onRenderContent || this._renderLayout;
-      return React37.createElement("div", { className: item.split ? classNames3.linkContentMenu : classNames3.linkContent }, renderContent(this.props, {
+      return React41.createElement("div", { className: item.split ? classNames3.linkContentMenu : classNames3.linkContent }, renderContent(this.props, {
         renderCheckMarkIcon,
         renderItemIcon,
         renderItemName,
@@ -35435,8 +36029,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }));
     };
     ContextualMenuItemBase2.prototype._renderLayout = function(props, defaultRenders) {
-      return React37.createElement(
-        React37.Fragment,
+      return React41.createElement(
+        React41.Fragment,
         null,
         defaultRenders.renderCheckMarkIcon(props),
         defaultRenders.renderItemIcon(props),
@@ -35446,7 +36040,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       );
     };
     return ContextualMenuItemBase2;
-  }(React37.Component);
+  }(React41.Component);
 
   // node_modules/@fluentui/react/lib/components/Divider/VerticalDivider.classNames.js
   var getDividerClassNames = memoizeFunction(
@@ -35796,10 +36390,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var ContextualMenuItem = styled(ContextualMenuItemBase, getItemStyles, void 0, { scope: "ContextualMenuItem" });
 
   // node_modules/@fluentui/react/lib/components/ContextualMenu/ContextualMenuItemWrapper/ContextualMenuAnchor.js
-  var React40 = __toESM(require_react());
+  var React44 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/ContextualMenu/ContextualMenuItemWrapper/ContextualMenuItemWrapper.js
-  var React38 = __toESM(require_react());
+  var React42 = __toESM(require_react());
   var ContextualMenuItemWrapper = function(_super) {
     __extends5(ContextualMenuItemWrapper2, _super);
     function ContextualMenuItemWrapper2(props) {
@@ -35844,7 +36438,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       return !shallowCompare(newProps, this.props);
     };
     return ContextualMenuItemWrapper2;
-  }(React38.Component);
+  }(React42.Component);
 
   // node_modules/@fluentui/react/lib/utilities/keytips/KeytipConstants.js
   var KTP_PREFIX = "ktp";
@@ -35992,9 +36586,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // node_modules/@fluentui/react/lib/components/KeytipData/useKeytipData.js
-  var React39 = __toESM(require_react());
+  var React43 = __toESM(require_react());
   function useKeytipData(options) {
-    var uniqueId = React39.useRef();
+    var uniqueId = React43.useRef();
     var keytipProps = options.keytipProps ? __assign6({ disabled: options.disabled }, options.keytipProps) : void 0;
     var keytipManager = useConst(KeytipManager.getInstance());
     var prevOptions = usePrevious(options);
@@ -36047,7 +36641,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     __extends5(ContextualMenuAnchor2, _super);
     function ContextualMenuAnchor2() {
       var _this = _super !== null && _super.apply(this, arguments) || this;
-      _this._anchor = React40.createRef();
+      _this._anchor = React44.createRef();
       _this._getMemoizedMenuButtonKeytipProps = memoizeFunction(function(keytipProps) {
         return __assign6(__assign6({}, keytipProps), { hasMenu: true });
       });
@@ -36061,7 +36655,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       };
       _this._renderAriaDescription = function(ariaDescription, className) {
-        return ariaDescription ? React40.createElement("span", { id: _this._ariaDescriptionId, className }, ariaDescription) : null;
+        return ariaDescription ? React44.createElement("span", { id: _this._ariaDescriptionId, className }, ariaDescription) : null;
       };
       return _this;
     }
@@ -36087,11 +36681,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       var additionalItemProperties = {
         "aria-describedby": ariaDescribedByIds
       };
-      return React40.createElement(
+      return React44.createElement(
         "div",
         null,
-        React40.createElement(KeytipData, { keytipProps: item.keytipProps, ariaDescribedBy: ariaDescribedByIds, disabled }, function(keytipAttributes) {
-          return React40.createElement(
+        React44.createElement(KeytipData, { keytipProps: item.keytipProps, ariaDescribedBy: ariaDescribedByIds, disabled }, function(keytipAttributes) {
+          return React44.createElement(
             "a",
             __assign6({}, additionalItemProperties, nativeProps, keytipAttributes, {
               ref: _this._anchor,
@@ -36112,7 +36706,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
               onMouseMove: _this._onItemMouseMove,
               onKeyDown: itemHasSubmenu ? _this._onItemKeyDown : void 0
             }),
-            React40.createElement(ChildrenRenderer, __assign6({ componentRef: item.componentRef, item, classNames: classNames3, index, onCheckmarkClick: hasCheckmarks && onItemClick ? onItemClick : void 0, hasIcons, openSubMenu, dismissSubMenu, dismissMenu, getSubmenuTarget: _this._getSubmenuTarget }, itemProps)),
+            React44.createElement(ChildrenRenderer, __assign6({ componentRef: item.componentRef, item, classNames: classNames3, index, onCheckmarkClick: hasCheckmarks && onItemClick ? onItemClick : void 0, hasIcons, openSubMenu, dismissSubMenu, dismissMenu, getSubmenuTarget: _this._getSubmenuTarget }, itemProps)),
             _this._renderAriaDescription(ariaDescription, classNames3.screenReaderText)
           );
         })
@@ -36122,17 +36716,17 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }(ContextualMenuItemWrapper);
 
   // node_modules/@fluentui/react/lib/components/ContextualMenu/ContextualMenuItemWrapper/ContextualMenuButton.js
-  var React41 = __toESM(require_react());
+  var React45 = __toESM(require_react());
   var ContextualMenuButton = function(_super) {
     __extends5(ContextualMenuButton2, _super);
     function ContextualMenuButton2() {
       var _this = _super !== null && _super.apply(this, arguments) || this;
-      _this._btn = React41.createRef();
+      _this._btn = React45.createRef();
       _this._getMemoizedMenuButtonKeytipProps = memoizeFunction(function(keytipProps) {
         return __assign6(__assign6({}, keytipProps), { hasMenu: true });
       });
       _this._renderAriaDescription = function(ariaDescription, className) {
-        return ariaDescription ? React41.createElement("span", { id: _this._ariaDescriptionId, className }, ariaDescription) : null;
+        return ariaDescription ? React45.createElement("span", { id: _this._ariaDescriptionId, className }, ariaDescription) : null;
       };
       _this._getSubmenuTarget = function() {
         return _this._btn.current ? _this._btn.current : void 0;
@@ -36182,11 +36776,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       if (keytipProps && itemHasSubmenu) {
         keytipProps = this._getMemoizedMenuButtonKeytipProps(keytipProps);
       }
-      return React41.createElement(KeytipData, { keytipProps, ariaDescribedBy: ariaDescribedByIds, disabled: isItemDisabled(item) }, function(keytipAttributes) {
-        return React41.createElement(
+      return React45.createElement(KeytipData, { keytipProps, ariaDescribedBy: ariaDescribedByIds, disabled: isItemDisabled(item) }, function(keytipAttributes) {
+        return React45.createElement(
           "button",
           __assign6({ ref: _this._btn }, buttonNativeProperties, itemButtonProperties, keytipAttributes),
-          React41.createElement(ChildrenRenderer, __assign6({ componentRef: item.componentRef, item, classNames: classNames3, index, onCheckmarkClick: hasCheckmarks && onItemClick ? onItemClick : void 0, hasIcons, openSubMenu, dismissSubMenu, dismissMenu, getSubmenuTarget: _this._getSubmenuTarget }, itemProps)),
+          React45.createElement(ChildrenRenderer, __assign6({ componentRef: item.componentRef, item, classNames: classNames3, index, onCheckmarkClick: hasCheckmarks && onItemClick ? onItemClick : void 0, hasIcons, openSubMenu, dismissSubMenu, dismissMenu, getSubmenuTarget: _this._getSubmenuTarget }, itemProps)),
           _this._renderAriaDescription(ariaDescription, classNames3.screenReaderText)
         );
       });
@@ -36195,16 +36789,16 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }(ContextualMenuItemWrapper);
 
   // node_modules/@fluentui/react/lib/components/ContextualMenu/ContextualMenuItemWrapper/ContextualMenuSplitButton.js
-  var React43 = __toESM(require_react());
+  var React47 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Divider/VerticalDivider.styles.js
   var getStyles9 = function(props) {
-    var theme = props.theme, getClassNames32 = props.getClassNames, className = props.className;
+    var theme = props.theme, getClassNames39 = props.getClassNames, className = props.className;
     if (!theme) {
       throw new Error("Theme is undefined or null.");
     }
-    if (getClassNames32) {
-      var names = getClassNames32(theme);
+    if (getClassNames39) {
+      var names = getClassNames39(theme);
       return {
         wrapper: [names.wrapper],
         divider: [names.divider]
@@ -36230,15 +36824,15 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // node_modules/@fluentui/react/lib/components/Divider/VerticalDivider.base.js
-  var React42 = __toESM(require_react());
+  var React46 = __toESM(require_react());
   var getClassNames9 = classNamesFunction();
-  var VerticalDividerBase = React42.forwardRef(function(props, ref) {
+  var VerticalDividerBase = React46.forwardRef(function(props, ref) {
     var styles2 = props.styles, theme = props.theme, deprecatedGetClassNames = props.getClassNames, className = props.className;
     var classNames3 = getClassNames9(styles2, { theme, getClassNames: deprecatedGetClassNames, className });
-    return React42.createElement(
+    return React46.createElement(
       "span",
       { className: classNames3.wrapper, ref },
-      React42.createElement("span", { className: classNames3.divider })
+      React46.createElement("span", { className: classNames3.divider })
     );
   });
   VerticalDividerBase.displayName = "VerticalDividerBase";
@@ -36271,7 +36865,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         return _this._splitButton;
       };
       _this._renderAriaDescription = function(ariaDescription, className) {
-        return ariaDescription ? React43.createElement("span", { id: _this._ariaDescriptionId, className }, ariaDescription) : null;
+        return ariaDescription ? React47.createElement("span", { id: _this._ariaDescriptionId, className }, ariaDescription) : null;
       };
       _this._onItemMouseEnterPrimary = function(ev) {
         var _a6 = _this.props, item = _a6.item, onItemMouseEnter = _a6.onItemMouseEnter;
@@ -36352,8 +36946,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       if (ariaDescription) {
         this._ariaDescriptionId = getId();
       }
-      return React43.createElement(KeytipData, { keytipProps, disabled: isItemDisabled(item) }, function(keytipAttributes) {
-        return React43.createElement(
+      return React47.createElement(KeytipData, { keytipProps, disabled: isItemDisabled(item) }, function(keytipAttributes) {
+        return React47.createElement(
           "div",
           { "data-ktp-target": keytipAttributes["data-ktp-target"], ref: function(splitButton) {
             return _this._splitButton = splitButton;
@@ -36383,15 +36977,15 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         "data-is-focusable": false
       };
       var itemComponentProps = item.itemProps;
-      return React43.createElement(
+      return React47.createElement(
         "button",
         __assign6({}, getNativeProps(itemProps, buttonProperties)),
-        React43.createElement(ChildrenRenderer, __assign6({ "data-is-focusable": false, item: itemProps, classNames: classNames3, index, onCheckmarkClick: hasCheckmarks && onItemClick ? onItemClick : void 0, hasIcons }, itemComponentProps))
+        React47.createElement(ChildrenRenderer, __assign6({ "data-is-focusable": false, item: itemProps, classNames: classNames3, index, onCheckmarkClick: hasCheckmarks && onItemClick ? onItemClick : void 0, hasIcons }, itemComponentProps))
       );
     };
     ContextualMenuSplitButton2.prototype._renderSplitDivider = function(item) {
       var getDividerClassNames2 = item.getSplitButtonVerticalDividerClassNames || getSplitButtonVerticalDividerClassNames;
-      return React43.createElement(VerticalDivider, { getClassNames: getDividerClassNames2 });
+      return React47.createElement(VerticalDivider, { getClassNames: getDividerClassNames2 });
     };
     ContextualMenuSplitButton2.prototype._renderSplitIconButton = function(item, classNames3, index, keytipAttributes) {
       var _a6 = this.props, _b = _a6.contextualMenuItemAs, ChildrenRenderer = _b === void 0 ? ContextualMenuItem : _b, onItemMouseLeave = _a6.onItemMouseLeave, onItemMouseDown2 = _a6.onItemMouseDown, openSubMenu = _a6.openSubMenu, dismissSubMenu = _a6.dismissSubMenu, dismissMenu = _a6.dismissMenu;
@@ -36416,10 +37010,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         "aria-hidden": true
       });
       var itemComponentProps = item.itemProps;
-      return React43.createElement(
+      return React47.createElement(
         "button",
         __assign6({}, buttonProps),
-        React43.createElement(ChildrenRenderer, __assign6({ componentRef: item.componentRef, item: itemProps, classNames: classNames3, index, hasIcons: false, openSubMenu, dismissSubMenu, dismissMenu, getSubmenuTarget: this._getSubmenuTarget }, itemComponentProps))
+        React47.createElement(ChildrenRenderer, __assign6({ componentRef: item.componentRef, item: itemProps, classNames: classNames3, index, hasIcons: false, openSubMenu, dismissSubMenu, dismissMenu, getSubmenuTarget: this._getSubmenuTarget }, itemComponentProps))
       );
     };
     ContextualMenuSplitButton2.prototype._handleTouchAndPointerEvent = function(ev) {
@@ -36442,13 +37036,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }(ContextualMenuItemWrapper);
 
   // node_modules/@fluentui/react/lib/utilities/hooks/useResponsiveMode.js
-  var React46 = __toESM(require_react());
+  var React50 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/utilities/decorators/withResponsiveMode.js
-  var React45 = __toESM(require_react());
+  var React49 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/utilities/decorators/BaseDecorator.js
-  var React44 = __toESM(require_react());
+  var React48 = __toESM(require_react());
   var BaseDecorator = function(_super) {
     __extends5(BaseDecorator2, _super);
     function BaseDecorator2(props) {
@@ -36465,7 +37059,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     };
     return BaseDecorator2;
-  }(React44.Component);
+  }(React48.Component);
 
   // node_modules/@fluentui/react/lib/utilities/decorators/withResponsiveMode.js
   var ResponsiveMode;
@@ -36484,6 +37078,42 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   function getInitialResponsiveMode() {
     var _a6;
     return (_a6 = _defaultMode !== null && _defaultMode !== void 0 ? _defaultMode : _lastMode) !== null && _a6 !== void 0 ? _a6 : ResponsiveMode.large;
+  }
+  function withResponsiveMode(ComposedComponent) {
+    var _a6;
+    var resultClass = (_a6 = function(_super) {
+      __extends5(WithResponsiveMode, _super);
+      function WithResponsiveMode(props) {
+        var _this = _super.call(this, props) || this;
+        _this._onResize = function() {
+          var responsiveMode = getResponsiveMode(_this.context.window);
+          if (responsiveMode !== _this.state.responsiveMode) {
+            _this.setState({
+              responsiveMode
+            });
+          }
+        };
+        _this._events = new EventGroup(_this);
+        _this._updateComposedComponentRef = _this._updateComposedComponentRef.bind(_this);
+        _this.state = {
+          responsiveMode: getInitialResponsiveMode()
+        };
+        return _this;
+      }
+      WithResponsiveMode.prototype.componentDidMount = function() {
+        this._events.on(this.context.window, "resize", this._onResize);
+        this._onResize();
+      };
+      WithResponsiveMode.prototype.componentWillUnmount = function() {
+        this._events.dispose();
+      };
+      WithResponsiveMode.prototype.render = function() {
+        var responsiveMode = this.state.responsiveMode;
+        return responsiveMode === ResponsiveMode.unknown ? null : React49.createElement(ComposedComponent, __assign6({ ref: this._updateComposedComponentRef, responsiveMode }, this.props));
+      };
+      return WithResponsiveMode;
+    }(BaseDecorator), _a6.contextType = WindowContext, _a6);
+    return hoistStatics(ComposedComponent, resultClass);
   }
   function getWidthOfCurrentWindow(currentWindow) {
     try {
@@ -36515,8 +37145,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
 
   // node_modules/@fluentui/react/lib/utilities/hooks/useResponsiveMode.js
   var useResponsiveMode = function(elementRef, overrideResponsiveMode) {
-    var _a6 = React46.useState(getInitialResponsiveMode()), lastResponsiveMode = _a6[0], setLastResponsiveMode = _a6[1];
-    var onResize = React46.useCallback(function() {
+    var _a6 = React50.useState(getInitialResponsiveMode()), lastResponsiveMode = _a6[0], setLastResponsiveMode = _a6[1];
+    var onResize = React50.useCallback(function() {
       var newResponsiveMode = getResponsiveMode(getWindow(elementRef.current));
       if (lastResponsiveMode !== newResponsiveMode) {
         setLastResponsiveMode(newResponsiveMode);
@@ -36524,7 +37154,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }, [elementRef, lastResponsiveMode]);
     var win = useWindow();
     useOnEvent(win, "resize", onResize);
-    React46.useEffect(function() {
+    React50.useEffect(function() {
       if (overrideResponsiveMode === void 0) {
         onResize();
       }
@@ -36533,13 +37163,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // node_modules/@fluentui/react/lib/utilities/MenuContext/MenuContext.js
-  var React47 = __toESM(require_react());
-  var MenuContext = React47.createContext({});
+  var React51 = __toESM(require_react());
+  var MenuContext = React51.createContext({});
 
   // node_modules/@fluentui/react/lib/components/ContextualMenu/ContextualMenu.base.js
   var getClassNames10 = classNamesFunction();
   var getContextualMenuItemClassNames = classNamesFunction();
-  var DEFAULT_PROPS2 = {
+  var DEFAULT_PROPS3 = {
     items: [],
     shouldFocusOnMount: true,
     gapSpace: 0,
@@ -36577,7 +37207,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     });
   }
   var NavigationIdleDelay = 250;
-  var COMPONENT_NAME2 = "ContextualMenu";
+  var COMPONENT_NAME3 = "ContextualMenu";
   var _getMenuItemStylesFunction = memoizeFunction(function() {
     var styles2 = [];
     for (var _i = 0; _i < arguments.length; _i++) {
@@ -36590,13 +37220,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   function useVisibility(props, targetWindow) {
     var _a6 = props.hidden, hidden = _a6 === void 0 ? false : _a6, onMenuDismissed = props.onMenuDismissed, onMenuOpened = props.onMenuOpened;
     var previousHidden = usePrevious(hidden);
-    var onMenuOpenedRef = React48.useRef(onMenuOpened);
-    var onMenuClosedRef = React48.useRef(onMenuDismissed);
-    var propsRef = React48.useRef(props);
+    var onMenuOpenedRef = React52.useRef(onMenuOpened);
+    var onMenuClosedRef = React52.useRef(onMenuDismissed);
+    var propsRef = React52.useRef(props);
     onMenuOpenedRef.current = onMenuOpened;
     onMenuClosedRef.current = onMenuDismissed;
     propsRef.current = props;
-    React48.useEffect(function() {
+    React52.useEffect(function() {
       var _a7, _b;
       if (hidden && previousHidden === false) {
         (_a7 = onMenuClosedRef.current) === null || _a7 === void 0 ? void 0 : _a7.call(onMenuClosedRef, propsRef.current);
@@ -36604,7 +37234,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         (_b = onMenuOpenedRef.current) === null || _b === void 0 ? void 0 : _b.call(onMenuOpenedRef, propsRef.current);
       }
     }, [hidden, previousHidden]);
-    React48.useEffect(function() {
+    React52.useEffect(function() {
       return function() {
         var _a7;
         return (_a7 = onMenuClosedRef.current) === null || _a7 === void 0 ? void 0 : _a7.call(onMenuClosedRef, propsRef.current);
@@ -36613,16 +37243,16 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
   function useSubMenuState(_a6, dismiss) {
     var hidden = _a6.hidden, items = _a6.items, theme = _a6.theme, className = _a6.className, id = _a6.id, menuTarget = _a6.target;
-    var _b = React48.useState(), expandedMenuItemKey = _b[0], setExpandedMenuItemKey = _b[1];
-    var _c = React48.useState(), submenuTarget = _c[0], setSubmenuTarget = _c[1];
-    var _d = React48.useState(), shouldFocusOnContainer = _d[0], setShouldFocusOnContainer = _d[1];
-    var subMenuId = useId(COMPONENT_NAME2, id);
-    var closeSubMenu = React48.useCallback(function() {
+    var _b = React52.useState(), expandedMenuItemKey = _b[0], setExpandedMenuItemKey = _b[1];
+    var _c = React52.useState(), submenuTarget = _c[0], setSubmenuTarget = _c[1];
+    var _d = React52.useState(), shouldFocusOnContainer = _d[0], setShouldFocusOnContainer = _d[1];
+    var subMenuId = useId(COMPONENT_NAME3, id);
+    var closeSubMenu = React52.useCallback(function() {
       setShouldFocusOnContainer(void 0);
       setExpandedMenuItemKey(void 0);
       setSubmenuTarget(void 0);
     }, []);
-    var openSubMenu = React48.useCallback(function(_a7, target, focusContainer) {
+    var openSubMenu = React52.useCallback(function(_a7, target, focusContainer) {
       var submenuItemKey = _a7.key;
       if (expandedMenuItemKey === submenuItemKey) {
         return;
@@ -36632,7 +37262,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       setExpandedMenuItemKey(submenuItemKey);
       setSubmenuTarget(target);
     }, [expandedMenuItemKey]);
-    React48.useEffect(function() {
+    React52.useEffect(function() {
       if (hidden) {
         closeSubMenu();
       }
@@ -36669,13 +37299,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
   function useShouldUpdateFocusOnMouseMove(_a6) {
     var delayUpdateFocusOnHover = _a6.delayUpdateFocusOnHover, hidden = _a6.hidden;
-    var shouldUpdateFocusOnMouseEvent = React48.useRef(!delayUpdateFocusOnHover);
-    var gotMouseMove = React48.useRef(false);
-    React48.useEffect(function() {
+    var shouldUpdateFocusOnMouseEvent = React52.useRef(!delayUpdateFocusOnHover);
+    var gotMouseMove = React52.useRef(false);
+    React52.useEffect(function() {
       shouldUpdateFocusOnMouseEvent.current = !delayUpdateFocusOnHover;
       gotMouseMove.current = hidden ? false : !delayUpdateFocusOnHover && gotMouseMove.current;
     }, [delayUpdateFocusOnHover, hidden]);
-    var onMenuFocusCapture = React48.useCallback(function() {
+    var onMenuFocusCapture = React52.useCallback(function() {
       if (delayUpdateFocusOnHover) {
         shouldUpdateFocusOnMouseEvent.current = false;
       }
@@ -36684,8 +37314,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
   function usePreviousActiveElement(_a6, targetWindow, hostElement) {
     var hidden = _a6.hidden, onRestoreFocus = _a6.onRestoreFocus;
-    var previousActiveElement = React48.useRef();
-    var tryFocusPreviousActiveElement = React48.useCallback(function(options) {
+    var previousActiveElement = React52.useRef();
+    var tryFocusPreviousActiveElement = React52.useCallback(function(options) {
       var _a7, _b;
       if (onRestoreFocus) {
         onRestoreFocus(options);
@@ -36713,7 +37343,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
   function useKeyHandlers(_a6, dismiss, hostElement, openSubMenu) {
     var theme = _a6.theme, isSubMenu = _a6.isSubMenu, _b = _a6.focusZoneProps, _c = _b === void 0 ? {} : _b, checkForNoWrap = _c.checkForNoWrap, _d = _c.direction, focusZoneDirection = _d === void 0 ? FocusZoneDirection.vertical : _d;
-    var lastKeyDownWasAltOrMeta = React48.useRef();
+    var lastKeyDownWasAltOrMeta = React52.useRef();
     var keyHandler = function(ev, shouldHandleKey, dismissAllMenus) {
       var handled = false;
       if (shouldHandleKey(ev)) {
@@ -36774,8 +37404,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     return [onKeyDown, onKeyUp, onMenuKeyDown, onItemKeyDown];
   }
   function useScrollHandler(asyncTracker) {
-    var isScrollIdle = React48.useRef(true);
-    var scrollIdleTimeoutId = React48.useRef();
+    var isScrollIdle = React52.useRef(true);
+    var scrollIdleTimeoutId = React52.useRef();
     var onScroll = function() {
       if (!isScrollIdle.current && scrollIdleTimeoutId.current !== void 0) {
         asyncTracker.clearTimeout(scrollIdleTimeoutId.current);
@@ -36790,8 +37420,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     return [onScroll, isScrollIdle];
   }
   function useOnSubmenuDismiss(dismiss, closeSubMenu) {
-    var isMountedRef = React48.useRef(false);
-    React48.useEffect(function() {
+    var isMountedRef = React52.useRef(false);
+    React52.useEffect(function() {
       isMountedRef.current = true;
       return function() {
         isMountedRef.current = false;
@@ -36808,7 +37438,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
   function useSubmenuEnterTimer(_a6, asyncTracker) {
     var _b = _a6.subMenuHoverDelay, subMenuHoverDelay = _b === void 0 ? NavigationIdleDelay : _b;
-    var enterTimerRef = React48.useRef(void 0);
+    var enterTimerRef = React52.useRef(void 0);
     var cancelSubMenuTimer = function() {
       if (enterTimerRef.current !== void 0) {
         asyncTracker.clearTimeout(enterTimerRef.current);
@@ -36937,14 +37567,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       onItemClickBase
     ];
   }
-  var ContextualMenuBase = React48.memo(React48.forwardRef(function(propsWithoutDefaults, forwardedRef) {
+  var ContextualMenuBase = React52.memo(React52.forwardRef(function(propsWithoutDefaults, forwardedRef) {
     var _a6;
-    var _b = getPropsWithDefaults(DEFAULT_PROPS2, propsWithoutDefaults), ref = _b.ref, props = __rest5(_b, ["ref"]);
-    var hostElement = React48.useRef(null);
+    var _b = getPropsWithDefaults(DEFAULT_PROPS3, propsWithoutDefaults), ref = _b.ref, props = __rest5(_b, ["ref"]);
+    var hostElement = React52.useRef(null);
     var asyncTracker = useAsync();
-    var menuId = useId(COMPONENT_NAME2, props.id);
+    var menuId = useId(COMPONENT_NAME3, props.id);
     useWarnings({
-      name: COMPONENT_NAME2,
+      name: COMPONENT_NAME3,
       props,
       deprecations: {
         getMenuClassNames: "styles"
@@ -36967,7 +37597,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     var onDefaultRenderMenuList = function(menuListProps, menuClassNames, defaultRender) {
       var indexCorrection = 0;
       var items2 = menuListProps.items, totalItemCount = menuListProps.totalItemCount, hasCheckmarks2 = menuListProps.hasCheckmarks, hasIcons2 = menuListProps.hasIcons;
-      return React48.createElement("ul", { className: menuClassNames.list, onKeyDown, onKeyUp, role: "presentation" }, items2.map(function(item2, index) {
+      return React52.createElement("ul", { className: menuClassNames.list, onKeyDown, onKeyUp, role: "presentation" }, items2.map(function(item2, index) {
         var menuItem = renderMenuItem(item2, index, indexCorrection, totalItemCount, hasCheckmarks2, hasIcons2, menuClassNames);
         if (item2.itemType !== ContextualMenuItemType.Divider && item2.itemType !== ContextualMenuItemType.Header) {
           var indexIncrease = item2.customOnRenderListLength ? item2.customOnRenderListLength : 1;
@@ -36978,7 +37608,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     };
     var renderFocusZone = function(children, adjustedFocusZoneProps2) {
       var _a7 = props.focusZoneAs, ChildrenRenderer = _a7 === void 0 ? FocusZone : _a7;
-      return React48.createElement(ChildrenRenderer, __assign6({}, adjustedFocusZoneProps2), children);
+      return React52.createElement(ChildrenRenderer, __assign6({}, adjustedFocusZoneProps2), children);
     };
     var renderMenuItem = function(item2, index, focusableElementIndex, totalItemCount, hasCheckmarks2, hasIcons2, menuClassNames) {
       var _a7;
@@ -37030,7 +37660,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           renderedItems.push(renderListItem(menuItem, item2.key || index, itemClassNames, item2.title));
           break;
       }
-      return React48.createElement(React48.Fragment, { key: item2.key }, renderedItems);
+      return React52.createElement(React52.Fragment, { key: item2.key }, renderedItems);
     };
     var defaultMenuItemRenderer = function(item2, menuClassNames) {
       var index = item2.index, focusableElementIndex = item2.focusableElementIndex, totalItemCount = item2.totalItemCount, hasCheckmarks2 = item2.hasCheckmarks, hasIcons2 = item2.hasIcons;
@@ -37069,13 +37699,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       }
       if (sectionProps.items && sectionProps.items.length > 0) {
-        return React48.createElement(
+        return React52.createElement(
           "li",
           { role: "presentation", key: sectionProps.key || sectionItem.key || "section-" + index },
-          React48.createElement(
+          React52.createElement(
             "div",
             __assign6({}, groupProps),
-            React48.createElement(
+            React52.createElement(
               "ul",
               { className: menuClassNames.list, role: "presentation" },
               sectionProps.topDivider && renderSeparator(index, itemClassNames, true, true),
@@ -37090,11 +37720,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     };
     var renderListItem = function(content, key, classNames4, title2) {
-      return React48.createElement("li", { role: "presentation", title: title2, key, className: classNames4.item }, content);
+      return React52.createElement("li", { role: "presentation", title: title2, key, className: classNames4.item }, content);
     };
     var renderSeparator = function(index, classNames4, top, fromSection) {
       if (fromSection || index > 0) {
-        return React48.createElement("li", { role: "separator", key: "separator-" + index + (top === void 0 ? "" : top ? "-top" : "-bottom"), className: classNames4.divider, "aria-hidden": "true" });
+        return React52.createElement("li", { role: "separator", key: "separator-" + index + (top === void 0 ? "" : top ? "-top" : "-bottom"), className: classNames4.divider, "aria-hidden": "true" });
       }
       return null;
     };
@@ -37124,21 +37754,21 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         dismissMenu: dismiss
       };
       if (item2.href) {
-        return React48.createElement(ContextualMenuAnchor, __assign6({}, commonProps, { onItemClick: onAnchorClick }));
+        return React52.createElement(ContextualMenuAnchor, __assign6({}, commonProps, { onItemClick: onAnchorClick }));
       }
       if (item2.split && hasSubmenu(item2)) {
-        return React48.createElement(ContextualMenuSplitButton, __assign6({}, commonProps, { onItemClick, onItemClickBase, onTap: cancelSubMenuTimer }));
+        return React52.createElement(ContextualMenuSplitButton, __assign6({}, commonProps, { onItemClick, onItemClickBase, onTap: cancelSubMenuTimer }));
       }
-      return React48.createElement(ContextualMenuButton, __assign6({}, commonProps, { onItemClick, onItemClickBase }));
+      return React52.createElement(ContextualMenuButton, __assign6({}, commonProps, { onItemClick, onItemClickBase }));
     };
     var renderHeaderMenuItem = function(item2, itemClassNames, menuClassNames, index, hasCheckmarks2, hasIcons2) {
       var _a7 = props.contextualMenuItemAs, ChildrenRenderer = _a7 === void 0 ? ContextualMenuItem : _a7;
       var itemProps = item2.itemProps, id2 = item2.id;
       var divHtmlProperties = itemProps && getNativeProps(itemProps, divProperties);
-      return React48.createElement(
+      return React52.createElement(
         "div",
         __assign6({ id: id2, className: menuClassNames.header }, divHtmlProperties, { style: item2.style }),
-        React48.createElement(ChildrenRenderer, __assign6({ item: item2, classNames: itemClassNames, index, onCheckmarkClick: hasCheckmarks2 ? onItemClick : void 0, hasIcons: hasIcons2 }, itemProps))
+        React52.createElement(ChildrenRenderer, __assign6({ item: item2, classNames: itemClassNames, index, onCheckmarkClick: hasCheckmarks2 ? onItemClick : void 0, hasIcons: hasIcons2 }, itemProps))
       );
     };
     var isBeakVisible = props.isBeakVisible;
@@ -37191,14 +37821,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       }
       var calloutStyles_1 = classNames3.subComponentStyles ? classNames3.subComponentStyles.callout : void 0;
-      return React48.createElement(MenuContext.Consumer, null, function(menuContext) {
-        return React48.createElement(
+      return React52.createElement(MenuContext.Consumer, null, function(menuContext) {
+        return React52.createElement(
           Callout,
           __assign6({ styles: calloutStyles_1, onRestoreFocus: tryFocusPreviousActiveElement }, calloutProps, { target: target || menuContext.target, isBeakVisible, beakWidth, directionalHint, directionalHintForRTL, gapSpace, coverTarget, doNotLayer, className: css("ms-ContextualMenu-Callout", calloutProps && calloutProps.className), setInitialFocus: shouldFocusOnMount, onDismiss: props.onDismiss || menuContext.onDismiss, onScroll, bounds, directionalHintFixed, alignTargetEdge, hidden: props.hidden || menuContext.hidden, ref: forwardedRef }),
-          React48.createElement(
+          React52.createElement(
             "div",
             { style: contextMenuStyle, ref: hostElement, id, className: classNames3.container, tabIndex: shouldFocusOnContainer ? 0 : -1, onKeyDown: onMenuKeyDown, onKeyUp, onFocusCapture: onMenuFocusCapture, "aria-label": ariaLabel, "aria-labelledby": labelElementId, role: "menu" },
-            title && React48.createElement(
+            title && React52.createElement(
               "div",
               { className: classNames3.title },
               " ",
@@ -37220,7 +37850,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             }), adjustedFocusZoneProps) : null,
             submenuProps && onRenderSubMenu2(submenuProps, onDefaultRenderSubMenu)
           ),
-          React48.createElement(FocusRects, null)
+          React52.createElement(FocusRects, null)
         );
       });
     } else {
@@ -37355,7 +37985,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
 
   // node_modules/@fluentui/react/lib/components/ContextualMenu/ContextualMenu.js
   function onRenderSubMenu(subMenuProps) {
-    return React49.createElement(LocalContextualMenu, __assign6({}, subMenuProps));
+    return React53.createElement(LocalContextualMenu, __assign6({}, subMenuProps));
   }
   var LocalContextualMenu = styled(ContextualMenuBase, getStyles10, function(props) {
     return {
@@ -37478,13 +38108,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
 
   // node_modules/@fluentui/react/lib/components/Button/BaseButton.js
   var TouchIdleDelay2 = 500;
-  var COMPONENT_NAME3 = "BaseButton";
+  var COMPONENT_NAME4 = "BaseButton";
   var BaseButton = function(_super) {
     __extends5(BaseButton2, _super);
     function BaseButton2(props) {
       var _this = _super.call(this, props) || this;
-      _this._buttonElement = React50.createRef();
-      _this._splitButtonContainer = React50.createRef();
+      _this._buttonElement = React54.createRef();
+      _this._splitButtonContainer = React54.createRef();
       _this._mergedRef = createMergedRef();
       _this._renderedVisibleMenu = false;
       _this._getMemoizedMenuButtonKeytipProps = memoizeFunction(function(keytipProps) {
@@ -37495,13 +38125,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         if (iconProps && (iconProps.iconName !== void 0 || iconProps.imageProps)) {
           var className = iconProps.className, imageProps = iconProps.imageProps, rest = __rest5(iconProps, ["className", "imageProps"]);
           if (iconProps.styles) {
-            return React50.createElement(Icon, __assign6({ className: css(_this._classNames.icon, className), imageProps }, rest));
+            return React54.createElement(Icon, __assign6({ className: css(_this._classNames.icon, className), imageProps }, rest));
           }
           if (iconProps.iconName) {
-            return React50.createElement(FontIcon, __assign6({ className: css(_this._classNames.icon, className) }, rest));
+            return React54.createElement(FontIcon, __assign6({ className: css(_this._classNames.icon, className) }, rest));
           }
           if (imageProps) {
-            return React50.createElement(ImageIcon, __assign6({ className: css(_this._classNames.icon, className), imageProps }, rest));
+            return React54.createElement(ImageIcon, __assign6({ className: css(_this._classNames.icon, className), imageProps }, rest));
           }
         }
         return null;
@@ -37509,7 +38139,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       _this._onRenderTextContents = function() {
         var _a6 = _this.props, text = _a6.text, children = _a6.children, _b = _a6.secondaryText, secondaryText = _b === void 0 ? _this.props.description : _b, _c = _a6.onRenderText, onRenderText = _c === void 0 ? _this._onRenderText : _c, _d = _a6.onRenderDescription, onRenderDescription = _d === void 0 ? _this._onRenderDescription : _d;
         if (text || typeof children === "string" || secondaryText) {
-          return React50.createElement(
+          return React54.createElement(
             "span",
             { className: _this._classNames.textContainer },
             onRenderText(_this.props, _this._onRenderText),
@@ -37525,7 +38155,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           text = children;
         }
         if (_this._hasText()) {
-          return React50.createElement("span", { key: _this._labelId, className: _this._classNames.label, id: _this._labelId }, text);
+          return React54.createElement("span", { key: _this._labelId, className: _this._classNames.label, id: _this._labelId }, text);
         }
         return null;
       };
@@ -37538,19 +38168,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       };
       _this._onRenderDescription = function(props2) {
         var _a6 = props2.secondaryText, secondaryText = _a6 === void 0 ? _this.props.description : _a6;
-        return secondaryText ? React50.createElement("span", { key: _this._descriptionId, className: _this._classNames.description, id: _this._descriptionId }, secondaryText) : null;
+        return secondaryText ? React54.createElement("span", { key: _this._descriptionId, className: _this._classNames.description, id: _this._descriptionId }, secondaryText) : null;
       };
       _this._onRenderAriaDescription = function() {
         var ariaDescription = _this.props.ariaDescription;
-        return ariaDescription ? React50.createElement("span", { className: _this._classNames.screenReaderText, id: _this._ariaDescriptionId }, ariaDescription) : null;
+        return ariaDescription ? React54.createElement("span", { className: _this._classNames.screenReaderText, id: _this._ariaDescriptionId }, ariaDescription) : null;
       };
       _this._onRenderMenuIcon = function(props2) {
         var menuIconProps = _this.props.menuIconProps;
-        return React50.createElement(FontIcon, __assign6({ iconName: "ChevronDown" }, menuIconProps, { className: _this._classNames.menuIcon }));
+        return React54.createElement(FontIcon, __assign6({ iconName: "ChevronDown" }, menuIconProps, { className: _this._classNames.menuIcon }));
       };
       _this._onRenderMenu = function(menuProps) {
         var MenuType = _this.props.menuAs ? composeComponentAs(_this.props.menuAs, ContextualMenu) : ContextualMenu;
-        return React50.createElement(MenuType, __assign6({}, menuProps));
+        return React54.createElement(MenuType, __assign6({}, menuProps));
       };
       _this._onDismissMenu = function(ev) {
         var menuProps = _this.props.menuProps;
@@ -37706,8 +38336,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       initializeComponentRef(_this);
       _this._async = new Async(_this);
       _this._events = new EventGroup(_this);
-      warnConditionallyRequiredProps(COMPONENT_NAME3, props, ["menuProps", "onClick"], "split", _this.props.split);
-      warnDeprecations(COMPONENT_NAME3, props, {
+      warnConditionallyRequiredProps(COMPONENT_NAME4, props, ["menuProps", "onClick"], "split", _this.props.split);
+      warnDeprecations(COMPONENT_NAME4, props, {
         rootProps: void 0,
         description: "secondaryText",
         toggled: "checked"
@@ -37729,10 +38359,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     });
     BaseButton2.prototype.render = function() {
       var _a6;
-      var _b = this.props, ariaDescription = _b.ariaDescription, ariaLabel = _b.ariaLabel, ariaHidden = _b.ariaHidden, className = _b.className, disabled = _b.disabled, allowDisabledFocus = _b.allowDisabledFocus, primaryDisabled = _b.primaryDisabled, _c = _b.secondaryText, secondaryText = _c === void 0 ? this.props.description : _c, href = _b.href, iconProps = _b.iconProps, menuIconProps = _b.menuIconProps, styles2 = _b.styles, checked = _b.checked, variantClassName = _b.variantClassName, theme = _b.theme, toggle = _b.toggle, getClassNames32 = _b.getClassNames, role = _b.role;
+      var _b = this.props, ariaDescription = _b.ariaDescription, ariaLabel = _b.ariaLabel, ariaHidden = _b.ariaHidden, className = _b.className, disabled = _b.disabled, allowDisabledFocus = _b.allowDisabledFocus, primaryDisabled = _b.primaryDisabled, _c = _b.secondaryText, secondaryText = _c === void 0 ? this.props.description : _c, href = _b.href, iconProps = _b.iconProps, menuIconProps = _b.menuIconProps, styles2 = _b.styles, checked = _b.checked, variantClassName = _b.variantClassName, theme = _b.theme, toggle = _b.toggle, getClassNames39 = _b.getClassNames, role = _b.role;
       var menuHidden = this.state.menuHidden;
       var isPrimaryButtonDisabled = disabled || primaryDisabled;
-      this._classNames = getClassNames32 ? getClassNames32(theme, className, variantClassName, iconProps && iconProps.className, menuIconProps && menuIconProps.className, isPrimaryButtonDisabled, checked, !menuHidden, !!this.props.menuProps, this.props.split, !!allowDisabledFocus) : getBaseButtonClassNames(theme, styles2, className, variantClassName, iconProps && iconProps.className, menuIconProps && menuIconProps.className, isPrimaryButtonDisabled, !!this.props.menuProps, checked, !menuHidden, this.props.split);
+      this._classNames = getClassNames39 ? getClassNames39(theme, className, variantClassName, iconProps && iconProps.className, menuIconProps && menuIconProps.className, isPrimaryButtonDisabled, checked, !menuHidden, !!this.props.menuProps, this.props.split, !!allowDisabledFocus) : getBaseButtonClassNames(theme, styles2, className, variantClassName, iconProps && iconProps.className, menuIconProps && menuIconProps.className, isPrimaryButtonDisabled, !!this.props.menuProps, checked, !menuHidden, this.props.split);
       var _d = this, _ariaDescriptionId = _d._ariaDescriptionId, _labelId = _d._labelId, _descriptionId = _d._descriptionId;
       var renderAsAnchor = !isPrimaryButtonDisabled && !!href;
       var tag = renderAsAnchor ? "a" : "button";
@@ -37836,10 +38466,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         keytipProps = this._getMemoizedMenuButtonKeytipProps(keytipProps);
       }
       var Button = function(keytipAttributes) {
-        return React50.createElement(
+        return React54.createElement(
           Tag,
           __assign6({}, buttonProps, keytipAttributes),
-          React50.createElement(
+          React54.createElement(
             "span",
             { className: _this._classNames.flexContainer, "data-automationid": "splitbuttonprimary" },
             onRenderIcon(props, _this._onRenderIcon),
@@ -37851,22 +38481,22 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           )
         );
       };
-      var Content = keytipProps ? React50.createElement(KeytipData, { keytipProps: !this._isSplitButton ? keytipProps : void 0, ariaDescribedBy: buttonProps["aria-describedby"], disabled }, function(keytipAttributes) {
+      var Content = keytipProps ? React54.createElement(KeytipData, { keytipProps: !this._isSplitButton ? keytipProps : void 0, ariaDescribedBy: buttonProps["aria-describedby"], disabled }, function(keytipAttributes) {
         return Button(keytipAttributes);
       }) : Button();
       if (menuProps && menuProps.doNotLayer) {
-        return React50.createElement(
-          React50.Fragment,
+        return React54.createElement(
+          React54.Fragment,
           null,
           Content,
           this._shouldRenderMenu() && onRenderMenu(this._getMenuProps(menuProps), this._onRenderMenu)
         );
       }
-      return React50.createElement(
-        React50.Fragment,
+      return React54.createElement(
+        React54.Fragment,
         null,
         Content,
-        React50.createElement(FocusRects, null)
+        React54.createElement(FocusRects, null)
       );
     };
     BaseButton2.prototype._shouldRenderMenu = function() {
@@ -37911,10 +38541,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         assign(buttonProps, primaryActionButtonProps);
       }
       var SplitButton = function(keytipAttributes) {
-        return React50.createElement(
+        return React54.createElement(
           "div",
           __assign6({}, containerProps, { "data-ktp-target": keytipAttributes ? keytipAttributes["data-ktp-target"] : void 0, role: role ? role : "button", "aria-disabled": disabled, "aria-haspopup": true, "aria-expanded": !menuHidden, "aria-pressed": toggle ? !!checked : void 0, "aria-describedby": mergeAriaAttributeValues(buttonProps["aria-describedby"], keytipAttributes ? keytipAttributes["aria-describedby"] : void 0), className: classNames3 && classNames3.splitButtonContainer, onKeyDown: _this._onSplitButtonContainerKeyDown, onTouchStart: _this._onTouchStart, ref: _this._splitButtonContainer, "data-is-focusable": true, onClick: !disabled && !primaryDisabled ? _this._onSplitButtonPrimaryClick : void 0, tabIndex: !disabled && !primaryDisabled || allowDisabledFocus ? 0 : void 0, "aria-roledescription": buttonProps["aria-roledescription"], onFocusCapture: _this._onSplitContainerFocusCapture }),
-          React50.createElement(
+          React54.createElement(
             "span",
             { style: { display: "flex", width: "100%" } },
             _this._onRenderContent(tag, buttonProps),
@@ -37923,7 +38553,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           )
         );
       };
-      return keytipProps ? React50.createElement(KeytipData, { keytipProps, disabled }, function(keytipAttributes) {
+      return keytipProps ? React54.createElement(KeytipData, { keytipProps, disabled }, function(keytipAttributes) {
         return SplitButton(keytipAttributes);
       }) : SplitButton();
     };
@@ -37932,7 +38562,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         var onClick = function(ev) {
           ev.stopPropagation();
         };
-        return React50.createElement("span", { className: classNames3.divider, "aria-hidden": true, onClick });
+        return React54.createElement("span", { className: classNames3.divider, "aria-hidden": true, onClick });
       }
       return null;
     };
@@ -37946,7 +38576,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         };
       }
       var splitButtonProps = __assign6(__assign6({}, splitButtonMenuProps), { styles: classNames3, checked, disabled, allowDisabledFocus, onClick: this._onMenuClick, menuProps: void 0, iconProps: __assign6(__assign6({}, menuIconProps), { className: this._classNames.menuIcon }), ariaLabel: splitButtonAriaLabel, "aria-haspopup": true, "aria-expanded": !menuHidden, "data-is-focusable": false });
-      return React50.createElement(BaseButton2, __assign6({}, splitButtonProps, { "data-ktp-execute-target": keytipAttributes ? keytipAttributes["data-ktp-execute-target"] : keytipAttributes, onMouseDown: this._onMouseDown, tabIndex: primaryDisabled && !allowDisabledFocus ? 0 : -1 }));
+      return React54.createElement(BaseButton2, __assign6({}, splitButtonProps, { "data-ktp-execute-target": keytipAttributes ? keytipAttributes["data-ktp-execute-target"] : keytipAttributes, onMouseDown: this._onMouseDown, tabIndex: primaryDisabled && !allowDisabledFocus ? 0 : -1 }));
     };
     BaseButton2.prototype._onPointerDown = function(ev) {
       var onPointerDown = this.props.onPointerDown;
@@ -37986,10 +38616,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       split: false
     };
     return BaseButton2;
-  }(React50.Component);
+  }(React54.Component);
 
   // node_modules/@fluentui/react/lib/components/Button/DefaultButton/DefaultButton.js
-  var React51 = __toESM(require_react());
+  var React55 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Button/BaseButton.styles.js
   var noOutline = {
@@ -38503,16 +39133,16 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }
     DefaultButton2.prototype.render = function() {
       var _a6 = this.props, _b = _a6.primary, primary = _b === void 0 ? false : _b, styles2 = _a6.styles, theme = _a6.theme;
-      return React51.createElement(BaseButton, __assign6({}, this.props, { variantClassName: primary ? "ms-Button--primary" : "ms-Button--default", styles: getStyles13(theme, styles2, primary), onRenderDescription: nullRender }));
+      return React55.createElement(BaseButton, __assign6({}, this.props, { variantClassName: primary ? "ms-Button--primary" : "ms-Button--default", styles: getStyles13(theme, styles2, primary), onRenderDescription: nullRender }));
     };
     DefaultButton2 = __decorate5([
       customizable("DefaultButton", ["theme", "styles"], true)
     ], DefaultButton2);
     return DefaultButton2;
-  }(React51.Component);
+  }(React55.Component);
 
   // node_modules/@fluentui/react/lib/components/Button/ActionButton/ActionButton.js
-  var React52 = __toESM(require_react());
+  var React56 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Button/ActionButton/ActionButton.styles.js
   var DEFAULT_BUTTON_HEIGHT2 = "40px";
@@ -38590,16 +39220,16 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }
     ActionButton2.prototype.render = function() {
       var _a6 = this.props, styles2 = _a6.styles, theme = _a6.theme;
-      return React52.createElement(BaseButton, __assign6({}, this.props, { variantClassName: "ms-Button--action ms-Button--command", styles: getStyles14(theme, styles2), onRenderDescription: nullRender }));
+      return React56.createElement(BaseButton, __assign6({}, this.props, { variantClassName: "ms-Button--action ms-Button--command", styles: getStyles14(theme, styles2), onRenderDescription: nullRender }));
     };
     ActionButton2 = __decorate5([
       customizable("ActionButton", ["theme", "styles"], true)
     ], ActionButton2);
     return ActionButton2;
-  }(React52.Component);
+  }(React56.Component);
 
   // node_modules/@fluentui/react/lib/components/Button/IconButton/IconButton.js
-  var React53 = __toESM(require_react());
+  var React57 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Button/IconButton/IconButton.styles.js
   var getStyles15 = memoizeFunction(function(theme, customStyles) {
@@ -38658,32 +39288,221 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }
     IconButton2.prototype.render = function() {
       var _a6 = this.props, styles2 = _a6.styles, theme = _a6.theme;
-      return React53.createElement(BaseButton, __assign6({}, this.props, { variantClassName: "ms-Button--icon", styles: getStyles15(theme, styles2), onRenderText: nullRender, onRenderDescription: nullRender }));
+      return React57.createElement(BaseButton, __assign6({}, this.props, { variantClassName: "ms-Button--icon", styles: getStyles15(theme, styles2), onRenderText: nullRender, onRenderDescription: nullRender }));
     };
     IconButton2 = __decorate5([
       customizable("IconButton", ["theme", "styles"], true)
     ], IconButton2);
     return IconButton2;
-  }(React53.Component);
+  }(React57.Component);
 
   // node_modules/@fluentui/react/lib/components/Button/PrimaryButton/PrimaryButton.js
-  var React54 = __toESM(require_react());
+  var React58 = __toESM(require_react());
   var PrimaryButton = function(_super) {
     __extends5(PrimaryButton2, _super);
     function PrimaryButton2() {
       return _super !== null && _super.apply(this, arguments) || this;
     }
     PrimaryButton2.prototype.render = function() {
-      return React54.createElement(DefaultButton, __assign6({}, this.props, { primary: true, onRenderDescription: nullRender }));
+      return React58.createElement(DefaultButton, __assign6({}, this.props, { primary: true, onRenderDescription: nullRender }));
     };
     PrimaryButton2 = __decorate5([
       customizable("PrimaryButton", ["theme", "styles"], true)
     ], PrimaryButton2);
     return PrimaryButton2;
-  }(React54.Component);
+  }(React58.Component);
+
+  // node_modules/@fluentui/react/lib/components/Button/CommandBarButton/CommandBarButton.js
+  var React59 = __toESM(require_react());
+
+  // node_modules/@fluentui/react/lib/components/Button/CommandBarButton/CommandBarButton.styles.js
+  var getStyles16 = memoizeFunction(function(theme, customStyles, focusInset, focusColor) {
+    var _a6, _b, _c, _d, _e2, _f, _g, _h, _j, _k, _l, _m, _o, _p;
+    var baseButtonStyles = getStyles11(theme);
+    var baseSplitButtonStyles = getStyles12(theme);
+    var p2 = theme.palette, semanticColors = theme.semanticColors;
+    var commandButtonHighContrastFocus = {
+      left: 4,
+      top: 4,
+      bottom: 4,
+      right: 4,
+      border: "none"
+    };
+    var commandButtonStyles = {
+      root: [
+        getFocusStyle(theme, {
+          inset: 2,
+          highContrastStyle: commandButtonHighContrastFocus,
+          borderColor: "transparent"
+        }),
+        theme.fonts.medium,
+        {
+          minWidth: "40px",
+          backgroundColor: p2.white,
+          color: p2.neutralPrimary,
+          padding: "0 4px",
+          border: "none",
+          borderRadius: 0,
+          selectors: (_a6 = {}, _a6[HighContrastSelector] = {
+            border: "none"
+          }, _a6)
+        }
+      ],
+      rootHovered: {
+        backgroundColor: p2.neutralLighter,
+        color: p2.neutralDark,
+        selectors: (_b = {}, _b[HighContrastSelector] = {
+          color: "Highlight"
+        }, _b["." + ButtonGlobalClassNames.msButtonIcon] = {
+          color: p2.themeDarkAlt
+        }, _b["." + ButtonGlobalClassNames.msButtonMenuIcon] = {
+          color: p2.neutralPrimary
+        }, _b)
+      },
+      rootPressed: {
+        backgroundColor: p2.neutralLight,
+        color: p2.neutralDark,
+        selectors: (_c = {}, _c["." + ButtonGlobalClassNames.msButtonIcon] = {
+          color: p2.themeDark
+        }, _c["." + ButtonGlobalClassNames.msButtonMenuIcon] = {
+          color: p2.neutralPrimary
+        }, _c)
+      },
+      rootChecked: {
+        backgroundColor: p2.neutralLight,
+        color: p2.neutralDark,
+        selectors: (_d = {}, _d["." + ButtonGlobalClassNames.msButtonIcon] = {
+          color: p2.themeDark
+        }, _d["." + ButtonGlobalClassNames.msButtonMenuIcon] = {
+          color: p2.neutralPrimary
+        }, _d)
+      },
+      rootCheckedHovered: {
+        backgroundColor: p2.neutralQuaternaryAlt,
+        selectors: (_e2 = {}, _e2["." + ButtonGlobalClassNames.msButtonIcon] = {
+          color: p2.themeDark
+        }, _e2["." + ButtonGlobalClassNames.msButtonMenuIcon] = {
+          color: p2.neutralPrimary
+        }, _e2)
+      },
+      rootExpanded: {
+        backgroundColor: p2.neutralLight,
+        color: p2.neutralDark,
+        selectors: (_f = {}, _f["." + ButtonGlobalClassNames.msButtonIcon] = {
+          color: p2.themeDark
+        }, _f["." + ButtonGlobalClassNames.msButtonMenuIcon] = {
+          color: p2.neutralPrimary
+        }, _f)
+      },
+      rootExpandedHovered: {
+        backgroundColor: p2.neutralQuaternaryAlt
+      },
+      rootDisabled: {
+        backgroundColor: p2.white,
+        selectors: (_g = {}, _g["." + ButtonGlobalClassNames.msButtonIcon] = {
+          color: semanticColors.disabledBodySubtext,
+          selectors: (_h = {}, _h[HighContrastSelector] = __assign6({ color: "GrayText" }, getHighContrastNoAdjustStyle()), _h)
+        }, _g[HighContrastSelector] = __assign6({ color: "GrayText", backgroundColor: "Window" }, getHighContrastNoAdjustStyle()), _g)
+      },
+      splitButtonContainer: {
+        height: "100%",
+        selectors: (_j = {}, _j[HighContrastSelector] = {
+          border: "none"
+        }, _j)
+      },
+      splitButtonDividerDisabled: {
+        selectors: (_k = {}, _k[HighContrastSelector] = {
+          backgroundColor: "Window"
+        }, _k)
+      },
+      splitButtonDivider: {
+        backgroundColor: p2.neutralTertiaryAlt
+      },
+      splitButtonMenuButton: {
+        backgroundColor: p2.white,
+        border: "none",
+        borderTopRightRadius: "0",
+        borderBottomRightRadius: "0",
+        color: p2.neutralSecondary,
+        selectors: {
+          ":hover": {
+            backgroundColor: p2.neutralLighter,
+            color: p2.neutralDark,
+            selectors: (_l = {}, _l[HighContrastSelector] = {
+              color: "Highlight"
+            }, _l["." + ButtonGlobalClassNames.msButtonIcon] = {
+              color: p2.neutralPrimary
+            }, _l)
+          },
+          ":active": {
+            backgroundColor: p2.neutralLight,
+            selectors: (_m = {}, _m["." + ButtonGlobalClassNames.msButtonIcon] = {
+              color: p2.neutralPrimary
+            }, _m)
+          }
+        }
+      },
+      splitButtonMenuButtonDisabled: {
+        backgroundColor: p2.white,
+        selectors: (_o = {}, _o[HighContrastSelector] = __assign6({ color: "GrayText", border: "none", backgroundColor: "Window" }, getHighContrastNoAdjustStyle()), _o)
+      },
+      splitButtonMenuButtonChecked: {
+        backgroundColor: p2.neutralLight,
+        color: p2.neutralDark,
+        selectors: {
+          ":hover": {
+            backgroundColor: p2.neutralQuaternaryAlt
+          }
+        }
+      },
+      splitButtonMenuButtonExpanded: {
+        backgroundColor: p2.neutralLight,
+        color: p2.black,
+        selectors: {
+          ":hover": {
+            backgroundColor: p2.neutralQuaternaryAlt
+          }
+        }
+      },
+      splitButtonMenuIcon: {
+        color: p2.neutralPrimary
+      },
+      splitButtonMenuIconDisabled: {
+        color: p2.neutralTertiary
+      },
+      label: {
+        fontWeight: "normal"
+      },
+      icon: {
+        color: p2.themePrimary
+      },
+      menuIcon: (_p = {
+        color: p2.neutralSecondary
+      }, _p[HighContrastSelector] = {
+        color: "GrayText"
+      }, _p)
+    };
+    return concatStyleSets(baseButtonStyles, baseSplitButtonStyles, commandButtonStyles, customStyles);
+  });
+
+  // node_modules/@fluentui/react/lib/components/Button/CommandBarButton/CommandBarButton.js
+  var CommandBarButton = function(_super) {
+    __extends5(CommandBarButton2, _super);
+    function CommandBarButton2() {
+      return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CommandBarButton2.prototype.render = function() {
+      var _a6 = this.props, styles2 = _a6.styles, theme = _a6.theme;
+      return React59.createElement(BaseButton, __assign6({}, this.props, { variantClassName: "ms-Button--commandBar", styles: getStyles16(theme, styles2), onRenderDescription: nullRender }));
+    };
+    CommandBarButton2 = __decorate5([
+      customizable("CommandBarButton", ["theme", "styles"], true)
+    ], CommandBarButton2);
+    return CommandBarButton2;
+  }(React59.Component);
 
   // node_modules/@fluentui/react/lib/components/ResizeGroup/ResizeGroup.base.js
-  var React55 = __toESM(require_react());
+  var React60 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/ResizeGroup/ResizeGroup.types.js
   var ResizeGroupDirection;
@@ -38836,10 +39655,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       getInitialResizeGroupState
     };
   };
-  var MeasuredContext = React55.createContext({ isMeasured: false });
+  var MeasuredContext = React60.createContext({ isMeasured: false });
   var hiddenDivStyles = { position: "fixed", visibility: "hidden" };
   var hiddenParentStyles = { position: "relative" };
-  var COMPONENT_NAME4 = "ResizeGroup";
+  var COMPONENT_NAME5 = "ResizeGroup";
   function resizeDataReducer(state, action2) {
     var _a6;
     switch (action2.type) {
@@ -38855,16 +39674,16 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     var initialStateData = useConst(function() {
       return nextResizeGroupStateProvider.getInitialResizeGroupState(props.data);
     });
-    var _a6 = React55.useReducer(resizeDataReducer, initialStateData), resizeData = _a6[0], dispatchResizeDataAction = _a6[1];
-    React55.useEffect(function() {
+    var _a6 = React60.useReducer(resizeDataReducer, initialStateData), resizeData = _a6[0], dispatchResizeDataAction = _a6[1];
+    React60.useEffect(function() {
       dispatchResizeDataAction({
         type: "dataToMeasure",
         value: props.data
       });
     }, [props.data]);
-    var stateRef = React55.useRef(initialStateData);
+    var stateRef = React60.useRef(initialStateData);
     stateRef.current = __assign6({}, resizeData);
-    var updateResizeState = React55.useCallback(function(nextState) {
+    var updateResizeState = React60.useCallback(function(nextState) {
       if (nextState) {
         dispatchResizeDataAction({
           type: "resizeData",
@@ -38872,7 +39691,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         });
       }
     }, []);
-    var remeasure = React55.useCallback(function() {
+    var remeasure = React60.useCallback(function() {
       if (rootRef.current) {
         dispatchResizeDataAction({
           type: "measureContainer",
@@ -38884,19 +39703,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
   function useResizingBehavior(props, rootRef) {
     var nextResizeGroupStateProvider = useConst(getNextResizeGroupStateProvider);
-    var initialHiddenDiv = React55.useRef(null);
-    var updateHiddenDiv = React55.useRef(null);
-    var hasRenderedContent = React55.useRef(false);
+    var initialHiddenDiv = React60.useRef(null);
+    var updateHiddenDiv = React60.useRef(null);
+    var hasRenderedContent = React60.useRef(false);
     var async = useAsync();
     var _a6 = useResizeState(props, nextResizeGroupStateProvider, rootRef), stateRef = _a6[0], updateResizeState = _a6[1], remeasure = _a6[2];
-    React55.useEffect(function() {
+    React60.useEffect(function() {
       var _a7;
       if (stateRef.current.renderedData) {
         hasRenderedContent.current = true;
         (_a7 = props.dataDidRender) === null || _a7 === void 0 ? void 0 : _a7.call(props, stateRef.current.renderedData);
       }
     });
-    React55.useEffect(function() {
+    React60.useEffect(function() {
       async.requestAnimationFrame(function() {
         var containerDimension = void 0;
         if (stateRef.current.measureContainer && rootRef.current) {
@@ -38931,35 +39750,35 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   function useDebugWarnings2(props) {
     if (true) {
       useWarnings({
-        name: COMPONENT_NAME4,
+        name: COMPONENT_NAME5,
         props,
         deprecations: { styles: "className" }
       });
     }
   }
   var measuredContextValue = { isMeasured: true };
-  var ResizeGroupBase = React55.forwardRef(function(props, forwardedRef) {
-    var rootRef = React55.useRef(null);
+  var ResizeGroupBase = React60.forwardRef(function(props, forwardedRef) {
+    var rootRef = React60.useRef(null);
     var mergedRootRef = useMergedRefs(rootRef, forwardedRef);
     var _a6 = useResizingBehavior(props, rootRef), dataToMeasure = _a6[0], renderedData = _a6[1], remeasure = _a6[2], initialHiddenDiv = _a6[3], updateHiddenDiv = _a6[4], dataNeedsMeasuring = _a6[5], isInitialMeasure = _a6[6];
-    React55.useImperativeHandle(props.componentRef, function() {
+    React60.useImperativeHandle(props.componentRef, function() {
       return { remeasure };
     }, [remeasure]);
     useDebugWarnings2(props);
     var className = props.className, onRenderData = props.onRenderData;
     var divProps = getNativeProps(props, divProperties, ["data"]);
-    return React55.createElement(
+    return React60.createElement(
       "div",
       __assign6({}, divProps, { className, ref: mergedRootRef }),
-      React55.createElement(
+      React60.createElement(
         "div",
         { style: hiddenParentStyles },
-        dataNeedsMeasuring && !isInitialMeasure && React55.createElement(
+        dataNeedsMeasuring && !isInitialMeasure && React60.createElement(
           "div",
           { style: hiddenDivStyles, ref: updateHiddenDiv },
-          React55.createElement(MeasuredContext.Provider, { value: measuredContextValue }, onRenderData(dataToMeasure))
+          React60.createElement(MeasuredContext.Provider, { value: measuredContextValue }, onRenderData(dataToMeasure))
         ),
-        React55.createElement("div", { ref: initialHiddenDiv, style: isInitialMeasure ? hiddenDivStyles : void 0, "data-automation-id": "visibleContent" }, isInitialMeasure ? onRenderData(dataToMeasure) : renderedData && onRenderData(renderedData))
+        React60.createElement("div", { ref: initialHiddenDiv, style: isInitialMeasure ? hiddenDivStyles : void 0, "data-automation-id": "visibleContent" }, isInitialMeasure ? onRenderData(dataToMeasure) : renderedData && onRenderData(renderedData))
       )
     );
   });
@@ -38992,7 +39811,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     __extends5(BreadcrumbBase2, _super);
     function BreadcrumbBase2(props) {
       var _this = _super.call(this, props) || this;
-      _this._focusZone = React56.createRef();
+      _this._focusZone = React61.createRef();
       _this._onReduceData = function(data) {
         var renderedItems = data.renderedItems, renderedOverflowItems = data.renderedOverflowItems;
         var overflowIndex = data.props.overflowIndex;
@@ -39042,37 +39861,37 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           if (onRenderItem) {
             finalOnRenderItem = composeRenderFunction(onRenderItem, finalOnRenderItem);
           }
-          return React56.createElement(
+          return React61.createElement(
             "li",
             { className: _this._classNames.listItem, key: item.key || String(index) },
             finalOnRenderItem(item),
-            (index !== lastItemIndex || hasOverflowItems && index === overflowIndex - 1) && React56.createElement(DividerType, { className: _this._classNames.chevron, iconName: getRTL2(_this.props.theme) ? "ChevronLeft" : "ChevronRight", item })
+            (index !== lastItemIndex || hasOverflowItems && index === overflowIndex - 1) && React61.createElement(DividerType, { className: _this._classNames.chevron, iconName: getRTL2(_this.props.theme) ? "ChevronLeft" : "ChevronRight", item })
           );
         });
         if (hasOverflowItems) {
           var iconProps = !onRenderOverflowIcon ? { iconName: "More" } : {};
           var onRenderMenuIcon = onRenderOverflowIcon ? onRenderOverflowIcon : nullFunction;
           var OverflowButton = overflowButtonAs ? overflowButtonAs : IconButton;
-          itemElements.splice(overflowIndex, 0, React56.createElement(
+          itemElements.splice(overflowIndex, 0, React61.createElement(
             "li",
             { className: _this._classNames.overflow, key: OVERFLOW_KEY },
-            React56.createElement(OverflowButton, { className: _this._classNames.overflowButton, iconProps, role: "button", "aria-haspopup": "true", ariaLabel: overflowAriaLabel, onRenderMenuIcon, menuProps: {
+            React61.createElement(OverflowButton, { className: _this._classNames.overflowButton, iconProps, role: "button", "aria-haspopup": "true", ariaLabel: overflowAriaLabel, onRenderMenuIcon, menuProps: {
               items: contextualItems,
               directionalHint: DirectionalHint.bottomLeftEdge
             } }),
-            overflowIndex !== lastItemIndex + 1 && React56.createElement(DividerType, { className: _this._classNames.chevron, iconName: getRTL2(_this.props.theme) ? "ChevronLeft" : "ChevronRight", item: renderedOverflowItems[renderedOverflowItems.length - 1] })
+            overflowIndex !== lastItemIndex + 1 && React61.createElement(DividerType, { className: _this._classNames.chevron, iconName: getRTL2(_this.props.theme) ? "ChevronLeft" : "ChevronRight", item: renderedOverflowItems[renderedOverflowItems.length - 1] })
           ));
         }
         var nativeProps = getNativeProps(_this.props, htmlElementProperties, [
           "className"
         ]);
-        return React56.createElement(
+        return React61.createElement(
           "div",
           __assign6({ className: _this._classNames.root, role: "navigation", "aria-label": ariaLabel }, nativeProps),
-          React56.createElement(
+          React61.createElement(
             FocusZone,
             __assign6({ componentRef: _this._focusZone, direction: FocusZoneDirection.horizontal }, _this.props.focusZoneProps),
-            React56.createElement("ol", { className: _this._classNames.list }, itemElements)
+            React61.createElement("ol", { className: _this._classNames.list }, itemElements)
           )
         );
       };
@@ -39089,7 +39908,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           finalOnRenderContent = composeRenderFunction(_this.props.onRenderItemContent, finalOnRenderContent);
         }
         if (onClick || href) {
-          return React56.createElement(
+          return React61.createElement(
             Link,
             __assign6({}, additionalProps, {
               as,
@@ -39098,14 +39917,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
               "aria-current": isCurrentItem ? "page" : void 0,
               onClick: _this._onBreadcrumbClicked.bind(_this, item)
             }),
-            React56.createElement(TooltipHost, __assign6({ content: text, overflowMode: TooltipOverflowMode.Parent }, _this.props.tooltipHostProps), finalOnRenderContent(item))
+            React61.createElement(TooltipHost, __assign6({ content: text, overflowMode: TooltipOverflowMode.Parent }, _this.props.tooltipHostProps), finalOnRenderContent(item))
           );
         } else {
           var Tag = as || "span";
-          return React56.createElement(
+          return React61.createElement(
             Tag,
             __assign6({}, additionalProps, { className: _this._classNames.item }),
-            React56.createElement(TooltipHost, __assign6({ content: text, overflowMode: TooltipOverflowMode.Parent }, _this.props.tooltipHostProps), finalOnRenderContent(item))
+            React61.createElement(TooltipHost, __assign6({ content: text, overflowMode: TooltipOverflowMode.Parent }, _this.props.tooltipHostProps), finalOnRenderContent(item))
           );
         }
       };
@@ -39137,7 +39956,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         className,
         theme
       });
-      return React56.createElement(ResizeGroup, { onRenderData: this._onRenderBreadcrumb, onReduceData, onGrowData, data: breadcrumbData });
+      return React61.createElement(ResizeGroup, { onRenderData: this._onRenderBreadcrumb, onReduceData, onGrowData, data: breadcrumbData });
     };
     BreadcrumbBase2.prototype._validateProps = function(props) {
       var maxDisplayedItems = props.maxDisplayedItems, overflowIndex = props.overflowIndex, items = props.items;
@@ -39151,9 +39970,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       overflowIndex: 0
     };
     return BreadcrumbBase2;
-  }(React56.Component);
+  }(React61.Component);
   function defaultOnRenderCrumbContent(item) {
-    return item ? React56.createElement(React56.Fragment, null, item.text) : null;
+    return item ? React61.createElement(React61.Fragment, null, item.text) : null;
   }
 
   // node_modules/@fluentui/react/lib/components/Breadcrumb/Breadcrumb.styles.js
@@ -39178,7 +39997,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var itemFontSize = 18;
   var MinimumScreenSelector = getScreenSelector(0, ScreenWidthMaxSmall);
   var MediumScreenSelector3 = getScreenSelector(ScreenWidthMinMedium, ScreenWidthMaxMedium);
-  var getStyles16 = function(props) {
+  var getStyles17 = function(props) {
     var _a6, _b, _c, _d, _e2;
     var className = props.className, theme = props.theme;
     var palette = theme.palette, semanticColors = theme.semanticColors, fonts = theme.fonts;
@@ -39326,20 +40145,20 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // node_modules/@fluentui/react/lib/components/Breadcrumb/Breadcrumb.js
-  var Breadcrumb = styled(BreadcrumbBase, getStyles16, void 0, { scope: "Breadcrumb" });
+  var Breadcrumb = styled(BreadcrumbBase, getStyles17, void 0, { scope: "Breadcrumb" });
 
   // node_modules/@fluentui/react/lib/components/Check/Check.base.js
-  var React57 = __toESM(require_react());
+  var React62 = __toESM(require_react());
   var getClassNames12 = classNamesFunction();
-  var CheckBase = React57.forwardRef(function(props, ref) {
+  var CheckBase = React62.forwardRef(function(props, ref) {
     var _a6 = props.checked, checked = _a6 === void 0 ? false : _a6, className = props.className, theme = props.theme, styles2 = props.styles, _b = props.useFastIcons, useFastIcons = _b === void 0 ? true : _b;
     var classNames3 = getClassNames12(styles2, { theme, className, checked });
     var IconComponent = useFastIcons ? FontIcon : Icon;
-    return React57.createElement(
+    return React62.createElement(
       "div",
       { className: classNames3.root, ref },
-      React57.createElement(IconComponent, { iconName: "CircleRing", className: classNames3.circle }),
-      React57.createElement(IconComponent, { iconName: "StatusCircleCheckmark", className: classNames3.check })
+      React62.createElement(IconComponent, { iconName: "CircleRing", className: classNames3.circle }),
+      React62.createElement(IconComponent, { iconName: "StatusCircleCheckmark", className: classNames3.check })
     );
   });
   CheckBase.displayName = "CheckBase";
@@ -39351,7 +40170,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     check: "ms-Check-check",
     checkHost: "ms-Check-checkHost"
   };
-  var getStyles17 = function(props) {
+  var getStyles18 = function(props) {
     var _a6, _b, _c, _d, _e2;
     var _f = props.height, height = _f === void 0 ? props.checkBoxHeight || "18px" : _f, checked = props.checked, className = props.className, theme = props.theme;
     var palette = theme.palette, semanticColors = theme.semanticColors, fonts = theme.fonts;
@@ -39456,12 +40275,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // node_modules/@fluentui/react/lib/components/Check/Check.js
-  var Check = styled(CheckBase, getStyles17, void 0, {
+  var Check = styled(CheckBase, getStyles18, void 0, {
     scope: "Check"
   }, true);
 
   // node_modules/@fluentui/react/lib/components/Label/Label.base.js
-  var React58 = __toESM(require_react());
+  var React63 = __toESM(require_react());
   var getClassNames13 = classNamesFunction({
     cacheSize: 100
   });
@@ -39478,13 +40297,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         required,
         theme
       });
-      return React58.createElement(RootType, __assign6({}, getNativeProps(this.props, divProperties), { className: classNames3.root }), children);
+      return React63.createElement(RootType, __assign6({}, getNativeProps(this.props, divProperties), { className: classNames3.root }), children);
     };
     return LabelBase2;
-  }(React58.Component);
+  }(React63.Component);
 
   // node_modules/@fluentui/react/lib/components/Label/Label.styles.js
-  var getStyles18 = function(props) {
+  var getStyles19 = function(props) {
     var _a6;
     var theme = props.theme, className = props.className, disabled = props.disabled, required = props.required;
     var semanticColors = theme.semanticColors;
@@ -39526,12 +40345,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // node_modules/@fluentui/react/lib/components/Label/Label.js
-  var Label = styled(LabelBase, getStyles18, void 0, {
+  var Label = styled(LabelBase, getStyles19, void 0, {
     scope: "Label"
   });
 
   // node_modules/@fluentui/react/lib/components/List/List.js
-  var React59 = __toESM(require_react());
+  var React64 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/List/List.types.js
   var ScrollToMode = {
@@ -39603,8 +40422,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     __extends5(List2, _super);
     function List2(props) {
       var _this = _super.call(this, props) || this;
-      _this._root = React59.createRef();
-      _this._surface = React59.createRef();
+      _this._root = React64.createRef();
+      _this._surface = React64.createRef();
       _this._pageRefs = {};
       _this._getDerivedStateFromProps = function(nextProps, previousState) {
         if (nextProps.items !== _this.props.items || nextProps.renderCount !== _this.props.renderCount || nextProps.startIndex !== _this.props.startIndex || nextProps.version !== _this.props.version) {
@@ -39618,11 +40437,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       };
       _this._onRenderRoot = function(props2) {
         var rootRef = props2.rootRef, surfaceElement = props2.surfaceElement, divProps = props2.divProps;
-        return React59.createElement("div", __assign6({ ref: rootRef }, divProps), surfaceElement);
+        return React64.createElement("div", __assign6({ ref: rootRef }, divProps), surfaceElement);
       };
       _this._onRenderSurface = function(props2) {
         var surfaceRef = props2.surfaceRef, pageElements = props2.pageElements, divProps = props2.divProps;
-        return React59.createElement("div", __assign6({ ref: surfaceRef }, divProps), pageElements);
+        return React64.createElement("div", __assign6({ ref: surfaceRef }, divProps), pageElements);
       };
       _this._onRenderPage = function(pageProps, defaultRender) {
         var _a6;
@@ -39640,10 +40459,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           var renderCell = onRenderCellConditional !== null && onRenderCellConditional !== void 0 ? onRenderCellConditional : onRenderCell;
           var cell = (_a6 = renderCell === null || renderCell === void 0 ? void 0 : renderCell(item, index, !_this.props.ignoreScrollingState ? _this.state.isScrolling : void 0)) !== null && _a6 !== void 0 ? _a6 : null;
           if (!onRenderCellConditional || cell) {
-            cells.push(React59.createElement("div", { role: cellRole, className: "ms-List-cell", key: itemKey, "data-list-index": index, "data-automationid": "ListCell" }, cell));
+            cells.push(React64.createElement("div", { role: cellRole, className: "ms-List-cell", key: itemKey, "data-list-index": index, "data-automationid": "ListCell" }, cell));
           }
         }
-        return React59.createElement("div", __assign6({}, divProps), cells);
+        return React64.createElement("div", __assign6({}, divProps), cells);
       };
       initializeComponentRef(_this);
       _this.state = {
@@ -40234,14 +41053,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     List2.defaultProps = {
       startIndex: 0,
       onRenderCell: function(item, index, containsFocus) {
-        return React59.createElement(React59.Fragment, null, item && item.name || "");
+        return React64.createElement(React64.Fragment, null, item && item.name || "");
       },
       onRenderCellConditional: void 0,
       renderedWindowsAhead: DEFAULT_RENDERED_WINDOWS_AHEAD,
       renderedWindowsBehind: DEFAULT_RENDERED_WINDOWS_BEHIND
     };
     return List2;
-  }(React59.Component);
+  }(React64.Component);
   function _expandRect(rect, pagesBefore, pagesAfter) {
     var top = rect.top - pagesBefore * rect.height;
     var height = rect.height + (pagesBefore + pagesAfter) * rect.height;
@@ -40268,7 +41087,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // node_modules/@fluentui/react/lib/utilities/selection/SelectionZone.js
-  var React60 = __toESM(require_react());
+  var React65 = __toESM(require_react());
   var SELECTION_DISABLED_ATTRIBUTE_NAME = "data-selection-disabled";
   var SELECTION_INDEX_ATTRIBUTE_NAME = "data-selection-index";
   var SELECTION_SPAN_ATTRIBUTE_NAME = "data-selection-span";
@@ -40281,7 +41100,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     __extends5(SelectionZone2, _super);
     function SelectionZone2(props) {
       var _this = _super.call(this, props) || this;
-      _this._root = React60.createRef();
+      _this._root = React65.createRef();
       _this.ignoreNextFocus = function() {
         _this._handleNextFocus(false);
       };
@@ -40529,13 +41348,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     };
     SelectionZone2.prototype.render = function() {
       var isModal = this.state.isModal;
-      return React60.createElement(
+      return React65.createElement(
         "div",
         { className: css("ms-SelectionZone", this.props.className, {
           "ms-SelectionZone--modal": !!isModal
         }), ref: this._root, onKeyDown: this._onKeyDown, onMouseDown: this._onMouseDown, onKeyDownCapture: this._onKeyDownCapture, onClick: this._onClick, role: "presentation", onDoubleClick: this._onDoubleClick, onContextMenu: this._onContextMenu, onMouseDownCapture: this._onMouseDownCapture, onFocusCapture: this._onFocus, "data-selection-is-modal": isModal ? true : void 0 },
         this.props.children,
-        React60.createElement(FocusRects, null)
+        React65.createElement(FocusRects, null)
       );
     };
     SelectionZone2.prototype.componentDidUpdate = function(previousProps) {
@@ -40785,7 +41604,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       selectionClearedOnEscapePress: true
     };
     return SelectionZone2;
-  }(React60.Component);
+  }(React65.Component);
 
   // node_modules/@fluentui/react/lib/components/GroupedList/GroupedList.types.js
   var CollapseAllVisibility;
@@ -40795,7 +41614,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   })(CollapseAllVisibility || (CollapseAllVisibility = {}));
 
   // node_modules/@fluentui/react/lib/components/DetailsList/DetailsHeader.base.js
-  var React70 = __toESM(require_react());
+  var React75 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/DetailsList/DetailsList.types.js
   var ColumnActionsMode;
@@ -40828,12 +41647,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   })(CheckboxVisibility || (CheckboxVisibility = {}));
 
   // node_modules/@fluentui/react/lib/components/GroupedList/GroupSpacer.js
-  var React61 = __toESM(require_react());
+  var React66 = __toESM(require_react());
   var SPACER_WIDTH = 36;
   var GroupSpacer = function(props) {
     var count = props.count, _a6 = props.indentWidth, indentWidth = _a6 === void 0 ? SPACER_WIDTH : _a6, _b = props.role, role = _b === void 0 ? "presentation" : _b;
     var width = count * indentWidth;
-    return count > 0 ? React61.createElement("span", { className: "ms-GroupSpacer", style: { display: "inline-block", width }, role }) : null;
+    return count > 0 ? React66.createElement("span", { className: "ms-GroupSpacer", style: { display: "inline-block", width }, role }) : null;
   };
 
   // node_modules/@fluentui/react/lib/components/GroupedList/GroupedList.styles.js
@@ -40847,7 +41666,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var beziers = {
     easeInOutSine: "cubic-bezier(0.445, 0.050, 0.550, 0.950)"
   };
-  var getStyles19 = function(props) {
+  var getStyles20 = function(props) {
     var _a6, _b;
     var theme = props.theme, className = props.className, compact = props.compact;
     var palette = theme.palette;
@@ -40885,10 +41704,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // node_modules/@fluentui/react/lib/components/GroupedList/GroupedList.base.js
-  var React67 = __toESM(require_react());
+  var React72 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/GroupedList/GroupedListSection.js
-  var React66 = __toESM(require_react());
+  var React71 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/DetailsList/DetailsRow.styles.js
   var DetailsRowGlobalClassNames = {
@@ -41522,7 +42341,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
   var DEFAULT_GROUP_HEADER_HEIGHT = 48;
   var COMPACT_GROUP_HEADER_HEIGHT = 40;
-  var getStyles20 = function(props) {
+  var getStyles21 = function(props) {
     var _a6, _b, _c, _d, _e2;
     var theme = props.theme, className = props.className, selected = props.selected, isCollapsed = props.isCollapsed, compact = props.compact;
     var cellLeftPadding = DEFAULT_CELL_STYLE_PROPS.cellLeftPadding;
@@ -41682,10 +42501,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // node_modules/@fluentui/react/lib/components/GroupedList/GroupHeader.base.js
-  var React63 = __toESM(require_react());
+  var React68 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Spinner/Spinner.base.js
-  var React62 = __toESM(require_react());
+  var React67 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Spinner/Spinner.types.js
   var SpinnerSize;
@@ -41722,18 +42541,18 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         className,
         labelPosition
       });
-      return React62.createElement(
+      return React67.createElement(
         "div",
         __assign6({}, nativeProps, { className: classNames3.root }),
-        React62.createElement("div", { className: classNames3.circle }),
-        label && React62.createElement("div", { className: classNames3.label }, label),
-        statusMessage && React62.createElement(
+        React67.createElement("div", { className: classNames3.circle }),
+        label && React67.createElement("div", { className: classNames3.label }, label),
+        statusMessage && React67.createElement(
           "div",
           { role: "status", "aria-live": ariaLive },
-          React62.createElement(
+          React67.createElement(
             DelayedRender,
             null,
-            React62.createElement("div", { className: classNames3.screenReaderText }, statusMessage)
+            React67.createElement("div", { className: classNames3.screenReaderText }, statusMessage)
           )
         )
       );
@@ -41744,7 +42563,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       labelPosition: "bottom"
     };
     return SpinnerBase2;
-  }(React62.Component);
+  }(React67.Component);
 
   // node_modules/@fluentui/react/lib/components/Spinner/Spinner.styles.js
   var GlobalClassNames14 = {
@@ -41762,7 +42581,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     });
   });
-  var getStyles21 = function(props) {
+  var getStyles22 = function(props) {
     var _a6;
     var theme = props.theme, size = props.size, className = props.className, labelPosition = props.labelPosition;
     var palette = theme.palette;
@@ -41852,7 +42671,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // node_modules/@fluentui/react/lib/components/Spinner/Spinner.js
-  var Spinner = styled(SpinnerBase, getStyles21, void 0, { scope: "Spinner" });
+  var Spinner = styled(SpinnerBase, getStyles22, void 0, { scope: "Spinner" });
 
   // node_modules/@fluentui/react/lib/components/GroupedList/GroupHeader.base.js
   var getClassNames15 = classNamesFunction();
@@ -41905,18 +42724,18 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           return null;
         }
         var onRenderName = props2.onRenderName ? composeRenderFunction(props2.onRenderName, _this._onRenderName) : _this._onRenderName;
-        return React63.createElement("div", { className: _this._classNames.title, id: _this._id, onClick: _this._onHeaderClick, role: "gridcell", "aria-colspan": _this.props.ariaColSpan, "data-selection-invoke": true }, onRenderName(props2));
+        return React68.createElement("div", { className: _this._classNames.title, id: _this._id, onClick: _this._onHeaderClick, role: "gridcell", "aria-colspan": _this.props.ariaColSpan, "data-selection-invoke": true }, onRenderName(props2));
       };
       _this._onRenderName = function(props2) {
         var group = props2.group;
         if (!group) {
           return null;
         }
-        return React63.createElement(
-          React63.Fragment,
+        return React68.createElement(
+          React68.Fragment,
           null,
-          React63.createElement("span", null, group.name),
-          React63.createElement(
+          React68.createElement("span", null, group.name),
+          React68.createElement(
             "span",
             { className: _this._classNames.headerCount },
             "(",
@@ -41962,54 +42781,54 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       if (!group) {
         return null;
       }
-      return React63.createElement(
+      return React68.createElement(
         "div",
         { className: this._classNames.root, style: viewport ? { minWidth: viewport.width } : {}, role: "row", "aria-level": ariaLevel, "aria-setsize": ariaSetSize, "aria-posinset": ariaPosInSet, "aria-rowindex": ariaRowIndex, "data-is-focusable": true, onKeyUp: this._onKeyUp, "aria-label": group.ariaLabel, "aria-labelledby": group.ariaLabel ? void 0 : this._id, "aria-expanded": !this.state.isCollapsed, "aria-selected": canSelectGroup ? currentlySelected : void 0, "data-selection-index": group.startIndex, "data-selection-span": group.count },
-        React63.createElement(
+        React68.createElement(
           "div",
           { className: this._classNames.groupHeaderContainer, role: "presentation" },
-          isSelectionCheckVisible ? React63.createElement(
+          isSelectionCheckVisible ? React68.createElement(
             "div",
             { role: "gridcell" },
-            React63.createElement("button", __assign6({ "data-is-focusable": false, type: "button", className: this._classNames.check, role: "checkbox", id: this._id + "-check", "aria-checked": currentlySelected, "aria-labelledby": this._id + "-check " + this._id, "data-selection-toggle": true }, selectAllButtonProps), onRenderCheckbox({ checked: currentlySelected, theme }, onRenderCheckbox))
-          ) : selectionMode !== SelectionMode.none && React63.createElement(GroupSpacer, { indentWidth: CHECK_CELL_WIDTH, count: 1 }),
-          React63.createElement(GroupSpacer, { indentWidth, count: groupLevel }),
-          React63.createElement(
+            React68.createElement("button", __assign6({ "data-is-focusable": false, type: "button", className: this._classNames.check, role: "checkbox", id: this._id + "-check", "aria-checked": currentlySelected, "aria-labelledby": this._id + "-check " + this._id, "data-selection-toggle": true }, selectAllButtonProps), onRenderCheckbox({ checked: currentlySelected, theme }, onRenderCheckbox))
+          ) : selectionMode !== SelectionMode.none && React68.createElement(GroupSpacer, { indentWidth: CHECK_CELL_WIDTH, count: 1 }),
+          React68.createElement(GroupSpacer, { indentWidth, count: groupLevel }),
+          React68.createElement(
             "div",
             { className: this._classNames.dropIcon, role: "presentation" },
-            React63.createElement(Icon, { iconName: "Tag" })
+            React68.createElement(Icon, { iconName: "Tag" })
           ),
-          React63.createElement(
+          React68.createElement(
             "div",
             { role: "gridcell" },
-            React63.createElement(
+            React68.createElement(
               "button",
               __assign6({ "data-is-focusable": false, "data-selection-disabled": true, type: "button", className: this._classNames.expand, onClick: this._onToggleClick, "aria-expanded": !this.state.isCollapsed }, expandButtonProps),
-              React63.createElement(Icon, { className: this._classNames.expandIsCollapsed, iconName: expandButtonIcon || (isRTL ? "ChevronLeftMed" : "ChevronRightMed") })
+              React68.createElement(Icon, { className: this._classNames.expandIsCollapsed, iconName: expandButtonIcon || (isRTL ? "ChevronLeftMed" : "ChevronRightMed") })
             )
           ),
           onRenderTitle(this.props),
-          isLoadingVisible && React63.createElement(Spinner, { label: loadingText })
+          isLoadingVisible && React68.createElement(Spinner, { label: loadingText })
         )
       );
     };
     GroupHeaderBase2.prototype._defaultCheckboxRender = function(checkboxProps) {
-      return React63.createElement(Check, { checked: checkboxProps.checked });
+      return React68.createElement(Check, { checked: checkboxProps.checked });
     };
     GroupHeaderBase2.prototype._fastDefaultCheckboxRender = function(checkboxProps) {
-      return React63.createElement(FastCheck, { theme: checkboxProps.theme, checked: checkboxProps.checked });
+      return React68.createElement(FastCheck, { theme: checkboxProps.theme, checked: checkboxProps.checked });
     };
     GroupHeaderBase2.defaultProps = {
       expandButtonProps: { "aria-label": "expand collapse group" }
     };
     return GroupHeaderBase2;
-  }(React63.Component);
-  var FastCheck = React63.memo(function(props) {
-    return React63.createElement(Check, { theme: props.theme, checked: props.checked, className: props.className, useFastIcons: true });
+  }(React68.Component);
+  var FastCheck = React68.memo(function(props) {
+    return React68.createElement(Check, { theme: props.theme, checked: props.checked, className: props.className, useFastIcons: true });
   });
 
   // node_modules/@fluentui/react/lib/components/GroupedList/GroupHeader.js
-  var GroupHeader = styled(GroupHeaderBase, getStyles20, void 0, {
+  var GroupHeader = styled(GroupHeaderBase, getStyles21, void 0, {
     scope: "GroupHeader"
   });
 
@@ -42018,7 +42837,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     root: "ms-GroupShowAll",
     link: "ms-Link"
   };
-  var getStyles22 = function(props) {
+  var getStyles23 = function(props) {
     var _a6;
     var theme = props.theme;
     var fonts = theme.fonts;
@@ -42039,7 +42858,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // node_modules/@fluentui/react/lib/components/GroupedList/GroupShowAll.base.js
-  var React64 = __toESM(require_react());
+  var React69 = __toESM(require_react());
   var import_react2 = __toESM(require_react());
   var getClassNames16 = classNamesFunction();
   var GroupShowAllBase = function(props) {
@@ -42051,24 +42870,24 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       ev.preventDefault();
     }, [onToggleSummarize, group]);
     if (group) {
-      return React64.createElement(
+      return React69.createElement(
         "div",
         { className: classNames3.root },
-        React64.createElement(GroupSpacer, { count: groupLevel }),
-        React64.createElement(Link, { onClick: memoizedOnClick }, showAllLinkText)
+        React69.createElement(GroupSpacer, { count: groupLevel }),
+        React69.createElement(Link, { onClick: memoizedOnClick }, showAllLinkText)
       );
     }
     return null;
   };
 
   // node_modules/@fluentui/react/lib/components/GroupedList/GroupShowAll.js
-  var GroupShowAll = styled(GroupShowAllBase, getStyles22, void 0, { scope: "GroupShowAll" });
+  var GroupShowAll = styled(GroupShowAllBase, getStyles23, void 0, { scope: "GroupShowAll" });
 
   // node_modules/@fluentui/react/lib/components/GroupedList/GroupFooter.styles.js
   var GlobalClassNames16 = {
     root: "ms-groupFooter"
   };
-  var getStyles23 = function(props) {
+  var getStyles24 = function(props) {
     var theme = props.theme, className = props.className;
     var classNames3 = getGlobalClassNames(GlobalClassNames16, theme);
     return {
@@ -42085,16 +42904,16 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // node_modules/@fluentui/react/lib/components/GroupedList/GroupFooter.base.js
-  var React65 = __toESM(require_react());
+  var React70 = __toESM(require_react());
   var getClassNames17 = classNamesFunction();
   var GroupFooterBase = function(props) {
     var group = props.group, groupLevel = props.groupLevel, footerText = props.footerText, indentWidth = props.indentWidth, styles2 = props.styles, theme = props.theme;
     var classNames3 = getClassNames17(styles2, { theme });
     if (group && footerText) {
-      return React65.createElement(
+      return React70.createElement(
         "div",
         { className: classNames3.root },
-        React65.createElement(GroupSpacer, { indentWidth, count: groupLevel }),
+        React70.createElement(GroupSpacer, { indentWidth, count: groupLevel }),
         footerText
       );
     }
@@ -42102,7 +42921,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // node_modules/@fluentui/react/lib/components/GroupedList/GroupFooter.js
-  var GroupFooter = styled(GroupFooterBase, getStyles23, void 0, {
+  var GroupFooter = styled(GroupFooterBase, getStyles24, void 0, {
     scope: "GroupFooter"
   });
 
@@ -42112,23 +42931,23 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     __extends5(GroupedListSection2, _super);
     function GroupedListSection2(props) {
       var _this = _super.call(this, props) || this;
-      _this._root = React66.createRef();
-      _this._list = React66.createRef();
+      _this._root = React71.createRef();
+      _this._list = React71.createRef();
       _this._subGroupRefs = {};
       _this._droppingClassName = "";
       _this._onRenderGroupHeader = function(props2) {
-        return React66.createElement(GroupHeader, __assign6({}, props2));
+        return React71.createElement(GroupHeader, __assign6({}, props2));
       };
       _this._onRenderGroupShowAll = function(props2) {
-        return React66.createElement(GroupShowAll, __assign6({}, props2));
+        return React71.createElement(GroupShowAll, __assign6({}, props2));
       };
       _this._onRenderGroupFooter = function(props2) {
-        return React66.createElement(GroupFooter, __assign6({}, props2));
+        return React71.createElement(GroupFooter, __assign6({}, props2));
       };
       _this._renderSubGroup = function(subGroup, subGroupIndex) {
         var _a6 = _this.props, dragDropEvents = _a6.dragDropEvents, dragDropHelper = _a6.dragDropHelper, eventsToRegister = _a6.eventsToRegister, getGroupItemLimit = _a6.getGroupItemLimit, groupNestingDepth = _a6.groupNestingDepth, groupProps = _a6.groupProps, items = _a6.items, headerProps = _a6.headerProps, showAllProps = _a6.showAllProps, footerProps = _a6.footerProps, listProps = _a6.listProps, onRenderCell = _a6.onRenderCell, selection2 = _a6.selection, selectionMode = _a6.selectionMode, viewport = _a6.viewport, onRenderGroupHeader = _a6.onRenderGroupHeader, onRenderGroupShowAll = _a6.onRenderGroupShowAll, onRenderGroupFooter = _a6.onRenderGroupFooter, onShouldVirtualize = _a6.onShouldVirtualize, group2 = _a6.group, compact = _a6.compact;
         var nestingDepth = subGroup.level ? subGroup.level + 1 : groupNestingDepth;
-        return !subGroup || subGroup.count > 0 || groupProps && groupProps.showEmptyGroups ? React66.createElement(GroupedListSection2, { ref: function(ref) {
+        return !subGroup || subGroup.count > 0 || groupProps && groupProps.showEmptyGroups ? React71.createElement(GroupedListSection2, { ref: function(ref) {
           return _this._subGroupRefs["subGroup_" + subGroupIndex] = ref;
         }, key: _this._getGroupKey(subGroup, subGroupIndex), dragDropEvents, dragDropHelper, eventsToRegister, footerProps, getGroupItemLimit, group: subGroup, groupIndex: subGroupIndex, groupNestingDepth: nestingDepth, groupProps, headerProps, items, listProps, onRenderCell, selection: selection2, selectionMode, showAllProps, viewport, onRenderGroupHeader, onRenderGroupShowAll, onRenderGroupFooter, onShouldVirtualize, groups: group2 ? group2.children : [], compact }) : null;
       };
@@ -42230,11 +43049,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       var groupShowAllProps = __assign6(__assign6({}, showAllProps), dividerProps);
       var groupFooterProps = __assign6(__assign6({}, footerProps), dividerProps);
       var isDraggable = !!this.props.dragDropHelper && this._getGroupDragDropOptions().canDrag(group) && !!this.props.dragDropEvents.canDragGroups;
-      return React66.createElement(
+      return React71.createElement(
         "div",
         __assign6({ ref: this._root }, isDraggable && { draggable: true }, { className: css(groupedListClassNames && groupedListClassNames.group, this._getDroppingClassName()), role: "presentation" }),
         onRenderGroupHeader(groupHeaderProps, this._onRenderGroupHeader),
-        group && group.isCollapsed ? null : hasNestedGroups ? React66.createElement(List, { role: "presentation", ref: this._list, items: group ? group.children : [], onRenderCell: this._renderSubGroup, getItemCountForPage: this._returnOne, onShouldVirtualize, version, id: this._id }) : this._onRenderGroup(renderCount),
+        group && group.isCollapsed ? null : hasNestedGroups ? React71.createElement(List, { role: "presentation", ref: this._list, items: group ? group.children : [], onRenderCell: this._renderSubGroup, getItemCountForPage: this._returnOne, onShouldVirtualize, version, id: this._id }) : this._onRenderGroup(renderCount),
         group && group.isCollapsed ? null : isShowAllVisible && onRenderGroupShowAll(groupShowAllProps, this._onRenderGroupShowAll),
         onRenderGroupFooter(groupFooterProps, this._onRenderGroupFooter)
       );
@@ -42281,7 +43100,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       var _a6 = this.props, group = _a6.group, items = _a6.items, onRenderCell = _a6.onRenderCell, listProps = _a6.listProps, groupNestingDepth = _a6.groupNestingDepth, onShouldVirtualize = _a6.onShouldVirtualize, groupProps = _a6.groupProps;
       var count = group && !group.isShowingAll ? group.count : items.length;
       var startIndex = group ? group.startIndex : 0;
-      return React66.createElement(List, __assign6({ role: groupProps && groupProps.role ? groupProps.role : "rowgroup", "aria-label": group === null || group === void 0 ? void 0 : group.name, items, onRenderCell: this._onRenderGroupCell(onRenderCell, groupNestingDepth, group), ref: this._list, renderCount: Math.min(count, renderCount), startIndex, onShouldVirtualize, id: this._id }, listProps));
+      return React71.createElement(List, __assign6({ role: groupProps && groupProps.role ? groupProps.role : "rowgroup", "aria-label": group === null || group === void 0 ? void 0 : group.name, items, onRenderCell: this._onRenderGroupCell(onRenderCell, groupNestingDepth, group), ref: this._list, renderCount: Math.min(count, renderCount), startIndex, onShouldVirtualize, id: this._id }, listProps));
     };
     GroupedListSection2.prototype._returnOne = function() {
       return 1;
@@ -42296,7 +43115,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       return css(isDropping && this._droppingClassName, isDropping && DEFAULT_DROPPING_CSS_CLASS, isDropping && groupedListClassNames && groupedListClassNames.groupIsDropping);
     };
     return GroupedListSection2;
-  }(React66.Component);
+  }(React71.Component);
 
   // node_modules/@fluentui/react/lib/components/GroupedList/GroupedList.base.js
   var getClassNames18 = classNamesFunction();
@@ -42306,7 +43125,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     __extends5(GroupedListBase2, _super);
     function GroupedListBase2(props) {
       var _this = _super.call(this, props) || this;
-      _this._list = React67.createRef();
+      _this._list = React72.createRef();
       _this._renderGroup = function(group, groupIndex) {
         var _a7 = _this.props, dragDropEvents = _a7.dragDropEvents, dragDropHelper = _a7.dragDropHelper, eventsToRegister = _a7.eventsToRegister, groupProps = _a7.groupProps, items = _a7.items, listProps = _a7.listProps, onRenderCell = _a7.onRenderCell, selectionMode = _a7.selectionMode, selection = _a7.selection, viewport = _a7.viewport, onShouldVirtualize = _a7.onShouldVirtualize, groups = _a7.groups, compact = _a7.compact;
         var dividerProps = {
@@ -42322,7 +43141,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           return null;
         }
         var finalListProps = __assign6(__assign6({}, listProps || {}), { version: _this.state.version });
-        return React67.createElement(GroupedListSection, { key: _this._getGroupKey(group, groupIndex), dragDropEvents, dragDropHelper, eventsToRegister, footerProps, getGroupItemLimit: groupProps && groupProps.getGroupItemLimit, group, groupIndex, groupNestingDepth, groupProps, headerProps, listProps: finalListProps, items, onRenderCell, onRenderGroupHeader: groupProps.onRenderHeader, onRenderGroupShowAll: groupProps.onRenderShowAll, onRenderGroupFooter: groupProps.onRenderFooter, selectionMode, selection, showAllProps, viewport, onShouldVirtualize, groupedListClassNames: _this._classNames, groups, compact });
+        return React72.createElement(GroupedListSection, { key: _this._getGroupKey(group, groupIndex), dragDropEvents, dragDropHelper, eventsToRegister, footerProps, getGroupItemLimit: groupProps && groupProps.getGroupItemLimit, group, groupIndex, groupNestingDepth, groupProps, headerProps, listProps: finalListProps, items, onRenderCell, onRenderGroupHeader: groupProps.onRenderHeader, onRenderGroupShowAll: groupProps.onRenderShowAll, onRenderGroupFooter: groupProps.onRenderFooter, selectionMode, selection, showAllProps, viewport, onShouldVirtualize, groupedListClassNames: _this._classNames, groups, compact });
       };
       _this._getDefaultGroupItemLimit = function(group) {
         return group.children && group.children.length > 0 ? group.children.length : group.count;
@@ -42434,7 +43253,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         compact
       });
       var _f = focusZoneProps.shouldEnterInnerZone, shouldEnterInnerZone = _f === void 0 ? this._isInnerZoneKeystroke : _f;
-      return React67.createElement(FocusZone, __assign6({ direction: FocusZoneDirection.vertical, "data-automationid": "GroupedList", "data-is-scrollable": "false", role: "presentation" }, focusZoneProps, { shouldEnterInnerZone, className: css(this._classNames.root, focusZoneProps.className) }), !groups ? this._renderGroup(void 0, 0) : React67.createElement(List, __assign6({ ref: this._list, role, items: groups, onRenderCell: this._renderGroup, getItemCountForPage: this._returnOne, getPageHeight: this._getPageHeight, getPageSpecification: this._getPageSpecification, usePageCache, onShouldVirtualize, version }, rootListProps)));
+      return React72.createElement(FocusZone, __assign6({ direction: FocusZoneDirection.vertical, "data-automationid": "GroupedList", "data-is-scrollable": "false", role: "presentation" }, focusZoneProps, { shouldEnterInnerZone, className: css(this._classNames.root, focusZoneProps.className) }), !groups ? this._renderGroup(void 0, 0) : React72.createElement(List, __assign6({ ref: this._list, role, items: groups, onRenderCell: this._renderGroup, getItemCountForPage: this._returnOne, getPageHeight: this._getPageHeight, getPageSpecification: this._getPageSpecification, usePageCache, onShouldVirtualize, version }, rootListProps)));
     };
     GroupedListBase2.prototype.forceUpdate = function() {
       _super.prototype.forceUpdate.call(this);
@@ -42503,10 +43322,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       compact: false
     };
     return GroupedListBase2;
-  }(React67.Component);
+  }(React72.Component);
 
   // node_modules/@fluentui/react/lib/components/GroupedList/GroupedList.js
-  var GroupedList = styled(GroupedListBase, getStyles19, void 0, {
+  var GroupedList = styled(GroupedListBase, getStyles20, void 0, {
     scope: "GroupedList"
   });
 
@@ -42528,7 +43347,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // node_modules/@fluentui/react/lib/components/DetailsList/DetailsRowCheck.js
-  var React68 = __toESM(require_react());
+  var React73 = __toESM(require_react());
   var getClassNames19 = classNamesFunction();
   var DetailsRowCheckBase = function(props) {
     var _a6 = props.isVisible, isVisible = _a6 === void 0 ? false : _a6, _b = props.canSelect, canSelect = _b === void 0 ? false : _b, _c = props.anySelected, anySelected = _c === void 0 ? false : _c, _d = props.selected, selected = _d === void 0 ? false : _d, selectionMode = props.selectionMode, _e2 = props.isHeader, isHeader = _e2 === void 0 ? false : _e2, className = props.className, checkClassName = props.checkClassName, styles2 = props.styles, theme = props.theme, compact = props.compact, onRenderDetailsCheckbox = props.onRenderDetailsCheckbox, _f = props.useFastIcons, useFastIcons = _f === void 0 ? true : _f, buttonProps = __rest5(props, ["isVisible", "canSelect", "anySelected", "selected", "selectionMode", "isHeader", "className", "checkClassName", "styles", "theme", "compact", "onRenderDetailsCheckbox", "useFastIcons"]);
@@ -42550,23 +43369,23 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     };
     var divProps = getNativeElementProps("div", buttonProps, ["aria-label", "aria-labelledby", "aria-describedby"]);
     var checkRole = selectionMode === SelectionMode.single ? "radio" : "checkbox";
-    return canSelect ? React68.createElement("div", __assign6({}, buttonProps, {
+    return canSelect ? React73.createElement("div", __assign6({}, buttonProps, {
       role: checkRole,
       className: css(classNames3.root, classNames3.check),
       "aria-checked": selected,
       "data-selection-toggle": true,
       "data-automationid": "DetailsRowCheck",
       tabIndex: -1
-    }), onRenderCheckbox(detailsCheckboxProps)) : React68.createElement("div", __assign6({}, divProps, { className: css(classNames3.root, classNames3.check) }));
+    }), onRenderCheckbox(detailsCheckboxProps)) : React73.createElement("div", __assign6({}, divProps, { className: css(classNames3.root, classNames3.check) }));
   };
-  var FastCheck2 = React68.memo(function(props) {
-    return React68.createElement(Check, { theme: props.theme, checked: props.checked, className: props.className, useFastIcons: true });
+  var FastCheck2 = React73.memo(function(props) {
+    return React73.createElement(Check, { theme: props.theme, checked: props.checked, className: props.className, useFastIcons: true });
   });
   function _defaultCheckboxRender(checkboxProps) {
-    return React68.createElement(Check, { checked: checkboxProps.checked });
+    return React73.createElement(Check, { checked: checkboxProps.checked });
   }
   function _fastDefaultCheckboxRender(checkboxProps) {
-    return React68.createElement(FastCheck2, { theme: checkboxProps.theme, checked: checkboxProps.checked });
+    return React73.createElement(FastCheck2, { theme: checkboxProps.theme, checked: checkboxProps.checked });
   }
   var DetailsRowCheck = styled(DetailsRowCheckBase, getDetailsRowCheckStyles, void 0, { scope: "DetailsRowCheck" }, true);
 
@@ -42839,7 +43658,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }();
 
   // node_modules/@fluentui/react/lib/components/DetailsList/DetailsColumn.base.js
-  var React69 = __toESM(require_react());
+  var React74 = __toESM(require_react());
   var MOUSEDOWN_PRIMARY_BUTTON2 = 0;
   var getClassNames20 = classNamesFunction();
   var TRANSITION_DURATION_DRAG = 200;
@@ -42851,25 +43670,25 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         return null;
       }
       if (props.column.isIconOnly) {
-        return React69.createElement("span", { className: classNames3.accessibleLabel }, props.column.name);
+        return React74.createElement("span", { className: classNames3.accessibleLabel }, props.column.name);
       }
-      return React69.createElement(React69.Fragment, null, props.column.name);
+      return React74.createElement(React74.Fragment, null, props.column.name);
     };
   };
   var DetailsColumnBase = function(_super) {
     __extends5(DetailsColumnBase2, _super);
     function DetailsColumnBase2(props) {
       var _this = _super.call(this, props) || this;
-      _this._root = React69.createRef();
+      _this._root = React74.createRef();
       _this._onRenderFilterIcon = function(classNames3) {
         return function(props2) {
           var columnProps = props2.columnProps, iconProps = __rest5(props2, ["columnProps"]);
           var IconComponent = (columnProps === null || columnProps === void 0 ? void 0 : columnProps.useFastIcons) ? FontIcon : Icon;
-          return React69.createElement(IconComponent, __assign6({}, iconProps));
+          return React74.createElement(IconComponent, __assign6({}, iconProps));
         };
       };
       _this._onRenderColumnHeaderTooltip = function(tooltipHostProps) {
-        return React69.createElement("span", { className: tooltipHostProps.hostClassName }, tooltipHostProps.children);
+        return React74.createElement("span", { className: tooltipHostProps.hostClassName }, tooltipHostProps.children);
       };
       _this._onColumnClick = function(ev) {
         var _a6 = _this.props, onColumnClick = _a6.onColumnClick, column = _a6.column;
@@ -42959,33 +43778,33 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         "aria-labelledby": column.ariaLabel || column.isIconOnly ? void 0 : parentId + "-" + column.key + "-name",
         "aria-describedby": !this.props.onRenderColumnHeaderTooltip && this._hasAccessibleDescription() ? parentId + "-" + column.key + "-tooltip" : void 0
       };
-      return React69.createElement(
-        React69.Fragment,
+      return React74.createElement(
+        React74.Fragment,
         null,
-        React69.createElement(
+        React74.createElement(
           "div",
           __assign6({ key: column.key, ref: this._root, role: "columnheader" }, !hasInnerButton && accNameDescription, { "aria-sort": column.isSorted ? column.isSortedDescending ? "descending" : "ascending" : "none", "data-is-focusable": !hasInnerButton && column.columnActionsMode !== ColumnActionsMode.disabled ? "true" : void 0, className: classNames3.root, "data-is-draggable": isDraggable, draggable: isDraggable, style: {
             width: column.calculatedWidth + cellStyleProps.cellLeftPadding + cellStyleProps.cellRightPadding + (column.isPadded ? cellStyleProps.cellExtraRightPadding : 0)
           }, "data-automationid": "ColumnsHeaderColumn", "data-item-key": column.key }),
-          isDraggable && React69.createElement(IconComponent, { iconName: "GripperBarVertical", className: classNames3.gripperBarVerticalStyle }),
+          isDraggable && React74.createElement(IconComponent, { iconName: "GripperBarVertical", className: classNames3.gripperBarVerticalStyle }),
           onRenderColumnHeaderTooltip({
             hostClassName: classNames3.cellTooltip,
             id: parentId + "-" + column.key + "-tooltip",
             setAriaDescribedBy: false,
             column,
             content: column.columnActionsMode !== ColumnActionsMode.disabled ? column.ariaLabel : "",
-            children: React69.createElement(
+            children: React74.createElement(
               "span",
               __assign6({ id: parentId + "-" + column.key, className: classNames3.cellTitle, "data-is-focusable": hasInnerButton && column.columnActionsMode !== ColumnActionsMode.disabled ? "true" : void 0, role: hasInnerButton ? "button" : void 0 }, hasInnerButton && accNameDescription, { onContextMenu: this._onColumnContextMenu, onClick: this._onColumnClick, "aria-haspopup": column.columnActionsMode === ColumnActionsMode.hasDropdown ? "menu" : void 0, "aria-expanded": column.columnActionsMode === ColumnActionsMode.hasDropdown ? !!column.isMenuOpen : void 0 }),
-              React69.createElement(
+              React74.createElement(
                 "span",
                 { id: parentId + "-" + column.key + "-name", className: classNames3.cellName },
-                (column.iconName || column.iconClassName) && React69.createElement(IconComponent, { className: classNames3.iconClassName, iconName: column.iconName }),
+                (column.iconName || column.iconClassName) && React74.createElement(IconComponent, { className: classNames3.iconClassName, iconName: column.iconName }),
                 onRenderHeader(this.props)
               ),
-              column.isFiltered && React69.createElement(IconComponent, { className: classNames3.nearIcon, iconName: "Filter" }),
-              (column.isSorted || column.showSortIconWhenUnsorted) && React69.createElement(IconComponent, { className: classNames3.sortIcon, iconName: column.isSorted ? column.isSortedDescending ? "SortDown" : "SortUp" : "Sort" }),
-              column.isGrouped && React69.createElement(IconComponent, { className: classNames3.nearIcon, iconName: "GroupedDescending" }),
+              column.isFiltered && React74.createElement(IconComponent, { className: classNames3.nearIcon, iconName: "Filter" }),
+              (column.isSorted || column.showSortIconWhenUnsorted) && React74.createElement(IconComponent, { className: classNames3.sortIcon, iconName: column.isSorted ? column.isSortedDescending ? "SortDown" : "SortUp" : "Sort" }),
+              column.isGrouped && React74.createElement(IconComponent, { className: classNames3.nearIcon, iconName: "GroupedDescending" }),
               column.columnActionsMode === ColumnActionsMode.hasDropdown && !column.isIconOnly && onRenderFilterIcon({
                 "aria-hidden": true,
                 columnProps: this.props,
@@ -43069,7 +43888,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     DetailsColumnBase2.prototype._renderAccessibleDescription = function() {
       var _a6 = this.props, column = _a6.column, parentId = _a6.parentId;
       var classNames3 = this._classNames;
-      return this._hasAccessibleDescription() && !this.props.onRenderColumnHeaderTooltip ? React69.createElement(
+      return this._hasAccessibleDescription() && !this.props.onRenderColumnHeaderTooltip ? React74.createElement(
         "label",
         { key: column.key + "_label", id: parentId + "-" + column.key + "-tooltip", className: classNames3.accessibleLabel, hidden: true },
         column.isFiltered && column.filterAriaLabel || null,
@@ -43082,7 +43901,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       this._events.on(this._root.current, "mousedown", this._onRootMouseDown);
     };
     return DetailsColumnBase2;
-  }(React69.Component);
+  }(React74.Component);
 
   // node_modules/@fluentui/react/lib/components/DetailsList/DetailsColumn.styles.js
   var GlobalClassNames17 = {
@@ -43257,8 +44076,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     __extends5(DetailsHeaderBase2, _super);
     function DetailsHeaderBase2(props) {
       var _this = _super.call(this, props) || this;
-      _this._rootElement = React70.createRef();
-      _this._rootComponent = React70.createRef();
+      _this._rootElement = React75.createRef();
+      _this._rootComponent = React75.createRef();
       _this._draggedColumnIndex = -1;
       _this._dropHintDetails = {};
       _this._updateDroppingState = function(newValue, event) {
@@ -43418,10 +44237,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         var column = columns[columnIndex];
         var columnResizeDetails = _this.state.columnResizeDetails;
         var classNames3 = _this._classNames;
-        return column.isResizable ? React70.createElement("div", { key: column.key + "_sizer", "aria-hidden": true, role: "button", "data-is-focusable": false, onClick: _stopPropagation, "data-sizer-index": columnIndex, onBlur: _this._onSizerBlur, className: css(classNames3.cellSizer, columnIndex < columns.length - 1 ? classNames3.cellSizerStart : classNames3.cellSizerEnd, (_b = {}, _b[classNames3.cellIsResizing] = columnResizeDetails && columnResizeDetails.columnIndex === columnIndex, _b)), onDoubleClick: _this._onSizerDoubleClick.bind(_this, columnIndex) }) : null;
+        return column.isResizable ? React75.createElement("div", { key: column.key + "_sizer", "aria-hidden": true, role: "button", "data-is-focusable": false, onClick: _stopPropagation, "data-sizer-index": columnIndex, onBlur: _this._onSizerBlur, className: css(classNames3.cellSizer, columnIndex < columns.length - 1 ? classNames3.cellSizerStart : classNames3.cellSizerEnd, (_b = {}, _b[classNames3.cellIsResizing] = columnResizeDetails && columnResizeDetails.columnIndex === columnIndex, _b)), onDoubleClick: _this._onSizerDoubleClick.bind(_this, columnIndex) }) : null;
       };
       _this._onRenderColumnHeaderTooltip = function(tooltipHostProps) {
-        return React70.createElement("span", { className: tooltipHostProps.hostClassName }, tooltipHostProps.children);
+        return React75.createElement("span", { className: tooltipHostProps.hostClassName }, tooltipHostProps.children);
       };
       _this._onSelectAllClicked = function() {
         var selection = _this.props.selection;
@@ -43640,31 +44459,31 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       var showGroupExpander = groupNestingDepth > 0 && this.props.collapseAllVisibility === CollapseAllVisibility.visible;
       var columnIndexOffset = 1 + (showCheckbox ? 1 : 0) + (showGroupExpander ? 1 : 0);
       var isRTL = getRTL2(theme);
-      return React70.createElement(
+      return React75.createElement(
         FocusZone,
         { role: "row", "aria-label": ariaLabel, className: classNames3.root, componentRef: this._rootComponent, elementRef: this._rootElement, onMouseMove: this._onRootMouseMove, "data-automationid": "DetailsHeader", direction: FocusZoneDirection.horizontal },
         showCheckbox ? [
-          React70.createElement("div", { key: "__checkbox", className: classNames3.cellIsCheck, "aria-labelledby": this._id + "-checkTooltip", onClick: !isCheckboxHidden ? this._onSelectAllClicked : void 0, role: "columnheader" }, onRenderColumnHeaderTooltip({
+          React75.createElement("div", { key: "__checkbox", className: classNames3.cellIsCheck, "aria-labelledby": this._id + "-checkTooltip", onClick: !isCheckboxHidden ? this._onSelectAllClicked : void 0, role: "columnheader" }, onRenderColumnHeaderTooltip({
             hostClassName: classNames3.checkTooltip,
             id: this._id + "-checkTooltip",
             setAriaDescribedBy: false,
             content: ariaLabelForSelectAllCheckbox,
-            children: React70.createElement(DetailsRowCheck, { id: this._id + "-check", "aria-label": selectionMode === SelectionMode.multiple ? ariaLabelForSelectAllCheckbox : ariaLabelForSelectionColumn, "data-is-focusable": !isCheckboxHidden || void 0, isHeader: true, selected: isAllSelected, anySelected: false, canSelect: !isCheckboxHidden, className: classNames3.check, onRenderDetailsCheckbox, useFastIcons, isVisible: isCheckboxAlwaysVisible })
+            children: React75.createElement(DetailsRowCheck, { id: this._id + "-check", "aria-label": selectionMode === SelectionMode.multiple ? ariaLabelForSelectAllCheckbox : ariaLabelForSelectionColumn, "data-is-focusable": !isCheckboxHidden || void 0, isHeader: true, selected: isAllSelected, anySelected: false, canSelect: !isCheckboxHidden, className: classNames3.check, onRenderDetailsCheckbox, useFastIcons, isVisible: isCheckboxAlwaysVisible })
           }, this._onRenderColumnHeaderTooltip)),
-          !this.props.onRenderColumnHeaderTooltip ? ariaLabelForSelectAllCheckbox && !isCheckboxHidden ? React70.createElement("label", { key: "__checkboxLabel", id: this._id + "-checkTooltip", className: classNames3.accessibleLabel, "aria-hidden": true }, ariaLabelForSelectAllCheckbox) : ariaLabelForSelectionColumn && isCheckboxHidden ? React70.createElement("label", { key: "__checkboxLabel", id: this._id + "-checkTooltip", className: classNames3.accessibleLabel, "aria-hidden": true }, ariaLabelForSelectionColumn) : null : null
+          !this.props.onRenderColumnHeaderTooltip ? ariaLabelForSelectAllCheckbox && !isCheckboxHidden ? React75.createElement("label", { key: "__checkboxLabel", id: this._id + "-checkTooltip", className: classNames3.accessibleLabel, "aria-hidden": true }, ariaLabelForSelectAllCheckbox) : ariaLabelForSelectionColumn && isCheckboxHidden ? React75.createElement("label", { key: "__checkboxLabel", id: this._id + "-checkTooltip", className: classNames3.accessibleLabel, "aria-hidden": true }, ariaLabelForSelectionColumn) : null : null
         ] : null,
-        showGroupExpander ? React70.createElement(
+        showGroupExpander ? React75.createElement(
           "div",
           { className: classNames3.cellIsGroupExpander, onClick: this._onToggleCollapseAll, "data-is-focusable": true, "aria-label": ariaLabelForToggleAllGroupsButton, "aria-expanded": !isAllCollapsed, role: "columnheader" },
-          React70.createElement(IconComponent, { className: classNames3.collapseButton, iconName: isRTL ? "ChevronLeftMed" : "ChevronRightMed" }),
-          React70.createElement("span", { className: classNames3.accessibleLabel }, ariaLabelForToggleAllGroupsButton)
+          React75.createElement(IconComponent, { className: classNames3.collapseButton, iconName: isRTL ? "ChevronLeftMed" : "ChevronRightMed" }),
+          React75.createElement("span", { className: classNames3.accessibleLabel }, ariaLabelForToggleAllGroupsButton)
         ) : null,
-        React70.createElement(GroupSpacer, { indentWidth, role: "gridcell", count: groupNestingDepth - 1 }),
+        React75.createElement(GroupSpacer, { indentWidth, role: "gridcell", count: groupNestingDepth - 1 }),
         columns.map(function(column, columnIndex) {
           var _isDraggable = columnReorderProps ? columnIndex >= frozenColumnCountFromStart && columnIndex < columns.length - frozenColumnCountFromEnd : false;
           return [
             columnReorderProps && (_isDraggable || columnIndex === columns.length - frozenColumnCountFromEnd) && _this._renderDropHint(columnIndex),
-            React70.createElement(DetailsColumn, {
+            React75.createElement(DetailsColumn, {
               column,
               styles: column.styles,
               key: column.key,
@@ -43684,10 +44503,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           ];
         }),
         columnReorderProps && frozenColumnCountFromEnd === 0 && this._renderDropHint(columns.length),
-        isSizing && React70.createElement(
+        isSizing && React75.createElement(
           Layer,
           null,
-          React70.createElement("div", { className: classNames3.sizingOverlay, onMouseMove: this._onSizerMouseMove, onMouseUp: this._onSizerMouseUp })
+          React75.createElement("div", { className: classNames3.sizingOverlay, onMouseMove: this._onSizerMouseMove, onMouseUp: this._onSizerMouseUp })
         )
       );
     };
@@ -43755,15 +44574,15 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     DetailsHeaderBase2.prototype._renderDropHint = function(dropHintIndex) {
       var classNames3 = this._classNames;
       var IconComponent = this.props.useFastIcons ? FontIcon : Icon;
-      return React70.createElement(
+      return React75.createElement(
         "div",
         { key: "dropHintKey", className: classNames3.dropHintStyle, id: "columnDropHint_" + dropHintIndex },
-        React70.createElement(
+        React75.createElement(
           "div",
           { role: "presentation", key: "dropHintCircleKey", className: classNames3.dropHintCaretStyle, "data-is-focusable": false, "data-sizer-index": dropHintIndex, "aria-hidden": true },
-          React70.createElement(IconComponent, { iconName: "CircleShapeSolid" })
+          React75.createElement(IconComponent, { iconName: "CircleShapeSolid" })
         ),
-        React70.createElement("div", { key: "dropHintLineKey", "aria-hidden": true, "data-is-focusable": false, "data-sizer-index": dropHintIndex, className: classNames3.dropHintLineStyle })
+        React75.createElement("div", { key: "dropHintLineKey", "aria-hidden": true, "data-is-focusable": false, "data-sizer-index": dropHintIndex, className: classNames3.dropHintLineStyle })
       );
     };
     DetailsHeaderBase2.prototype._onSizerDoubleClick = function(columnIndex, ev) {
@@ -43786,7 +44605,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       useFastIcons: true
     };
     return DetailsHeaderBase2;
-  }(React70.Component);
+  }(React75.Component);
   function _liesBetween(rtl, target, left, right) {
     return rtl ? target <= left && target >= right : target >= left && target <= right;
   }
@@ -43804,13 +44623,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var DetailsHeader = styled(DetailsHeaderBase, getDetailsHeaderStyles, void 0, { scope: "DetailsHeader" });
 
   // node_modules/@fluentui/react/lib/components/DetailsList/DetailsList.base.js
-  var React74 = __toESM(require_react());
+  var React79 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/DetailsList/DetailsRow.base.js
-  var React72 = __toESM(require_react());
+  var React77 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/DetailsList/DetailsRowFields.js
-  var React71 = __toESM(require_react());
+  var React76 = __toESM(require_react());
   var getCellText = function(item, column) {
     var value = item && column && column.fieldName ? item[column.fieldName] : "";
     if (value === null || value === void 0) {
@@ -43823,15 +44642,15 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
   var DetailsRowFields = function(props) {
     var columns = props.columns, rowClassNames = props.rowClassNames, _a6 = props.cellStyleProps, cellStyleProps = _a6 === void 0 ? DEFAULT_CELL_STYLE_PROPS : _a6, item = props.item, itemIndex = props.itemIndex, isSelected = props.isSelected, onRenderItemColumn = props.onRenderItemColumn, getCellValueKey = props.getCellValueKey, propsOnRenderField = props.onRenderField, cellsByColumn = props.cellsByColumn, enableUpdateAnimations = props.enableUpdateAnimations, rowHeaderId = props.rowHeaderId;
-    var cellValueKeysRef = React71.useRef();
+    var cellValueKeysRef = React76.useRef();
     var cellValueKeys = cellValueKeysRef.current || (cellValueKeysRef.current = {});
-    var defaultOnRenderField = React71.useCallback(function(fieldProps) {
+    var defaultOnRenderField = React76.useCallback(function(fieldProps) {
       var column = fieldProps.column, cellValueKey = fieldProps.cellValueKey, className = fieldProps.className, onRender = fieldProps.onRender, fieldItem = fieldProps.item, fieldItemIndex = fieldProps.itemIndex;
       var width = typeof column.calculatedWidth === "undefined" ? "auto" : column.calculatedWidth + cellStyleProps.cellLeftPadding + cellStyleProps.cellRightPadding + (column.isPadded ? cellStyleProps.cellExtraRightPadding : 0);
       var key = "" + column.key + (cellValueKey !== void 0 ? "-" + cellValueKey : "");
-      return React71.createElement("div", { key, id: column.isRowHeader ? rowHeaderId : void 0, role: column.isRowHeader ? "rowheader" : "gridcell", className: css(column.className, column.isMultiline && rowClassNames.isMultiline, column.isRowHeader && rowClassNames.isRowHeader, rowClassNames.cell, column.isPadded ? rowClassNames.cellPadded : rowClassNames.cellUnpadded, className), style: { width }, "data-automationid": "DetailsRowCell", "data-automation-key": column.key }, onRender(fieldItem, fieldItemIndex, column));
+      return React76.createElement("div", { key, id: column.isRowHeader ? rowHeaderId : void 0, role: column.isRowHeader ? "rowheader" : "gridcell", className: css(column.className, column.isMultiline && rowClassNames.isMultiline, column.isRowHeader && rowClassNames.isRowHeader, rowClassNames.cell, column.isPadded ? rowClassNames.cellPadded : rowClassNames.cellUnpadded, className), style: { width }, "data-automationid": "DetailsRowCell", "data-automation-key": column.key }, onRender(fieldItem, fieldItemIndex, column));
     }, [rowClassNames, cellStyleProps, rowHeaderId]);
-    return React71.createElement("div", { className: rowClassNames.fields, "data-automationid": "DetailsRowFields", role: "presentation" }, columns.map(function(column) {
+    return React76.createElement("div", { className: rowClassNames.fields, "data-automationid": "DetailsRowFields", role: "presentation" }, columns.map(function(column) {
       var _a7 = column.getValueKey, getValueKey = _a7 === void 0 ? getCellValueKey : _a7;
       var onRender = cellsByColumn && column.key in cellsByColumn && function() {
         return cellsByColumn[column.key];
@@ -43876,9 +44695,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     __extends5(DetailsRowBase2, _super);
     function DetailsRowBase2(props) {
       var _this = _super.call(this, props) || this;
-      _this._root = React72.createRef();
-      _this._cellMeasurer = React72.createRef();
-      _this._focusZone = React72.createRef();
+      _this._root = React77.createRef();
+      _this._cellMeasurer = React77.createRef();
+      _this._focusZone = React77.createRef();
       _this._onSelectionChanged = function() {
         var selectionState = getSelectionState(_this.props);
         if (!shallowCompare(selectionState, _this.state.selectionState)) {
@@ -44016,7 +44835,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         this._rowClassNames = rowClassNames;
       }
       var RowFields = rowFieldsAs ? composeComponentAs(rowFieldsAs, DetailsRowFields) : DetailsRowFields;
-      var rowFields = React72.createElement(RowFields, { rowClassNames: this._rowClassNames, rowHeaderId: id + "-header", cellsByColumn, columns, item, itemIndex, isSelected, columnStartIndex: (showCheckbox ? 1 : 0) + (groupNestingDepth ? 1 : 0), onRenderItemColumn, onRenderField, getCellValueKey, enableUpdateAnimations, cellStyleProps });
+      var rowFields = React77.createElement(RowFields, { rowClassNames: this._rowClassNames, rowHeaderId: id + "-header", cellsByColumn, columns, item, itemIndex, isSelected, columnStartIndex: (showCheckbox ? 1 : 0) + (groupNestingDepth ? 1 : 0), onRenderItemColumn, onRenderField, getCellValueKey, enableUpdateAnimations, cellStyleProps });
       var defaultRole = "row";
       var role = this.props.role ? this.props.role : defaultRole;
       this._ariaRowDescriptionId = getId("DetailsRow-description");
@@ -44029,14 +44848,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         "aria-posinset": ariaPositionInSet,
         "aria-setsize": ariaSetSize
       };
-      return React72.createElement(
+      return React77.createElement(
         FocusZone,
         __assign6({ "data-is-focusable": true }, getNativeProps(this.props, divProperties), typeof isDraggable === "boolean" ? {
           "data-is-draggable": isDraggable,
           draggable: isDraggable
         } : {}, focusZoneProps, groupedListRowProps, { direction: focusZoneDirection, elementRef: this._root, componentRef: this._focusZone, role, "aria-label": ariaLabel, "aria-disabled": disabled || void 0, "aria-describedby": ariaRowDescription ? this._ariaRowDescriptionId : ariaDescribedBy, className: this._classNames.root, "data-selection-index": itemIndex, "data-selection-touch-invoke": true, "data-selection-disabled": disabled || void 0, "data-item-index": itemIndex, "aria-rowindex": ariaPositionInSet === void 0 ? itemIndex + flatIndexOffset : void 0, "data-automationid": "DetailsRow", style: { minWidth: rowWidth }, "aria-selected": ariaSelected, allowFocusRoot: true }),
-        ariaRowDescription ? React72.createElement("span", { key: "description", role: "presentation", hidden: true, id: this._ariaRowDescriptionId }, ariaRowDescription) : null,
-        showCheckbox && React72.createElement("div", { role: "gridcell", "data-selection-toggle": true, className: this._classNames.checkCell }, onRenderCheck({
+        ariaRowDescription ? React77.createElement("span", { key: "description", role: "presentation", hidden: true, id: this._ariaRowDescriptionId }, ariaRowDescription) : null,
+        showCheckbox && React77.createElement("div", { role: "gridcell", "data-selection-toggle": true, className: this._classNames.checkCell }, onRenderCheck({
           id: id ? id + "-checkbox" : void 0,
           selected: isSelected,
           selectionMode,
@@ -44051,14 +44870,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           onRenderDetailsCheckbox,
           useFastIcons
         })),
-        React72.createElement(GroupSpacer, { indentWidth, role: "gridcell", count: groupNestingDepth - (this.props.collapseAllVisibility === CollapseAllVisibility.hidden ? 1 : 0) }),
+        React77.createElement(GroupSpacer, { indentWidth, role: "gridcell", count: groupNestingDepth - (this.props.collapseAllVisibility === CollapseAllVisibility.hidden ? 1 : 0) }),
         item && rowFields,
-        columnMeasureInfo && React72.createElement(
+        columnMeasureInfo && React77.createElement(
           "span",
           { role: "presentation", className: css(this._classNames.cellMeasurer, this._classNames.cell), ref: this._cellMeasurer },
-          React72.createElement(RowFields, { rowClassNames: this._rowClassNames, rowHeaderId: id + "-header", columns: [columnMeasureInfo.column], item, itemIndex, columnStartIndex: (showCheckbox ? 1 : 0) + (groupNestingDepth ? 1 : 0) + columns.length, onRenderItemColumn, getCellValueKey })
+          React77.createElement(RowFields, { rowClassNames: this._rowClassNames, rowHeaderId: id + "-header", columns: [columnMeasureInfo.column], item, itemIndex, columnStartIndex: (showCheckbox ? 1 : 0) + (groupNestingDepth ? 1 : 0) + columns.length, onRenderItemColumn, getCellValueKey })
         ),
-        React72.createElement("span", { role: "checkbox", className: this._classNames.checkCover, "aria-checked": isSelected, "data-selection-toggle": true })
+        React77.createElement("span", { role: "checkbox", className: this._classNames.checkCover, "aria-checked": isSelected, "data-selection-toggle": true })
       );
     };
     DetailsRowBase2.prototype.measureCell = function(index, onMeasureDone) {
@@ -44083,7 +44902,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       return !!((_a6 = this._focusZone.current) === null || _a6 === void 0 ? void 0 : _a6.focus(forceIntoFirstElement));
     };
     DetailsRowBase2.prototype._onRenderCheck = function(props) {
-      return React72.createElement(DetailsRowCheck, __assign6({}, props));
+      return React77.createElement(DetailsRowCheck, __assign6({}, props));
     };
     DetailsRowBase2.prototype._getRowDragDropOptions = function() {
       var _a6 = this.props, item = _a6.item, itemIndex = _a6.itemIndex, dragDropEvents = _a6.dragDropEvents, eventsToRegister = _a6.eventsToRegister;
@@ -44102,7 +44921,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       return options;
     };
     return DetailsRowBase2;
-  }(React72.Component);
+  }(React77.Component);
   function getSelectionState(props) {
     var _a6;
     var itemIndex = props.itemIndex, selection = props.selection;
@@ -44118,7 +44937,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // node_modules/@fluentui/react/lib/utilities/decorators/withViewport.js
-  var React73 = __toESM(require_react());
+  var React78 = __toESM(require_react());
   var RESIZE_DELAY3 = 500;
   var MAX_RESIZE_ATTEMPTS = 3;
   function withViewport(ComposedComponent) {
@@ -44126,7 +44945,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       __extends5(WithViewportComponent, _super);
       function WithViewportComponent(props) {
         var _this = _super.call(this, props) || this;
-        _this._root = React73.createRef();
+        _this._root = React78.createRef();
         _this._registerResizeObserver = function() {
           var win = getWindow(_this._root.current);
           _this._viewportResizeObserver = new win.ResizeObserver(_this._onAsyncResize);
@@ -44226,10 +45045,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       WithViewportComponent.prototype.render = function() {
         var viewport = this.state.viewport;
         var newViewport = viewport.width > 0 && viewport.height > 0 ? viewport : void 0;
-        return React73.createElement(
+        return React78.createElement(
           "div",
           { className: "ms-Viewport", ref: this._root, style: { minWidth: 1, minHeight: 1 } },
-          React73.createElement(ComposedComponent, __assign6({ ref: this._updateComposedComponentRef, viewport: newViewport }, this.props))
+          React78.createElement(ComposedComponent, __assign6({ ref: this._updateComposedComponentRef, viewport: newViewport }, this.props))
         );
       };
       WithViewportComponent.prototype.forceUpdate = function() {
@@ -44259,7 +45078,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     var rowId = getId("row");
     var groupNestingDepth = getGroupNestingDepth(groups);
     var groupedDetailsListIndexMap = useGroupedDetailsListIndexMap(groups);
-    var additionalListProps = React74.useMemo(function() {
+    var additionalListProps = React79.useMemo(function() {
       return __assign6({ renderedWindowsAhead: isSizing ? 0 : DEFAULT_RENDERED_WINDOWS_AHEAD2, renderedWindowsBehind: isSizing ? 0 : DEFAULT_RENDERED_WINDOWS_BEHIND2, getKey, version }, listProps);
     }, [isSizing, getKey, version, listProps]);
     var selectAllVisibility = SelectAllVisibility.none;
@@ -44277,21 +45096,21 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     if (checkboxVisibility === CheckboxVisibility.hidden) {
       selectAllVisibility = SelectAllVisibility.none;
     }
-    var defaultOnRenderDetailsHeader = React74.useCallback(function(detailsHeaderProps) {
-      return React74.createElement(DetailsHeader, __assign6({}, detailsHeaderProps));
+    var defaultOnRenderDetailsHeader = React79.useCallback(function(detailsHeaderProps) {
+      return React79.createElement(DetailsHeader, __assign6({}, detailsHeaderProps));
     }, []);
-    var defaultOnRenderDetailsFooter = React74.useCallback(function() {
+    var defaultOnRenderDetailsFooter = React79.useCallback(function() {
       return null;
     }, []);
     var propsOnRenderDetailsHeader = props.onRenderDetailsHeader;
-    var onRenderDetailsHeader = React74.useMemo(function() {
+    var onRenderDetailsHeader = React79.useMemo(function() {
       return propsOnRenderDetailsHeader ? composeRenderFunction(propsOnRenderDetailsHeader, defaultOnRenderDetailsHeader) : defaultOnRenderDetailsHeader;
     }, [propsOnRenderDetailsHeader, defaultOnRenderDetailsHeader]);
     var propsOnRenderDetailsFooter = props.onRenderDetailsFooter;
-    var onRenderDetailsFooter = React74.useMemo(function() {
+    var onRenderDetailsFooter = React79.useMemo(function() {
       return propsOnRenderDetailsFooter ? composeRenderFunction(propsOnRenderDetailsFooter, defaultOnRenderDetailsFooter) : defaultOnRenderDetailsFooter;
     }, [propsOnRenderDetailsFooter, defaultOnRenderDetailsFooter]);
-    var detailsFooterProps = React74.useMemo(function() {
+    var detailsFooterProps = React79.useMemo(function() {
       return {
         columns: adjustedColumns,
         groupNestingDepth,
@@ -44313,7 +45132,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       cellStyleProps
     ]);
     var columnReorderOnDragEnd = columnReorderOptions && columnReorderOptions.onDragEnd;
-    var onColumnDragEnd = React74.useCallback(function(_a7, event) {
+    var onColumnDragEnd = React79.useCallback(function(_a7, event) {
       var dropLocation = _a7.dropLocation;
       var finalDropLocation = ColumnDragEndLocation.outside;
       if (columnReorderOnDragEnd) {
@@ -44328,14 +45147,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         columnReorderOnDragEnd(finalDropLocation);
       }
     }, [columnReorderOnDragEnd, rootRef]);
-    var columnReorderProps = React74.useMemo(function() {
+    var columnReorderProps = React79.useMemo(function() {
       if (columnReorderOptions) {
         return __assign6(__assign6({}, columnReorderOptions), { onColumnDragEnd });
       }
     }, [columnReorderOptions, onColumnDragEnd]);
     var rowCount = (isHeaderVisible ? 1 : 0) + (props.onRenderDetailsFooter ? 1 : 0) + GetGroupCount(groups) + (items ? items.length : 0);
     var colCount = (selectAllVisibility !== SelectAllVisibility.none ? 1 : 0) + (adjustedColumns ? adjustedColumns.length : 0) + (groups ? 1 : 0);
-    var classNames3 = React74.useMemo(function() {
+    var classNames3 = React79.useMemo(function() {
       return getClassNames23(styles2, {
         theme,
         compact,
@@ -44345,7 +45164,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       });
     }, [styles2, theme, compact, layoutMode, constrainMode, className]);
     var onRenderDetailsGroupFooter = groupProps && groupProps.onRenderFooter;
-    var finalOnRenderDetailsGroupFooter = React74.useMemo(function() {
+    var finalOnRenderDetailsGroupFooter = React79.useMemo(function() {
       return onRenderDetailsGroupFooter ? function(groupFooterProps, defaultRender) {
         return onRenderDetailsGroupFooter(__assign6(__assign6({}, groupFooterProps), { columns: adjustedColumns, groupNestingDepth, indentWidth, selection, selectionMode, viewport, checkboxVisibility, cellStyleProps }), defaultRender);
       } : void 0;
@@ -44361,7 +45180,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       cellStyleProps
     ]);
     var onRenderDetailsGroupHeader = groupProps && groupProps.onRenderHeader;
-    var finalOnRenderDetailsGroupHeader = React74.useMemo(function() {
+    var finalOnRenderDetailsGroupHeader = React79.useMemo(function() {
       return onRenderDetailsGroupHeader ? function(groupHeaderProps, defaultRender) {
         var _a7, _b2;
         var groupIndex = groupHeaderProps.groupIndex;
@@ -44388,7 +45207,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       cellStyleProps,
       groupedDetailsListIndexMap
     ]);
-    var finalGroupProps = React74.useMemo(function() {
+    var finalGroupProps = React79.useMemo(function() {
       var _a7;
       return __assign6(__assign6({}, groupProps), {
         role: role === defaultRole ? "rowgroup" : "presentation",
@@ -44407,10 +45226,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       });
     });
     var collapseAllVisibility = groupProps && groupProps.collapseAllVisibility;
-    var rowWidth = React74.useMemo(function() {
+    var rowWidth = React79.useMemo(function() {
       return sumColumnWidths(adjustedColumns);
     }, [adjustedColumns, sumColumnWidths]);
-    var onRenderCell = React74.useCallback(function(nestingDepth, item, index, group) {
+    var onRenderCell = React79.useCallback(function(nestingDepth, item, index, group) {
       var finalOnRenderRow = props.onRenderRow ? composeRenderFunction(props.onRenderRow, onRenderDefaultRow) : onRenderDefaultRow;
       var groupKey = group ? group.key : void 0;
       var numOfGroupHeadersBeforeItem = groupKey && groupedDetailsListIndexMap[groupKey] ? groupedDetailsListIndexMap[groupKey].numOfGroupHeadersBeforeItem : 0;
@@ -44494,22 +45313,22 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       role,
       groupedDetailsListIndexMap
     ]);
-    var onRenderListCell = React74.useCallback(function(nestingDepth) {
+    var onRenderListCell = React79.useCallback(function(nestingDepth) {
       return function(item, itemIndex) {
         return onRenderCell(nestingDepth, item, itemIndex);
       };
     }, [onRenderCell]);
-    var isRightArrow = React74.useCallback(function(event) {
+    var isRightArrow = React79.useCallback(function(event) {
       return event.which === getRTLSafeKeyCode(KeyCodes.right, theme);
     }, [theme]);
     var focusZoneInnerProps = __assign6(__assign6({}, focusZoneProps), { componentRef: focusZoneProps && focusZoneProps.componentRef ? focusZoneProps.componentRef : focusZoneRef, className: classNames3.focusZone, direction: focusZoneProps ? focusZoneProps.direction : FocusZoneDirection.vertical, shouldEnterInnerZone: focusZoneProps && focusZoneProps.shouldEnterInnerZone ? focusZoneProps.shouldEnterInnerZone : isRightArrow, onActiveElementChanged: focusZoneProps && focusZoneProps.onActiveElementChanged ? focusZoneProps.onActiveElementChanged : onActiveRowChanged, shouldRaiseClicksOnEnter: false, onBlur: focusZoneProps && focusZoneProps.onBlur ? focusZoneProps.onBlur : onBlur });
     var FinalGroupedList = groups && (groupProps === null || groupProps === void 0 ? void 0 : groupProps.groupedListAs) ? composeComponentAs(groupProps.groupedListAs, GroupedList) : GroupedList;
-    var list = groups ? React74.createElement(FinalGroupedList, { focusZoneProps: focusZoneInnerProps, componentRef: groupedListRef, groups, groupProps: finalGroupProps, items, onRenderCell, role: "presentation", selection, selectionMode: checkboxVisibility !== CheckboxVisibility.hidden ? selectionMode : SelectionMode.none, dragDropEvents, dragDropHelper, eventsToRegister: rowElementEventMap, listProps: additionalListProps, onGroupExpandStateChanged, usePageCache, onShouldVirtualize, getGroupHeight, compact }) : React74.createElement(
+    var list = groups ? React79.createElement(FinalGroupedList, { focusZoneProps: focusZoneInnerProps, componentRef: groupedListRef, groups, groupProps: finalGroupProps, items, onRenderCell, role: "presentation", selection, selectionMode: checkboxVisibility !== CheckboxVisibility.hidden ? selectionMode : SelectionMode.none, dragDropEvents, dragDropHelper, eventsToRegister: rowElementEventMap, listProps: additionalListProps, onGroupExpandStateChanged, usePageCache, onShouldVirtualize, getGroupHeight, compact }) : React79.createElement(
       FocusZone,
       __assign6({}, focusZoneInnerProps),
-      React74.createElement(List, __assign6({ ref: listRef, role: "presentation", items, onRenderCell: onRenderListCell(0), usePageCache, onShouldVirtualize }, additionalListProps))
+      React79.createElement(List, __assign6({ ref: listRef, role: "presentation", items, onRenderCell: onRenderListCell(0), usePageCache, onShouldVirtualize }, additionalListProps))
     );
-    var onHeaderKeyDown = React74.useCallback(function(ev) {
+    var onHeaderKeyDown = React79.useCallback(function(ev) {
       if (ev.which === KeyCodes.down) {
         if (focusZoneRef.current && focusZoneRef.current.focus()) {
           if (isSelectedOnFocus && selection.getSelectedIndices().length === 0) {
@@ -44520,7 +45339,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       }
     }, [selection, focusZoneRef, isSelectedOnFocus]);
-    var onContentKeyDown = React74.useCallback(function(ev) {
+    var onContentKeyDown = React79.useCallback(function(ev) {
       if (ev.which === KeyCodes.up && !ev.altKey) {
         if (headerRef.current && headerRef.current.focus()) {
           ev.preventDefault();
@@ -44528,14 +45347,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       }
     }, [headerRef]);
-    return React74.createElement(
+    return React79.createElement(
       "div",
       __assign6({ ref: rootRef, className: classNames3.root, "data-automationid": "DetailsList", "data-is-scrollable": "false" }, shouldApplyApplicationRole ? { role: "application" } : {}),
-      React74.createElement(FocusRects, null),
-      React74.createElement(
+      React79.createElement(FocusRects, null),
+      React79.createElement(
         "div",
         { role, "aria-label": ariaLabelForGrid || ariaLabel, "aria-rowcount": isPlaceholderData ? 0 : rowCount, "aria-colcount": colCount, "aria-busy": isPlaceholderData },
-        React74.createElement("div", { onKeyDown: onHeaderKeyDown, role: "presentation", className: classNames3.headerWrapper }, isHeaderVisible && onRenderDetailsHeader({
+        React79.createElement("div", { onKeyDown: onHeaderKeyDown, role: "presentation", className: classNames3.headerWrapper }, isHeaderVisible && onRenderDetailsHeader({
           componentRef: headerRef,
           selectionMode,
           layoutMode,
@@ -44564,7 +45383,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           rowWidth: sumColumnWidths(adjustedColumns),
           useFastIcons
         }, onRenderDetailsHeader)),
-        React74.createElement("div", { onKeyDown: onContentKeyDown, role: "presentation", className: classNames3.contentWrapper }, !disableSelectionZone ? React74.createElement(SelectionZone, __assign6({ ref: selectionZoneRef, selection, selectionPreservedOnEmptyClick, selectionMode, isSelectedOnFocus, selectionClearedOnEscapePress: isSelectedOnFocus, toggleWithoutModifierPressed: !isSelectedOnFocus, onItemInvoked, onItemContextMenu, enterModalOnTouch: enterModalSelectionOnTouch }, selectionZoneProps || {}), list) : list),
+        React79.createElement("div", { onKeyDown: onContentKeyDown, role: "presentation", className: classNames3.contentWrapper }, !disableSelectionZone ? React79.createElement(SelectionZone, __assign6({ ref: selectionZoneRef, selection, selectionPreservedOnEmptyClick, selectionMode, isSelectedOnFocus, selectionClearedOnEscapePress: isSelectedOnFocus, toggleWithoutModifierPressed: !isSelectedOnFocus, onItemInvoked, onItemContextMenu, enterModalOnTouch: enterModalSelectionOnTouch }, selectionZoneProps || {}), list) : list),
         onRenderDetailsFooter(__assign6({}, detailsFooterProps))
       )
     );
@@ -44573,14 +45392,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     __extends5(DetailsListBase2, _super);
     function DetailsListBase2(props) {
       var _this = _super.call(this, props) || this;
-      _this._root = React74.createRef();
-      _this._header = React74.createRef();
-      _this._groupedList = React74.createRef();
-      _this._list = React74.createRef();
-      _this._focusZone = React74.createRef();
-      _this._selectionZone = React74.createRef();
+      _this._root = React79.createRef();
+      _this._header = React79.createRef();
+      _this._groupedList = React79.createRef();
+      _this._list = React79.createRef();
+      _this._focusZone = React79.createRef();
+      _this._selectionZone = React79.createRef();
       _this._onRenderRow = function(props2, defaultRender) {
-        return React74.createElement(DetailsRow, __assign6({}, props2));
+        return React79.createElement(DetailsRow, __assign6({}, props2));
       };
       _this._getDerivedStateFromProps = function(nextProps, previousState) {
         var _a6 = _this.props, checkboxVisibility = _a6.checkboxVisibility, items = _a6.items, setKey = _a6.setKey, _b = _a6.selectionMode, selectionMode = _b === void 0 ? _this._selection.mode : _b, columns = _a6.columns, viewport = _a6.viewport, compact = _a6.compact, dragDropEvents = _a6.dragDropEvents;
@@ -44828,7 +45647,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     };
     DetailsListBase2.prototype.render = function() {
-      return React74.createElement(DetailsListInner, __assign6({}, this.props, this.state, { selection: this._selection, dragDropHelper: this._dragDropHelper, rootRef: this._root, listRef: this._list, groupedListRef: this._groupedList, focusZoneRef: this._focusZone, headerRef: this._header, selectionZoneRef: this._selectionZone, onGroupExpandStateChanged: this._onGroupExpandStateChanged, onColumnIsSizingChanged: this._onColumnIsSizingChanged, onRowDidMount: this._onRowDidMount, onRowWillUnmount: this._onRowWillUnmount, onColumnResized: this._onColumnResized, onColumnAutoResized: this._onColumnAutoResized, onToggleCollapse: this._onToggleCollapse, onActiveRowChanged: this._onActiveRowChanged, onBlur: this._onBlur, onRenderDefaultRow: this._onRenderRow }));
+      return React79.createElement(DetailsListInner, __assign6({}, this.props, this.state, { selection: this._selection, dragDropHelper: this._dragDropHelper, rootRef: this._root, listRef: this._list, groupedListRef: this._groupedList, focusZoneRef: this._focusZone, headerRef: this._header, selectionZoneRef: this._selectionZone, onGroupExpandStateChanged: this._onGroupExpandStateChanged, onColumnIsSizingChanged: this._onColumnIsSizingChanged, onRowDidMount: this._onRowDidMount, onRowWillUnmount: this._onRowWillUnmount, onColumnResized: this._onColumnResized, onColumnAutoResized: this._onColumnAutoResized, onToggleCollapse: this._onToggleCollapse, onActiveRowChanged: this._onActiveRowChanged, onBlur: this._onBlur, onRenderDefaultRow: this._onRenderRow }));
     };
     DetailsListBase2.prototype.forceUpdate = function() {
       _super.prototype.forceUpdate.call(this);
@@ -45044,7 +45863,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       withViewport
     ], DetailsListBase2);
     return DetailsListBase2;
-  }(React74.Component);
+  }(React79.Component);
   function buildColumns(items, canResizeColumns, onColumnClick, sortedColumnKey, isSortedDescending, groupedColumnKey, isMultiline, columnActionsMode) {
     var columns = [];
     if (items && items.length) {
@@ -45086,7 +45905,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     return level;
   }
   function useGroupedDetailsListIndexMap(groups) {
-    return React74.useMemo(function() {
+    return React79.useMemo(function() {
       var indexMap = {};
       if (groups) {
         var rowCount = 1;
@@ -45166,15 +45985,1188 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     scope: "DetailsList"
   });
 
-  // node_modules/@fluentui/react/lib/components/MarqueeSelection/MarqueeSelection.base.js
-  var React75 = __toESM(require_react());
+  // node_modules/@fluentui/react/lib/components/Dialog/Dialog.base.js
+  var React85 = __toESM(require_react());
+
+  // node_modules/@fluentui/react/lib/components/Dialog/DialogContent.types.js
+  var DialogType;
+  (function(DialogType2) {
+    DialogType2[DialogType2["normal"] = 0] = "normal";
+    DialogType2[DialogType2["largeHeader"] = 1] = "largeHeader";
+    DialogType2[DialogType2["close"] = 2] = "close";
+  })(DialogType || (DialogType = {}));
+
+  // node_modules/@fluentui/react/lib/components/Modal/Modal.base.js
+  var React82 = __toESM(require_react());
+
+  // node_modules/@fluentui/react/lib/components/Modal/Modal.styles.js
+  var animationDuration = AnimationVariables.durationValue2;
+  var globalClassNames = {
+    root: "ms-Modal",
+    main: "ms-Dialog-main",
+    scrollableContent: "ms-Modal-scrollableContent",
+    isOpen: "is-open",
+    layer: "ms-Modal-Layer"
+  };
+  var getStyles25 = function(props) {
+    var _a6;
+    var className = props.className, containerClassName = props.containerClassName, scrollableContentClassName = props.scrollableContentClassName, isOpen = props.isOpen, isVisible = props.isVisible, hasBeenOpened = props.hasBeenOpened, modalRectangleTop = props.modalRectangleTop, theme = props.theme, topOffsetFixed = props.topOffsetFixed, isModeless = props.isModeless, layerClassName = props.layerClassName, isDefaultDragHandle = props.isDefaultDragHandle, windowInnerHeight = props.windowInnerHeight;
+    var palette = theme.palette, effects = theme.effects, fonts = theme.fonts;
+    var classNames3 = getGlobalClassNames(globalClassNames, theme);
+    return {
+      root: [
+        classNames3.root,
+        fonts.medium,
+        {
+          backgroundColor: "transparent",
+          position: "fixed",
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          opacity: 0,
+          pointerEvents: "none",
+          transition: "opacity " + animationDuration
+        },
+        topOffsetFixed && typeof modalRectangleTop === "number" && hasBeenOpened && {
+          alignItems: "flex-start"
+        },
+        isOpen && classNames3.isOpen,
+        isVisible && {
+          opacity: 1
+        },
+        isVisible && !isModeless && {
+          pointerEvents: "auto"
+        },
+        className
+      ],
+      main: [
+        classNames3.main,
+        {
+          boxShadow: effects.elevation64,
+          borderRadius: effects.roundedCorner2,
+          backgroundColor: palette.white,
+          boxSizing: "border-box",
+          position: "relative",
+          textAlign: "left",
+          outline: "3px solid transparent",
+          maxHeight: "calc(100% - 32px)",
+          maxWidth: "calc(100% - 32px)",
+          minHeight: "176px",
+          minWidth: "288px",
+          overflowY: "auto",
+          zIndex: isModeless ? ZIndexes.Layer : void 0
+        },
+        isModeless && {
+          pointerEvents: "auto"
+        },
+        topOffsetFixed && typeof modalRectangleTop === "number" && hasBeenOpened && {
+          top: modalRectangleTop
+        },
+        isDefaultDragHandle && {
+          cursor: "move"
+        },
+        containerClassName
+      ],
+      scrollableContent: [
+        classNames3.scrollableContent,
+        {
+          overflowY: "auto",
+          flexGrow: 1,
+          maxHeight: "100vh",
+          selectors: (_a6 = {}, _a6["@supports (-webkit-overflow-scrolling: touch)"] = {
+            maxHeight: windowInnerHeight
+          }, _a6)
+        },
+        scrollableContentClassName
+      ],
+      layer: isModeless && [layerClassName, classNames3.layer, { pointerEvents: "none" }],
+      keyboardMoveIconContainer: {
+        position: "absolute",
+        display: "flex",
+        justifyContent: "center",
+        width: "100%",
+        padding: "3px 0px"
+      },
+      keyboardMoveIcon: {
+        fontSize: fonts.xLargePlus.fontSize,
+        width: "24px"
+      }
+    };
+  };
+
+  // node_modules/@fluentui/react/lib/components/Overlay/Overlay.base.js
+  var React80 = __toESM(require_react());
   var getClassNames24 = classNamesFunction();
+  var OverlayBase = function(_super) {
+    __extends5(OverlayBase2, _super);
+    function OverlayBase2(props) {
+      var _this = _super.call(this, props) || this;
+      initializeComponentRef(_this);
+      var _a6 = _this.props.allowTouchBodyScroll, allowTouchBodyScroll = _a6 === void 0 ? false : _a6;
+      _this._allowTouchBodyScroll = allowTouchBodyScroll;
+      return _this;
+    }
+    OverlayBase2.prototype.componentDidMount = function() {
+      !this._allowTouchBodyScroll && disableBodyScroll();
+    };
+    OverlayBase2.prototype.componentWillUnmount = function() {
+      !this._allowTouchBodyScroll && enableBodyScroll();
+    };
+    OverlayBase2.prototype.render = function() {
+      var _a6 = this.props, isDark = _a6.isDarkThemed, className = _a6.className, theme = _a6.theme, styles2 = _a6.styles;
+      var divProps = getNativeProps(this.props, divProperties);
+      var classNames3 = getClassNames24(styles2, {
+        theme,
+        className,
+        isDark
+      });
+      return React80.createElement("div", __assign6({}, divProps, { className: classNames3.root }));
+    };
+    return OverlayBase2;
+  }(React80.Component);
+
+  // node_modules/@fluentui/react/lib/components/Overlay/Overlay.styles.js
+  var GlobalClassNames19 = {
+    root: "ms-Overlay",
+    rootDark: "ms-Overlay--dark"
+  };
+  var getStyles26 = function(props) {
+    var _a6;
+    var className = props.className, theme = props.theme, isNone = props.isNone, isDark = props.isDark;
+    var palette = theme.palette;
+    var classNames3 = getGlobalClassNames(GlobalClassNames19, theme);
+    return {
+      root: [
+        classNames3.root,
+        theme.fonts.medium,
+        {
+          backgroundColor: palette.whiteTranslucent40,
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          position: "absolute",
+          selectors: (_a6 = {}, _a6[HighContrastSelector] = {
+            border: "1px solid WindowText",
+            opacity: 0
+          }, _a6)
+        },
+        isNone && {
+          visibility: "hidden"
+        },
+        isDark && [
+          classNames3.rootDark,
+          {
+            backgroundColor: palette.blackTranslucent40
+          }
+        ],
+        className
+      ]
+    };
+  };
+
+  // node_modules/@fluentui/react/lib/components/Overlay/Overlay.js
+  var Overlay = styled(OverlayBase, getStyles26, void 0, {
+    scope: "Overlay"
+  });
+
+  // node_modules/@fluentui/react/lib/utilities/DraggableZone/DraggableZone.js
+  var React81 = __toESM(require_react());
+
+  // node_modules/@fluentui/react/lib/utilities/DraggableZone/DraggableZone.styles.js
+  var getClassNames25 = memoizeFunction(function(className, isDragging) {
+    return {
+      root: mergeStyles(className, isDragging && {
+        touchAction: "none",
+        selectors: {
+          "& *": {
+            userSelect: "none"
+          }
+        }
+      })
+    };
+  });
+
+  // node_modules/@fluentui/react/lib/utilities/DraggableZone/DraggableZone.js
+  var eventMapping = {
+    touch: {
+      start: "touchstart",
+      move: "touchmove",
+      stop: "touchend"
+    },
+    mouse: {
+      start: "mousedown",
+      move: "mousemove",
+      stop: "mouseup"
+    }
+  };
+  var DraggableZone = function(_super) {
+    __extends5(DraggableZone2, _super);
+    function DraggableZone2(props) {
+      var _this = _super.call(this, props) || this;
+      _this._currentEventType = eventMapping.mouse;
+      _this._events = [];
+      _this._onMouseDown = function(event) {
+        var onMouseDown = React81.Children.only(_this.props.children).props.onMouseDown;
+        if (onMouseDown) {
+          onMouseDown(event);
+        }
+        _this._currentEventType = eventMapping.mouse;
+        return _this._onDragStart(event);
+      };
+      _this._onMouseUp = function(event) {
+        var onMouseUp = React81.Children.only(_this.props.children).props.onMouseUp;
+        if (onMouseUp) {
+          onMouseUp(event);
+        }
+        _this._currentEventType = eventMapping.mouse;
+        return _this._onDragStop(event);
+      };
+      _this._onTouchStart = function(event) {
+        var onTouchStart = React81.Children.only(_this.props.children).props.onTouchStart;
+        if (onTouchStart) {
+          onTouchStart(event);
+        }
+        _this._currentEventType = eventMapping.touch;
+        return _this._onDragStart(event);
+      };
+      _this._onTouchEnd = function(event) {
+        var onTouchEnd = React81.Children.only(_this.props.children).props.onTouchEnd;
+        if (onTouchEnd) {
+          onTouchEnd(event);
+        }
+        _this._currentEventType = eventMapping.touch;
+        _this._onDragStop(event);
+      };
+      _this._onDragStart = function(event) {
+        if (typeof event.button === "number" && event.button !== 0) {
+          return false;
+        }
+        if (_this.props.handleSelector && !_this._matchesSelector(event.target, _this.props.handleSelector) || _this.props.preventDragSelector && _this._matchesSelector(event.target, _this.props.preventDragSelector)) {
+          return;
+        }
+        _this._touchId = _this._getTouchId(event);
+        var position = _this._getControlPosition(event);
+        if (position === void 0) {
+          return;
+        }
+        var dragData = _this._createDragDataFromPosition(position);
+        _this.props.onStart && _this.props.onStart(event, dragData);
+        _this.setState({
+          isDragging: true,
+          lastPosition: position
+        });
+        _this._events = [
+          on(document.body, _this._currentEventType.move, _this._onDrag, true),
+          on(document.body, _this._currentEventType.stop, _this._onDragStop, true)
+        ];
+      };
+      _this._onDrag = function(event) {
+        if (event.type === "touchmove") {
+          event.preventDefault();
+        }
+        var position = _this._getControlPosition(event);
+        if (!position) {
+          return;
+        }
+        var updatedData = _this._createUpdatedDragData(_this._createDragDataFromPosition(position));
+        var updatedPosition = updatedData.position;
+        _this.props.onDragChange && _this.props.onDragChange(event, updatedData);
+        _this.setState({
+          position: updatedPosition,
+          lastPosition: position
+        });
+      };
+      _this._onDragStop = function(event) {
+        if (!_this.state.isDragging) {
+          return;
+        }
+        var position = _this._getControlPosition(event);
+        if (!position) {
+          return;
+        }
+        var baseDragData = _this._createDragDataFromPosition(position);
+        _this.setState({
+          isDragging: false,
+          lastPosition: void 0
+        });
+        _this.props.onStop && _this.props.onStop(event, baseDragData);
+        if (_this.props.position) {
+          _this.setState({
+            position: _this.props.position
+          });
+        }
+        _this._events.forEach(function(dispose) {
+          return dispose();
+        });
+      };
+      _this.state = {
+        isDragging: false,
+        position: _this.props.position || { x: 0, y: 0 },
+        lastPosition: void 0
+      };
+      return _this;
+    }
+    DraggableZone2.prototype.componentDidUpdate = function(prevProps) {
+      if (this.props.position && (!prevProps.position || this.props.position !== prevProps.position)) {
+        this.setState({ position: this.props.position });
+      }
+    };
+    DraggableZone2.prototype.componentWillUnmount = function() {
+      this._events.forEach(function(dispose) {
+        return dispose();
+      });
+    };
+    DraggableZone2.prototype.render = function() {
+      var child = React81.Children.only(this.props.children);
+      var props = child.props;
+      var position = this.props.position;
+      var _a6 = this.state, statePosition = _a6.position, isDragging = _a6.isDragging;
+      var x2 = statePosition.x;
+      var y2 = statePosition.y;
+      if (position && !isDragging) {
+        x2 = position.x;
+        y2 = position.y;
+      }
+      return React81.cloneElement(child, {
+        style: __assign6(__assign6({}, props.style), { transform: "translate(" + x2 + "px, " + y2 + "px)" }),
+        className: getClassNames25(props.className, this.state.isDragging).root,
+        onMouseDown: this._onMouseDown,
+        onMouseUp: this._onMouseUp,
+        onTouchStart: this._onTouchStart,
+        onTouchEnd: this._onTouchEnd
+      });
+    };
+    DraggableZone2.prototype._getControlPosition = function(event) {
+      var touchObj = this._getActiveTouch(event);
+      if (this._touchId !== void 0 && !touchObj) {
+        return void 0;
+      }
+      var eventToGetOffset = touchObj || event;
+      return {
+        x: eventToGetOffset.clientX,
+        y: eventToGetOffset.clientY
+      };
+    };
+    DraggableZone2.prototype._getActiveTouch = function(event) {
+      return event.targetTouches && this._findTouchInTouchList(event.targetTouches) || event.changedTouches && this._findTouchInTouchList(event.changedTouches);
+    };
+    DraggableZone2.prototype._getTouchId = function(event) {
+      var touch = event.targetTouches && event.targetTouches[0] || event.changedTouches && event.changedTouches[0];
+      if (touch) {
+        return touch.identifier;
+      }
+    };
+    DraggableZone2.prototype._matchesSelector = function(element, selector) {
+      if (!element || element === document.body) {
+        return false;
+      }
+      var matchesSelectorFn = element.matches || element.webkitMatchesSelector || element.msMatchesSelector;
+      if (!matchesSelectorFn) {
+        return false;
+      }
+      return matchesSelectorFn.call(element, selector) || this._matchesSelector(element.parentElement, selector);
+    };
+    DraggableZone2.prototype._findTouchInTouchList = function(touchList) {
+      if (this._touchId === void 0) {
+        return;
+      }
+      for (var i2 = 0; i2 < touchList.length; i2++) {
+        if (touchList[i2].identifier === this._touchId) {
+          return touchList[i2];
+        }
+      }
+      return void 0;
+    };
+    DraggableZone2.prototype._createDragDataFromPosition = function(position) {
+      var lastPosition = this.state.lastPosition;
+      if (lastPosition === void 0) {
+        return {
+          delta: { x: 0, y: 0 },
+          lastPosition: position,
+          position
+        };
+      }
+      return {
+        delta: {
+          x: position.x - lastPosition.x,
+          y: position.y - lastPosition.y
+        },
+        lastPosition,
+        position
+      };
+    };
+    DraggableZone2.prototype._createUpdatedDragData = function(baseDragData) {
+      var position = this.state.position;
+      return {
+        position: {
+          x: position.x + baseDragData.delta.x,
+          y: position.y + baseDragData.delta.y
+        },
+        delta: baseDragData.delta,
+        lastPosition: position
+      };
+    };
+    return DraggableZone2;
+  }(React81.Component);
+
+  // node_modules/@fluentui/react/lib/components/Modal/Modal.base.js
+  var ZERO = { x: 0, y: 0 };
+  var DEFAULT_PROPS4 = {
+    isOpen: false,
+    isDarkOverlay: true,
+    className: "",
+    containerClassName: "",
+    enableAriaHiddenSiblings: true
+  };
+  var getClassNames26 = classNamesFunction();
+  var getMoveDelta = function(ev) {
+    var delta = 10;
+    if (ev.shiftKey) {
+      if (!ev.ctrlKey) {
+        delta = 50;
+      }
+    } else if (ev.ctrlKey) {
+      delta = 1;
+    }
+    return delta;
+  };
+  var useComponentRef3 = function(props, focusTrapZone) {
+    React82.useImperativeHandle(props.componentRef, function() {
+      return {
+        focus: function() {
+          if (focusTrapZone.current) {
+            focusTrapZone.current.focus();
+          }
+        }
+      };
+    }, [focusTrapZone]);
+  };
+  var ModalBase = React82.forwardRef(function(propsWithoutDefaults, ref) {
+    var _a6, _b, _c, _d, _e2;
+    var props = getPropsWithDefaults(DEFAULT_PROPS4, propsWithoutDefaults);
+    var allowTouchBodyScroll = props.allowTouchBodyScroll, className = props.className, children = props.children, containerClassName = props.containerClassName, scrollableContentClassName = props.scrollableContentClassName, elementToFocusOnDismiss = props.elementToFocusOnDismiss, firstFocusableSelector = props.firstFocusableSelector, focusTrapZoneProps = props.focusTrapZoneProps, forceFocusInsideTrap = props.forceFocusInsideTrap, _f = props.disableRestoreFocus, disableRestoreFocus = _f === void 0 ? props.ignoreExternalFocusing : _f, isBlocking = props.isBlocking, isAlert = props.isAlert, isClickableOutsideFocusTrap = props.isClickableOutsideFocusTrap, isDarkOverlay = props.isDarkOverlay, onDismiss = props.onDismiss, layerProps = props.layerProps, overlay = props.overlay, isOpen = props.isOpen, titleAriaId = props.titleAriaId, styles2 = props.styles, subtitleAriaId = props.subtitleAriaId, theme = props.theme, topOffsetFixed = props.topOffsetFixed, responsiveMode = props.responsiveMode, onLayerDidMount = props.onLayerDidMount, isModeless = props.isModeless, dragOptions = props.dragOptions, onDismissed = props.onDismissed, enableAriaHiddenSiblings = props.enableAriaHiddenSiblings, popupProps = props.popupProps;
+    var rootRef = React82.useRef(null);
+    var focusTrapZone = React82.useRef(null);
+    var focusTrapZoneRef = useMergedRefs(focusTrapZone, focusTrapZoneProps === null || focusTrapZoneProps === void 0 ? void 0 : focusTrapZoneProps.componentRef);
+    var focusTrapZoneElm = React82.useRef(null);
+    var mergedRef = useMergedRefs(rootRef, ref);
+    var modalResponsiveMode = useResponsiveMode(mergedRef);
+    var focusTrapZoneId = useId("ModalFocusTrapZone", focusTrapZoneProps === null || focusTrapZoneProps === void 0 ? void 0 : focusTrapZoneProps.id);
+    var win = useWindow();
+    var _g = useSetTimeout(), setTimeout2 = _g.setTimeout, clearTimeout2 = _g.clearTimeout;
+    var _h = React82.useState(isOpen), isModalOpen = _h[0], setIsModalOpen = _h[1];
+    var _j = React82.useState(isOpen), isVisible = _j[0], setIsVisible = _j[1];
+    var _k = React82.useState(ZERO), coordinates = _k[0], setCoordinates = _k[1];
+    var _l = React82.useState(), modalRectangleTop = _l[0], setModalRectangleTop = _l[1];
+    var _m = useBoolean(false), isModalMenuOpen = _m[0], _o = _m[1], toggleModalMenuOpen = _o.toggle, setModalMenuClose = _o.setFalse;
+    var internalState = useConst(function() {
+      return {
+        onModalCloseTimer: 0,
+        allowTouchBodyScroll,
+        scrollableContent: null,
+        lastSetCoordinates: ZERO,
+        events: new EventGroup({})
+      };
+    });
+    var keepInBounds = (dragOptions || {}).keepInBounds;
+    var isAlertRole = isAlert !== null && isAlert !== void 0 ? isAlert : isBlocking && !isModeless;
+    var layerClassName = layerProps === void 0 ? "" : layerProps.className;
+    var classNames3 = getClassNames26(styles2, {
+      theme,
+      className,
+      containerClassName,
+      scrollableContentClassName,
+      isOpen,
+      isVisible,
+      hasBeenOpened: internalState.hasBeenOpened,
+      modalRectangleTop,
+      topOffsetFixed,
+      isModeless,
+      layerClassName,
+      windowInnerHeight: win === null || win === void 0 ? void 0 : win.innerHeight,
+      isDefaultDragHandle: dragOptions && !dragOptions.dragHandleSelector
+    });
+    var mergedLayerProps = __assign6(__assign6({ eventBubblingEnabled: false }, layerProps), { onLayerDidMount: layerProps && layerProps.onLayerDidMount ? layerProps.onLayerDidMount : onLayerDidMount, insertFirst: (layerProps === null || layerProps === void 0 ? void 0 : layerProps.insertFirst) || isModeless, className: classNames3.layer });
+    var allowScrollOnModal = React82.useCallback(function(elt) {
+      if (elt) {
+        if (internalState.allowTouchBodyScroll) {
+          allowOverscrollOnElement(elt, internalState.events);
+        } else {
+          allowScrollOnElement(elt, internalState.events);
+        }
+      } else {
+        internalState.events.off(internalState.scrollableContent);
+      }
+      internalState.scrollableContent = elt;
+    }, [internalState]);
+    var registerInitialModalPosition = function() {
+      var dialogMain = focusTrapZoneElm.current;
+      var modalRectangle = dialogMain === null || dialogMain === void 0 ? void 0 : dialogMain.getBoundingClientRect();
+      if (modalRectangle) {
+        if (topOffsetFixed) {
+          setModalRectangleTop(modalRectangle.top);
+        }
+        if (keepInBounds) {
+          internalState.minPosition = { x: -modalRectangle.left, y: -modalRectangle.top };
+          internalState.maxPosition = { x: modalRectangle.left, y: modalRectangle.top };
+        }
+      }
+    };
+    var getClampedAxis = React82.useCallback(function(axis, position) {
+      var minPosition = internalState.minPosition, maxPosition = internalState.maxPosition;
+      if (keepInBounds && minPosition && maxPosition) {
+        position = Math.max(minPosition[axis], position);
+        position = Math.min(maxPosition[axis], position);
+      }
+      return position;
+    }, [keepInBounds, internalState]);
+    var handleModalClose = function() {
+      var _a7;
+      internalState.lastSetCoordinates = ZERO;
+      setModalMenuClose();
+      internalState.isInKeyboardMoveMode = false;
+      setIsModalOpen(false);
+      setCoordinates(ZERO);
+      (_a7 = internalState.disposeOnKeyUp) === null || _a7 === void 0 ? void 0 : _a7.call(internalState);
+      onDismissed === null || onDismissed === void 0 ? void 0 : onDismissed();
+    };
+    var handleDragStart = React82.useCallback(function() {
+      setModalMenuClose();
+      internalState.isInKeyboardMoveMode = false;
+    }, [internalState, setModalMenuClose]);
+    var handleDrag = React82.useCallback(function(ev, dragData) {
+      setCoordinates(function(prevValue) {
+        return {
+          x: getClampedAxis("x", prevValue.x + dragData.delta.x),
+          y: getClampedAxis("y", prevValue.y + dragData.delta.y)
+        };
+      });
+    }, [getClampedAxis]);
+    var handleDragStop = React82.useCallback(function() {
+      if (focusTrapZone.current) {
+        focusTrapZone.current.focus();
+      }
+    }, []);
+    var handleEnterKeyboardMoveMode = function() {
+      var handleKeyDown = function(ev) {
+        if (ev.altKey && ev.ctrlKey && ev.keyCode === KeyCodes.space) {
+          ev.preventDefault();
+          ev.stopPropagation();
+          return;
+        }
+        var newLocal = ev.altKey || ev.keyCode === KeyCodes.escape;
+        if (isModalMenuOpen && newLocal) {
+          setModalMenuClose();
+        }
+        if (internalState.isInKeyboardMoveMode && (ev.keyCode === KeyCodes.escape || ev.keyCode === KeyCodes.enter)) {
+          internalState.isInKeyboardMoveMode = false;
+          ev.preventDefault();
+          ev.stopPropagation();
+        }
+        if (internalState.isInKeyboardMoveMode) {
+          var handledEvent = true;
+          var delta_1 = getMoveDelta(ev);
+          switch (ev.keyCode) {
+            case KeyCodes.escape:
+              setCoordinates(internalState.lastSetCoordinates);
+            case KeyCodes.enter: {
+              internalState.lastSetCoordinates = ZERO;
+              break;
+            }
+            case KeyCodes.up: {
+              setCoordinates(function(prevValue) {
+                return { x: prevValue.x, y: getClampedAxis("y", prevValue.y - delta_1) };
+              });
+              break;
+            }
+            case KeyCodes.down: {
+              setCoordinates(function(prevValue) {
+                return { x: prevValue.x, y: getClampedAxis("y", prevValue.y + delta_1) };
+              });
+              break;
+            }
+            case KeyCodes.left: {
+              setCoordinates(function(prevValue) {
+                return { x: getClampedAxis("x", prevValue.x - delta_1), y: prevValue.y };
+              });
+              break;
+            }
+            case KeyCodes.right: {
+              setCoordinates(function(prevValue) {
+                return { x: getClampedAxis("x", prevValue.x + delta_1), y: prevValue.y };
+              });
+              break;
+            }
+            default: {
+              handledEvent = false;
+            }
+          }
+          if (handledEvent) {
+            ev.preventDefault();
+            ev.stopPropagation();
+          }
+        }
+      };
+      internalState.lastSetCoordinates = coordinates;
+      setModalMenuClose();
+      internalState.isInKeyboardMoveMode = true;
+      internalState.events.on(win, "keydown", handleKeyDown, true);
+      internalState.disposeOnKeyDown = function() {
+        internalState.events.off(win, "keydown", handleKeyDown, true);
+        internalState.disposeOnKeyDown = void 0;
+      };
+    };
+    var handleExitKeyboardMoveMode = function(ev) {
+      var _a7, _b2;
+      (_a7 = focusTrapZoneProps === null || focusTrapZoneProps === void 0 ? void 0 : focusTrapZoneProps.onBlur) === null || _a7 === void 0 ? void 0 : _a7.call(focusTrapZoneProps, ev);
+      internalState.lastSetCoordinates = ZERO;
+      internalState.isInKeyboardMoveMode = false;
+      (_b2 = internalState.disposeOnKeyDown) === null || _b2 === void 0 ? void 0 : _b2.call(internalState);
+    };
+    var registerForKeyUp = function() {
+      var handleKeyUp = function(ev) {
+        if (ev.altKey && ev.ctrlKey && ev.keyCode === KeyCodes.space) {
+          if (elementContains(internalState.scrollableContent, ev.target)) {
+            toggleModalMenuOpen();
+            ev.preventDefault();
+            ev.stopPropagation();
+          }
+        }
+      };
+      if (!internalState.disposeOnKeyUp) {
+        internalState.events.on(win, "keyup", handleKeyUp, true);
+        internalState.disposeOnKeyUp = function() {
+          internalState.events.off(win, "keyup", handleKeyUp, true);
+          internalState.disposeOnKeyUp = void 0;
+        };
+      }
+    };
+    React82.useEffect(function() {
+      clearTimeout2(internalState.onModalCloseTimer);
+      if (isOpen) {
+        requestAnimationFrame(function() {
+          return setTimeout2(registerInitialModalPosition, 0);
+        });
+        setIsModalOpen(true);
+        if (dragOptions) {
+          registerForKeyUp();
+        }
+        internalState.hasBeenOpened = true;
+        setIsVisible(true);
+      }
+      if (!isOpen && isModalOpen) {
+        internalState.onModalCloseTimer = setTimeout2(handleModalClose, parseFloat(animationDuration) * 1e3);
+        setIsVisible(false);
+      }
+    }, [isModalOpen, isOpen]);
+    useUnmount(function() {
+      internalState.events.dispose();
+    });
+    useComponentRef3(props, focusTrapZone);
+    useDebugWarnings3(props);
+    var modalContent = React82.createElement(
+      FocusTrapZone,
+      __assign6({}, focusTrapZoneProps, {
+        id: focusTrapZoneId,
+        ref: focusTrapZoneElm,
+        componentRef: focusTrapZoneRef,
+        className: css(classNames3.main, focusTrapZoneProps === null || focusTrapZoneProps === void 0 ? void 0 : focusTrapZoneProps.className),
+        elementToFocusOnDismiss: (_a6 = focusTrapZoneProps === null || focusTrapZoneProps === void 0 ? void 0 : focusTrapZoneProps.elementToFocusOnDismiss) !== null && _a6 !== void 0 ? _a6 : elementToFocusOnDismiss,
+        isClickableOutsideFocusTrap: (_b = focusTrapZoneProps === null || focusTrapZoneProps === void 0 ? void 0 : focusTrapZoneProps.isClickableOutsideFocusTrap) !== null && _b !== void 0 ? _b : isModeless || isClickableOutsideFocusTrap || !isBlocking,
+        disableRestoreFocus: (_c = focusTrapZoneProps === null || focusTrapZoneProps === void 0 ? void 0 : focusTrapZoneProps.disableRestoreFocus) !== null && _c !== void 0 ? _c : disableRestoreFocus,
+        forceFocusInsideTrap: ((_d = focusTrapZoneProps === null || focusTrapZoneProps === void 0 ? void 0 : focusTrapZoneProps.forceFocusInsideTrap) !== null && _d !== void 0 ? _d : forceFocusInsideTrap) && !isModeless,
+        firstFocusableSelector: (focusTrapZoneProps === null || focusTrapZoneProps === void 0 ? void 0 : focusTrapZoneProps.firstFocusableSelector) || firstFocusableSelector,
+        focusPreviouslyFocusedInnerElement: (_e2 = focusTrapZoneProps === null || focusTrapZoneProps === void 0 ? void 0 : focusTrapZoneProps.focusPreviouslyFocusedInnerElement) !== null && _e2 !== void 0 ? _e2 : true,
+        onBlur: internalState.isInKeyboardMoveMode ? handleExitKeyboardMoveMode : void 0
+      }),
+      dragOptions && internalState.isInKeyboardMoveMode && React82.createElement("div", { className: classNames3.keyboardMoveIconContainer }, dragOptions.keyboardMoveIconProps ? React82.createElement(Icon, __assign6({}, dragOptions.keyboardMoveIconProps)) : React82.createElement(Icon, { iconName: "move", className: classNames3.keyboardMoveIcon })),
+      React82.createElement(
+        "div",
+        { ref: allowScrollOnModal, className: classNames3.scrollableContent, "data-is-scrollable": true },
+        dragOptions && isModalMenuOpen && React82.createElement(dragOptions.menu, { items: [
+          { key: "move", text: dragOptions.moveMenuItemText, onClick: handleEnterKeyboardMoveMode },
+          { key: "close", text: dragOptions.closeMenuItemText, onClick: handleModalClose }
+        ], onDismiss: setModalMenuClose, alignTargetEdge: true, coverTarget: true, directionalHint: DirectionalHint.topLeftEdge, directionalHintFixed: true, shouldFocusOnMount: true, target: internalState.scrollableContent }),
+        children
+      )
+    );
+    return isModalOpen && modalResponsiveMode >= (responsiveMode || ResponsiveMode.small) && React82.createElement(
+      Layer,
+      __assign6({ ref: mergedRef }, mergedLayerProps),
+      React82.createElement(
+        Popup,
+        __assign6({
+          role: isAlertRole ? "alertdialog" : "dialog",
+          ariaLabelledBy: titleAriaId,
+          ariaDescribedBy: subtitleAriaId,
+          onDismiss,
+          shouldRestoreFocus: !disableRestoreFocus,
+          enableAriaHiddenSiblings,
+          "aria-modal": !isModeless
+        }, popupProps),
+        React82.createElement(
+          "div",
+          { className: classNames3.root, role: !isModeless ? "document" : void 0 },
+          !isModeless && React82.createElement(Overlay, __assign6({ "aria-hidden": true, isDarkThemed: isDarkOverlay, onClick: isBlocking ? void 0 : onDismiss, allowTouchBodyScroll }, overlay)),
+          dragOptions ? React82.createElement(DraggableZone, { handleSelector: dragOptions.dragHandleSelector || "#" + focusTrapZoneId, preventDragSelector: "button", onStart: handleDragStart, onDragChange: handleDrag, onStop: handleDragStop, position: coordinates }, modalContent) : modalContent
+        )
+      )
+    ) || null;
+  });
+  ModalBase.displayName = "Modal";
+  function useDebugWarnings3(props) {
+    if (true) {
+      useWarnings({
+        name: "Modal",
+        props,
+        deprecations: { onLayerDidMount: "layerProps.onLayerDidMount" }
+      });
+    }
+  }
+
+  // node_modules/@fluentui/react/lib/components/Modal/Modal.js
+  var Modal = styled(ModalBase, getStyles25, void 0, {
+    scope: "Modal",
+    fields: ["theme", "styles", "enableAriaHiddenSiblings"]
+  });
+  Modal.displayName = "Modal";
+
+  // node_modules/@fluentui/react/lib/components/Dialog/DialogContent.base.js
+  var React84 = __toESM(require_react());
+
+  // node_modules/@fluentui/react/lib/components/Dialog/DialogFooter.base.js
+  var React83 = __toESM(require_react());
+  var getClassNames27 = classNamesFunction();
+  var DialogFooterBase = function(_super) {
+    __extends5(DialogFooterBase2, _super);
+    function DialogFooterBase2(props) {
+      var _this = _super.call(this, props) || this;
+      initializeComponentRef(_this);
+      return _this;
+    }
+    DialogFooterBase2.prototype.render = function() {
+      var _a6 = this.props, className = _a6.className, styles2 = _a6.styles, theme = _a6.theme;
+      this._classNames = getClassNames27(styles2, {
+        theme,
+        className
+      });
+      return React83.createElement(
+        "div",
+        { className: this._classNames.actions },
+        React83.createElement("div", { className: this._classNames.actionsRight }, this._renderChildrenAsActions())
+      );
+    };
+    DialogFooterBase2.prototype._renderChildrenAsActions = function() {
+      var _this = this;
+      return React83.Children.map(this.props.children, function(child) {
+        return child ? React83.createElement("span", { className: _this._classNames.action }, child) : null;
+      });
+    };
+    return DialogFooterBase2;
+  }(React83.Component);
+
+  // node_modules/@fluentui/react/lib/components/Dialog/DialogFooter.styles.js
+  var GlobalClassNames20 = {
+    actions: "ms-Dialog-actions",
+    action: "ms-Dialog-action",
+    actionsRight: "ms-Dialog-actionsRight"
+  };
+  var getStyles27 = function(props) {
+    var className = props.className, theme = props.theme;
+    var classNames3 = getGlobalClassNames(GlobalClassNames20, theme);
+    return {
+      actions: [
+        classNames3.actions,
+        {
+          position: "relative",
+          width: "100%",
+          minHeight: "24px",
+          lineHeight: "24px",
+          margin: "16px 0 0",
+          fontSize: "0",
+          selectors: {
+            ".ms-Button": {
+              lineHeight: "normal"
+            }
+          }
+        },
+        className
+      ],
+      action: [
+        classNames3.action,
+        {
+          margin: "0 4px"
+        }
+      ],
+      actionsRight: [
+        classNames3.actionsRight,
+        {
+          textAlign: "right",
+          marginRight: "-4px",
+          fontSize: "0"
+        }
+      ]
+    };
+  };
+
+  // node_modules/@fluentui/react/lib/components/Dialog/DialogFooter.js
+  var DialogFooter = styled(DialogFooterBase, getStyles27, void 0, { scope: "DialogFooter" });
+
+  // node_modules/@fluentui/react/lib/components/Dialog/DialogContent.base.js
+  var getClassNames28 = classNamesFunction();
+  var DialogFooterType = React84.createElement(DialogFooter, null).type;
+  var COMPONENT_NAME6 = "DialogContent";
+  var DialogContentBase = function(_super) {
+    __extends5(DialogContentBase2, _super);
+    function DialogContentBase2(props) {
+      var _this = _super.call(this, props) || this;
+      initializeComponentRef(_this);
+      warnDeprecations(COMPONENT_NAME6, props, {
+        titleId: "titleProps.id"
+      });
+      return _this;
+    }
+    DialogContentBase2.prototype.render = function() {
+      var _a6 = this.props, showCloseButton = _a6.showCloseButton, className = _a6.className, closeButtonAriaLabel = _a6.closeButtonAriaLabel, onDismiss = _a6.onDismiss, subTextId = _a6.subTextId, subText = _a6.subText, _b = _a6.titleProps, titleProps = _b === void 0 ? {} : _b, titleId = _a6.titleId, title = _a6.title, type = _a6.type, styles2 = _a6.styles, theme = _a6.theme, draggableHeaderClassName = _a6.draggableHeaderClassName;
+      var classNames3 = getClassNames28(styles2, {
+        theme,
+        className,
+        isLargeHeader: type === DialogType.largeHeader,
+        isClose: type === DialogType.close,
+        draggableHeaderClassName
+      });
+      var groupings = this._groupChildren();
+      var subTextContent;
+      if (subText) {
+        subTextContent = React84.createElement("p", { className: classNames3.subText, id: subTextId }, subText);
+      }
+      return React84.createElement(
+        "div",
+        { className: classNames3.content },
+        React84.createElement(
+          "div",
+          { className: classNames3.header },
+          React84.createElement("div", __assign6({ id: titleId, role: "heading", "aria-level": 1 }, titleProps, { className: css(classNames3.title, titleProps.className) }), title),
+          React84.createElement(
+            "div",
+            { className: classNames3.topButton },
+            this.props.topButtonsProps.map(function(props, index) {
+              return React84.createElement(IconButton, __assign6({ key: props.uniqueId || index }, props));
+            }),
+            (type === DialogType.close || showCloseButton && type !== DialogType.largeHeader) && React84.createElement(IconButton, { className: classNames3.button, iconProps: { iconName: "Cancel" }, ariaLabel: closeButtonAriaLabel, onClick: onDismiss })
+          )
+        ),
+        React84.createElement(
+          "div",
+          { className: classNames3.inner },
+          React84.createElement(
+            "div",
+            { className: classNames3.innerContent },
+            subTextContent,
+            groupings.contents
+          ),
+          groupings.footers
+        )
+      );
+    };
+    DialogContentBase2.prototype._groupChildren = function() {
+      var groupings = {
+        footers: [],
+        contents: []
+      };
+      React84.Children.map(this.props.children, function(child) {
+        if (typeof child === "object" && child !== null && child.type === DialogFooterType) {
+          groupings.footers.push(child);
+        } else {
+          groupings.contents.push(child);
+        }
+      });
+      return groupings;
+    };
+    DialogContentBase2.defaultProps = {
+      showCloseButton: false,
+      className: "",
+      topButtonsProps: [],
+      closeButtonAriaLabel: "Close"
+    };
+    DialogContentBase2 = __decorate5([
+      withResponsiveMode
+    ], DialogContentBase2);
+    return DialogContentBase2;
+  }(React84.Component);
+
+  // node_modules/@fluentui/react/lib/components/Dialog/DialogContent.styles.js
+  var GlobalClassNames21 = {
+    contentLgHeader: "ms-Dialog-lgHeader",
+    close: "ms-Dialog--close",
+    subText: "ms-Dialog-subText",
+    header: "ms-Dialog-header",
+    headerLg: "ms-Dialog--lgHeader",
+    button: "ms-Dialog-button ms-Dialog-button--close",
+    inner: "ms-Dialog-inner",
+    content: "ms-Dialog-content",
+    title: "ms-Dialog-title"
+  };
+  var getStyles28 = function(props) {
+    var _a6, _b, _c;
+    var className = props.className, theme = props.theme, isLargeHeader = props.isLargeHeader, isClose = props.isClose, hidden = props.hidden, isMultiline = props.isMultiline, draggableHeaderClassName = props.draggableHeaderClassName;
+    var palette = theme.palette, fonts = theme.fonts, effects = theme.effects, semanticColors = theme.semanticColors;
+    var classNames3 = getGlobalClassNames(GlobalClassNames21, theme);
+    return {
+      content: [
+        isLargeHeader && [
+          classNames3.contentLgHeader,
+          {
+            borderTop: "4px solid " + palette.themePrimary
+          }
+        ],
+        isClose && classNames3.close,
+        {
+          flexGrow: 1,
+          overflowY: "hidden"
+        },
+        className
+      ],
+      subText: [
+        classNames3.subText,
+        fonts.medium,
+        {
+          margin: "0 0 24px 0",
+          color: semanticColors.bodySubtext,
+          lineHeight: "1.5",
+          wordWrap: "break-word",
+          fontWeight: FontWeights.regular
+        }
+      ],
+      header: [
+        classNames3.header,
+        {
+          position: "relative",
+          width: "100%",
+          boxSizing: "border-box"
+        },
+        isClose && classNames3.close,
+        draggableHeaderClassName && [
+          draggableHeaderClassName,
+          {
+            cursor: "move"
+          }
+        ]
+      ],
+      button: [
+        classNames3.button,
+        hidden && {
+          selectors: {
+            ".ms-Icon.ms-Icon--Cancel": {
+              color: semanticColors.buttonText,
+              fontSize: IconFontSizes.medium
+            }
+          }
+        }
+      ],
+      inner: [
+        classNames3.inner,
+        {
+          padding: "0 24px 24px",
+          selectors: (_a6 = {}, _a6["@media (min-width: " + ScreenWidthMinSmall + "px) and (max-width: " + ScreenWidthMaxSmall + "px)"] = {
+            padding: "0 16px 16px"
+          }, _a6)
+        }
+      ],
+      innerContent: [
+        classNames3.content,
+        {
+          position: "relative",
+          width: "100%"
+        }
+      ],
+      title: [
+        classNames3.title,
+        fonts.xLarge,
+        {
+          color: semanticColors.bodyText,
+          margin: "0",
+          minHeight: fonts.xLarge.fontSize,
+          padding: "16px 46px 20px 24px",
+          lineHeight: "normal",
+          selectors: (_b = {}, _b["@media (min-width: " + ScreenWidthMinSmall + "px) and (max-width: " + ScreenWidthMaxSmall + "px)"] = {
+            padding: "16px 46px 16px 16px"
+          }, _b)
+        },
+        isLargeHeader && {
+          color: semanticColors.menuHeader
+        },
+        isMultiline && { fontSize: fonts.xxLarge.fontSize }
+      ],
+      topButton: [
+        {
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "nowrap",
+          position: "absolute",
+          top: "0",
+          right: "0",
+          padding: "15px 15px 0 0",
+          selectors: (_c = {
+            "> *": {
+              flex: "0 0 auto"
+            },
+            ".ms-Dialog-button": {
+              color: semanticColors.buttonText
+            },
+            ".ms-Dialog-button:hover": {
+              color: semanticColors.buttonTextHovered,
+              borderRadius: effects.roundedCorner2
+            }
+          }, _c["@media (min-width: " + ScreenWidthMinSmall + "px) and (max-width: " + ScreenWidthMaxSmall + "px)"] = {
+            padding: "15px 8px 0 0"
+          }, _c)
+        }
+      ]
+    };
+  };
+
+  // node_modules/@fluentui/react/lib/components/Dialog/DialogContent.js
+  var DialogContent = styled(DialogContentBase, getStyles28, void 0, { scope: "DialogContent" });
+
+  // node_modules/@fluentui/react/lib/components/Dialog/Dialog.base.js
+  var getClassNames29 = classNamesFunction();
+  var DefaultModalProps = {
+    isDarkOverlay: false,
+    isBlocking: false,
+    className: "",
+    containerClassName: "",
+    topOffsetFixed: false,
+    enableAriaHiddenSiblings: true
+  };
+  var DefaultDialogContentProps = {
+    type: DialogType.normal,
+    className: "",
+    topButtonsProps: []
+  };
+  var DialogBase = function(_super) {
+    __extends5(DialogBase2, _super);
+    function DialogBase2(props) {
+      var _this = _super.call(this, props) || this;
+      _this._getSubTextId = function() {
+        var _a6 = _this.props, ariaDescribedById = _a6.ariaDescribedById, modalProps = _a6.modalProps, dialogContentProps = _a6.dialogContentProps, subText = _a6.subText;
+        var id = modalProps && modalProps.subtitleAriaId || ariaDescribedById;
+        if (!id) {
+          id = (dialogContentProps && dialogContentProps.subText || subText) && _this._defaultSubTextId;
+        }
+        return id;
+      };
+      _this._getTitleTextId = function() {
+        var _a6 = _this.props, ariaLabelledById = _a6.ariaLabelledById, modalProps = _a6.modalProps, dialogContentProps = _a6.dialogContentProps, title = _a6.title;
+        var id = modalProps && modalProps.titleAriaId || ariaLabelledById;
+        if (!id) {
+          id = (dialogContentProps && dialogContentProps.title || title) && _this._defaultTitleTextId;
+        }
+        return id;
+      };
+      _this._id = getId("Dialog");
+      _this._defaultTitleTextId = _this._id + "-title";
+      _this._defaultSubTextId = _this._id + "-subText";
+      if (true) {
+        warnDeprecations("Dialog", props, {
+          isOpen: "hidden",
+          type: "dialogContentProps.type",
+          subText: "dialogContentProps.subText",
+          contentClassName: "dialogContentProps.className",
+          topButtonsProps: "dialogContentProps.topButtonsProps",
+          className: "modalProps.className",
+          isDarkOverlay: "modalProps.isDarkOverlay",
+          isBlocking: "modalProps.isBlocking",
+          containerClassName: "modalProps.containerClassName",
+          onDismissed: "modalProps.onDismissed",
+          onLayerDidMount: "modalProps.layerProps.onLayerDidMount",
+          ariaDescribedById: "modalProps.subtitleAriaId",
+          ariaLabelledById: "modalProps.titleAriaId"
+        });
+      }
+      return _this;
+    }
+    DialogBase2.prototype.render = function() {
+      var _a6, _b, _c;
+      var props = this.props;
+      var className = props.className, containerClassName = props.containerClassName, contentClassName = props.contentClassName, elementToFocusOnDismiss = props.elementToFocusOnDismiss, firstFocusableSelector = props.firstFocusableSelector, forceFocusInsideTrap = props.forceFocusInsideTrap, styles2 = props.styles, hidden = props.hidden, _d = props.disableRestoreFocus, disableRestoreFocus = _d === void 0 ? props.ignoreExternalFocusing : _d, isBlocking = props.isBlocking, isClickableOutsideFocusTrap = props.isClickableOutsideFocusTrap, isDarkOverlay = props.isDarkOverlay, _e2 = props.isOpen, isOpen = _e2 === void 0 ? !hidden : _e2, onDismiss = props.onDismiss, onDismissed = props.onDismissed, onLayerDidMount = props.onLayerDidMount, responsiveMode = props.responsiveMode, subText = props.subText, theme = props.theme, title = props.title, topButtonsProps = props.topButtonsProps, type = props.type, minWidth = props.minWidth, maxWidth = props.maxWidth, modalProps = props.modalProps;
+      var mergedLayerProps = __assign6({ onLayerDidMount }, modalProps === null || modalProps === void 0 ? void 0 : modalProps.layerProps);
+      var dialogDraggableClassName;
+      var dragOptions;
+      if ((modalProps === null || modalProps === void 0 ? void 0 : modalProps.dragOptions) && !((_a6 = modalProps.dragOptions) === null || _a6 === void 0 ? void 0 : _a6.dragHandleSelector)) {
+        dragOptions = __assign6({}, modalProps.dragOptions);
+        dialogDraggableClassName = "ms-Dialog-draggable-header";
+        dragOptions.dragHandleSelector = "." + dialogDraggableClassName;
+      }
+      var mergedModalProps = __assign6(__assign6(__assign6(__assign6({}, DefaultModalProps), { elementToFocusOnDismiss, firstFocusableSelector, forceFocusInsideTrap, disableRestoreFocus, isClickableOutsideFocusTrap, responsiveMode, className, containerClassName, isBlocking, isDarkOverlay, onDismissed }), modalProps), { dragOptions, layerProps: mergedLayerProps, isOpen });
+      var dialogContentProps = __assign6(__assign6(__assign6({ className: contentClassName, subText, title, topButtonsProps, type }, DefaultDialogContentProps), props.dialogContentProps), { draggableHeaderClassName: dialogDraggableClassName, titleProps: __assign6({
+        id: ((_b = props.dialogContentProps) === null || _b === void 0 ? void 0 : _b.titleId) || this._defaultTitleTextId
+      }, (_c = props.dialogContentProps) === null || _c === void 0 ? void 0 : _c.titleProps) });
+      var classNames3 = getClassNames29(styles2, {
+        theme,
+        className: mergedModalProps.className,
+        containerClassName: mergedModalProps.containerClassName,
+        hidden,
+        dialogDefaultMinWidth: minWidth,
+        dialogDefaultMaxWidth: maxWidth
+      });
+      return React85.createElement(
+        Modal,
+        __assign6({}, mergedModalProps, { className: classNames3.root, containerClassName: classNames3.main, onDismiss: onDismiss || mergedModalProps.onDismiss, subtitleAriaId: this._getSubTextId(), titleAriaId: this._getTitleTextId() }),
+        React85.createElement(DialogContent, __assign6({ subTextId: this._defaultSubTextId, showCloseButton: mergedModalProps.isBlocking, onDismiss }, dialogContentProps), props.children)
+      );
+    };
+    DialogBase2.defaultProps = {
+      hidden: true
+    };
+    DialogBase2 = __decorate5([
+      withResponsiveMode
+    ], DialogBase2);
+    return DialogBase2;
+  }(React85.Component);
+
+  // node_modules/@fluentui/react/lib/components/Dialog/Dialog.styles.js
+  var GlobalClassNames22 = {
+    root: "ms-Dialog"
+  };
+  var getStyles29 = function(props) {
+    var _a6;
+    var className = props.className, containerClassName = props.containerClassName, _b = props.dialogDefaultMinWidth, dialogDefaultMinWidth = _b === void 0 ? "288px" : _b, _c = props.dialogDefaultMaxWidth, dialogDefaultMaxWidth = _c === void 0 ? "340px" : _c, hidden = props.hidden, theme = props.theme;
+    var classNames3 = getGlobalClassNames(GlobalClassNames22, theme);
+    return {
+      root: [classNames3.root, theme.fonts.medium, className],
+      main: [
+        {
+          width: dialogDefaultMinWidth,
+          outline: "3px solid transparent",
+          selectors: (_a6 = {}, _a6["@media (min-width: " + ScreenWidthMinMedium + "px)"] = {
+            width: "auto",
+            maxWidth: dialogDefaultMaxWidth,
+            minWidth: dialogDefaultMinWidth
+          }, _a6)
+        },
+        !hidden && { display: "flex" },
+        containerClassName
+      ]
+    };
+  };
+
+  // node_modules/@fluentui/react/lib/components/Dialog/Dialog.js
+  var Dialog = styled(DialogBase, getStyles29, void 0, { scope: "Dialog" });
+  Dialog.displayName = "Dialog";
+
+  // node_modules/@fluentui/react/lib/components/MarqueeSelection/MarqueeSelection.base.js
+  var React86 = __toESM(require_react());
+  var getClassNames30 = classNamesFunction();
   var MIN_DRAG_DISTANCE = 5;
   var MarqueeSelectionBase = function(_super) {
     __extends5(MarqueeSelectionBase2, _super);
     function MarqueeSelectionBase2(props) {
       var _this = _super.call(this, props) || this;
-      _this._root = React75.createRef();
+      _this._root = React86.createRef();
       _this._onMouseDown = function(ev) {
         var _a6 = _this.props, isEnabled = _a6.isEnabled, onShouldStartSelection = _a6.onShouldStartSelection;
         if (_this._isMouseEventOnScrollbar(ev)) {
@@ -45240,19 +47232,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     MarqueeSelectionBase2.prototype.render = function() {
       var _a6 = this.props, rootProps = _a6.rootProps, children = _a6.children, theme = _a6.theme, className = _a6.className, styles2 = _a6.styles;
       var dragRect = this.state.dragRect;
-      var classNames3 = getClassNames24(styles2, {
+      var classNames3 = getClassNames30(styles2, {
         theme,
         className
       });
-      return React75.createElement(
+      return React86.createElement(
         "div",
         __assign6({}, rootProps, { className: classNames3.root, ref: this._root }),
         children,
-        dragRect && React75.createElement("div", { className: classNames3.dragMask }),
-        dragRect && React75.createElement(
+        dragRect && React86.createElement("div", { className: classNames3.dragMask }),
+        dragRect && React86.createElement(
           "div",
           { className: classNames3.box, style: dragRect },
-          React75.createElement("div", { className: classNames3.boxFill })
+          React86.createElement("div", { className: classNames3.boxFill })
         )
       );
     };
@@ -45459,10 +47451,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       isEnabled: true
     };
     return MarqueeSelectionBase2;
-  }(React75.Component);
+  }(React86.Component);
 
   // node_modules/@fluentui/react/lib/components/MarqueeSelection/MarqueeSelection.styles.js
-  var getStyles24 = function(props) {
+  var getStyles30 = function(props) {
     var _a6, _b, _c;
     var theme = props.theme, className = props.className;
     var palette = theme.palette;
@@ -45520,15 +47512,15 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // node_modules/@fluentui/react/lib/components/MarqueeSelection/MarqueeSelection.js
-  var MarqueeSelection = styled(MarqueeSelectionBase, getStyles24, void 0, {
+  var MarqueeSelection = styled(MarqueeSelectionBase, getStyles30, void 0, {
     scope: "MarqueeSelection"
   });
 
   // node_modules/@fluentui/react/lib/components/Nav/Nav.base.js
-  var React76 = __toESM(require_react());
+  var React87 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Nav/Nav.styles.js
-  var GlobalClassNames19 = {
+  var GlobalClassNames23 = {
     root: "ms-Nav",
     linkText: "ms-Nav-linkText",
     compositeLink: "ms-Nav-compositeLink",
@@ -45550,11 +47542,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       overflow: "hidden"
     }
   };
-  var getStyles25 = function(props) {
+  var getStyles31 = function(props) {
     var _a6;
     var className = props.className, theme = props.theme, isOnTop = props.isOnTop, isExpanded = props.isExpanded, isGroup = props.isGroup, isLink = props.isLink, isSelected = props.isSelected, isDisabled = props.isDisabled, isButtonEntry = props.isButtonEntry, _b = props.navHeight, navHeight = _b === void 0 ? 44 : _b, position = props.position, _c = props.leftPadding, leftPadding = _c === void 0 ? 20 : _c, _d = props.leftPaddingExpanded, leftPaddingExpanded = _d === void 0 ? 28 : _d, _e2 = props.rightPadding, rightPadding = _e2 === void 0 ? 20 : _e2;
     var palette = theme.palette, semanticColors = theme.semanticColors, fonts = theme.fonts;
-    var classNames3 = getGlobalClassNames(GlobalClassNames19, theme);
+    var classNames3 = getGlobalClassNames(GlobalClassNames23, theme);
     return {
       root: [
         classNames3.root,
@@ -45749,21 +47741,21 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   function isRelativeUrl(url) {
     return !!url && !/^[a-z0-9+-.]+:\/\//i.test(url);
   }
-  var getClassNames25 = classNamesFunction();
+  var getClassNames31 = classNamesFunction();
   var NavBase = function(_super) {
     __extends5(NavBase2, _super);
     function NavBase2(props) {
       var _this = _super.call(this, props) || this;
-      _this._focusZone = React76.createRef();
+      _this._focusZone = React87.createRef();
       _this._onRenderLink = function(link) {
         var _a6 = _this.props, styles2 = _a6.styles, groups = _a6.groups, theme = _a6.theme;
-        var classNames3 = getClassNames25(styles2, { theme, groups });
-        return React76.createElement("div", { className: classNames3.linkText }, link.name);
+        var classNames3 = getClassNames31(styles2, { theme, groups });
+        return React87.createElement("div", { className: classNames3.linkText }, link.name);
       };
       _this._renderGroup = function(group, groupIndex) {
         var _a6 = _this.props, styles2 = _a6.styles, groups = _a6.groups, theme = _a6.theme, _b = _a6.onRenderGroupHeader, onRenderGroupHeader = _b === void 0 ? _this._renderGroupHeader : _b;
         var isExpanded = _this._isGroupExpanded(group);
-        var classNames3 = getClassNames25(styles2, {
+        var classNames3 = getClassNames31(styles2, {
           theme,
           isGroup: true,
           isExpanded,
@@ -45773,18 +47765,18 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           _this._onGroupHeaderClicked(group, ev);
         };
         var groupProps = __assign6(__assign6({}, group), { isExpanded, onHeaderClick: finalOnHeaderClick });
-        return React76.createElement(
+        return React87.createElement(
           "div",
           { key: groupIndex, className: classNames3.group },
           groupProps.name ? onRenderGroupHeader(groupProps, _this._renderGroupHeader) : null,
-          React76.createElement("div", { className: classNames3.groupContent }, _this._renderLinks(groupProps.links, 0))
+          React87.createElement("div", { className: classNames3.groupContent }, _this._renderLinks(groupProps.links, 0))
         );
       };
       _this._renderGroupHeader = function(group) {
         var _a6;
         var _b = _this.props, styles2 = _b.styles, groups = _b.groups, theme = _b.theme, expandButtonAriaLabel = _b.expandButtonAriaLabel;
         var isExpanded = group.isExpanded;
-        var classNames3 = getClassNames25(styles2, {
+        var classNames3 = getClassNames31(styles2, {
           theme,
           isGroup: true,
           isExpanded,
@@ -45796,10 +47788,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         var onClick = onHeaderClick ? function(ev) {
           onHeaderClick(ev, isExpanded);
         } : void 0;
-        return React76.createElement(
+        return React87.createElement(
           "button",
           { className: classNames3.chevronButton, onClick, "aria-label": label, "aria-expanded": isExpanded },
-          React76.createElement(Icon, { className: classNames3.chevronIcon, iconName: "ChevronDown" }),
+          React87.createElement(Icon, { className: classNames3.chevronIcon, iconName: "ChevronDown" }),
           group.name
         );
       };
@@ -45817,11 +47809,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         return null;
       }
       var groupElements = groups.map(this._renderGroup);
-      var classNames3 = getClassNames25(styles2, { theme, className, isOnTop, groups });
-      return React76.createElement(
+      var classNames3 = getClassNames31(styles2, { theme, className, isOnTop, groups });
+      return React87.createElement(
         FocusZone,
         __assign6({ direction: FocusZoneDirection.vertical, componentRef: this._focusZone }, this.props.focusZoneProps),
-        React76.createElement("nav", { role, className: classNames3.root, "aria-label": this.props.ariaLabel }, groupElements)
+        React87.createElement("nav", { role, className: classNames3.root, "aria-label": this.props.ariaLabel }, groupElements)
       );
     };
     Object.defineProperty(NavBase2.prototype, "selectedKey", {
@@ -45845,7 +47837,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       var isLinkWithIcon = link.icon || link.iconProps;
       var isSelectedLink = this._isLinkSelected(link);
       var _b = link.ariaCurrent, ariaCurrent = _b === void 0 ? "page" : _b;
-      var classNames3 = getClassNames25(styles2, {
+      var classNames3 = getClassNames31(styles2, {
         theme,
         isSelected: isSelectedLink,
         isDisabled: link.disabled,
@@ -45856,7 +47848,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       var rel = link.url && link.target && !isRelativeUrl(link.url) ? "noopener noreferrer" : void 0;
       var LinkAs = this.props.linkAs ? composeComponentAs(this.props.linkAs, ActionButton) : ActionButton;
       var onRenderLink = this.props.onRenderLink ? composeRenderFunction(this.props.onRenderLink, this._onRenderLink) : this._onRenderLink;
-      return React76.createElement(LinkAs, {
+      return React87.createElement(LinkAs, {
         className: classNames3.link,
         styles: buttonStyles,
         href: link.url || (link.forceAnchor ? "#" : void 0),
@@ -45875,7 +47867,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       var _a6;
       var divProps = __assign6({}, getNativeProps(link, divProperties, ["onClick"]));
       var _b = this.props, expandButtonAriaLabel = _b.expandButtonAriaLabel, styles2 = _b.styles, groups = _b.groups, theme = _b.theme;
-      var classNames3 = getClassNames25(styles2, {
+      var classNames3 = getClassNames31(styles2, {
         theme,
         isExpanded: !!link.isExpanded,
         isSelected: this._isLinkSelected(link),
@@ -45893,21 +47885,21 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           finalExpandBtnAriaLabel = expandButtonAriaLabel ? link.name + " " + expandButtonAriaLabel : link.name;
         }
       }
-      return React76.createElement(
+      return React87.createElement(
         "div",
         __assign6({}, divProps, { key: link.key || linkIndex, className: classNames3.compositeLink }),
-        link.links && link.links.length > 0 ? React76.createElement(
+        link.links && link.links.length > 0 ? React87.createElement(
           "button",
           { className: classNames3.chevronButton, onClick: this._onLinkExpandClicked.bind(this, link), "aria-label": finalExpandBtnAriaLabel, "aria-expanded": link.isExpanded ? "true" : "false" },
-          React76.createElement(Icon, { className: classNames3.chevronIcon, iconName: "ChevronDown" })
+          React87.createElement(Icon, { className: classNames3.chevronIcon, iconName: "ChevronDown" })
         ) : null,
         this._renderNavLink(link, linkIndex, nestingLevel)
       );
     };
     NavBase2.prototype._renderLink = function(link, linkIndex, nestingLevel) {
       var _a6 = this.props, styles2 = _a6.styles, groups = _a6.groups, theme = _a6.theme;
-      var classNames3 = getClassNames25(styles2, { theme, groups });
-      return React76.createElement(
+      var classNames3 = getClassNames31(styles2, { theme, groups });
+      return React87.createElement(
         "li",
         { key: link.key || linkIndex, role: "listitem", className: classNames3.navItem },
         this._renderCompositeLink(link, linkIndex, nestingLevel),
@@ -45923,8 +47915,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         return _this._renderLink(link, linkIndex, nestingLevel);
       });
       var _a6 = this.props, styles2 = _a6.styles, groups = _a6.groups, theme = _a6.theme;
-      var classNames3 = getClassNames25(styles2, { theme, groups });
-      return React76.createElement("ul", { role: "list", className: classNames3.navItems }, linkElements);
+      var classNames3 = getClassNames31(styles2, { theme, groups });
+      return React87.createElement("ul", { role: "list", className: classNames3.navItems }, linkElements);
     };
     NavBase2.prototype._onGroupHeaderClicked = function(group, ev) {
       if (group.onHeaderClick) {
@@ -46025,15 +48017,182 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       groups: null
     };
     return NavBase2;
-  }(React76.Component);
+  }(React87.Component);
 
   // node_modules/@fluentui/react/lib/components/Nav/Nav.js
-  var Nav = styled(NavBase, getStyles25, void 0, {
+  var Nav = styled(NavBase, getStyles31, void 0, {
     scope: "Nav"
   });
 
+  // node_modules/@fluentui/react/lib/components/ProgressIndicator/ProgressIndicator.base.js
+  var React88 = __toESM(require_react());
+  var getClassNames32 = classNamesFunction();
+  var ZERO_THRESHOLD = 0.01;
+  var ProgressIndicatorBase = function(_super) {
+    __extends5(ProgressIndicatorBase2, _super);
+    function ProgressIndicatorBase2(props) {
+      var _this = _super.call(this, props) || this;
+      _this._onRenderProgress = function(props2) {
+        var _a6 = _this.props, ariaLabel = _a6.ariaLabel, ariaValueText = _a6.ariaValueText, barHeight = _a6.barHeight, className = _a6.className, description = _a6.description, _b = _a6.label, label = _b === void 0 ? _this.props.title : _b, styles2 = _a6.styles, theme = _a6.theme;
+        var percentComplete = typeof _this.props.percentComplete === "number" ? Math.min(100, Math.max(0, _this.props.percentComplete * 100)) : void 0;
+        var classNames3 = getClassNames32(styles2, {
+          theme,
+          className,
+          barHeight,
+          indeterminate: percentComplete === void 0 ? true : false
+        });
+        var progressBarStyles = {
+          width: percentComplete !== void 0 ? percentComplete + "%" : void 0,
+          transition: percentComplete !== void 0 && percentComplete < ZERO_THRESHOLD ? "none" : void 0
+        };
+        var ariaValueMin = percentComplete !== void 0 ? 0 : void 0;
+        var ariaValueMax = percentComplete !== void 0 ? 100 : void 0;
+        var ariaValueNow = percentComplete !== void 0 ? Math.floor(percentComplete) : void 0;
+        return React88.createElement(
+          "div",
+          { className: classNames3.itemProgress },
+          React88.createElement("div", { className: classNames3.progressTrack }),
+          React88.createElement("div", { className: classNames3.progressBar, style: progressBarStyles, role: "progressbar", "aria-describedby": description ? _this._descriptionId : void 0, "aria-label": ariaLabel, "aria-labelledby": label ? _this._labelId : void 0, "aria-valuemin": ariaValueMin, "aria-valuemax": ariaValueMax, "aria-valuenow": ariaValueNow, "aria-valuetext": ariaValueText })
+        );
+      };
+      var id = getId("progress-indicator");
+      _this._labelId = id + "-label";
+      _this._descriptionId = id + "-description";
+      return _this;
+    }
+    ProgressIndicatorBase2.prototype.render = function() {
+      var _a6 = this.props, barHeight = _a6.barHeight, className = _a6.className, _b = _a6.label, label = _b === void 0 ? this.props.title : _b, description = _a6.description, styles2 = _a6.styles, theme = _a6.theme, progressHidden = _a6.progressHidden, _c = _a6.onRenderProgress, onRenderProgress = _c === void 0 ? this._onRenderProgress : _c;
+      var percentComplete = typeof this.props.percentComplete === "number" ? Math.min(100, Math.max(0, this.props.percentComplete * 100)) : void 0;
+      var classNames3 = getClassNames32(styles2, {
+        theme,
+        className,
+        barHeight,
+        indeterminate: percentComplete === void 0 ? true : false
+      });
+      return React88.createElement(
+        "div",
+        { className: classNames3.root },
+        label ? React88.createElement("div", { id: this._labelId, className: classNames3.itemName }, label) : null,
+        !progressHidden ? onRenderProgress(__assign6(__assign6({}, this.props), { percentComplete }), this._onRenderProgress) : null,
+        description ? React88.createElement("div", { id: this._descriptionId, className: classNames3.itemDescription }, description) : null
+      );
+    };
+    ProgressIndicatorBase2.defaultProps = {
+      label: "",
+      description: "",
+      width: 180
+    };
+    return ProgressIndicatorBase2;
+  }(React88.Component);
+
+  // node_modules/@fluentui/react/lib/components/ProgressIndicator/ProgressIndicator.styles.js
+  var GlobalClassNames24 = {
+    root: "ms-ProgressIndicator",
+    itemName: "ms-ProgressIndicator-itemName",
+    itemDescription: "ms-ProgressIndicator-itemDescription",
+    itemProgress: "ms-ProgressIndicator-itemProgress",
+    progressTrack: "ms-ProgressIndicator-progressTrack",
+    progressBar: "ms-ProgressIndicator-progressBar"
+  };
+  var IndeterminateProgress = memoizeFunction(function() {
+    return keyframes({
+      "0%": {
+        left: "-30%"
+      },
+      "100%": {
+        left: "100%"
+      }
+    });
+  });
+  var IndeterminateProgressRTL = memoizeFunction(function() {
+    return keyframes({
+      "100%": {
+        right: "-30%"
+      },
+      "0%": {
+        right: "100%"
+      }
+    });
+  });
+  var getStyles32 = function(props) {
+    var _a6, _b, _c;
+    var isRTL = getRTL2(props.theme);
+    var className = props.className, indeterminate = props.indeterminate, theme = props.theme, _d = props.barHeight, barHeight = _d === void 0 ? 2 : _d;
+    var palette = theme.palette, semanticColors = theme.semanticColors, fonts = theme.fonts;
+    var classNames3 = getGlobalClassNames(GlobalClassNames24, theme);
+    var marginBetweenText = 8;
+    var textHeight = 18;
+    var progressTrackColor = palette.neutralLight;
+    return {
+      root: [classNames3.root, fonts.medium, className],
+      itemName: [
+        classNames3.itemName,
+        noWrap,
+        {
+          color: semanticColors.bodyText,
+          paddingTop: marginBetweenText / 2,
+          lineHeight: textHeight + 2
+        }
+      ],
+      itemDescription: [
+        classNames3.itemDescription,
+        {
+          color: semanticColors.bodySubtext,
+          fontSize: fonts.small.fontSize,
+          lineHeight: textHeight
+        }
+      ],
+      itemProgress: [
+        classNames3.itemProgress,
+        {
+          position: "relative",
+          overflow: "hidden",
+          height: barHeight,
+          padding: marginBetweenText + "px 0"
+        }
+      ],
+      progressTrack: [
+        classNames3.progressTrack,
+        {
+          position: "absolute",
+          width: "100%",
+          height: barHeight,
+          backgroundColor: progressTrackColor,
+          selectors: (_a6 = {}, _a6[HighContrastSelector] = {
+            borderBottom: "1px solid WindowText"
+          }, _a6)
+        }
+      ],
+      progressBar: [
+        {
+          backgroundColor: palette.themePrimary,
+          height: barHeight,
+          position: "absolute",
+          transition: "width .3s ease",
+          width: 0,
+          selectors: (_b = {}, _b[HighContrastSelector] = __assign6({ backgroundColor: "highlight" }, getHighContrastNoAdjustStyle()), _b)
+        },
+        indeterminate ? {
+          position: "absolute",
+          minWidth: "33%",
+          background: "linear-gradient(to right, " + progressTrackColor + " 0%, " + (palette.themePrimary + " 50%, " + progressTrackColor + " 100%)"),
+          animation: (isRTL ? IndeterminateProgressRTL() : IndeterminateProgress()) + " 3s infinite",
+          selectors: (_c = {}, _c[HighContrastSelector] = {
+            background: "highlight"
+          }, _c)
+        } : {
+          transition: "width .15s linear"
+        },
+        classNames3.progressBar
+      ]
+    };
+  };
+
+  // node_modules/@fluentui/react/lib/components/ProgressIndicator/ProgressIndicator.js
+  var ProgressIndicator = styled(ProgressIndicatorBase, getStyles32, void 0, { scope: "ProgressIndicator" });
+
   // node_modules/@fluentui/react/lib/components/Shimmer/Shimmer.styles.js
-  var GlobalClassNames20 = {
+  var GlobalClassNames25 = {
     root: "ms-Shimmer-container",
     shimmerWrapper: "ms-Shimmer-shimmerWrapper",
     shimmerGradient: "ms-Shimmer-shimmerGradient",
@@ -46060,11 +48219,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     });
   });
-  function getStyles26(props) {
+  function getStyles33(props) {
     var _a6;
     var isDataLoaded = props.isDataLoaded, className = props.className, theme = props.theme, transitionAnimationInterval = props.transitionAnimationInterval, shimmerColor = props.shimmerColor, shimmerWaveColor = props.shimmerWaveColor, improveCSSPerformance = props.improveCSSPerformance;
     var semanticColors = theme.semanticColors;
-    var classNames3 = getGlobalClassNames(GlobalClassNames20, theme);
+    var classNames3 = getGlobalClassNames(GlobalClassNames25, theme);
     var isRTL = getRTL2(theme);
     return {
       root: [
@@ -46149,10 +48308,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // node_modules/@fluentui/react/lib/components/Shimmer/Shimmer.base.js
-  var React81 = __toESM(require_react());
+  var React93 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Shimmer/ShimmerElementsGroup/ShimmerElementsGroup.base.js
-  var React80 = __toESM(require_react());
+  var React92 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Shimmer/Shimmer.types.js
   var ShimmerElementType;
@@ -46169,54 +48328,54 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   })(ShimmerElementsDefaultHeights || (ShimmerElementsDefaultHeights = {}));
 
   // node_modules/@fluentui/react/lib/components/Shimmer/ShimmerLine/ShimmerLine.base.js
-  var React77 = __toESM(require_react());
-  var getClassNames26 = classNamesFunction();
+  var React89 = __toESM(require_react());
+  var getClassNames33 = classNamesFunction();
   var ShimmerLineBase = function(props) {
     var height = props.height, styles2 = props.styles, _a6 = props.width, width = _a6 === void 0 ? "100%" : _a6, borderStyle = props.borderStyle, theme = props.theme;
-    var classNames3 = getClassNames26(styles2, {
+    var classNames3 = getClassNames33(styles2, {
       theme,
       height,
       borderStyle
     });
-    return React77.createElement(
+    return React89.createElement(
       "div",
       { style: { width, minWidth: typeof width === "number" ? width + "px" : "auto" }, className: classNames3.root },
-      React77.createElement(
+      React89.createElement(
         "svg",
         { width: "2", height: "2", className: classNames3.topLeftCorner },
-        React77.createElement("path", { d: "M0 2 A 2 2, 0, 0, 1, 2 0 L 0 0 Z" })
+        React89.createElement("path", { d: "M0 2 A 2 2, 0, 0, 1, 2 0 L 0 0 Z" })
       ),
-      React77.createElement(
+      React89.createElement(
         "svg",
         { width: "2", height: "2", className: classNames3.topRightCorner },
-        React77.createElement("path", { d: "M0 0 A 2 2, 0, 0, 1, 2 2 L 2 0 Z" })
+        React89.createElement("path", { d: "M0 0 A 2 2, 0, 0, 1, 2 2 L 2 0 Z" })
       ),
-      React77.createElement(
+      React89.createElement(
         "svg",
         { width: "2", height: "2", className: classNames3.bottomRightCorner },
-        React77.createElement("path", { d: "M2 0 A 2 2, 0, 0, 1, 0 2 L 2 2 Z" })
+        React89.createElement("path", { d: "M2 0 A 2 2, 0, 0, 1, 0 2 L 2 2 Z" })
       ),
-      React77.createElement(
+      React89.createElement(
         "svg",
         { width: "2", height: "2", className: classNames3.bottomLeftCorner },
-        React77.createElement("path", { d: "M2 2 A 2 2, 0, 0, 1, 0 0 L 0 2 Z" })
+        React89.createElement("path", { d: "M2 2 A 2 2, 0, 0, 1, 0 0 L 0 2 Z" })
       )
     );
   };
 
   // node_modules/@fluentui/react/lib/components/Shimmer/ShimmerLine/ShimmerLine.styles.js
-  var GlobalClassNames21 = {
+  var GlobalClassNames26 = {
     root: "ms-ShimmerLine-root",
     topLeftCorner: "ms-ShimmerLine-topLeftCorner",
     topRightCorner: "ms-ShimmerLine-topRightCorner",
     bottomLeftCorner: "ms-ShimmerLine-bottomLeftCorner",
     bottomRightCorner: "ms-ShimmerLine-bottomRightCorner"
   };
-  function getStyles27(props) {
+  function getStyles34(props) {
     var _a6;
     var height = props.height, borderStyle = props.borderStyle, theme = props.theme;
     var semanticColors = theme.semanticColors;
-    var globalClassNames = getGlobalClassNames(GlobalClassNames21, theme);
+    var globalClassNames2 = getGlobalClassNames(GlobalClassNames26, theme);
     var borderStyles = borderStyle || {};
     var sharedCornerStyles = {
       position: "absolute",
@@ -46224,7 +48383,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     };
     return {
       root: [
-        globalClassNames.root,
+        globalClassNames2.root,
         theme.fonts.medium,
         {
           height: height + "px",
@@ -46246,7 +48405,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         borderStyles
       ],
       topLeftCorner: [
-        globalClassNames.topLeftCorner,
+        globalClassNames2.topLeftCorner,
         {
           top: "0",
           left: "0"
@@ -46254,7 +48413,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         sharedCornerStyles
       ],
       topRightCorner: [
-        globalClassNames.topRightCorner,
+        globalClassNames2.topRightCorner,
         {
           top: "0",
           right: "0"
@@ -46262,7 +48421,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         sharedCornerStyles
       ],
       bottomRightCorner: [
-        globalClassNames.bottomRightCorner,
+        globalClassNames2.bottomRightCorner,
         {
           bottom: "0",
           right: "0"
@@ -46270,7 +48429,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         sharedCornerStyles
       ],
       bottomLeftCorner: [
-        globalClassNames.bottomLeftCorner,
+        globalClassNames2.bottomLeftCorner,
         {
           bottom: "0",
           left: "0"
@@ -46281,36 +48440,36 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // node_modules/@fluentui/react/lib/components/Shimmer/ShimmerLine/ShimmerLine.js
-  var ShimmerLine = styled(ShimmerLineBase, getStyles27, void 0, {
+  var ShimmerLine = styled(ShimmerLineBase, getStyles34, void 0, {
     scope: "ShimmerLine"
   });
 
   // node_modules/@fluentui/react/lib/components/Shimmer/ShimmerGap/ShimmerGap.base.js
-  var React78 = __toESM(require_react());
-  var getClassNames27 = classNamesFunction();
+  var React90 = __toESM(require_react());
+  var getClassNames34 = classNamesFunction();
   var ShimmerGapBase = function(props) {
     var height = props.height, styles2 = props.styles, _a6 = props.width, width = _a6 === void 0 ? "10px" : _a6, borderStyle = props.borderStyle, theme = props.theme;
-    var classNames3 = getClassNames27(styles2, {
+    var classNames3 = getClassNames34(styles2, {
       theme,
       height,
       borderStyle
     });
-    return React78.createElement("div", { style: { width, minWidth: typeof width === "number" ? width + "px" : "auto" }, className: classNames3.root });
+    return React90.createElement("div", { style: { width, minWidth: typeof width === "number" ? width + "px" : "auto" }, className: classNames3.root });
   };
 
   // node_modules/@fluentui/react/lib/components/Shimmer/ShimmerGap/ShimmerGap.styles.js
-  var GlobalClassNames22 = {
+  var GlobalClassNames27 = {
     root: "ms-ShimmerGap-root"
   };
-  function getStyles28(props) {
+  function getStyles35(props) {
     var _a6;
     var height = props.height, borderStyle = props.borderStyle, theme = props.theme;
     var semanticColors = theme.semanticColors;
-    var globalClassNames = getGlobalClassNames(GlobalClassNames22, theme);
+    var globalClassNames2 = getGlobalClassNames(GlobalClassNames27, theme);
     var borderStyles = borderStyle || {};
     return {
       root: [
-        globalClassNames.root,
+        globalClassNames2.root,
         theme.fonts.medium,
         {
           backgroundColor: semanticColors.bodyBackground,
@@ -46330,24 +48489,24 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // node_modules/@fluentui/react/lib/components/Shimmer/ShimmerGap/ShimmerGap.js
-  var ShimmerGap = styled(ShimmerGapBase, getStyles28, void 0, {
+  var ShimmerGap = styled(ShimmerGapBase, getStyles35, void 0, {
     scope: "ShimmerGap"
   });
 
   // node_modules/@fluentui/react/lib/components/Shimmer/ShimmerCircle/ShimmerCircle.styles.js
-  var GlobalClassNames23 = {
+  var GlobalClassNames28 = {
     root: "ms-ShimmerCircle-root",
     svg: "ms-ShimmerCircle-svg"
   };
-  function getStyles29(props) {
+  function getStyles36(props) {
     var _a6, _b;
     var height = props.height, borderStyle = props.borderStyle, theme = props.theme;
     var semanticColors = theme.semanticColors;
-    var globalClassNames = getGlobalClassNames(GlobalClassNames23, theme);
+    var globalClassNames2 = getGlobalClassNames(GlobalClassNames28, theme);
     var borderStyles = borderStyle || {};
     return {
       root: [
-        globalClassNames.root,
+        globalClassNames2.root,
         theme.fonts.medium,
         {
           width: height + "px",
@@ -46364,7 +48523,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         borderStyles
       ],
       svg: [
-        globalClassNames.svg,
+        globalClassNames2.svg,
         {
           display: "block",
           fill: semanticColors.bodyBackground,
@@ -46377,38 +48536,38 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // node_modules/@fluentui/react/lib/components/Shimmer/ShimmerCircle/ShimmerCircle.base.js
-  var React79 = __toESM(require_react());
-  var getClassNames28 = classNamesFunction();
+  var React91 = __toESM(require_react());
+  var getClassNames35 = classNamesFunction();
   var ShimmerCircleBase = function(props) {
     var height = props.height, styles2 = props.styles, borderStyle = props.borderStyle, theme = props.theme;
-    var classNames3 = getClassNames28(styles2, {
+    var classNames3 = getClassNames35(styles2, {
       theme,
       height,
       borderStyle
     });
-    return React79.createElement(
+    return React91.createElement(
       "div",
       { className: classNames3.root },
-      React79.createElement(
+      React91.createElement(
         "svg",
         { viewBox: "0 0 10 10", width: height, height, className: classNames3.svg },
-        React79.createElement("path", { d: "M0,0 L10,0 L10,10 L0,10 L0,0 Z M0,5 C0,7.76142375 2.23857625,10 5,10 C7.76142375,10 10,7.76142375 10,5 C10,2.23857625 7.76142375,2.22044605e-16 5,0 C2.23857625,-2.22044605e-16 0,2.23857625 0,5 L0,5 Z" })
+        React91.createElement("path", { d: "M0,0 L10,0 L10,10 L0,10 L0,0 Z M0,5 C0,7.76142375 2.23857625,10 5,10 C7.76142375,10 10,7.76142375 10,5 C10,2.23857625 7.76142375,2.22044605e-16 5,0 C2.23857625,-2.22044605e-16 0,2.23857625 0,5 L0,5 Z" })
       )
     );
   };
 
   // node_modules/@fluentui/react/lib/components/Shimmer/ShimmerCircle/ShimmerCircle.js
-  var ShimmerCircle = styled(ShimmerCircleBase, getStyles29, void 0, { scope: "ShimmerCircle" });
+  var ShimmerCircle = styled(ShimmerCircleBase, getStyles36, void 0, { scope: "ShimmerCircle" });
 
   // node_modules/@fluentui/react/lib/components/Shimmer/ShimmerElementsGroup/ShimmerElementsGroup.base.js
-  var getClassNames29 = classNamesFunction();
+  var getClassNames36 = classNamesFunction();
   var ShimmerElementsGroupBase = function(props) {
     var styles2 = props.styles, _a6 = props.width, width = _a6 === void 0 ? "auto" : _a6, shimmerElements = props.shimmerElements, _b = props.rowHeight, rowHeight = _b === void 0 ? findMaxElementHeight(shimmerElements || []) : _b, _c = props.flexWrap, flexWrap = _c === void 0 ? false : _c, theme = props.theme, backgroundColor = props.backgroundColor;
-    var classNames3 = getClassNames29(styles2, {
+    var classNames3 = getClassNames36(styles2, {
       theme,
       flexWrap
     });
-    return React80.createElement("div", { style: { width }, className: classNames3.root }, getRenderedElements(shimmerElements, backgroundColor, rowHeight));
+    return React92.createElement("div", { style: { width }, className: classNames3.root }, getRenderedElements(shimmerElements, backgroundColor, rowHeight));
   };
   function getRenderedElements(shimmerElements, backgroundColor, rowHeight) {
     var renderedElements = shimmerElements ? shimmerElements.map(
@@ -46418,14 +48577,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         var styles2 = getElementStyles(verticalAlign, type, height, backgroundColor, rowHeight);
         switch (element.type) {
           case ShimmerElementType.circle:
-            return React80.createElement(ShimmerCircle, __assign6({ key: index }, filteredElem, { styles: styles2 }));
+            return React92.createElement(ShimmerCircle, __assign6({ key: index }, filteredElem, { styles: styles2 }));
           case ShimmerElementType.gap:
-            return React80.createElement(ShimmerGap, __assign6({ key: index }, filteredElem, { styles: styles2 }));
+            return React92.createElement(ShimmerGap, __assign6({ key: index }, filteredElem, { styles: styles2 }));
           case ShimmerElementType.line:
-            return React80.createElement(ShimmerLine, __assign6({ key: index }, filteredElem, { styles: styles2 }));
+            return React92.createElement(ShimmerLine, __assign6({ key: index }, filteredElem, { styles: styles2 }));
         }
       }
-    ) : React80.createElement(ShimmerLine, { height: ShimmerElementsDefaultHeights.line });
+    ) : React92.createElement(ShimmerLine, { height: ShimmerElementsDefaultHeights.line });
     return renderedElements;
   }
   var getElementStyles = memoizeFunction(function(verticalAlign, elementType, elementHeight, backgroundColor, rowHeight) {
@@ -46500,12 +48659,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // node_modules/@fluentui/react/lib/components/Shimmer/ShimmerElementsGroup/ShimmerElementsGroup.styles.js
-  var GlobalClassNames24 = {
+  var GlobalClassNames29 = {
     root: "ms-ShimmerElementsGroup-root"
   };
-  function getStyles30(props) {
+  function getStyles37(props) {
     var flexWrap = props.flexWrap, theme = props.theme;
-    var classNames3 = getGlobalClassNames(GlobalClassNames24, theme);
+    var classNames3 = getGlobalClassNames(GlobalClassNames29, theme);
     return {
       root: [
         classNames3.root,
@@ -46521,16 +48680,16 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // node_modules/@fluentui/react/lib/components/Shimmer/ShimmerElementsGroup/ShimmerElementsGroup.js
-  var ShimmerElementsGroup = styled(ShimmerElementsGroupBase, getStyles30, void 0, { scope: "ShimmerElementsGroup" });
+  var ShimmerElementsGroup = styled(ShimmerElementsGroupBase, getStyles37, void 0, { scope: "ShimmerElementsGroup" });
 
   // node_modules/@fluentui/react/lib/components/Shimmer/Shimmer.base.js
   var TRANSITION_ANIMATION_INTERVAL = 200;
-  var COMPONENT_NAME5 = "Shimmer";
-  var getClassNames30 = classNamesFunction();
-  var ShimmerBase = React81.forwardRef(function(props, ref) {
+  var COMPONENT_NAME7 = "Shimmer";
+  var getClassNames37 = classNamesFunction();
+  var ShimmerBase = React93.forwardRef(function(props, ref) {
     var styles2 = props.styles, shimmerElements = props.shimmerElements, children = props.children, width = props.width, className = props.className, customElementsGroup = props.customElementsGroup, theme = props.theme, ariaLabel = props.ariaLabel, shimmerColors = props.shimmerColors, _a6 = props.isDataLoaded, isDataLoaded = _a6 === void 0 ? false : _a6, improveCSSPerformance = props.improveCSSPerformance;
     var divProps = getNativeProps(props, divProperties);
-    var classNames3 = getClassNames30(styles2, {
+    var classNames3 = getClassNames37(styles2, {
       theme,
       isDataLoaded,
       className,
@@ -46543,9 +48702,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       lastTimeoutId: 0
     });
     var _b = useSetTimeout(), setTimeout2 = _b.setTimeout, clearTimeout2 = _b.clearTimeout;
-    var _c = React81.useState(isDataLoaded), contentLoaded = _c[0], setContentLoaded = _c[1];
+    var _c = React93.useState(isDataLoaded), contentLoaded = _c[0], setContentLoaded = _c[1];
     var divStyleProp = { width: width ? width : "100%" };
-    React81.useEffect(function() {
+    React93.useEffect(function() {
       if (isDataLoaded !== contentLoaded) {
         if (isDataLoaded) {
           internalState.lastTimeoutId = setTimeout2(function() {
@@ -46559,37 +48718,37 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       }
     }, [isDataLoaded]);
-    return React81.createElement(
+    return React93.createElement(
       "div",
       __assign6({}, divProps, { className: classNames3.root, ref }),
-      !contentLoaded && React81.createElement(
+      !contentLoaded && React93.createElement(
         "div",
         { style: divStyleProp, className: classNames3.shimmerWrapper },
-        React81.createElement("div", { className: classNames3.shimmerGradient }),
-        customElementsGroup ? customElementsGroup : React81.createElement(ShimmerElementsGroup, { shimmerElements, backgroundColor: shimmerColors && shimmerColors.background })
+        React93.createElement("div", { className: classNames3.shimmerGradient }),
+        customElementsGroup ? customElementsGroup : React93.createElement(ShimmerElementsGroup, { shimmerElements, backgroundColor: shimmerColors && shimmerColors.background })
       ),
-      children && React81.createElement("div", { className: classNames3.dataWrapper }, children),
-      ariaLabel && !isDataLoaded && React81.createElement(
+      children && React93.createElement("div", { className: classNames3.dataWrapper }, children),
+      ariaLabel && !isDataLoaded && React93.createElement(
         "div",
         { role: "status", "aria-live": "polite" },
-        React81.createElement(
+        React93.createElement(
           DelayedRender,
           null,
-          React81.createElement("div", { className: classNames3.screenReaderText }, ariaLabel)
+          React93.createElement("div", { className: classNames3.screenReaderText }, ariaLabel)
         )
       )
     );
   });
-  ShimmerBase.displayName = COMPONENT_NAME5;
+  ShimmerBase.displayName = COMPONENT_NAME7;
 
   // node_modules/@fluentui/react/lib/components/Shimmer/Shimmer.js
-  var Shimmer = styled(ShimmerBase, getStyles26, void 0, {
+  var Shimmer = styled(ShimmerBase, getStyles33, void 0, {
     scope: "Shimmer"
   });
 
   // node_modules/@fluentui/react/lib/components/DetailsList/ShimmeredDetailsList.base.js
-  var React82 = __toESM(require_react());
-  var getClassNames31 = classNamesFunction();
+  var React94 = __toESM(require_react());
+  var getClassNames38 = classNamesFunction();
   var SHIMMER_INITIAL_ITEMS = 10;
   var DEFAULT_SHIMMER_HEIGHT = 7;
   var SHIMMER_LINE_VS_CELL_WIDTH_RATIO = 0.95;
@@ -46600,7 +48759,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       _this._onRenderShimmerPlaceholder = function(index, rowProps) {
         var onRenderCustomPlaceholder = _this.props.onRenderCustomPlaceholder;
         var placeholderElements = onRenderCustomPlaceholder ? onRenderCustomPlaceholder(rowProps, index, _this._renderDefaultShimmerPlaceholder) : _this._renderDefaultShimmerPlaceholder(rowProps);
-        return React82.createElement(Shimmer, { customElementsGroup: placeholderElements });
+        return React94.createElement(Shimmer, { customElementsGroup: placeholderElements });
       };
       _this._renderDefaultShimmerPlaceholder = function(rowProps) {
         var columns = rowProps.columns, compact = rowProps.compact, selectionMode = rowProps.selectionMode, checkboxVisibility = rowProps.checkboxVisibility, _a6 = rowProps.cellStyleProps, cellStyleProps = _a6 === void 0 ? DEFAULT_CELL_STYLE_PROPS : _a6;
@@ -46609,7 +48768,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         var shimmerElementsRow = [];
         var showCheckbox = selectionMode !== SelectionMode.none && checkboxVisibility !== CheckboxVisibility.hidden;
         if (showCheckbox) {
-          shimmerElementsRow.push(React82.createElement(ShimmerElementsGroup, { key: "checkboxGap", shimmerElements: [{ type: ShimmerElementType.gap, width: "40px", height: gapHeight }] }));
+          shimmerElementsRow.push(React94.createElement(ShimmerElementsGroup, { key: "checkboxGap", shimmerElements: [{ type: ShimmerElementType.gap, width: "40px", height: gapHeight }] }));
         }
         columns.forEach(function(column, columnIdx) {
           var shimmerElements = [];
@@ -46642,10 +48801,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
               height: gapHeight
             });
           }
-          shimmerElementsRow.push(React82.createElement(ShimmerElementsGroup, { key: columnIdx, width: groupWidth + "px", shimmerElements }));
+          shimmerElementsRow.push(React94.createElement(ShimmerElementsGroup, { key: columnIdx, width: groupWidth + "px", shimmerElements }));
         });
-        shimmerElementsRow.push(React82.createElement(ShimmerElementsGroup, { key: "endGap", width: "100%", shimmerElements: [{ type: ShimmerElementType.gap, width: "100%", height: gapHeight }] }));
-        return React82.createElement("div", { style: { display: "flex" } }, shimmerElementsRow);
+        shimmerElementsRow.push(React94.createElement(ShimmerElementsGroup, { key: "endGap", width: "100%", shimmerElements: [{ type: ShimmerElementType.gap, width: "100%", height: gapHeight }] }));
+        return React94.createElement("div", { style: { display: "flex" } }, shimmerElementsRow);
       };
       _this._shimmerItems = props.shimmerLines ? new Array(props.shimmerLines) : new Array(SHIMMER_INITIAL_ITEMS);
       return _this;
@@ -46653,16 +48812,16 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     ShimmeredDetailsListBase2.prototype.render = function() {
       var _a6 = this.props, detailsListStyles = _a6.detailsListStyles, enableShimmer = _a6.enableShimmer, items = _a6.items, listProps = _a6.listProps, onRenderCustomPlaceholder = _a6.onRenderCustomPlaceholder, removeFadingOverlay = _a6.removeFadingOverlay, shimmerLines = _a6.shimmerLines, styles2 = _a6.styles, theme = _a6.theme, ariaLabelForGrid = _a6.ariaLabelForGrid, ariaLabelForShimmer = _a6.ariaLabelForShimmer, restProps = __rest5(_a6, ["detailsListStyles", "enableShimmer", "items", "listProps", "onRenderCustomPlaceholder", "removeFadingOverlay", "shimmerLines", "styles", "theme", "ariaLabelForGrid", "ariaLabelForShimmer"]);
       var listClassName = listProps && listProps.className;
-      this._classNames = getClassNames31(styles2, {
+      this._classNames = getClassNames38(styles2, {
         theme
       });
       var newListProps = __assign6(__assign6({}, listProps), {
         className: enableShimmer && !removeFadingOverlay ? css(this._classNames.root, listClassName) : listClassName
       });
-      return React82.createElement(DetailsList, __assign6({}, restProps, { styles: detailsListStyles, items: enableShimmer ? this._shimmerItems : items, isPlaceholderData: enableShimmer, ariaLabelForGrid: enableShimmer && ariaLabelForShimmer || ariaLabelForGrid, onRenderMissingItem: this._onRenderShimmerPlaceholder, listProps: newListProps }));
+      return React94.createElement(DetailsList, __assign6({}, restProps, { styles: detailsListStyles, items: enableShimmer ? this._shimmerItems : items, isPlaceholderData: enableShimmer, ariaLabelForGrid: enableShimmer && ariaLabelForShimmer || ariaLabelForGrid, onRenderMissingItem: this._onRenderShimmerPlaceholder, listProps: newListProps }));
     };
     return ShimmeredDetailsListBase2;
-  }(React82.Component);
+  }(React94.Component);
 
   // node_modules/@fluentui/react/lib/components/DetailsList/ShimmeredDetailsList.styles.js
   var getShimmeredDetailsListStyles = function(props) {
@@ -46690,7 +48849,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var ShimmeredDetailsList = styled(ShimmeredDetailsListBase, getShimmeredDetailsListStyles, void 0, { scope: "ShimmeredDetailsList" });
 
   // node_modules/@fluentui/foundation-legacy/node_modules/tslib/modules/index.js
-  var import_tslib90 = __toESM(require_tslib8(), 1);
+  var import_tslib101 = __toESM(require_tslib8(), 1);
   var {
     __extends: __extends8,
     __assign: __assign9,
@@ -46717,13 +48876,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     __classPrivateFieldGet: __classPrivateFieldGet8,
     __classPrivateFieldSet: __classPrivateFieldSet8,
     __classPrivateFieldIn: __classPrivateFieldIn8
-  } = import_tslib90.default;
+  } = import_tslib101.default;
 
   // node_modules/@fluentui/foundation-legacy/lib/createComponent.js
-  var React84 = __toESM(require_react());
+  var React96 = __toESM(require_react());
 
   // node_modules/@fluentui/foundation-legacy/lib/slots.js
-  var React83 = __toESM(require_react());
+  var React95 = __toESM(require_react());
 
   // node_modules/@fluentui/foundation-legacy/lib/utilities.js
   var assign2 = __assign9;
@@ -46736,13 +48895,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }
     var slotType = type;
     if (slotType.isSlot) {
-      children = React83.Children.toArray(children);
+      children = React95.Children.toArray(children);
       if (children.length === 0) {
         return slotType(props);
       }
       return slotType(__assign9(__assign9({}, props), { children }));
     } else {
-      return React83.createElement.apply(React83, __spreadArray8([type, props], children));
+      return React95.createElement.apply(React95, __spreadArray8([type, props], children));
     }
   }
   function createFactory(DefaultComponent, options) {
@@ -46751,7 +48910,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }
     var _a6 = options.defaultProp, defaultProp = _a6 === void 0 ? "children" : _a6;
     var result = function(componentProps, userProps, userSlotOptions, defaultStyles, theme) {
-      if (React83.isValidElement(userProps)) {
+      if (React95.isValidElement(userProps)) {
         return userProps;
       }
       var flattenedUserProps = _translateShorthand(defaultProp, userProps);
@@ -46759,13 +48918,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       if (userSlotOptions) {
         if (userSlotOptions.component) {
           var UserComponent = userSlotOptions.component;
-          return React83.createElement(UserComponent, __assign9({}, finalProps));
+          return React95.createElement(UserComponent, __assign9({}, finalProps));
         }
         if (userSlotOptions.render) {
           return userSlotOptions.render(finalProps, DefaultComponent);
         }
       }
-      return React83.createElement(DefaultComponent, __assign9({}, finalProps));
+      return React95.createElement(DefaultComponent, __assign9({}, finalProps));
     };
     return result;
   }
@@ -46844,7 +49003,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     var _a6 = options.factoryOptions, factoryOptions = _a6 === void 0 ? {} : _a6;
     var defaultProp = factoryOptions.defaultProp;
     var ResultComponent = function(componentProps) {
-      var settings = _getCustomizations(options.displayName, React84.useContext(CustomizerContext), options.fields);
+      var settings = _getCustomizations(options.displayName, React96.useContext(CustomizerContext), options.fields);
       var stateReducer = options.state;
       if (stateReducer) {
         componentProps = __assign9(__assign9({}, componentProps), stateReducer(componentProps));
@@ -46895,7 +49054,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // node_modules/@fluentui/react/lib/components/Stack/StackItem/StackItem.styles.js
-  var GlobalClassNames25 = {
+  var GlobalClassNames30 = {
     root: "ms-StackItem"
   };
   var alignMap = {
@@ -46904,7 +49063,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
   var StackItemStyles = function(props, theme, tokens) {
     var grow = props.grow, shrink = props.shrink, disableShrink = props.disableShrink, align = props.align, verticalFill = props.verticalFill, order = props.order, className = props.className, _a6 = props.basis, basis = _a6 === void 0 ? "auto" : _a6;
-    var classNames3 = getGlobalClassNames(GlobalClassNames25, theme);
+    var classNames3 = getGlobalClassNames(GlobalClassNames30, theme);
     return {
       root: [
         theme.fonts.medium,
@@ -46954,7 +49113,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // node_modules/@fluentui/react/lib/components/Stack/Stack.js
-  var React85 = __toESM(require_react());
+  var React97 = __toESM(require_react());
 
   // node_modules/@fluentui/react/lib/components/Stack/StackUtils.js
   var _getThemedSpacing = function(space, theme) {
@@ -47041,14 +49200,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     start: "flex-start",
     end: "flex-end"
   };
-  var GlobalClassNames26 = {
+  var GlobalClassNames31 = {
     root: "ms-Stack",
     inner: "ms-Stack-inner"
   };
   var styles = function(props, theme, tokens) {
     var _a6, _b, _c, _d, _e2, _f, _g, _h;
     var verticalFill = props.verticalFill, horizontal = props.horizontal, reversed = props.reversed, grow = props.grow, wrap = props.wrap, horizontalAlign = props.horizontalAlign, verticalAlign = props.verticalAlign, disableShrink = props.disableShrink, className = props.className;
-    var classNames3 = getGlobalClassNames(GlobalClassNames26, theme);
+    var classNames3 = getGlobalClassNames(GlobalClassNames31, theme);
     var childrenGap = tokens && tokens.childrenGap ? tokens.childrenGap : props.gap;
     var maxHeight = tokens && tokens.maxHeight ? tokens.maxHeight : props.maxHeight;
     var maxWidth = tokens && tokens.maxWidth ? tokens.maxWidth : props.maxWidth;
@@ -47163,11 +49322,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       maxWidth: "tokens.maxWidth",
       padding: "tokens.padding"
     });
-    var stackChildren = React85.Children.toArray(props.children);
-    if (stackChildren.length === 1 && React85.isValidElement(stackChildren[0]) && stackChildren[0].type === React85.Fragment) {
+    var stackChildren = React97.Children.toArray(props.children);
+    if (stackChildren.length === 1 && React97.isValidElement(stackChildren[0]) && stackChildren[0].type === React97.Fragment) {
       stackChildren = stackChildren[0].props.children;
     }
-    stackChildren = React85.Children.map(stackChildren, function(child, index) {
+    stackChildren = React97.Children.map(stackChildren, function(child, index) {
       if (!child) {
         return null;
       }
@@ -47175,7 +49334,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         var defaultItemProps = {
           shrink: !disableShrink
         };
-        return React85.cloneElement(child, __assign6(__assign6({}, defaultItemProps), child.props));
+        return React97.cloneElement(child, __assign6(__assign6({}, defaultItemProps), child.props));
       }
       return child;
     });
@@ -49565,9 +51724,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
         return m2;
       }
-      const q2 = new ReadableStream({ type: "bytes", start(e4) {
+      const q2 = new ReadableStream2({ type: "bytes", start(e4) {
         o2 = e4;
-      }, pull: S2, cancel: R2 }), C2 = new ReadableStream({ type: "bytes", start(e4) {
+      }, pull: S2, cancel: R2 }), C2 = new ReadableStream2({ type: "bytes", start(e4) {
         n2 = e4;
       }, pull: v2, cancel: T2 });
       return y2(i2), [q2, C2];
@@ -49599,9 +51758,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
         return p2;
       }
-      const w2 = new ReadableStream({ start(e4) {
+      const w2 = new ReadableStream2({ start(e4) {
         a2 = e4;
-      }, pull: m2, cancel: y2 }), S2 = new ReadableStream({ start(e4) {
+      }, pull: m2, cancel: y2 }), S2 = new ReadableStream2({ start(e4) {
         i2 = e4;
       }, pull: m2, cancel: g2 });
       return _(r2.closed, (e4) => (a2.error(e4), i2.error(e4), f2 && h2 || l2(void 0), null)), [w2, S2];
@@ -49773,7 +51932,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }(o2, `${t2} has member 'writable' that`), { readable: r2, writable: o2 };
   }
   Object.defineProperties(ReadableStreamDefaultController.prototype, { close: { enumerable: true }, enqueue: { enumerable: true }, error: { enumerable: true }, desiredSize: { enumerable: true } }), n(ReadableStreamDefaultController.prototype.close, "close"), n(ReadableStreamDefaultController.prototype.enqueue, "enqueue"), n(ReadableStreamDefaultController.prototype.error, "error"), "symbol" == typeof e.toStringTag && Object.defineProperty(ReadableStreamDefaultController.prototype, e.toStringTag, { value: "ReadableStreamDefaultController", configurable: true });
-  var ReadableStream = class {
+  var ReadableStream2 = class {
     constructor(e2 = {}, t2 = {}) {
       void 0 === e2 ? e2 = null : D(e2, "First parameter");
       const r2 = Ye(t2, "Second parameter"), o2 = function(e3, t3) {
@@ -49857,7 +52016,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }
   };
   function Vt(e2) {
-    return !!r(e2) && (!!Object.prototype.hasOwnProperty.call(e2, "_readableStreamController") && e2 instanceof ReadableStream);
+    return !!r(e2) && (!!Object.prototype.hasOwnProperty.call(e2, "_readableStreamController") && e2 instanceof ReadableStream2);
   }
   function Ut(e2) {
     return void 0 !== e2._reader;
@@ -49900,7 +52059,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     const r2 = null == e2 ? void 0 : e2.highWaterMark;
     return M(r2, "highWaterMark", "QueuingStrategyInit"), { highWaterMark: Y(r2) };
   }
-  Object.defineProperties(ReadableStream.prototype, { cancel: { enumerable: true }, getReader: { enumerable: true }, pipeThrough: { enumerable: true }, pipeTo: { enumerable: true }, tee: { enumerable: true }, values: { enumerable: true }, locked: { enumerable: true } }), n(ReadableStream.prototype.cancel, "cancel"), n(ReadableStream.prototype.getReader, "getReader"), n(ReadableStream.prototype.pipeThrough, "pipeThrough"), n(ReadableStream.prototype.pipeTo, "pipeTo"), n(ReadableStream.prototype.tee, "tee"), n(ReadableStream.prototype.values, "values"), "symbol" == typeof e.toStringTag && Object.defineProperty(ReadableStream.prototype, e.toStringTag, { value: "ReadableStream", configurable: true }), "symbol" == typeof e.asyncIterator && Object.defineProperty(ReadableStream.prototype, e.asyncIterator, { value: ReadableStream.prototype.values, writable: true, configurable: true });
+  Object.defineProperties(ReadableStream2.prototype, { cancel: { enumerable: true }, getReader: { enumerable: true }, pipeThrough: { enumerable: true }, pipeTo: { enumerable: true }, tee: { enumerable: true }, values: { enumerable: true }, locked: { enumerable: true } }), n(ReadableStream2.prototype.cancel, "cancel"), n(ReadableStream2.prototype.getReader, "getReader"), n(ReadableStream2.prototype.pipeThrough, "pipeThrough"), n(ReadableStream2.prototype.pipeTo, "pipeTo"), n(ReadableStream2.prototype.tee, "tee"), n(ReadableStream2.prototype.values, "values"), "symbol" == typeof e.toStringTag && Object.defineProperty(ReadableStream2.prototype, e.toStringTag, { value: "ReadableStream", configurable: true }), "symbol" == typeof e.asyncIterator && Object.defineProperty(ReadableStream2.prototype, e.asyncIterator, { value: ReadableStream2.prototype.values, writable: true, configurable: true });
   var er = (e2) => e2.byteLength;
   n(er, "size");
   var ByteLengthQueuingStrategy = class {
@@ -49958,7 +52117,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     return I(e2, r2), (r3, o2) => w(e2, t2, [r3, o2]);
   }
   Object.defineProperties(CountQueuingStrategy.prototype, { highWaterMark: { enumerable: true }, size: { enumerable: true } }), "symbol" == typeof e.toStringTag && Object.defineProperty(CountQueuingStrategy.prototype, e.toStringTag, { value: "CountQueuingStrategy", configurable: true });
-  var TransformStream = class {
+  var TransformStream2 = class {
     constructor(e2 = {}, t2 = {}, r2 = {}) {
       void 0 === e2 && (e2 = null);
       const o2 = Ye(t2, "Second parameter"), n2 = Ye(r2, "Third parameter"), a2 = function(e3, t3) {
@@ -50047,7 +52206,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             }(e4, t5), t5;
           })), abort: (t5) => (e4._writableState = "errored", e4._writableStoredError = t5, n4(t5)) }, { highWaterMark: a4, size: i4 });
         }(e3, i3, l3, u2, s3, r3, o3), e3._readableState = "readable", e3._readableStoredError = void 0, e3._readableCloseRequested = false, e3._readablePulling = false, e3._readable = function(e4, t4, r4, o4, n4, a4) {
-          return new ReadableStream({ start: (r5) => (e4._readableController = r5, t4().catch((t5) => {
+          return new ReadableStream2({ start: (r5) => (e4._readableController = r5, t4().catch((t5) => {
             Sr(e4, t5);
           })), pull: () => (e4._readablePulling = true, r4().catch((t5) => {
             Sr(e4, t5);
@@ -50083,7 +52242,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }
   };
   function ur(e2) {
-    return !!r(e2) && (!!Object.prototype.hasOwnProperty.call(e2, "_transformStreamController") && e2 instanceof TransformStream);
+    return !!r(e2) && (!!Object.prototype.hasOwnProperty.call(e2, "_transformStreamController") && e2 instanceof TransformStream2);
   }
   function cr(e2, t2) {
     Sr(e2, t2), dr(e2, t2);
@@ -50099,7 +52258,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       e2._backpressureChangePromise_resolve = t3;
     }), e2._backpressure = t2;
   }
-  Object.defineProperties(TransformStream.prototype, { readable: { enumerable: true }, writable: { enumerable: true } }), "symbol" == typeof e.toStringTag && Object.defineProperty(TransformStream.prototype, e.toStringTag, { value: "TransformStream", configurable: true });
+  Object.defineProperties(TransformStream2.prototype, { readable: { enumerable: true }, writable: { enumerable: true } }), "symbol" == typeof e.toStringTag && Object.defineProperty(TransformStream2.prototype, e.toStringTag, { value: "TransformStream", configurable: true });
   var TransformStreamDefaultController = class {
     constructor() {
       throw new TypeError("Illegal constructor");
@@ -50287,7 +52446,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       await this.options.dispose?.();
     }
   };
-  var DecodeUtf8Stream = class extends TransformStream {
+  var DecodeUtf8Stream = class extends TransformStream2 {
     constructor() {
       super({
         transform(chunk, controller) {
@@ -50321,7 +52480,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     constructor(struct) {
       let incomingStreamController;
       const incomingStream = new BufferedStream(new PushReadableStream((controller) => incomingStreamController = controller));
-      this._readable = new ReadableStream({
+      this._readable = new ReadableStream2({
         async pull(controller) {
           try {
             const value = await struct.deserialize(incomingStream);
@@ -50348,7 +52507,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       });
     }
   };
-  var StructSerializeStream = class extends TransformStream {
+  var StructSerializeStream = class extends TransformStream2 {
     constructor(struct) {
       super({
         transform(chunk, controller) {
@@ -50404,7 +52563,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       return wrapper2;
     }
   }
-  var WrapReadableStream = class extends ReadableStream {
+  var WrapReadableStream = class extends ReadableStream2 {
     readable;
     reader;
     constructor(wrapper2) {
@@ -50434,7 +52593,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       });
     }
   };
-  var ChunkStream = class extends TransformStream {
+  var ChunkStream = class extends TransformStream2 {
     constructor(size) {
       super({
         transform(chunk, controller) {
@@ -50461,7 +52620,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     });
   }
-  var InspectStream = class extends TransformStream {
+  var InspectStream = class extends TransformStream2 {
     constructor(callback) {
       super({
         transform(chunk, controller) {
@@ -50471,7 +52630,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       });
     }
   };
-  var PushReadableStream = class extends ReadableStream {
+  var PushReadableStream = class extends ReadableStream2 {
     constructor(source, strategy) {
       let waterMarkLow;
       const canceled = new AbortController2();
@@ -50660,7 +52819,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       return payload;
     }
   }
-  var AdbPacketSerializeStream = class extends TransformStream {
+  var AdbPacketSerializeStream = class extends TransformStream2 {
     constructor() {
       super({
         transform: async (init, controller) => {
@@ -50843,7 +53002,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       });
       this._stdout = this.duplex.wrapReadable(this.socket.readable);
-      this._stderr = this.duplex.wrapReadable(new ReadableStream());
+      this._stderr = this.duplex.wrapReadable(new ReadableStream2());
       this._exit = this.duplex.closed.then(() => 0);
     }
     resize() {
@@ -50874,7 +53033,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     AdbShellProtocolId3[AdbShellProtocolId3["WindowSizeChange"] = 5] = "WindowSizeChange";
   })(AdbShellProtocolId = AdbShellProtocolId || (AdbShellProtocolId = {}));
   var AdbShellProtocolPacket = new Struct({ littleEndian: true }).uint8("id", placeholder()).uint32("length").uint8Array("data", { lengthField: "length" });
-  var StdinSerializeStream = class extends TransformStream {
+  var StdinSerializeStream = class extends TransformStream2 {
     constructor() {
       super({
         transform(chunk, controller) {
@@ -50888,7 +53047,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       });
     }
   };
-  var StdoutDeserializeStream = class extends TransformStream {
+  var StdoutDeserializeStream = class extends TransformStream2 {
     constructor(type) {
       super({
         transform(chunk, controller) {
@@ -50964,7 +53123,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }
     constructor(socket) {
       this._socket = socket;
-      const [stdout, stderr] = socket.readable.pipeThrough(new StructDeserializeStream(AdbShellProtocolPacket)).pipeThrough(new TransformStream({
+      const [stdout, stderr] = socket.readable.pipeThrough(new StructDeserializeStream(AdbShellProtocolPacket)).pipeThrough(new TransformStream2({
         transform: (chunk, controller) => {
           if (chunk.id === AdbShellProtocolId.Exit) {
             this._exit.resolve(new Uint8Array(chunk.data)[0]);
@@ -51424,7 +53583,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     [AdbSyncResponseId.Done]: new AdbSyncDoneResponse(AdbSyncDataResponse.size)
   };
   function adbSyncPull(stream, writer, path) {
-    return new ReadableStream({
+    return new ReadableStream2({
       async start() {
         await adbSyncWriteRequest(writer, AdbSyncRequestId.Receive, path);
       },
@@ -52102,7 +54261,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
       }
       navigator.usb.addEventListener("disconnect", handleUsbDisconnect);
-      this._readable = factory.wrapReadable(new ReadableStream({
+      this._readable = factory.wrapReadable(new ReadableStream2({
         async pull(controller) {
           const result = await device.transferIn(inEndpoint.endpointNumber, 24);
           const buffer = new Uint8Array(result.data.buffer);
@@ -58172,6 +60331,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     };
   }
 
+  // src/utils/file.ts
+  var import_stream_saver = __toESM(require_StreamSaver(), 1);
+
   // src/utils/formatSize.ts
   var units = [" B", " KB", " MB", " GB"];
   function formatSize(value) {
@@ -58183,14 +60345,61 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     return value.toLocaleString(void 0, { maximumFractionDigits: 2 }) + units[index];
   }
 
+  // src/utils/file.ts
+  import_stream_saver.default.mitm = "/home/liaozhengyang/projects/react/web-adb/src/util/mitm.html";
+  function pickFile(options) {
+    return new Promise((resolve) => {
+      const input = document.createElement("input");
+      input.type = "file";
+      if (options.multiple) {
+        input.multiple = true;
+      }
+      if (options.accept) {
+        input.accept = options.accept;
+      }
+      input.onchange = () => {
+        if (options.multiple) {
+          resolve(input.files);
+        } else {
+          resolve(input.files.item(0));
+        }
+      };
+      input.click();
+    });
+  }
+  function saveFile(fileName, size) {
+    return import_stream_saver.default.createWriteStream(
+      fileName,
+      { size }
+    );
+  }
+  function createFileStream(file) {
+    return new WrapReadableStream(file.stream());
+  }
+  function formatSpeed(completed, total, speed) {
+    if (total === 0) {
+      return void 0;
+    }
+    return `${formatSize(completed)} of ${formatSize(total)} (${formatSize(speed)}/s)`;
+  }
+  var ProgressStream = class extends InspectStream {
+    constructor(onProgress) {
+      let progress = 0;
+      super((chunk) => {
+        progress += chunk.byteLength;
+        onProgress(progress);
+      });
+    }
+  };
+
   // node_modules/@fluentui/react-icons/lib/icons/chunk-0.js
-  var React90 = __toESM(require_react());
+  var React102 = __toESM(require_react());
 
   // node_modules/@fluentui/react-icons/lib/utils/wrapIcon.js
-  var React89 = __toESM(require_react());
+  var React101 = __toESM(require_react());
 
   // node_modules/@fluentui/react-icons/node_modules/tslib/modules/index.js
-  var import_tslib97 = __toESM(require_tslib9(), 1);
+  var import_tslib108 = __toESM(require_tslib9(), 1);
   var {
     __extends: __extends9,
     __assign: __assign10,
@@ -58217,7 +60426,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     __classPrivateFieldGet: __classPrivateFieldGet9,
     __classPrivateFieldSet: __classPrivateFieldSet9,
     __classPrivateFieldIn: __classPrivateFieldIn9
-  } = import_tslib97.default;
+  } = import_tslib108.default;
 
   // node_modules/@griffel/core/constants.esm.js
   var DATA_BUCKET_ATTR = "data-make-styles-bucket";
@@ -58772,26 +60981,26 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // node_modules/@fluentui/react-icons/node_modules/@griffel/react/RendererContext.esm.js
-  var React87 = __toESM(require_react());
-  var RendererContext = /* @__PURE__ */ React87.createContext(/* @__PURE__ */ createDOMRenderer());
+  var React99 = __toESM(require_react());
+  var RendererContext = /* @__PURE__ */ React99.createContext(/* @__PURE__ */ createDOMRenderer());
   function useRenderer() {
-    return React87.useContext(RendererContext);
+    return React99.useContext(RendererContext);
   }
 
   // node_modules/@fluentui/react-icons/node_modules/@griffel/react/TextDirectionContext.esm.js
-  var React88 = __toESM(require_react());
-  var TextDirectionContext = /* @__PURE__ */ React88.createContext("ltr");
+  var React100 = __toESM(require_react());
+  var TextDirectionContext = /* @__PURE__ */ React100.createContext("ltr");
   function useTextDirection() {
-    return React88.useContext(TextDirectionContext);
+    return React100.useContext(TextDirectionContext);
   }
 
   // node_modules/@fluentui/react-icons/node_modules/@griffel/react/__styles.esm.js
   function __styles2(classesMapBySlot, cssRules2) {
-    const getStyles31 = __styles(classesMapBySlot, cssRules2);
+    const getStyles38 = __styles(classesMapBySlot, cssRules2);
     return function useClasses() {
       const dir = useTextDirection();
       const renderer = useRenderer();
-      return getStyles31({
+      return getStyles38({
         dir,
         renderer
       });
@@ -58835,7 +61044,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var wrapIcon = (Icon2, displayName) => {
     const WrappedIcon = (props) => {
       const state = useIconState(props);
-      return React89.createElement(Icon2, Object.assign({}, state));
+      return React101.createElement(Icon2, Object.assign({}, state));
     };
     WrappedIcon.displayName = displayName;
     return WrappedIcon;
@@ -58848,13 +61057,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React90.createElement("svg", Object.assign({}, props, {
+    return React102.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React90.createElement("path", {
+    }), React102.createElement("path", {
       d: "M6 10c0-.28.22-.5.5-.5h3v-3a.5.5 0 011 0v3h3a.5.5 0 010 1h-3v3a.5.5 0 01-1 0v-3h-3A.5.5 0 016 10zm4 8a8 8 0 100-16 8 8 0 000 16zm0-1a7 7 0 110-14 7 7 0 010 14z",
       fill: primaryFill
     }));
@@ -58865,13 +61074,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React90.createElement("svg", Object.assign({}, props, {
+    return React102.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React90.createElement("path", {
+    }), React102.createElement("path", {
       d: "M3.07 9.05a7 7 0 0112.55-3.22l.13.17H12.5a.5.5 0 100 1h4a.5.5 0 00.5-.5v-4a.5.5 0 00-1 0v2.2a8 8 0 101.99 4.77.5.5 0 00-1 .08 7 7 0 11-13.92-.5z",
       fill: primaryFill
     }));
@@ -58882,13 +61091,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React90.createElement("svg", Object.assign({}, props, {
+    return React102.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React90.createElement("path", {
+    }), React102.createElement("path", {
       d: "M3 10a7 7 0 1110 6.33V14.5a.5.5 0 00-1 0v3c0 .28.22.5.5.5h3a.5.5 0 000-1h-1.62A8 8 0 102 10a.5.5 0 001 0zm7 2a2 2 0 100-4 2 2 0 000 4zm0-1a1 1 0 110-2 1 1 0 010 2z",
       fill: primaryFill
     }));
@@ -58899,13 +61108,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React90.createElement("svg", Object.assign({}, props, {
+    return React102.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React90.createElement("path", {
+    }), React102.createElement("path", {
       d: "M17 10a7 7 0 10-10 6.33V14.5a.5.5 0 011 0v3a.5.5 0 01-.5.5h-3a.5.5 0 010-1h1.62A8 8 0 1118 10a.5.5 0 01-1 0zm-7 2a2 2 0 110-4 2 2 0 010 4zm0-1a1 1 0 100-2 1 1 0 000 2z",
       fill: primaryFill
     }));
@@ -58916,13 +61125,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React90.createElement("svg", Object.assign({}, props, {
+    return React102.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React90.createElement("path", {
+    }), React102.createElement("path", {
       d: "M10 15.29l2.65-2.64a.5.5 0 01.7.7L9.9 16.82a.5.5 0 01-.74.03h-.01l-3.5-3.5a.5.5 0 11.71-.7L9 15.29V3.5a.5.5 0 011 0v11.79z",
       fill: primaryFill
     }));
@@ -58933,13 +61142,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React90.createElement("svg", Object.assign({}, props, {
+    return React102.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React90.createElement("path", {
+    }), React102.createElement("path", {
       d: "M9 4.71L6.35 7.35a.5.5 0 11-.7-.7L9.1 3.18a.5.5 0 01.74-.03h.01l3.5 3.5a.5.5 0 11-.71.7L10 4.71V16.5a.5.5 0 01-1 0V4.71z",
       fill: primaryFill
     }));
@@ -58950,13 +61159,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React90.createElement("svg", Object.assign({}, props, {
+    return React102.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React90.createElement("path", {
+    }), React102.createElement("path", {
       d: "M4 4v12c0 1.1.9 2 2 2h9.5a.5.5 0 000-1H6a1 1 0 01-1-1h10a1 1 0 001-1V4a2 2 0 00-2-2H6a2 2 0 00-2 2zm10-1a1 1 0 011 1v11H5V4a1 1 0 011-1h8zm-2.41 6.88a2.5 2.5 0 10-.7.7l1.26 1.27a.5.5 0 00.7-.7L11.6 9.88zM8 8.5a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z",
       fill: primaryFill
     }));
@@ -58967,13 +61176,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React90.createElement("svg", Object.assign({}, props, {
+    return React102.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React90.createElement("path", {
+    }), React102.createElement("path", {
       d: "M4 4.5A2.5 2.5 0 016.5 2h7A2.5 2.5 0 0116 4.5v13a.5.5 0 01-.8.4L10 14.12 4.8 17.9a.5.5 0 01-.8-.4v-13zM6.5 3C5.67 3 5 3.67 5 4.5v12.02l4.7-3.42a.5.5 0 01.6 0l4.7 3.42V4.5c0-.83-.67-1.5-1.5-1.5h-7z",
       fill: primaryFill
     }));
@@ -58981,19 +61190,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var BookmarkRegular = /* @__PURE__ */ wrapIcon_default(BookmarkRegularIcon, "BookmarkRegular");
 
   // node_modules/@fluentui/react-icons/lib/icons/chunk-1.js
-  var React91 = __toESM(require_react());
+  var React103 = __toESM(require_react());
   var BoxRegularIcon = (props) => {
     const {
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React91.createElement("svg", Object.assign({}, props, {
+    return React103.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React91.createElement("path", {
+    }), React103.createElement("path", {
       d: "M11.3 2.48a3.5 3.5 0 00-2.6 0l-5.76 2.3A1.5 1.5 0 002 6.18v7.64c0 .62.37 1.17.94 1.4l5.76 2.3a3.5 3.5 0 002.6 0l5.76-2.3c.57-.23.94-.78.94-1.4V6.18a1.5 1.5 0 00-.94-1.4l-5.76-2.3zm-2.23.93a2.5 2.5 0 011.86 0l5.22 2.09-2.27.91-6.16-2.46 1.35-.54zm-2.7 1.08l6.16 2.46L10 7.96 3.85 5.5l2.53-1.01zm4.13 4.35l6.5-2.6v7.58a.5.5 0 01-.31.47l-5.76 2.3c-.14.06-.28.1-.43.13V8.84zm-1 0v7.88a2.5 2.5 0 01-.43-.13l-5.76-2.3a.5.5 0 01-.31-.47V6.24l6.5 2.6z",
       fill: primaryFill
     }));
@@ -59004,13 +61213,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React91.createElement("svg", Object.assign({}, props, {
+    return React103.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React91.createElement("path", {
+    }), React103.createElement("path", {
       d: "M9 2.5a.5.5 0 00-1 0V3c0 .4.12.77.32 1.08A3 3 0 006 7h-.5A1.5 1.5 0 014 5.5v-2a.5.5 0 00-1 0v2A2.5 2.5 0 005.5 8H6v1.5H2.5a.5.5 0 000 1H6V12h-.5A2.5 2.5 0 003 14.5v2a.5.5 0 001 0v-2c0-.83.67-1.5 1.5-1.5H6a4 4 0 008 0h.5c.83 0 1.5.67 1.5 1.5v2a.5.5 0 001 0v-2a2.5 2.5 0 00-2.5-2.5H14v-1.5h3.5a.5.5 0 000-1H14V8h.5A2.5 2.5 0 0017 5.5v-2a.5.5 0 00-1 0v2c0 .83-.67 1.5-1.5 1.5H14a3 3 0 00-2.32-2.92A2 2 0 0012 3v-.5a.5.5 0 00-1 0V3a1 1 0 11-2 0v-.5zM13 7v6a3 3 0 11-6 0V7c0-1.1.9-2 2-2h2a2 2 0 012 2z",
       fill: primaryFill
     }));
@@ -59021,13 +61230,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React91.createElement("svg", Object.assign({}, props, {
+    return React103.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React91.createElement("path", {
+    }), React103.createElement("path", {
       d: "M10 6a4 4 0 100 8 4 4 0 000-8zm-3 4a3 3 0 116 0 3 3 0 01-6 0zm1.12-8a1.5 1.5 0 00-1.34.83L6.2 4H4.5A2.5 2.5 0 002 6.5v8A2.5 2.5 0 004.5 17h11a2.5 2.5 0 002.5-2.5v-8A2.5 2.5 0 0015.5 4h-1.69l-.58-1.17A1.5 1.5 0 0011.89 2H8.12zm-.44 1.28A.5.5 0 018.12 3h3.77c.19 0 .36.1.45.28l.72 1.44a.5.5 0 00.45.28h2c.82 0 1.5.67 1.5 1.5v8c0 .83-.68 1.5-1.5 1.5h-11A1.5 1.5 0 013 14.5v-8C3 5.67 3.67 5 4.5 5h2a.5.5 0 00.44-.28l.73-1.44z",
       fill: primaryFill
     }));
@@ -59038,13 +61247,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React91.createElement("svg", Object.assign({}, props, {
+    return React103.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React91.createElement("path", {
+    }), React103.createElement("path", {
       d: "M3.37 10.17a.5.5 0 00-.74.66l4 4.5c.19.22.52.23.72.02l10.5-10.5a.5.5 0 00-.7-.7L7.02 14.27l-3.65-4.1z",
       fill: primaryFill
     }));
@@ -59055,13 +61264,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React91.createElement("svg", Object.assign({}, props, {
+    return React103.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React91.createElement("path", {
+    }), React103.createElement("path", {
       d: "M15.85 7.65c.2.2.2.5 0 .7l-5.46 5.49a.55.55 0 01-.78 0L4.15 8.35a.5.5 0 11.7-.7L10 12.8l5.15-5.16c.2-.2.5-.2.7 0z",
       fill: primaryFill
     }));
@@ -59072,13 +61281,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React91.createElement("svg", Object.assign({}, props, {
+    return React103.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React91.createElement("path", {
+    }), React103.createElement("path", {
       d: "M7.65 4.15c.2-.2.5-.2.7 0l5.49 5.46c.21.22.21.57 0 .78l-5.49 5.46a.5.5 0 01-.7-.7L12.8 10 7.65 4.85a.5.5 0 010-.7z",
       fill: primaryFill
     }));
@@ -59089,13 +61298,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React91.createElement("svg", Object.assign({}, props, {
+    return React103.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React91.createElement("path", {
+    }), React103.createElement("path", {
       d: "M4.15 12.35a.5.5 0 010-.7L9.6 6.16a.55.55 0 01.78 0l5.46 5.49a.5.5 0 01-.7.7L10 7.2l-5.15 5.16a.5.5 0 01-.7 0z",
       fill: primaryFill
     }));
@@ -59106,13 +61315,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React91.createElement("svg", Object.assign({}, props, {
+    return React103.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React91.createElement("path", {
+    }), React103.createElement("path", {
       d: "M10 3a7 7 0 100 14 7 7 0 000-14zm-8 7a8 8 0 1116 0 8 8 0 01-16 0z",
       fill: primaryFill
     }));
@@ -59120,19 +61329,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var CircleRegular = /* @__PURE__ */ wrapIcon_default(CircleRegularIcon, "CircleRegular");
 
   // node_modules/@fluentui/react-icons/lib/icons/chunk-2.js
-  var React92 = __toESM(require_react());
+  var React104 = __toESM(require_react());
   var CloudArrowDownRegularIcon = (props) => {
     const {
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React92.createElement("svg", Object.assign({}, props, {
+    return React104.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React92.createElement("path", {
+    }), React104.createElement("path", {
       d: "M10 2c2.82 0 4.41 1.92 4.65 4.25h.07a3.33 3.33 0 013.27 3.66c-.32-.4-.7-.76-1.12-1.07a2.3 2.3 0 00-2.15-1.6h-.07a1 1 0 01-1-.9C13.45 4.33 12.11 3 10 3S6.55 4.32 6.35 6.35a1 1 0 01-1 .9h-.07A2.33 2.33 0 003 9.62 2.33 2.33 0 005.28 12h2.67c-.09.32-.15.66-.18 1H5.28A3.33 3.33 0 012 9.62c0-1.8 1.37-3.27 3.1-3.37h.25C5.6 3.9 7.18 2 10 2zm3.5 16a4.5 4.5 0 110-9 4.5 4.5 0 010 9zm1.6-4.9L14 14.2v-2.7a.5.5 0 00-1 0v2.7l-1.1-1.1a.56.56 0 10-.8.8l2 2c.22.22.58.22.8 0l2-2a.56.56 0 10-.8-.8z",
       fill: primaryFill
     }));
@@ -59143,13 +61352,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React92.createElement("svg", Object.assign({}, props, {
+    return React104.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React92.createElement("path", {
+    }), React104.createElement("path", {
       d: "M10 2c2.82 0 4.41 1.92 4.65 4.25h.07a3.33 3.33 0 013.27 3.66c-.32-.4-.7-.76-1.12-1.07a2.3 2.3 0 00-2.15-1.6h-.07a1 1 0 01-1-.9C13.45 4.33 12.11 3 10 3S6.55 4.32 6.35 6.35a1 1 0 01-1 .9h-.07A2.33 2.33 0 003 9.62 2.33 2.33 0 005.28 12h2.67c-.09.32-.15.66-.18 1H5.28A3.33 3.33 0 012 9.62c0-1.8 1.37-3.27 3.1-3.37h.25C5.6 3.9 7.18 2 10 2zm3.5 7a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm1.6 4.9a.56.56 0 10.8-.8l-2-2a.56.56 0 00-.8 0l-2 2a.56.56 0 10.8.8l1.1-1.1v2.7a.5.5 0 001 0v-2.7l1.1 1.1z",
       fill: primaryFill
     }));
@@ -59160,13 +61369,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React92.createElement("svg", Object.assign({}, props, {
+    return React104.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React92.createElement("path", {
+    }), React104.createElement("path", {
       d: "M8 2a2 2 0 00-2 2v10c0 1.1.9 2 2 2h6a2 2 0 002-2V4a2 2 0 00-2-2H8zM7 4a1 1 0 011-1h6a1 1 0 011 1v10a1 1 0 01-1 1H8a1 1 0 01-1-1V4zM4 6a2 2 0 011-1.73V14.5A2.5 2.5 0 007.5 17h6.23A2 2 0 0112 18H7.5A3.5 3.5 0 014 14.5V6z",
       fill: primaryFill
     }));
@@ -59177,13 +61386,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React92.createElement("svg", Object.assign({}, props, {
+    return React104.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React92.createElement("path", {
+    }), React104.createElement("path", {
       d: "M8.5 4h3a1.5 1.5 0 00-3 0zm-1 0a2.5 2.5 0 015 0h5a.5.5 0 010 1h-1.05l-1.2 10.34A3 3 0 0112.27 18H7.73a3 3 0 01-2.98-2.66L3.55 5H2.5a.5.5 0 010-1h5zM5.74 15.23A2 2 0 007.73 17h4.54a2 2 0 001.99-1.77L15.44 5H4.56l1.18 10.23zM8.5 7.5c.28 0 .5.22.5.5v6a.5.5 0 01-1 0V8c0-.28.22-.5.5-.5zM12 8a.5.5 0 00-1 0v6a.5.5 0 001 0V8z",
       fill: primaryFill
     }));
@@ -59194,13 +61403,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React92.createElement("svg", Object.assign({}, props, {
+    return React104.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React92.createElement("path", {
+    }), React104.createElement("path", {
       d: "M6 2a2 2 0 00-2 2v12c0 1.1.9 2 2 2h8a2 2 0 002-2V7.41c0-.4-.16-.78-.44-1.06l-3.91-3.91A1.5 1.5 0 0010.59 2H6zM5 4a1 1 0 011-1h4v3.5c0 .83.67 1.5 1.5 1.5H15v8a1 1 0 01-1 1H6a1 1 0 01-1-1V4zm9.8 3h-3.3a.5.5 0 01-.5-.5V3.2L14.8 7z",
       fill: primaryFill
     }));
@@ -59208,19 +61417,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var DocumentRegular = /* @__PURE__ */ wrapIcon_default(DocumentRegularIcon, "DocumentRegular");
 
   // node_modules/@fluentui/react-icons/lib/icons/chunk-3.js
-  var React93 = __toESM(require_react());
+  var React105 = __toESM(require_react());
   var FilterRegularIcon = (props) => {
     const {
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React93.createElement("svg", Object.assign({}, props, {
+    return React105.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React93.createElement("path", {
+    }), React105.createElement("path", {
       d: "M7.5 13h5a.5.5 0 01.09 1H7.5a.5.5 0 01-.09-1h5.09-5zm-2-4h9a.5.5 0 01.09 1H5.5a.5.5 0 01-.09-1h9.09-9zm-2-4h13a.5.5 0 01.09 1H3.5a.5.5 0 01-.09-1H16.5h-13z",
       fill: primaryFill
     }));
@@ -59231,13 +61440,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React93.createElement("svg", Object.assign({}, props, {
+    return React105.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React93.createElement("path", {
+    }), React105.createElement("path", {
       d: "M7.17 3c.27 0 .53.07.76.21l.14.09 1.6 1.2h5.83a2.5 2.5 0 012.48 2.17l.01.17L18 7v7.5a2.5 2.5 0 01-2.34 2.5H4.5A2.5 2.5 0 012 14.66V5.5A2.5 2.5 0 014.34 3h2.83zm.99 4.03a1.5 1.5 0 01-.94.46l-.15.01H3v7c0 .78.6 1.42 1.36 1.5H15.5c.78 0 1.42-.6 1.5-1.36V7c0-.78-.6-1.42-1.36-1.5H9.62L8.16 7.03zM7.16 4H4.5c-.78 0-1.42.6-1.5 1.36V6.5h4.07a.5.5 0 00.3-.1l.06-.06L8.7 5.02 7.47 4.1a.5.5 0 00-.22-.1h-.08z",
       fill: primaryFill
     }));
@@ -59248,13 +61457,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React93.createElement("svg", Object.assign({}, props, {
+    return React105.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React93.createElement("path", {
+    }), React105.createElement("path", {
       d: "M3 5c0-1.1.9-2 2-2h2a.5.5 0 010 1H5a1 1 0 00-1 1v2a.5.5 0 01-1 0V5zm9.5-1.5c0-.28.22-.5.5-.5h2a2 2 0 012 2v2a.5.5 0 01-1 0V5a1 1 0 00-1-1h-2a.5.5 0 01-.5-.5zm-9 9c.28 0 .5.22.5.5v2a1 1 0 001 1h2a.5.5 0 010 1H5a2 2 0 01-2-2v-2c0-.28.22-.5.5-.5zm13 0c.28 0 .5.22.5.5v2a2 2 0 01-2 2h-2a.5.5 0 010-1h2a1 1 0 001-1v-2c0-.28.22-.5.5-.5z",
       fill: primaryFill
     }));
@@ -59262,19 +61471,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var FullScreenMaximizeRegular = /* @__PURE__ */ wrapIcon_default(FullScreenMaximizeRegularIcon, "FullScreenMaximizeRegular");
 
   // node_modules/@fluentui/react-icons/lib/icons/chunk-4.js
-  var React94 = __toESM(require_react());
+  var React106 = __toESM(require_react());
   var InfoRegularIcon = (props) => {
     const {
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React94.createElement("svg", Object.assign({}, props, {
+    return React106.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React94.createElement("path", {
+    }), React106.createElement("path", {
       d: "M10.5 8.91a.5.5 0 00-1 .09v4.6a.5.5 0 001-.1V8.91zm.3-2.16a.75.75 0 10-1.5 0 .75.75 0 001.5 0zM18 10a8 8 0 10-16 0 8 8 0 0016 0zM3 10a7 7 0 1114 0 7 7 0 01-14 0z",
       fill: primaryFill
     }));
@@ -59285,13 +61494,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React94.createElement("svg", Object.assign({}, props, {
+    return React106.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React94.createElement("path", {
+    }), React106.createElement("path", {
       d: "M10 2c3.31 0 6 2.6 6 5.8 0 1.68-.75 3.22-2.2 4.6a.6.6 0 00-.15.2l-.02.09-.94 3.92a1.84 1.84 0 01-1.67 1.38l-.15.01H9.13c-.82 0-1.54-.52-1.78-1.26l-.04-.14-.93-3.91a.6.6 0 00-.17-.3A6.32 6.32 0 014 8.04L4 7.8v-.2A5.91 5.91 0 0110 2zm2.04 13H7.96l.31 1.33.03.1c.1.3.38.52.71.56l.12.01h1.81a.86.86 0 00.75-.53l.03-.1.32-1.37zM10 3a4.92 4.92 0 00-4.98 4.41L5 7.63V8c.06 1.3.68 2.52 1.9 3.67.18.17.32.4.4.64l.05.15.37 1.54h4.57l.38-1.61.05-.16c.09-.21.22-.4.39-.56C14.38 10.47 15 9.18 15 7.8A4.9 4.9 0 0010 3z",
       fill: primaryFill
     }));
@@ -59302,13 +61511,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React94.createElement("svg", Object.assign({}, props, {
+    return React106.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React94.createElement("path", {
+    }), React106.createElement("path", {
       d: "M9.5 6.5a.5.5 0 011 0v1a.5.5 0 01-1 0v-1zm3.35.94a.5.5 0 00-.7 0l-.71.71a.5.5 0 00.7.7l.71-.7a.5.5 0 000-.7zm-5 0a.5.5 0 10-.7.71l.7.7a.5.5 0 10.71-.7l-.7-.7zM10 2c3.31 0 6 2.6 6 5.8 0 1.68-.75 3.22-2.2 4.6a.6.6 0 00-.15.2l-.02.09-.94 3.92a1.84 1.84 0 01-1.67 1.38l-.15.01H9.13c-.82 0-1.54-.52-1.78-1.26l-.04-.14-.93-3.91a.6.6 0 00-.17-.3A6.32 6.32 0 014 8.04L4 7.8v-.2A5.91 5.91 0 0110 2zM7.96 15l.31 1.33.03.1c.1.3.38.52.71.56l.12.01h1.81a.86.86 0 00.75-.53l.03-.1.32-1.37H7.96zM10 3a4.92 4.92 0 00-4.98 4.41L5 7.63V8c.06 1.3.68 2.52 1.9 3.67.18.17.32.4.4.64l.05.15.37 1.54H9.5V9.5a.5.5 0 111 0V14h1.79l.38-1.61.05-.16c.09-.21.22-.4.39-.56C14.38 10.47 15 9.18 15 7.8A4.9 4.9 0 0010 3z",
       fill: primaryFill
     }));
@@ -59319,13 +61528,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React94.createElement("svg", Object.assign({}, props, {
+    return React106.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React94.createElement("path", {
+    }), React106.createElement("path", {
       d: "M6.25 10a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0zm5 0a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0zM15 11.25a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5z",
       fill: primaryFill
     }));
@@ -59336,13 +61545,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React94.createElement("svg", Object.assign({}, props, {
+    return React106.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React94.createElement("path", {
+    }), React106.createElement("path", {
       d: "M2 4.5c0-.28.22-.5.5-.5h15a.5.5 0 010 1h-15a.5.5 0 01-.5-.5zm0 5c0-.28.22-.5.5-.5h15a.5.5 0 010 1h-15a.5.5 0 01-.5-.5zm.5 4.5a.5.5 0 000 1h15a.5.5 0 000-1h-15z",
       fill: primaryFill
     }));
@@ -59353,31 +61562,31 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React94.createElement("svg", Object.assign({}, props, {
+    return React106.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React94.createElement("path", {
+    }), React106.createElement("path", {
       d: "M3.25 5a.25.25 0 00-.25.25v.25a.5.5 0 01-1 0v-.25C2 4.56 2.56 4 3.25 4h.25a.5.5 0 010 1h-.25z",
       fill: primaryFill
-    }), React94.createElement("path", {
+    }), React106.createElement("path", {
       d: "M5 4.5c0-.28.22-.5.5-.5h1a.5.5 0 010 1h-1a.5.5 0 01-.5-.5z",
       fill: primaryFill
-    }), React94.createElement("path", {
+    }), React106.createElement("path", {
       d: "M8 4.5c0-.28.22-.5.5-.5h.25C9.44 4 10 4.56 10 5.25v.25a.5.5 0 01-1 0v-.25A.25.25 0 008.75 5H8.5a.5.5 0 01-.5-.5z",
       fill: primaryFill
-    }), React94.createElement("path", {
+    }), React106.createElement("path", {
       d: "M14.85 5.85l-.15.16a3.5 3.5 0 01-.2 6.99.5.5 0 010-1 2.5 2.5 0 00.22-5l.13.15a.5.5 0 01-.7.7l-1-1a.5.5 0 010-.7l1-1a.5.5 0 01.7.7z",
       fill: primaryFill
-    }), React94.createElement("path", {
+    }), React106.createElement("path", {
       d: "M2 10.5C2 9.67 2.67 9 3.5 9h8c.83 0 1.5.67 1.5 1.5v4c0 .83-.67 1.5-1.5 1.5h-8A1.5 1.5 0 012 14.5v-4zm1.5-.5a.5.5 0 00-.5.5v4c0 .28.22.5.5.5h8a.5.5 0 00.5-.5v-4a.5.5 0 00-.5-.5h-8z",
       fill: primaryFill
-    }), React94.createElement("path", {
+    }), React106.createElement("path", {
       d: "M9.5 9a.5.5 0 01-.5-.5v-1a.5.5 0 011 0v1a.5.5 0 01-.5.5z",
       fill: primaryFill
-    }), React94.createElement("path", {
+    }), React106.createElement("path", {
       d: "M3 7.5a.5.5 0 00-1 0v1a.5.5 0 001 0v-1z",
       fill: primaryFill
     }));
@@ -59388,13 +61597,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React94.createElement("svg", Object.assign({}, props, {
+    return React106.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React94.createElement("path", {
+    }), React106.createElement("path", {
       d: "M4 4a2 2 0 00-2 2v8c0 1.1.9 2 2 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zM3 6a1 1 0 011-1h12a1 1 0 011 1v5H3V6zm0 6h14v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2z",
       fill: primaryFill
     }));
@@ -59402,19 +61611,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var PanelBottomRegular = /* @__PURE__ */ wrapIcon_default(PanelBottomRegularIcon, "PanelBottomRegular");
 
   // node_modules/@fluentui/react-icons/lib/icons/chunk-5.js
-  var React95 = __toESM(require_react());
+  var React107 = __toESM(require_react());
   var PersonFeedbackRegularIcon = (props) => {
     const {
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React95.createElement("svg", Object.assign({}, props, {
+    return React107.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React95.createElement("path", {
+    }), React107.createElement("path", {
       d: "M10.5 12c.83 0 1.5.67 1.5 1.5v.5c0 1.97-1.86 4-5 4-3.14 0-5-2.03-5-4v-.5c0-.83.67-1.5 1.5-1.5h7zm0 1h-7a.5.5 0 00-.5.5v.5c0 1.44 1.43 3 4 3 2.57 0 4-1.56 4-3v-.5a.5.5 0 00-.5-.5zM7 5.5A2.75 2.75 0 117 11a2.75 2.75 0 010-5.5zM16 2a2 2 0 012 1.85V6a2 2 0 01-1.85 2H14.5l-1.2 1.6a1 1 0 01-1.78-.38l-.01-.1V9l-.01-1.07-.08-.01a2 2 0 01-1.4-1.6l-.01-.17L10 6V4a2 2 0 011.85-2H16zM7 6.5A1.75 1.75 0 107 10a1.75 1.75 0 000-3.5zM16 3h-4a1 1 0 00-1 .88V6a1 1 0 00.88 1h.62v2L14 7h2a1 1 0 001-.88V4a1 1 0 00-.88-1H16z",
       fill: primaryFill
     }));
@@ -59425,13 +61634,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React95.createElement("svg", Object.assign({}, props, {
+    return React107.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React95.createElement("path", {
+    }), React107.createElement("path", {
       d: "M9 14a.5.5 0 000 1h2a.5.5 0 000-1H9zM7 2a2 2 0 00-2 2v12c0 1.1.9 2 2 2h6a2 2 0 002-2V4a2 2 0 00-2-2H7zM6 4a1 1 0 011-1h6a1 1 0 011 1v12a1 1 0 01-1 1H7a1 1 0 01-1-1V4z",
       fill: primaryFill
     }));
@@ -59442,13 +61651,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React95.createElement("svg", Object.assign({}, props, {
+    return React107.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React95.createElement("path", {
+    }), React107.createElement("path", {
       d: "M3 4.5C3 3.67 3.67 3 4.5 3h11c.83 0 1.5.67 1.5 1.5v7c0 .83-.67 1.5-1.5 1.5H10v-1h5.5a.5.5 0 00.5-.5v-7a.5.5 0 00-.5-.5h-11a.5.5 0 00-.5.5V6H3V4.5zM10 15h7.5a.5.5 0 000-1H10v1zm-5 0a.5.5 0 000 1h1a.5.5 0 000-1H5zM2 8.5C2 7.67 2.67 7 3.5 7h4C8.33 7 9 7.67 9 8.5v8c0 .83-.67 1.5-1.5 1.5h-4A1.5 1.5 0 012 16.5v-8zM3.5 8a.5.5 0 00-.5.5v8c0 .28.22.5.5.5h4a.5.5 0 00.5-.5v-8a.5.5 0 00-.5-.5h-4z",
       fill: primaryFill
     }));
@@ -59459,13 +61668,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React95.createElement("svg", Object.assign({}, props, {
+    return React107.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React95.createElement("path", {
+    }), React107.createElement("path", {
       d: "M17.22 8.69a1.5 1.5 0 010 2.62l-10 5.5A1.5 1.5 0 015 15.5v-11A1.5 1.5 0 017.22 3.2l10 5.5zm-.48 1.75a.5.5 0 000-.88l-10-5.5A.5.5 0 006 4.5v11c0 .38.4.62.74.44l10-5.5z",
       fill: primaryFill
     }));
@@ -59476,13 +61685,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React95.createElement("svg", Object.assign({}, props, {
+    return React107.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React95.createElement("path", {
+    }), React107.createElement("path", {
       d: "M17.85 2.85a.5.5 0 00-.7-.7L14.48 4.8a4.04 4.04 0 00-5.33.34l-.3.3a1.49 1.49 0 000 2.1l3.6 3.6c.58.59 1.52.59 2.1 0l.3-.3a4.04 4.04 0 00.34-5.33l2.66-2.67zm-4 7.6c-.2.19-.5.19-.7 0l-3.6-3.6c-.19-.2-.19-.5 0-.7l.3-.3a3.04 3.04 0 014.3 4.3l-.3.3zm-6.3-1.6a1.49 1.49 0 00-2.1 0l-.3.3a4.04 4.04 0 00-.34 5.33l-2.66 2.67a.5.5 0 00.7.7l2.67-2.66a4.04 4.04 0 005.33-.34l.3-.3c.59-.58.59-1.52 0-2.1l-3.6-3.6zm-1.4.7c.2-.19.5-.19.7 0l3.6 3.6c.19.2.19.5 0 .7l-.3.3a3.04 3.04 0 11-4.3-4.3l.3-.3z",
       fill: primaryFill
     }));
@@ -59493,13 +61702,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React95.createElement("svg", Object.assign({}, props, {
+    return React107.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React95.createElement("path", {
+    }), React107.createElement("path", {
       d: "M17.85 2.15c.2.2.2.5 0 .7L16.2 4.52a4.04 4.04 0 01-.34 5.33l-.3.3-.3.31c-.42.41-1.08.41-1.5 0L9.55 6.24a1.05 1.05 0 010-1.48l.6-.61a4.04 4.04 0 015.34-.34l1.67-1.66c.2-.2.5-.2.7 0zm-2.71 2.7a3.04 3.04 0 00-4.29 0l-.3.3c-.19.2-.19.5 0 .7l3.6 3.6c.2.19.5.19.7 0l.3-.3a3.04 3.04 0 000-4.29l-.01-.01zm-5.79 3.8c.2.2.2.5 0 .7L7.71 11 9 12.3l1.65-1.65a.5.5 0 01.7.7L9.71 13l.44.45c.59.58.59 1.52 0 2.1l-.3.3a4.04 4.04 0 01-5.33.34l-1.67 1.66a.5.5 0 01-.7-.7l1.66-1.67a4.04 4.04 0 01.34-5.33l.3-.3a1.49 1.49 0 012.1 0l.45.44 1.65-1.64c.2-.2.5-.2.7 0zm-4.5 6.5a3.04 3.04 0 004.3 0l.3-.3c.19-.2.19-.5 0-.7l-3.6-3.6c-.2-.19-.5-.19-.7 0l-.3.3a3.04 3.04 0 000 4.3z",
       fill: primaryFill
     }));
@@ -59510,13 +61719,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React95.createElement("svg", Object.assign({}, props, {
+    return React107.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React95.createElement("path", {
+    }), React107.createElement("path", {
       d: "M10.5 2.5a.5.5 0 00-1 0v6a.5.5 0 001 0v-6zM13.74 4a.5.5 0 10-.5.87 6.5 6.5 0 11-6.49 0 .5.5 0 10-.5-.87 7.5 7.5 0 107.5 0z",
       fill: primaryFill
     }));
@@ -59527,13 +61736,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React95.createElement("svg", Object.assign({}, props, {
+    return React107.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React95.createElement("path", {
+    }), React107.createElement("path", {
       d: "M3 5c0-1.1.9-2 2-2h8.38a2 2 0 011.41.59l1.62 1.62A2 2 0 0117 6.62V15a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm2-1a1 1 0 00-1 1v10a1 1 0 001 1v-4.5c0-.83.67-1.5 1.5-1.5h7c.83 0 1.5.67 1.5 1.5V16a1 1 0 001-1V6.62a1 1 0 00-.3-.7L14.1 4.28a1 1 0 00-.71-.29H13v2.5c0 .83-.67 1.5-1.5 1.5h-4A1.5 1.5 0 016 6.5V4H5zm2 0v2.5c0 .28.22.5.5.5h4a.5.5 0 00.5-.5V4H7zm7 12v-4.5a.5.5 0 00-.5-.5h-7a.5.5 0 00-.5.5V16h8z",
       fill: primaryFill
     }));
@@ -59541,19 +61750,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var SaveRegular = /* @__PURE__ */ wrapIcon_default(SaveRegularIcon, "SaveRegular");
 
   // node_modules/@fluentui/react-icons/lib/icons/chunk-6.js
-  var React96 = __toESM(require_react());
+  var React108 = __toESM(require_react());
   var SearchRegularIcon = (props) => {
     const {
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React96.createElement("svg", Object.assign({}, props, {
+    return React108.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React96.createElement("path", {
+    }), React108.createElement("path", {
       d: "M8.5 3a5.5 5.5 0 014.23 9.02l4.12 4.13a.5.5 0 01-.63.76l-.07-.06-4.13-4.12A5.5 5.5 0 118.5 3zm0 1a4.5 4.5 0 100 9 4.5 4.5 0 000-9z",
       fill: primaryFill
     }));
@@ -59564,13 +61773,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React96.createElement("svg", Object.assign({}, props, {
+    return React108.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React96.createElement("path", {
+    }), React108.createElement("path", {
       d: "M1.91 7.38A8.5 8.5 0 013.69 4.3a.5.5 0 01.54-.13l1.92.68a1 1 0 001.32-.76l.36-2a.5.5 0 01.4-.4 8.53 8.53 0 013.55 0c.2.04.35.2.38.4l.37 2a1 1 0 001.32.76l1.92-.68a.5.5 0 01.54.13 8.5 8.5 0 011.78 3.08c.06.2 0 .4-.15.54l-1.56 1.32a1 1 0 000 1.52l1.56 1.32a.5.5 0 01.15.54 8.5 8.5 0 01-1.78 3.08.5.5 0 01-.54.13l-1.92-.68a1 1 0 00-1.32.76l-.37 2a.5.5 0 01-.38.4 8.53 8.53 0 01-3.56 0 .5.5 0 01-.39-.4l-.36-2a1 1 0 00-1.32-.76l-1.92.68a.5.5 0 01-.54-.13 8.5 8.5 0 01-1.78-3.08.5.5 0 01.15-.54l1.56-1.32a1 1 0 000-1.52L2.06 7.92a.5.5 0 01-.15-.54zm1.06 0l1.3 1.1a2 2 0 010 3.04l-1.3 1.1c.3.79.71 1.51 1.25 2.16l1.6-.58a2 2 0 012.63 1.53l.3 1.67a7.56 7.56 0 002.5 0l.3-1.67a2 2 0 012.64-1.53l1.6.58a7.5 7.5 0 001.24-2.16l-1.3-1.1a2 2 0 010-3.04l1.3-1.1a7.5 7.5 0 00-1.25-2.16l-1.6.58a2 2 0 01-2.63-1.53l-.3-1.67a7.55 7.55 0 00-2.5 0l-.3 1.67A2 2 0 015.81 5.8l-1.6-.58a7.5 7.5 0 00-1.24 2.16zM7.5 10a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm1 0a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0z",
       fill: primaryFill
     }));
@@ -59581,13 +61790,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React96.createElement("svg", Object.assign({}, props, {
+    return React108.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React96.createElement("path", {
+    }), React108.createElement("path", {
       d: "M15.5 4c.28 0 .5.22.5.5v11a.5.5 0 01-.5.5h-11a.5.5 0 01-.5-.5v-11c0-.28.22-.5.5-.5h11zm-11-1C3.67 3 3 3.67 3 4.5v11c0 .83.67 1.5 1.5 1.5h11c.83 0 1.5-.67 1.5-1.5v-11c0-.83-.67-1.5-1.5-1.5h-11z",
       fill: primaryFill
     }));
@@ -59595,19 +61804,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var StopRegular = /* @__PURE__ */ wrapIcon_default(StopRegularIcon, "StopRegular");
 
   // node_modules/@fluentui/react-icons/lib/icons/chunk-7.js
-  var React97 = __toESM(require_react());
+  var React109 = __toESM(require_react());
   var TextGrammarErrorRegularIcon = (props) => {
     const {
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React97.createElement("svg", Object.assign({}, props, {
+    return React109.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React97.createElement("path", {
+    }), React109.createElement("path", {
       d: "M2.5 5a.5.5 0 000 1h15a.5.5 0 000-1h-15zm0 3a.5.5 0 000 1h15a.5.5 0 000-1h-15zM9 14.5c0-.17 0-.34.02-.5H2.5a.5.5 0 000 1h6.52a5.57 5.57 0 01-.02-.5zm.6-2.5c.18-.36.4-.7.66-1H2.5a.5.5 0 000 1h7.1zm9.4 2.5a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM14.5 12a.5.5 0 00-.5.5v2a.5.5 0 001 0v-2a.5.5 0 00-.5-.5zm0 5.13a.62.62 0 100-1.25.62.62 0 000 1.24z",
       fill: primaryFill
     }));
@@ -59615,19 +61824,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var TextGrammarErrorRegular = /* @__PURE__ */ wrapIcon_default(TextGrammarErrorRegularIcon, "TextGrammarErrorRegular");
 
   // node_modules/@fluentui/react-icons/lib/icons/chunk-8.js
-  var React98 = __toESM(require_react());
+  var React110 = __toESM(require_react());
   var WandRegularIcon = (props) => {
     const {
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React98.createElement("svg", Object.assign({}, props, {
+    return React110.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React98.createElement("path", {
+    }), React110.createElement("path", {
       d: "M16.5 2c.28 0 .5.22.5.5V3h.5a.5.5 0 010 1H17v.5a.5.5 0 01-1 0V4h-.5a.5.5 0 110-1h.5v-.5c0-.28.22-.5.5-.5zm-10 4a.5.5 0 000-1H6v-.5a.5.5 0 00-1 0V5h-.5a.5.5 0 000 1H5v.5a.5.5 0 001 0V6h.5zm9 9a.5.5 0 000-1H15v-.5a.5.5 0 00-1 0v.5h-.5a.5.5 0 100 1h.5v.5a.5.5 0 101 0V15h.5zm-2.07-8.43a1.91 1.91 0 00-2.7 0l-8.17 8.16a1.91 1.91 0 102.7 2.7l8.17-8.16c.75-.74.75-1.96 0-2.7zm-2 .7a.91.91 0 011.3 1.3l-.48.47-1.3-1.29.48-.48zm-1.18 1.19l1.3 1.29-6.99 6.98a.91.91 0 01-1.3-1.29l6.99-6.98z",
       fill: primaryFill
     }));
@@ -59638,13 +61847,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React98.createElement("svg", Object.assign({}, props, {
+    return React110.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React98.createElement("path", {
+    }), React110.createElement("path", {
       d: "M9.56 3.26a.5.5 0 01.88 0l6.5 12a.5.5 0 01-.44.74h-13a.5.5 0 01-.44-.74l6.5-12zm1.76-.47a1.5 1.5 0 00-2.64 0l-6.5 12A1.5 1.5 0 003.5 17h13a1.5 1.5 0 001.32-2.21l-6.5-12zM10.5 7.5a.5.5 0 10-1 0v4a.5.5 0 001 0v-4zm.25 6.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0z",
       fill: primaryFill
     }));
@@ -59655,13 +61864,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React98.createElement("svg", Object.assign({}, props, {
+    return React110.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React98.createElement("path", {
+    }), React110.createElement("path", {
       d: "M17.96 8.18a9.61 9.61 0 00-15.85 0 .5.5 0 00.83.56 8.61 8.61 0 0114.2 0 .5.5 0 10.82-.56zm-10.78 3.1a4.03 4.03 0 013.85-1.05c-.32.26-.6.55-.86.88a3.02 3.02 0 00-2.91 1.82.5.5 0 11-.92-.4c.2-.47.49-.9.84-1.24zm7.42-2.5l.2.23a5.59 5.59 0 00-1.35.09 5.45 5.45 0 00-8.28 1.79.5.5 0 01-.89-.46A6.45 6.45 0 0114.6 8.78zm-2.53 2.66a2 2 0 01-1.43 2.48l-.46.12a4.7 4.7 0 000 1.01l.35.09A2 2 0 0112 17.66l-.13.42c.26.2.54.38.84.52l.32-.35a2 2 0 012.91 0l.34.36c.3-.13.57-.3.82-.5l-.15-.55a2 2 0 011.43-2.48l.46-.12a4.7 4.7 0 00-.01-1.01l-.35-.09A2 2 0 0117 11.34l.13-.42c-.26-.2-.54-.38-.84-.52l-.32.35a2 2 0 01-2.91 0l-.34-.36c-.29.13-.57.3-.82.5l.16.55zm2.43 4.06a1 1 0 110-2 1 1 0 010 2z",
       fill: primaryFill
     }));
@@ -59672,13 +61881,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       fill: primaryFill = "currentColor",
       className
     } = props;
-    return React98.createElement("svg", Object.assign({}, props, {
+    return React110.createElement("svg", Object.assign({}, props, {
       width: "1em",
       height: "1em",
       viewBox: "0 0 20 20",
       xmlns: "http://www.w3.org/2000/svg",
       className
-    }), React98.createElement("path", {
+    }), React110.createElement("path", {
       d: "M5.65 9.15c.2-.2.5-.2.7 0l2 2a.5.5 0 010 .7l-2 2a.5.5 0 01-.7-.7l1.64-1.65-1.64-1.65a.5.5 0 010-.7zM14.5 13h-5a.5.5 0 000 1h5a.5.5 0 000-1zM3 5.5A2.5 2.5 0 015.5 3h9A2.5 2.5 0 0117 5.5v9a2.5 2.5 0 01-2.5 2.5h-9A2.5 2.5 0 013 14.5v-9zM16 6v-.5c0-.83-.68-1.5-1.5-1.5h-9C4.67 4 4 4.67 4 5.5V6h12zM4 7v7.5c0 .83.67 1.5 1.5 1.5h9c.82 0 1.5-.67 1.5-1.5V7H4z",
       fill: primaryFill
     }));
@@ -59689,7 +61898,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   setVersion("@fluentui/react-icons-mdl2", "1.3.25");
 
   // node_modules/@fluentui/react-icons-mdl2/lib/utils/createSvgIcon.js
-  var React100 = __toESM(require_react());
+  var React112 = __toESM(require_react());
 
   // node_modules/@fluentui/react-icons-mdl2/lib/utils/SvgIcon.scss.js
   var SvgIcon_scss_exports = {};
@@ -59702,13 +61911,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var svg = "svg_dd790ee3";
 
   // node_modules/@fluentui/react-icons-mdl2/node_modules/@fluentui/react-icon-provider/lib/IconProvider.js
-  var React99 = __toESM(require_react());
-  var IconContext = React99.createContext(void 0);
-  var useIconSubset = () => React99.useContext(IconContext);
+  var React111 = __toESM(require_react());
+  var IconContext = React111.createContext(void 0);
+  var useIconSubset = () => React111.useContext(IconContext);
 
   // node_modules/@fluentui/react-icons-mdl2/lib/utils/createSvgIcon.js
   var createSvgIcon = ({ svg: svg2, displayName }) => {
-    const Component33 = (props) => {
+    const Component40 = (props) => {
       var _a6;
       const { className, style = {} } = props;
       const icons = useIconSubset();
@@ -59718,29 +61927,41 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       } : {
         ["aria-hidden"]: true
       };
-      return React100.createElement("span", {
+      return React112.createElement("span", {
         ...containerProps,
         ...nativeProps,
         className: css(root, className),
         style
       }, ((_a6 = icons === null || icons === void 0 ? void 0 : icons.icons) === null || _a6 === void 0 ? void 0 : _a6[displayName]) ? icons.icons[displayName] : svg2({ classes: SvgIcon_scss_exports, props }));
     };
-    Component33.displayName = displayName;
-    return Component33;
+    Component40.displayName = displayName;
+    return Component40;
   };
   var createSvgIcon_default = createSvgIcon;
 
   // node_modules/@fluentui/react-icons-mdl2/lib/components/BackIcon.js
-  var React101 = __toESM(require_react());
+  var React113 = __toESM(require_react());
   var BackIcon = createSvgIcon_default({
-    svg: ({ classes }) => React101.createElement(
+    svg: ({ classes }) => React113.createElement(
       "svg",
       { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 2048 2048", className: classes.svg, focusable: "false" },
-      React101.createElement("path", { d: "M2048 1088H250l787 787-90 90L6 1024 947 83l90 90-787 787h1798v128z" })
+      React113.createElement("path", { d: "M2048 1088H250l787 787-90 90L6 1024 947 83l90 90-787 787h1798v128z" })
     ),
     displayName: "BackIcon"
   });
   var BackIcon_default = BackIcon;
+
+  // node_modules/@fluentui/react-icons-mdl2/lib/components/DownloadDocumentIcon.js
+  var React114 = __toESM(require_react());
+  var DownloadDocumentIcon = createSvgIcon_default({
+    svg: ({ classes }) => React114.createElement(
+      "svg",
+      { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 2048 2048", className: classes.svg, focusable: "false" },
+      React114.createElement("path", { d: "M256 1920h1024v128H128V0h1115l549 549v347h-128V640h-512V128H256v1792zM1280 512h293l-293-293v293zm512 1061l163-162 90 90-317 317-317-317 90-90 163 162v-549h128v549zm256 347v128h-640v-128h640z" })
+    ),
+    displayName: "DownloadDocumentIcon"
+  });
+  var DownloadDocumentIcon_default = DownloadDocumentIcon;
 
   // src/utils/icons.tsx
   var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
@@ -59902,7 +62123,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         Document20: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DocumentRegular, {
           style: { fontSize: 20, verticalAlign: "middle" }
         }),
-        BackIcon: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BackIcon_default, {})
+        BackIcon: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BackIcon_default, {}),
+        DownloadDocumentIcon: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DownloadDocumentIcon_default, {})
       }
     });
   }
@@ -59949,7 +62171,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     WifiSettings: "WifiSettings",
     WindowConsole: "WindowConsole",
     Document20: "Document20",
-    BackIcon: "BackIcon"
+    BackIcon: "BackIcon",
+    DownloadDocumentIcon: "DownloadDocumentIcon"
   };
   var icons_default = Icons;
 
@@ -59984,6 +62207,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }
     backend = void 0;
     device = void 0;
+    errorDialogVisible = false;
+    errorDialogMessage = "";
     setDevice = (backend, device) => {
       this.backend = backend;
       this.device = device;
@@ -60001,9 +62226,18 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           fileManager.items.length = 0;
         });
       } catch (e2) {
-        console.error(e2.message);
+        GlobalState.showErrorDialog(e2.message);
       }
     };
+    showErrorDialog = (message) => {
+      this.errorDialogVisible = true;
+      if (message instanceof Error) {
+        this.errorDialogMessage = message.stack || message.message;
+      } else {
+        this.errorDialogMessage = message;
+      }
+    };
+    closeErrorDialog = () => this.errorDialogVisible = false;
   };
   var GlobalState = new GlobalStateType();
 
@@ -60218,20 +62452,56 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       return list;
     }
     get menuItems() {
-      const result = [
-        {
-          key: "Delete",
-          text: "Delete",
+      if (this.selectedItems.length === 0)
+        return [];
+      const result = [];
+      if (this.selectedItems[0].type === LinuxFileType.File) {
+        result.push({
+          key: "Download",
+          text: "Download",
           iconProps: {
-            iconName: icons_default.Delete
+            iconName: icons_default.DownloadDocumentIcon
           },
-          onClick: (e2, item) => {
-            e2?.stopPropagation();
-            console.log(item);
-            return false;
+          onClick: () => {
+            (async () => {
+              const sync = await GlobalState.device.sync();
+              try {
+                const item = this.selectedItems[0];
+                const item_path = resolvePath(this.path, item.name);
+                await sync.read(item_path).pipeTo(saveFile(item.name, Number(item.size)));
+                console.log(saveFile(item.name, Number(item.size)));
+              } catch (e2) {
+                GlobalState.showErrorDialog(e2.message);
+              } finally {
+                sync.dispose();
+              }
+            })();
           }
+        });
+      }
+      result.push({
+        key: "Delete",
+        text: "Delete",
+        iconProps: {
+          iconName: icons_default.Delete
+        },
+        onClick: (e2) => {
+          e2?.stopPropagation();
+          (async () => {
+            for (const item of this.selectedItems) {
+              try {
+                const output = await GlobalState.device.rm(resolvePath(this.path, item.name));
+                GlobalState.showErrorDialog(output);
+              } catch (e3) {
+                GlobalState.showErrorDialog(e3.message);
+              } finally {
+                this.loadFiles();
+              }
+            }
+          })();
+          return false;
         }
-      ];
+      });
       return result;
     }
     loadFiles = asyncEffect(async (signal) => {
@@ -60282,6 +62552,51 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         sync.dispose();
       }
     });
+    uploading = false;
+    uploadPath = void 0;
+    uploadedSize = 0;
+    uploadTotalSize = 0;
+    debouncedUploadedSize = 0;
+    uploadSpeed = 0;
+    uploadFiles = async (file) => {
+      const sync = await GlobalState.device.sync();
+      try {
+        const item_path = resolvePath(this.path, file.name);
+        runInAction(() => {
+          this.uploading = true;
+          this.uploadPath = file.name;
+          this.uploadedSize = 0;
+          this.uploadTotalSize = file.size;
+          this.debouncedUploadedSize = 0;
+          this.uploadSpeed = 0;
+        });
+        const intervalId = setInterval(action(() => {
+          this.uploadSpeed = this.uploadedSize - this.debouncedUploadedSize;
+          this.debouncedUploadedSize = this.uploadedSize;
+        }), 1e3);
+        try {
+          await createFileStream(file).pipeThrough(new ChunkStream(ADB_SYNC_MAX_PACKET_SIZE)).pipeThrough(new ProgressStream(action((uploaded) => {
+            this.uploadedSize = uploaded;
+          }))).pipeTo(sync.write(
+            item_path,
+            LinuxFileType.File << 12 | 438,
+            file.lastModified / 1e3
+          ));
+          runInAction(() => {
+            this.uploadSpeed = this.uploadedSize - this.debouncedUploadedSize;
+            this.debouncedUploadedSize = this.uploadedSize;
+          });
+        } finally {
+          clearInterval(intervalId);
+        }
+      } catch (e2) {
+        GlobalState.showErrorDialog(e2.message);
+      } finally {
+        sync.dispose();
+        this.loadFiles();
+        runInAction(() => this.uploading = false);
+      }
+    };
   };
   var fileManager = new FileManager();
 
@@ -60319,7 +62634,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }));
       } catch (e2) {
         if (e2 instanceof DOMException) {
-          console.error(e2.message);
+          GlobalState.showErrorDialog(e2.message);
         }
         return;
       }
@@ -60348,7 +62663,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         fileManager.loadFiles();
       } catch (e2) {
         if (e2 instanceof DOMException) {
-          console.error(e2.message);
+          GlobalState.showErrorDialog(e2.message);
         }
         await dispose();
       }
@@ -60748,9 +63063,28 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   if (!observable)
     throw new Error("mobx-react requires mobx to be available");
 
-  // src/components/FileList.tsx
-  var import_react16 = __toESM(require_react(), 1);
+  // src/components/ErrorDialog.tsx
   var import_jsx_runtime4 = __toESM(require_jsx_runtime(), 1);
+  var ErrorDialog = observer2(() => {
+    return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Dialog, {
+      hidden: !GlobalState.errorDialogVisible,
+      dialogContentProps: {
+        type: DialogType.normal,
+        title: "Error",
+        subText: GlobalState.errorDialogMessage
+      },
+      children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(DialogFooter, {
+        children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(PrimaryButton, {
+          text: "OK",
+          onClick: GlobalState.closeErrorDialog
+        })
+      })
+    });
+  });
+
+  // src/components/FileList.tsx
+  var import_react17 = __toESM(require_react(), 1);
+  var import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
   var renderDetailsHeader = (props, defaultRender) => {
     if (!props || !defaultRender) {
       return null;
@@ -60760,6 +63094,19 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       styles: concatStyleSets(props.styles, { root: { paddingTop: 0 } })
     });
   };
+  var UploadDialog = observer2(() => {
+    return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Dialog, {
+      hidden: !fileManager.uploading,
+      dialogContentProps: {
+        title: "Uploading...",
+        subText: fileManager.uploadPath
+      },
+      children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(ProgressIndicator, {
+        description: formatSpeed(fileManager.debouncedUploadedSize, fileManager.uploadTotalSize, fileManager.uploadSpeed),
+        percentComplete: fileManager.uploadedSize / fileManager.uploadTotalSize
+      })
+    });
+  });
   function FileList() {
     const selection = useConst(() => new Selection({
       onSelectionChanged() {
@@ -60768,7 +63115,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         });
       }
     }));
-    const handleItemInvoked = (0, import_react16.useCallback)((item) => {
+    const handleItemInvoked = (0, import_react17.useCallback)((item) => {
       switch (item.type) {
         case LinuxFileType.Link:
         case LinuxFileType.Directory: {
@@ -60782,7 +63129,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           break;
       }
     }, []);
-    const showContextMenu = (0, import_react16.useCallback)((_15, __, e2) => {
+    const showContextMenu = (0, import_react17.useCallback)((_15, __, e2) => {
       if (!e2)
         return false;
       runInAction(() => {
@@ -60790,32 +63137,50 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       });
       return false;
     }, []);
-    const dismissContextMenu = (0, import_react16.useCallback)(action(() => {
+    const dismissContextMenu = (0, import_react17.useCallback)(action(() => {
       fileManager.contextMenuTarget = void 0;
     }), []);
-    return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", {
+    const handleOnuploadFiles = (0, import_react17.useCallback)(async (e2) => {
+      e2.stopPropagation();
+      const files = await pickFile({ multiple: true });
+      for (let i2 = 0; i2 < files.length; i2++) {
+        const file = files.item(i2);
+        await fileManager.uploadFiles(file);
+      }
+    }, []);
+    return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", {
       className: "file-list",
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(DefaultButton, {
-          disabled: !GlobalState.device,
-          onClick: fileManager.loadFiles,
-          children: "\u52A0\u8F7D\u6587\u4EF6"
+        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Stack, {
+          horizontal: true,
+          styles: {
+            root: {
+              height: "45px",
+              flexShrink: 0,
+              borderBottom: "1px solid rgb(243, 242, 241)"
+            }
+          },
+          children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(CommandBarButton, {
+            text: "Upload",
+            disabled: !GlobalState.device,
+            iconProps: { iconName: icons_default.CloudArrowUp, styles: { root: { color: "#0078d4" } } },
+            onClick: handleOnuploadFiles
+          })
         }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Breadcrumb, {
+        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Breadcrumb, {
           items: fileManager.breadcrumbItems
         }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(StackItem, {
+        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(StackItem, {
           grow: true,
           styles: {
             root: {
-              margin: "-8px -16px -16px -16px",
               padding: "8px 16px 16px 16px",
               overflowY: "auto"
             }
           },
-          children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(MarqueeSelection, {
+          children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(MarqueeSelection, {
             selection,
-            children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(ShimmeredDetailsList, {
+            children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(ShimmeredDetailsList, {
               selectionMode: SelectionMode.multiple,
               items: fileManager.sortedList,
               setKey: fileManager.path,
@@ -60831,42 +63196,44 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             })
           })
         }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(ContextualMenu, {
+        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(ContextualMenu, {
           items: fileManager.menuItems,
           hidden: !fileManager.contextMenuTarget,
           directionalHint: DirectionalHint.bottomAutoEdge,
           target: fileManager.contextMenuTarget,
           onDismiss: dismissContextMenu,
-          contextualMenuItemAs: (props) => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(ContextualMenuItem, {
+          contextualMenuItemAs: (props) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(ContextualMenuItem, {
             ...props,
             hasIcons: true
           })
-        })
+        }),
+        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(UploadDialog, {})
       ]
     });
   }
   var FileList_default = observer2(FileList);
 
   // src/app/App.tsx
-  var import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
+  var import_jsx_runtime6 = __toESM(require_jsx_runtime(), 1);
   register();
   initializeFileTypeIcons();
   function App() {
-    return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", {
+    return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", {
       className: "adb-demo",
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Aside_default, {}),
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(FileList_default, {})
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Aside_default, {}),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(FileList_default, {}),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ErrorDialog, {})
       ]
     });
   }
 
   // src/index.tsx
-  var import_jsx_runtime6 = __toESM(require_jsx_runtime(), 1);
+  var import_jsx_runtime7 = __toESM(require_jsx_runtime(), 1);
   var root2 = document.querySelector("#root");
   import_react_dom2.default.render(
-    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(import_react17.default.StrictMode, {
-      children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(App, {})
+    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(import_react18.default.StrictMode, {
+      children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(App, {})
     }),
     root2
   );
@@ -60876,6 +63243,7 @@ object-assign
 (c) Sindre Sorhus
 @license MIT
 */
+/*! streamsaver. MIT License. Jimmy Wärting <https://jimmy.warting.se/opensource> */
 /**
  * @license
  * web-streams-polyfill v4.0.0-beta.3

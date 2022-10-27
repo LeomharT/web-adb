@@ -10,15 +10,23 @@ class GlobalStateType
         makeAutoObservable(this);
     }
 
-    backend: AdbBackend | undefined = undefined;
+    public backend: AdbBackend | undefined = undefined;
 
-    device: Adb | undefined = undefined;
+    public device: Adb | undefined = undefined;
+
+
+    public errorDialogVisible: boolean = false;
+
+
+    public errorDialogMessage: string = '';
+
 
     public setDevice = (backend: AdbBackend, device: Adb) =>
     {
         this.backend = backend;
         this.device = device;
     };
+
 
     public disconnectDevice = async () =>
     {
@@ -38,9 +46,28 @@ class GlobalStateType
             });
         } catch (e: any)
         {
-            console.error(e.message);
+            GlobalState.showErrorDialog(e.message);
         }
     };
+
+
+    public showErrorDialog = (message: Error | string) =>
+    {
+        this.errorDialogVisible = true;
+
+        if (message instanceof Error)
+        {
+            this.errorDialogMessage = message.stack || message.message;
+        } else
+        {
+            this.errorDialogMessage = message;
+        }
+    };
+
+
+    public closeErrorDialog = () => this.errorDialogVisible = false;
+
+
 }
 
 
