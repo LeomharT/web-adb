@@ -60346,27 +60346,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // src/utils/file.ts
-  import_stream_saver.default.mitm = "/home/liaozhengyang/projects/react/web-adb/src/util/mitm.html";
-  function pickFile(options) {
-    return new Promise((resolve) => {
-      const input = document.createElement("input");
-      input.type = "file";
-      if (options.multiple) {
-        input.multiple = true;
-      }
-      if (options.accept) {
-        input.accept = options.accept;
-      }
-      input.onchange = () => {
-        if (options.multiple) {
-          resolve(input.files);
-        } else {
-          resolve(input.files.item(0));
-        }
-      };
-      input.click();
-    });
-  }
+  import_stream_saver.default.mitm = "http://localhost:3006/mitm.html";
   function saveFile(fileName, size) {
     return import_stream_saver.default.createWriteStream(
       fileName,
@@ -60391,6 +60371,26 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       });
     }
   };
+  function pickFile(options) {
+    return new Promise((resolve) => {
+      const input = document.createElement("input");
+      input.type = "file";
+      if (options.multiple) {
+        input.multiple = true;
+      }
+      if (options.accept) {
+        input.accept = options.accept;
+      }
+      input.onchange = () => {
+        if (options.multiple) {
+          resolve(input.files);
+        } else {
+          resolve(input.files.item(0));
+        }
+      };
+      input.click();
+    });
+  }
 
   // node_modules/@fluentui/react-icons/lib/icons/chunk-0.js
   var React102 = __toESM(require_react());

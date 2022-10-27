@@ -4,8 +4,45 @@ import StreamSaver from '@yume-chan/stream-saver';
 import { formatSize } from './formatSize';
 
 
-StreamSaver.mitm = '/home/liaozhengyang/projects/react/web-adb/src/util' + '/mitm.html';
+StreamSaver.mitm = 'http://localhost:3006' + '/mitm.html';
 
+
+export function saveFile(fileName: string, size?: number | undefined)
+{
+    return StreamSaver!.createWriteStream(
+        fileName,
+        { size }
+    ) as unknown as WritableStream<Uint8Array>;
+}
+
+
+export function createFileStream(file: File)
+{
+    //@ts-ignore
+    return new WrapReadableStream<Uint8Array>(file.stream() as unknown as ReadableStream<Uint8Array>);
+}
+
+
+export function formatSpeed(completed: number, total: number, speed: number): string | undefined
+{
+    if (total === 0)
+    {
+        return undefined;
+    }
+    return `${formatSize(completed)} of ${formatSize(total)} (${formatSize(speed)}/s)`;
+}
+
+export class ProgressStream extends InspectStream<Uint8Array> {
+    public constructor(onProgress: (value: number) => void)
+    {
+        let progress = 0;
+        super(chunk =>
+        {
+            progress += chunk.byteLength;
+            onProgress(progress);
+        });
+    }
+}
 interface PickFileOptions
 {
     accept?: string;
@@ -43,41 +80,4 @@ export function pickFile(options: { multiple?: boolean; } & PickFileOptions): Pr
 
         input.click();
     });
-}
-
-export function saveFile(fileName: string, size?: number | undefined)
-{
-    return StreamSaver!.createWriteStream(
-        fileName,
-        { size }
-    ) as unknown as WritableStream<Uint8Array>;
-}
-
-
-export function createFileStream(file: File)
-{
-    //@ts-ignore
-    return new WrapReadableStream<Uint8Array>(file.stream() as unknown as ReadableStream<Uint8Array>);
-}
-
-
-export function formatSpeed(completed: number, total: number, speed: number): string | undefined
-{
-    if (total === 0)
-    {
-        return undefined;
-    }
-    return `${formatSize(completed)} of ${formatSize(total)} (${formatSize(speed)}/s)`;
-}
-
-export class ProgressStream extends InspectStream<Uint8Array> {
-    public constructor(onProgress: (value: number) => void)
-    {
-        let progress = 0;
-        super(chunk =>
-        {
-            progress += chunk.byteLength;
-            onProgress(progress);
-        });
-    }
 }
