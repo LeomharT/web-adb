@@ -1,5 +1,11 @@
-const path = '/ok/no/haha/ho';
+const file = 'ok.easd.docx';
 
 
+function extname(filename)
+{
+    const last_index = filename.lastIndexOf('.');
 
-console.log(path.split('/'));
+    return filename.substring(last_index);
+}
+
+console.log(extname(file));

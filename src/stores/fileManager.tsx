@@ -6,7 +6,7 @@ import { asyncEffect } from "../utils/asyncEffect";
 import { createFileStream, ProgressStream, saveFile } from "../utils/file";
 import { formatSize } from "../utils/formatSize";
 import Icons from "../utils/icons";
-import resolvePath from "../utils/resolvePath";
+import resolvePath, { extname } from "../utils/resolvePath";
 import { GlobalState } from "./state";
 
 export interface ListItem extends AdbSyncEntry
@@ -102,7 +102,7 @@ class FileManager
                             ({ iconName } = getFileTypeIconProps({ type: FileIconType.folder }));
                             break;
                         case LinuxFileType.File:
-                            ({ iconName } = getFileTypeIconProps({ extension: item.name }));
+                            ({ iconName } = getFileTypeIconProps({ extension: extname(item.name) }));
                             break;
                         default:
                             ({ iconName } = getFileTypeIconProps({ extension: 'txt' }));

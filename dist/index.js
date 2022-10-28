@@ -62203,6 +62203,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     resolvePath2 = resolvePath2.replace(/(\/)\1+/g, "$1");
     return resolvePath2;
   }
+  function extname(filename) {
+    const last_index = filename.lastIndexOf(".");
+    return filename.substring(last_index);
+  }
 
   // src/stores/state.ts
   var GlobalStateType = class {
@@ -62302,7 +62306,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
                 ({ iconName } = getFileTypeIconProps({ type: FileIconType.folder }));
                 break;
               case LinuxFileType.File:
-                ({ iconName } = getFileTypeIconProps({ extension: item.name }));
+                ({ iconName } = getFileTypeIconProps({ extension: extname(item.name) }));
                 break;
               default:
                 ({ iconName } = getFileTypeIconProps({ extension: "txt" }));

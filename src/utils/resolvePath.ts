@@ -30,3 +30,11 @@ export default function resolvePath(...paths: string[])
 
     return resolvePath;
 }
+
+
+export function extname(filename: string)
+{
+    const last_index = filename.lastIndexOf('.');
+
+    return filename.substring(last_index);
+}
