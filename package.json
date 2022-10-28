@@ -4,6 +4,7 @@
     "description": "",
     "type": "module",
     "main": "index.js",
+    "homepage": ".",
     "scripts": {
         "start": "node ./esbuild.config.js",
         "dev": "pm2 serve ./dist 3006 --spa"
