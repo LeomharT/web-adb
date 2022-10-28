@@ -3,8 +3,13 @@ import { InspectStream, WrapReadableStream } from '@yume-chan/adb';
 import StreamSaver from '@yume-chan/stream-saver';
 import { formatSize } from './formatSize';
 
-
-StreamSaver.mitm = 'http://localhost:3006' + '/mitm.html';
+if (document.location.hostname === 'localhost')
+{
+    StreamSaver.mitm = 'http://localhost:3006' + '/mitm.html';
+} else
+{
+    StreamSaver.mitm = 'https://manage.star-eva.evideo.com.cn/webadb/mitm.html';
+}
 
 
 export function saveFile(fileName: string, size?: number | undefined)

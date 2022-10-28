@@ -2,7 +2,7 @@ import { Breadcrumb, CommandBarButton, concatStyleSets, ContextualMenu, Contextu
 import { useConst } from '@fluentui/react-hooks';
 import { Selection, SelectionMode } from '@fluentui/react/lib/DetailsList';
 import { AdbSyncEntry, LinuxFileType } from "@yume-chan/adb";
-import { action, runInAction } from "mobx";
+import { runInAction } from "mobx";
 import { observer } from "mobx-react";
 import { useCallback } from "react";
 import { fileManager, ListItem } from "../stores/fileManager";
@@ -95,10 +95,13 @@ function FileList()
     }, []);
 
 
-    const dismissContextMenu = useCallback(action(() =>
+    const dismissContextMenu = useCallback(() =>
     {
-        fileManager.contextMenuTarget = undefined;
-    }), []);
+        runInAction(() =>
+        {
+            fileManager.contextMenuTarget = undefined;
+        });
+    }, []);
 
 
     const handleOnuploadFiles = useCallback(async (e: React.MouseEvent<any>) =>

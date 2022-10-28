@@ -60346,7 +60346,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // src/utils/file.ts
-  import_stream_saver.default.mitm = "http://localhost:3006/mitm.html";
+  if (document.location.hostname === "localhost") {
+    import_stream_saver.default.mitm = "http://localhost:3006/mitm.html";
+  } else {
+    import_stream_saver.default.mitm = "https://manage.star-eva.evideo.com.cn/webadb/mitm.html";
+  }
   function saveFile(fileName, size) {
     return import_stream_saver.default.createWriteStream(
       fileName,
@@ -63138,9 +63142,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       });
       return false;
     }, []);
-    const dismissContextMenu = (0, import_react17.useCallback)(action(() => {
-      fileManager.contextMenuTarget = void 0;
-    }), []);
+    const dismissContextMenu = (0, import_react17.useCallback)(() => {
+      runInAction(() => {
+        fileManager.contextMenuTarget = void 0;
+      });
+    }, []);
     const handleOnuploadFiles = (0, import_react17.useCallback)(async (e2) => {
       e2.stopPropagation();
       const files = await pickFile({ multiple: true });
