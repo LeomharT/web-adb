@@ -62271,6 +62271,29 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       return a2.localeCompare(b2);
     }
   }
+  async function spawnAndWait(command, options) {
+    const shell_pty = new AdbSubprocess(GlobalState.device);
+    const shell = await shell_pty.shell(command, options);
+    const stdout = new GatherStringStream();
+    const stderr = new GatherStringStream();
+    const [, , exitCode] = await Promise.all([
+      shell.stdout.pipeThrough(new DecodeUtf8Stream()).pipeTo(stdout),
+      shell.stderr.pipeThrough(new DecodeUtf8Stream()).pipeTo(stderr),
+      shell.exit
+    ]);
+    return {
+      stdout: stdout.result,
+      stderr: stderr.result,
+      exitCode
+    };
+  }
+  async function spawnAndWaitLegacy(command) {
+    const { stdout } = await spawnAndWait(
+      command,
+      { protocols: [AdbSubprocessNoneProtocol] }
+    );
+    return stdout;
+  }
   var FileManager = class {
     constructor() {
       makeAutoObservable(this, {
@@ -62498,9 +62521,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           (async () => {
             for (const item of this.selectedItems) {
               try {
-                const output = await GlobalState.device.rm(resolvePath(this.path, item.name));
-                GlobalState.showErrorDialog(output);
+                const output = await spawnAndWaitLegacy(`sudo rm -rf ${resolvePath(this.path, item.name)}`);
+                if (output) {
+                  GlobalState.showErrorDialog(output);
+                }
               } catch (e3) {
+                console.error(e3);
                 GlobalState.showErrorDialog(e3.message);
               } finally {
                 this.loadFiles();

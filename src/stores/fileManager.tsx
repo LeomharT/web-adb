@@ -1,6 +1,6 @@
 import { getIcon, IBreadcrumbItem, IColumn, Icon, IContextualMenuItem, mergeStyleSets } from "@fluentui/react";
 import { FileIconType, getFileTypeIconProps } from '@fluentui/react-file-type-icons';
-import { AdbFeatures, AdbSyncEntry, ADB_SYNC_MAX_PACKET_SIZE, ChunkStream, LinuxFileType } from "@yume-chan/adb";
+import { Adb, AdbFeatures, AdbSubprocess, AdbSubprocessNoneProtocol, AdbSubprocessOptions, AdbSubprocessWaitResult, AdbSyncEntry, ADB_SYNC_MAX_PACKET_SIZE, ChunkStream, DecodeUtf8Stream, GatherStringStream, LinuxFileType } from "@yume-chan/adb";
 import { action, makeAutoObservable, observable, runInAction } from "mobx";
 import { asyncEffect } from "../utils/asyncEffect";
 import { createFileStream, ProgressStream, saveFile } from "../utils/file";
@@ -43,6 +43,40 @@ function compareCaseInsensitively(a: string, b: string)
 }
 
 
+async function spawnAndWait(command: string | string[], options?: Partial<AdbSubprocessOptions>): Promise<AdbSubprocessWaitResult>
+{
+    const shell_pty = new AdbSubprocess(GlobalState.device as Adb);
+
+    const shell = await shell_pty.shell(command, options);
+
+    const stdout = new GatherStringStream();
+    const stderr = new GatherStringStream();
+
+    const [, , exitCode] = await Promise.all([
+        shell.stdout
+            .pipeThrough(new DecodeUtf8Stream())
+            .pipeTo(stdout),
+        shell.stderr
+            .pipeThrough(new DecodeUtf8Stream())
+            .pipeTo(stderr),
+        shell.exit
+    ]);
+
+    return {
+        stdout: stdout.result,
+        stderr: stderr.result,
+        exitCode,
+    };
+}
+
+async function spawnAndWaitLegacy(command: string | string[]): Promise<string>
+{
+    const { stdout } = await spawnAndWait(
+        command,
+        { protocols: [AdbSubprocessNoneProtocol] }
+    );
+    return stdout;
+}
 
 class FileManager
 {
@@ -360,12 +394,18 @@ class FileManager
                     {
                         try
                         {
-                            const output = await GlobalState.device!.rm(resolvePath(this.path, item.name));
-
-                            GlobalState.showErrorDialog(output);
+                            const output = await spawnAndWaitLegacy(`sudo rm -rf ${resolvePath(this.path, item.name)}`);
+                            // const output = await GlobalState.device!.rm(resolvePath(this.path, item.name));
+                            if (output)
+                            {
+                                GlobalState.showErrorDialog(output);
+                            }
                         } catch (e: any)
                         {
+                            console.error(e);
+
                             GlobalState.showErrorDialog(e.message);
+
                         } finally
                         {
                             this.loadFiles();
