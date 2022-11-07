@@ -1,10 +1,11 @@
-import { DefaultButton, INavLinkGroup, Label, Nav, PrimaryButton, Stack } from "@fluentui/react";
+import { DefaultButton, IComponentAsProps, INavButtonProps, INavLinkGroup, Label, Nav, PrimaryButton, Stack } from "@fluentui/react";
 import { Adb, AdbBackend, AdbPacketData, AdbPacketInit, InspectStream, pipeFrom } from "@yume-chan/adb";
 import AdbWebUsbBackend from "@yume-chan/adb-backend-webusb";
 import AdbWebCredentialStore from "@yume-chan/adb-credential-web";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useCallback, useState } from "react";
+import { Link } from "react-router-dom";
 import { fileManager } from "../stores/fileManager";
 import { GlobalState } from "../stores/state";
 import Icons from "../utils/icons";
@@ -28,6 +29,21 @@ const ROUTES: INavLinkGroup[] = [
         ]
     }
 ];
+
+
+function NavLink({ link, defaultRender: DefaultRender, ...props }: IComponentAsProps<INavButtonProps>)
+{
+    if (!link)
+    {
+        return null;
+    }
+
+    return (
+        <Link to={link.url}>
+            <DefaultRender {...props} />
+        </Link>
+    );
+}
 
 function Aside()
 {
@@ -140,7 +156,10 @@ function Aside()
                     borderTop: '1px solid rgb(243, 242, 241)'
                 }
             }}>
-                <Nav groups={ROUTES} />
+                <Nav
+                    groups={ROUTES}
+                    linkAs={NavLink}
+                />
             </Stack>
         </Stack>
     );
