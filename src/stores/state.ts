@@ -2,7 +2,6 @@ import { Adb, AdbBackend } from "@yume-chan/adb";
 import { makeAutoObservable, runInAction } from "mobx";
 import { fileManager } from "./fileManager";
 
-
 class GlobalStateType
 {
     constructor()
