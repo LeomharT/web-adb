@@ -19,7 +19,11 @@ const ROUTES: INavLinkGroup[] = [
                 url: '/',
                 name: "Files",
                 icon: Icons.Folder,
-                key: 'Files',
+            },
+            {
+                url: "/shell",
+                name: 'Shell',
+                icon: Icons.WindowConsole,
             }
         ]
     }
@@ -136,7 +140,7 @@ function Aside()
                     borderTop: '1px solid rgb(243, 242, 241)'
                 }
             }}>
-                <Nav groups={ROUTES} onLinkClick={e => e?.preventDefault()} />
+                <Nav groups={ROUTES} />
             </Stack>
         </Stack>
     );
