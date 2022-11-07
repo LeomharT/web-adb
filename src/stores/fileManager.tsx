@@ -394,16 +394,25 @@ class FileManager
                     {
                         try
                         {
-                            const output = await spawnAndWaitLegacy(`sudo rm -rf ${resolvePath(this.path, item.name)}`);
+                            const output = await GlobalState.device!.rm(resolvePath(this.path, item.name));
                             if (output)
                             {
                                 GlobalState.showErrorDialog(output);
                             }
                         } catch (e: any)
                         {
-                            console.error(e);
-
-                            GlobalState.showErrorDialog(e.message);
+                            try
+                            {
+                                const output = await spawnAndWaitLegacy(`rm -rf ${resolvePath(this.path, item.name)}`);
+                                if (output)
+                                {
+                                    GlobalState.showErrorDialog(output);
+                                }
+                            } catch (e: any)
+                            {
+                                console.error(e);
+                                GlobalState.showErrorDialog(e.message);
+                            }
 
                         } finally
                         {
