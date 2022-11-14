@@ -5,6 +5,7 @@ import Aside from '../components/Aside';
 import { ErrorDialog } from '../components/ErrorDialog';
 import FileList from '../components/FileList';
 import Shell from '../components/Shell';
+import { WaitingDialog } from '../components/WaitingDialog';
 import { register as registerIcons } from "../utils/icons";
 
 registerIcons();
@@ -26,6 +27,7 @@ function App()
                 </Routes>
             }
             <ErrorDialog />
+            <WaitingDialog />
         </div>
     );
 }

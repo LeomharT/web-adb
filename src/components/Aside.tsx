@@ -90,6 +90,8 @@ function Aside()
 
         try
         {
+            GlobalState.showWaitDialog();
+
             const device = await Adb.authenticate(
                 //@ts-ignore
                 { readable, writable },
@@ -110,6 +112,8 @@ function Aside()
             runInAction(() => fileManager.path = '/');
 
             fileManager.loadFiles();
+
+            GlobalState.closeWaitDialog();
 
         } catch (e)
         {

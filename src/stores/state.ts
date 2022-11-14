@@ -11,6 +11,7 @@ class GlobalStateType
 
     public backend: AdbBackend | undefined = undefined;
 
+
     public device: Adb | undefined = undefined;
 
 
@@ -18,6 +19,9 @@ class GlobalStateType
 
 
     public errorDialogMessage: string = '';
+
+
+    public waitDialogVisible: boolean = false;
 
 
     public setDevice = (backend: AdbBackend, device: Adb) =>
@@ -66,6 +70,11 @@ class GlobalStateType
 
     public closeErrorDialog = () => this.errorDialogVisible = false;
 
+
+    public showWaitDialog = () => this.waitDialogVisible = true;
+
+
+    public closeWaitDialog = () => this.waitDialogVisible = false;
 
 }
 
